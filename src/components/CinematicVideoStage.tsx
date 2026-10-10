@@ -37,7 +37,26 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
   const [timecode, setTimecode] = useState<string>('00:01:24:18');
 
   const videoRef = useRef<HTMLVideoElement>(null);
-  const visualConfig = getSceneVisualConfig(episode.episodeNumber);
+  const visualConfig = getSceneVisualConfig(episode.episodeNumber, turn.turnIndex);
+  const [prevVisualSrc, setPrevVisualSrc] = useState<string>(visualConfig.videoSrc);
+  const [useFallbackVideo, setUseFallbackVideo] = useState<boolean>(false);
+
+  if (visualConfig.videoSrc !== prevVisualSrc) {
+    setPrevVisualSrc(visualConfig.videoSrc);
+    setUseFallbackVideo(false);
+  }
+
+  const activeVideoSrc = useFallbackVideo
+    ? `/videos/ep${episode.episodeNumber}.mp4`
+    : visualConfig.videoSrc;
+
+  const handleVideoError = () => {
+    if (!useFallbackVideo) {
+      setUseFallbackVideo(true);
+    } else {
+      setVideoError(true);
+    }
+  };
 
   // Realistic SMPTE 24FPS Timecode simulation
   useEffect(() => {
@@ -73,7 +92,7 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
         // Safe fallback
       }
     }
-  }, [turnIndex, episode.episodeNumber]);
+  }, [turnIndex, episode.episodeNumber, activeVideoSrc]);
 
   // Synchronize video playback with speech audio state without end-of-line snap-back
   useEffect(() => {
@@ -101,7 +120,7 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
         // Safe fallback
       }
     }
-  }, [isPlayingTTS, isVideoEnabled, visualConfig.videoSrc, videoError]);
+  }, [isPlayingTTS, isVideoEnabled, activeVideoSrc, videoError]);
 
   // Sub-frame level audio-to-video synchronization locked strictly at natural 1.0x tempo
   useEffect(() => {
@@ -116,8 +135,8 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
         video.playbackRate = 1.0;
       }
 
-      // Gently re-align video time if drift exceeds 200ms
-      if (audioCurrentTime > 0 && Math.abs(video.currentTime - audioCurrentTime) > 0.2) {
+      // High-precision alignment: keep video time strictly within 100ms of audio
+      if (audioCurrentTime > 0 && Math.abs(video.currentTime - audioCurrentTime) > 0.1) {
         video.currentTime = audioCurrentTime;
       }
     });
@@ -137,7 +156,7 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
       {isVideoEnabled && !videoError ? (
         <video
           ref={videoRef}
-          src={visualConfig.videoSrc}
+          src={activeVideoSrc}
           muted
           playsInline
           onLoadedData={() => {
@@ -151,7 +170,7 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
               }
             }
           }}
-          onError={() => setVideoError(true)}
+          onError={handleVideoError}
           className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
             isVideoLoaded ? 'opacity-100' : 'opacity-0'
           }`}

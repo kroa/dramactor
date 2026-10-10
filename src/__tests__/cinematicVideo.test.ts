@@ -14,6 +14,14 @@ describe('Cinematic Scene Visual Map Engine', () => {
     }
   });
 
+  it('returns turn-specific lip sync video path when turnIndex is specified', () => {
+    const configTurn1 = getSceneVisualConfig(2, 1);
+    expect(configTurn1.videoSrc).toBe('/videos/ep2_turn1.mp4');
+
+    const configTurn3 = getSceneVisualConfig(2, 3);
+    expect(configTurn3.videoSrc).toBe('/videos/ep2_turn3.mp4');
+  });
+
   it('provides a resilient fallback config for out-of-range episodes', () => {
     const fallbackConfig = getSceneVisualConfig(999);
     expect(fallbackConfig.videoSrc).toBe('/videos/ep1.mp4');
