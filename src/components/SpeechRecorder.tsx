@@ -5,6 +5,7 @@ import {
   createSpeechRecognizer,
   isSpeechRecognitionSupported,
   playNativeDialogue,
+  playCinematicSound,
   type SpeechRecognitionInstance,
 } from '../utils/speechMatch';
 
@@ -135,7 +136,13 @@ export const SpeechRecorder: React.FC<SpeechRecorderProps> = ({
   };
 
   const handleTapPass = () => {
+    playCinematicSound('pass');
     onPass(transcript || targetScript, Math.max(similarity, 80), true);
+  };
+
+  const handleConfirmPass = () => {
+    playCinematicSound('pass');
+    onPass(transcript, similarity, true);
   };
 
   const passed = similarity >= 75;
@@ -266,7 +273,7 @@ export const SpeechRecorder: React.FC<SpeechRecorderProps> = ({
         {passed ? (
           <button
             type="button"
-            onClick={() => onPass(transcript, similarity, true)}
+            onClick={handleConfirmPass}
             className="flex-1 py-2.5 rounded-xl text-xs font-bold bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 text-black shadow-lg shadow-emerald-500/20 flex items-center justify-center space-x-1.5 transition-all active:scale-[0.98]"
           >
             <span>합격! 다음 턴 진행</span>

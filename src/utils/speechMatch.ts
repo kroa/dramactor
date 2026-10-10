@@ -7,19 +7,16 @@
  * Normalizes text for speech comparison:
  * - Converts to lowercase
  * - Strips all punctuation and special characters
- * - Normalizes contractions (e.g., let's -> lets or expands)
+ * - Normalizes contractions (e.g., let's -> lets)
  * - Collapses multiple spaces
  */
 export function normalizeText(text: string): string {
   if (!text) return '';
   return text
     .toLowerCase()
-    // Replace typographic quotes with straight quotes
     .replace(/[‘’]/g, "'")
     .replace(/[“”]/g, '"')
-    // Remove all punctuation except alphanumeric and spaces
     .replace(/[^a-z0-9\s]/g, '')
-    // Replace multiple spaces with a single space
     .replace(/\s+/g, ' ')
     .trim();
 }
@@ -34,7 +31,6 @@ export function levenshteinDistance(a: string, b: string): number {
   if (m === 0) return n;
   if (n === 0) return m;
 
-  // Single dimensional DP array for optimization
   const d: number[] = Array.from({ length: n + 1 }, (_, i) => i);
 
   for (let i = 1; i <= m; i++) {
@@ -150,42 +146,150 @@ export function createSpeechRecognizer(): SpeechRecognitionInstance | null {
   return recognizer;
 }
 
-/**
- * Text-to-Speech using browser SpeechSynthesis
- */
-export function playNativeDialogue(
-  text: string,
-  options?: {
-    rate?: number;
-    pitch?: number;
-    volume?: number;
-    onStart?: () => void;
-    onEnd?: () => void;
+// ==========================================
+// High-Fidelity Cinematic Voice Engine (TTS)
+// ==========================================
+
+let cachedVoices: SpeechSynthesisVoice[] = [];
+
+function loadVoices(): SpeechSynthesisVoice[] {
+  if (typeof window === 'undefined' || !('speechSynthesis' in window)) {
+    return [];
   }
-): boolean {
+  const voices = window.speechSynthesis.getVoices();
+  if (voices && voices.length > 0) {
+    cachedVoices = voices;
+  }
+  return cachedVoices;
+}
+
+// Preload voices & listen for asynchronous browser voice load
+if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+  loadVoices();
+  window.speechSynthesis.onvoiceschanged = () => {
+    loadVoices();
+  };
+}
+
+/**
+ * Selects the highest quality natural/neural voice based on character persona and gender
+ */
+export function getBestVoiceForCharacter(speakerName = ''): {
+  voice: SpeechSynthesisVoice | null;
+  recommendedPitch: number;
+  recommendedRate: number;
+  voiceLabel: string;
+} {
+  const voices = cachedVoices.length > 0 ? cachedVoices : loadVoices();
+  const lowerSpeaker = speakerName.toLowerCase();
+
+  // Character gender & persona detection
+  const isFemale =
+    lowerSpeaker.includes('elena') ||
+    lowerSpeaker.includes('victoria') ||
+    lowerSpeaker.includes('woman') ||
+    lowerSpeaker.includes('rachel') ||
+    lowerSpeaker.includes('donna');
+
+  // Filter English voices
+  const enVoices = voices.filter((v) => v.lang.startsWith('en'));
+
+  let selectedVoice: SpeechSynthesisVoice | null = null;
+
+  if (isFemale) {
+    // Top-tier Natural Female Voices (Edge Natural, Chrome Google US, Apple Samantha)
+    selectedVoice =
+      enVoices.find((v) => v.name.includes('Natural') && (v.name.includes('Jenny') || v.name.includes('Aria') || v.name.includes('Ava') || v.name.includes('Sara'))) ||
+      enVoices.find((v) => v.name.includes('Google') && (v.name.includes('Female') || v.name.includes('en-US'))) ||
+      enVoices.find((v) => v.name.includes('Samantha') || v.name.includes('Victoria') || v.name.includes('Karen') || v.name.includes('Zira')) ||
+      enVoices.find((v) => v.name.toLowerCase().includes('female')) ||
+      enVoices[0] ||
+      null;
+  } else {
+    // Top-tier Natural Male Voices (Edge Natural Guy/Christopher/Davis, Chrome Google US Male, Apple Daniel/Alex)
+    selectedVoice =
+      enVoices.find((v) => v.name.includes('Natural') && (v.name.includes('Guy') || v.name.includes('Christopher') || v.name.includes('Davis') || v.name.includes('Steffan'))) ||
+      enVoices.find((v) => v.name.includes('Google') && (v.name.includes('Male') || v.name.includes('US English'))) ||
+      enVoices.find((v) => v.name.includes('Daniel') || v.name.includes('Alex') || v.name.includes('David') || v.name.includes('Fred')) ||
+      enVoices.find((v) => v.name.toLowerCase().includes('male')) ||
+      enVoices[0] ||
+      null;
+  }
+
+  // Persona-specific vocal acoustics (deliberate American drama cadence)
+  let recommendedPitch = 1.0;
+  let recommendedRate = 0.94; // slightly slower than robotic 1.0 for cinematic diction
+
+  if (lowerSpeaker.includes('harvey')) {
+    // Suits Harvey Specter: Confident, deep, alpha partner
+    recommendedPitch = 0.92;
+    recommendedRate = 0.93;
+  } else if (lowerSpeaker.includes('axelrod')) {
+    // Billions Bobby Axelrod: Cold, commanding, ruthless
+    recommendedPitch = 0.89;
+    recommendedRate = 0.94;
+  } else if (lowerSpeaker.includes('julian')) {
+    // Soho Julian: Charismatic, smooth, romantic
+    recommendedPitch = 0.96;
+    recommendedRate = 0.91;
+  } else if (lowerSpeaker.includes('burke')) {
+    // ER Dr. Burke: Focused, sharp, surgeon authority
+    recommendedPitch = 0.94;
+    recommendedRate = 0.96;
+  } else if (lowerSpeaker.includes('elena')) {
+    // Silicon Valley Elena: Sharp, analytical, venture partner
+    recommendedPitch = 1.02;
+    recommendedRate = 0.94;
+  } else if (lowerSpeaker.includes('victoria')) {
+    // CFO Victoria: Polished, corporate poise, calculating
+    recommendedPitch = 0.98;
+    recommendedRate = 0.92;
+  }
+
+  const voiceLabel = selectedVoice
+    ? selectedVoice.name.replace(/(Microsoft|Google|Apple)\s*/i, '').replace(/Online \(Natural\)/i, '✨ Natural')
+    : 'System Voice';
+
+  return {
+    voice: selectedVoice,
+    recommendedPitch,
+    recommendedRate,
+    voiceLabel,
+  };
+}
+
+export interface DialoguePlayOptions {
+  speaker?: string;
+  rate?: number;
+  pitch?: number;
+  volume?: number;
+  onStart?: () => void;
+  onEnd?: () => void;
+}
+
+/**
+ * Text-to-Speech using browser SpeechSynthesis with cinematic persona voice tuning
+ */
+export function playNativeDialogue(text: string, options?: DialoguePlayOptions): boolean {
   if (typeof window === 'undefined' || !('speechSynthesis' in window)) {
     options?.onEnd?.();
     return false;
   }
 
-  // Cancel any ongoing speech
   window.speechSynthesis.cancel();
 
   const utterance = new SpeechSynthesisUtterance(text);
   utterance.lang = 'en-US';
-  utterance.rate = options?.rate ?? 0.95; // Slightly cinematic pacing
-  utterance.pitch = options?.pitch ?? 1.0;
-  utterance.volume = options?.volume ?? 1.0;
 
-  // Attempt to select an English native voice if available
-  const voices = window.speechSynthesis.getVoices();
-  const enVoice =
-    voices.find((v) => v.lang.startsWith('en') && (v.name.includes('Natural') || v.name.includes('Google') || v.name.includes('Samantha') || v.name.includes('Daniel'))) ||
-    voices.find((v) => v.lang.startsWith('en'));
+  const { voice, recommendedPitch, recommendedRate } = getBestVoiceForCharacter(options?.speaker);
 
-  if (enVoice) {
-    utterance.voice = enVoice;
+  if (voice) {
+    utterance.voice = voice;
   }
+
+  utterance.rate = options?.rate ?? recommendedRate;
+  utterance.pitch = options?.pitch ?? recommendedPitch;
+  utterance.volume = options?.volume ?? 1.0;
 
   utterance.onstart = () => {
     options?.onStart?.();
@@ -209,3 +313,47 @@ export function stopNativeSpeech(): void {
   }
 }
 
+/**
+ * Native Web Audio API cinematic UI sound synthesizer (zero external network requests)
+ */
+export function playCinematicSound(type: 'click' | 'pass' | 'turn'): void {
+  if (typeof window === 'undefined') return;
+
+  try {
+    const AudioContextClass = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+    if (!AudioContextClass) return;
+
+    const ctx = new AudioContextClass();
+
+    if (type === 'click') {
+      // Gentle film slate click
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(800, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(120, ctx.currentTime + 0.04);
+      gain.gain.setValueAtTime(0.08, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.04);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start();
+      osc.stop(ctx.currentTime + 0.05);
+    } else if (type === 'pass') {
+      // Cinematic harmonious chord
+      [523.25, 659.25, 783.99].forEach((freq, idx) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(freq, ctx.currentTime + idx * 0.06);
+        gain.gain.setValueAtTime(0.06, ctx.currentTime + idx * 0.06);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + idx * 0.06 + 0.28);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(ctx.currentTime + idx * 0.06);
+        osc.stop(ctx.currentTime + idx * 0.06 + 0.3);
+      });
+    }
+  } catch {
+    // Ignore audio context errors
+  }
+}

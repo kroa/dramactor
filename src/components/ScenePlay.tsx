@@ -32,16 +32,16 @@ export const ScenePlay: React.FC<ScenePlayProps> = ({
       lastTurnIndexRef.current = turnIndex;
       if (!isMuted) {
         playNativeDialogue(turn.dialogue, {
+          speaker: turn.speaker,
           onStart: () => setIsPlayingTTS(true),
           onEnd: () => setIsPlayingTTS(false),
-          rate: 0.96,
         });
       }
     }
     return () => {
       stopNativeSpeech();
     };
-  }, [turnIndex, turn.dialogue, isMuted]);
+  }, [turnIndex, turn.dialogue, turn.speaker, isMuted]);
 
   const handleManualPlayTTS = () => {
     if (isPlayingTTS) {
@@ -49,10 +49,10 @@ export const ScenePlay: React.FC<ScenePlayProps> = ({
       setIsPlayingTTS(false);
       return;
     }
-    setIsPlayingTTS(true);
     playNativeDialogue(turn.dialogue, {
+      speaker: turn.speaker,
+      onStart: () => setIsPlayingTTS(true),
       onEnd: () => setIsPlayingTTS(false),
-      rate: 0.96,
     });
   };
 
