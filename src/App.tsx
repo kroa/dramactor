@@ -57,8 +57,8 @@ export const App: React.FC = () => {
         onOpenArchiveModal={() => setIsArchiveModalOpen(true)}
       />
 
-      {/* Main Stage Content */}
-      <main className="flex-1 w-full max-w-md mx-auto flex flex-col justify-center items-center py-4 relative z-10">
+      {/* Main Stage Content - Responsive Web & App Container */}
+      <main className="flex-1 w-full max-w-md md:max-w-4xl lg:max-w-6xl mx-auto flex flex-col justify-start items-center py-2 sm:py-6 px-2 sm:px-6 relative z-10 transition-all">
         {showLockScreen ? (
           <LockScreen
             episode={currentEpisode}
@@ -90,7 +90,7 @@ export const App: React.FC = () => {
       </main>
 
       {/* Subtle Cinematic Footer */}
-      <footer className="w-full max-w-md mx-auto py-4 px-4 text-center text-[11px] text-zinc-500 border-t border-white/[0.05] relative z-10 space-y-1">
+      <footer className="w-full max-w-md md:max-w-4xl lg:max-w-6xl mx-auto py-4 px-4 text-center text-[11px] text-zinc-500 border-t border-white/[0.05] relative z-10 space-y-1">
         <p className="font-medium text-zinc-400">
           Dramactor (드라맥터) &bull; 매일 90초 미드 주연 스피킹
         </p>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Volume2, VolumeX, Sparkles, MessageSquare, Sliders, Languages } from 'lucide-react';
+import { Sparkles, MessageSquare, Languages } from 'lucide-react';
 import type { Choice, Episode, SceneTurn } from '../types';
 import { playStudioClip, stopNativeSpeech } from '../utils/speechMatch';
 import { SpeechRecorder } from './SpeechRecorder';
@@ -125,263 +125,224 @@ export const ScenePlay: React.FC<ScenePlayProps> = ({
   };
 
   return (
-    <div className="w-full max-w-md mx-auto space-y-3.5 px-3 py-2 text-left">
-      {/* Turn Progress Capsules (3 Glowing Capsules) */}
-      <div className="flex items-center justify-between space-x-2 pt-1 pb-0.5">
-        {[0, 1, 2].map((idx) => {
-          const isCurrent = idx === turnIndex;
-          const isDone = idx < turnIndex;
-          return (
-            <div key={idx} className="flex-1 flex flex-col space-y-1">
-              <div
-                className={`h-2 rounded-full transition-all duration-500 ${
-                  isCurrent
-                    ? 'bg-gradient-to-r from-emerald-400 to-cyan-400 shadow-md shadow-emerald-500/40'
-                    : isDone
-                    ? 'bg-emerald-500/80'
-                    : 'bg-zinc-800'
-                }`}
-              />
-              <span className="text-[10px] text-center font-bold text-zinc-500">
-                TURN {idx + 1}
-              </span>
-            </div>
-          );
-        })}
-      </div>
-
-      {/* Episode Header Info */}
-      <div className="flex items-center justify-between text-xs text-zinc-400 border-b border-white/[0.06] pb-1.5">
-        <span className="font-semibold text-white truncate max-w-[260px]">
+    <div className="w-full max-w-md md:max-w-4xl lg:max-w-6xl mx-auto space-y-4 px-2 sm:px-4 py-2 text-left">
+      {/* Top Episode Header Info */}
+      <div className="flex items-center justify-between text-xs text-zinc-400 border-b border-white/[0.06] pb-2">
+        <span className="font-semibold text-white truncate max-w-[280px] sm:max-w-md">
           EP #{episode.episodeNumber.toString().padStart(2, '0')} : {episode.title}
         </span>
-        <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-white/[0.06] border border-white/10 text-cyan-300">
-          {episode.genre}
-        </span>
-      </div>
-
-      {/* Cinematic Drama Video Viewport (ARRI Viewfinder & Video Stage) */}
-      <CinematicVideoStage
-        episode={episode}
-        turn={turn}
-        turnIndex={turnIndex}
-        isPlayingTTS={isPlayingTTS}
-        onPlayTTS={handleManualPlayTTS}
-        onOpenVoiceSettings={() => setIsVoiceModalOpen(true)}
-      />
-
-      {/* Situation Hint Card */}
-      <div className="p-2.5 rounded-xl bg-white/[0.03] border border-white/[0.07] text-xs text-zinc-300 leading-relaxed shadow-sm">
-        <div className="flex items-center space-x-1.5 text-zinc-400 font-semibold mb-0.5">
-          <MessageSquare className="w-3.5 h-3.5 text-emerald-400" />
-          <span>씬 상황 (Situation)</span>
+        <div className="flex items-center space-x-2">
+          <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-white/[0.06] border border-white/10 text-cyan-300">
+            {episode.genre}
+          </span>
+          <span className="hidden md:inline-flex px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">
+            TURN {turnIndex + 1} / 3
+          </span>
         </div>
-        <p className="text-zinc-200">{turn.situationHint}</p>
       </div>
 
-      {/* Opponent Dialogue Box (Cinematic Subtitle View) */}
-      <div className="p-3.5 rounded-2xl bg-gradient-to-b from-white/[0.05] to-white/[0.02] border border-white/10 backdrop-blur-xl shadow-xl relative overflow-hidden">
-        {/* Ambient Top Glow */}
-        <div className="absolute top-0 left-1/4 right-1/4 h-px bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent" />
+      {/* Main Responsive Grid: Mobile vertical stack, Desktop 2-column Cinema Studio */}
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-4 lg:gap-6 items-start">
+        {/* Left Column (Desktop 7 cols): Cinematic Video Screen + Subtitle Dialogue + Situation */}
+        <div className="md:col-span-7 space-y-3.5">
+          {/* Cinematic Drama Video Viewport (ARRI Viewfinder & Video Stage) */}
+          <CinematicVideoStage
+            episode={episode}
+            turn={turn}
+            turnIndex={turnIndex}
+            isPlayingTTS={isPlayingTTS}
+            onPlayTTS={handleManualPlayTTS}
+            onOpenVoiceSettings={() => setIsVoiceModalOpen(true)}
+          />
 
-        <div className="flex items-start space-x-3">
-          {/* Avatar with Audio Pulse Ring */}
-          <div className="relative shrink-0">
-            <div
-              className={`w-11 h-11 rounded-xl flex items-center justify-center text-2xl bg-zinc-900 border border-white/15 shadow-inner transition-all duration-300 ${
-                isPlayingTTS ? 'animate-glow-ring border-cyan-400' : ''
-              }`}
-            >
-              <span className="select-none">{turn.avatarEmoji}</span>
-            </div>
-            {isPlayingTTS && (
-              <span className="absolute -bottom-1 -right-1 flex h-3.5 w-3.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-cyan-500 border border-zinc-950 items-center justify-center text-[7px] text-black font-bold">
-                  ♫
-                </span>
-              </span>
-            )}
-          </div>
-
-          {/* Dialogue Speaker & Text */}
-          <div className="flex-1 space-y-1">
-            <div className="flex items-center justify-between">
-              <h3 className="text-xs font-bold text-cyan-300 tracking-wide">
-                {turn.speaker}
-              </h3>
-              <div className="flex items-center space-x-1.5">
-                <button
-                  type="button"
-                  onClick={() => setIsVoiceModalOpen(true)}
-                  className="flex items-center space-x-1 text-[11px] text-zinc-400 hover:text-white bg-white/[0.05] hover:bg-white/10 px-2 py-0.5 rounded-md border border-white/10 transition-colors"
-                  title="성우 목소리 및 속도 튜닝"
-                >
-                  <Sliders className="w-3 h-3 text-cyan-400" />
-                  <span>음성 튜닝</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={handleManualPlayTTS}
-                  className="flex items-center space-x-1 text-[11px] text-zinc-400 hover:text-white bg-white/[0.05] hover:bg-white/10 px-2 py-0.5 rounded-md border border-white/10 transition-colors"
-                  title="상대방 대사 다시 듣기"
-                >
-                  {isPlayingTTS ? (
-                    <>
-                      <VolumeX className="w-3 h-3 text-cyan-400" />
-                      <span>정지</span>
-                    </>
-                  ) : (
-                    <>
-                      <Volume2 className="w-3 h-3 text-cyan-400" />
-                      <span>대사 듣기</span>
-                    </>
-                  )}
-                </button>
+          {/* Cinematic Subtitle & Situation Card */}
+          <div className="p-3.5 sm:p-4 rounded-2xl bg-gradient-to-b from-white/[0.06] to-white/[0.02] border border-white/10 backdrop-blur-xl shadow-xl space-y-2.5">
+            {/* Subtitle Dialogue Line */}
+            <div className="space-y-1">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-1.5 text-xs text-cyan-300 font-bold">
+                  <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+                  <span>{turn.speaker} 대사 (Line)</span>
+                </div>
+                <span className="text-[10px] text-zinc-500 font-mono">CINEMA SUBTITLE</span>
               </div>
+              <p className="text-sm sm:text-base lg:text-lg font-bold text-white leading-relaxed tracking-tight">
+                &ldquo;{turn.dialogue}&rdquo;
+              </p>
             </div>
 
-            <p className="text-sm sm:text-base font-medium text-white leading-relaxed tracking-tight">
-              &ldquo;{turn.dialogue}&rdquo;
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* Choice Selection Phase */}
-      {!selectedChoice ? (
-        <div className="space-y-2.5 pt-1">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-zinc-400 tracking-wider">
-              당신의 대사를 선택하세요 (3 CHANCES)
-            </span>
-            <button
-              type="button"
-              onClick={toggleAllTranslations}
-              className="flex items-center space-x-1 text-[11px] text-zinc-400 hover:text-cyan-300 bg-white/[0.04] hover:bg-white/[0.08] px-2 py-0.5 rounded-md border border-white/10 transition-colors"
-              title="전체 대사 한글 번역 토글"
-            >
-              <Languages className="w-3 h-3 text-cyan-400" />
-              <span>{showAllTranslations ? '전체 번역 숨기기' : '전체 번역 보기'}</span>
-            </button>
-          </div>
-
-          <div className="space-y-2.5">
-            {turn.choices.map((choice) => {
-              const isRevealed = !!revealedTranslations[choice.id];
-              return (
-                <button
-                  key={choice.id}
-                  type="button"
-                  onClick={() => onSelectChoice(choice)}
-                  className="w-full text-left p-3.5 rounded-xl glass-panel-interactive border border-white/[0.08] relative group active:scale-[0.98] transition-all"
-                >
-                  <div className="flex items-start space-x-3">
-                    <span className="w-6 h-6 rounded-lg bg-white/10 border border-white/15 flex items-center justify-center font-bold text-xs text-white group-hover:bg-cyan-500 group-hover:text-black transition-colors shrink-0">
-                      {choice.id}
-                    </span>
-                    <div className="flex-1 space-y-1.5">
-                      <p className="text-sm font-semibold text-white leading-snug group-hover:text-cyan-200 transition-colors">
-                        {choice.text}
-                      </p>
-
-                      {/* Korean Translation: Only displayed when clicking translation */}
-                      {isRevealed ? (
-                        <div className="pt-0.5">
-                          <div className="flex items-center justify-between bg-cyan-950/40 border border-cyan-500/25 rounded-lg px-2.5 py-1">
-                            <p className="text-xs text-cyan-200 leading-snug">
-                              {choice.koreanMeaning}
-                            </p>
-                            <span
-                              role="button"
-                              tabIndex={0}
-                              onClick={(e) => toggleTranslation(choice.id, e)}
-                              onKeyDown={(e) => {
-                                if (e.key === 'Enter' || e.key === ' ') {
-                                  toggleTranslation(choice.id, e);
-                                }
-                              }}
-                              className="text-[10px] text-zinc-400 hover:text-zinc-200 ml-2 shrink-0 underline cursor-pointer"
-                              title="한글 번역 숨기기"
-                            >
-                              숨기기
-                            </span>
-                          </div>
-                        </div>
-                      ) : (
-                        <div className="pt-0.5">
-                          <span
-                            role="button"
-                            tabIndex={0}
-                            onClick={(e) => toggleTranslation(choice.id, e)}
-                            onKeyDown={(e) => {
-                              if (e.key === 'Enter' || e.key === ' ') {
-                                toggleTranslation(choice.id, e);
-                              }
-                            }}
-                            className="inline-flex items-center space-x-1 text-[11px] text-zinc-400 hover:text-cyan-300 bg-white/[0.04] hover:bg-white/[0.08] px-2 py-0.5 rounded-md border border-white/10 transition-colors cursor-pointer"
-                            title="한글 번역 보기"
-                          >
-                            <Languages className="w-3 h-3 text-cyan-400" />
-                            <span>번역</span>
-                          </span>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </button>
-              );
-            })}
-          </div>
-        </div>
-      ) : (
-        /* Selected Choice Feedback + Speech Mission Phase */
-        <div className="space-y-3">
-          {/* Feedback Card */}
-          <div className="p-3.5 rounded-xl bg-white/[0.04] border border-white/10 space-y-2 text-left">
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-bold text-zinc-300">
-                선택한 대사 [Option {selectedChoice.id}]
-              </span>
-              <span
-                className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${
-                  choiceTypeBadge(selectedChoice.type).color
-                }`}
-              >
-                {choiceTypeBadge(selectedChoice.type).label}
-              </span>
-            </div>
-
-            <p className="text-sm font-bold text-white">
-              &ldquo;{selectedChoice.text}&rdquo;
-            </p>
-
-            {/* Selected choice Korean translation in feedback card */}
-            <div className="flex items-center space-x-1.5 text-xs text-cyan-300/90 bg-cyan-950/30 px-2 py-1 rounded-md border border-cyan-500/20">
-              <Languages className="w-3 h-3 text-cyan-400 shrink-0" />
-              <span>{selectedChoice.koreanMeaning}</span>
-            </div>
-
-            {/* Native Speaker Rationale Feedback */}
-            <div className="pt-1 border-t border-white/[0.06] flex items-start space-x-2 text-xs text-zinc-300">
-              <Sparkles className="w-3.5 h-3.5 text-amber-400 shrink-0 mt-0.5" />
+            {/* Situation Context */}
+            <div className="pt-2 border-t border-white/[0.08] flex items-start space-x-2 text-xs text-zinc-300">
+              <MessageSquare className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
               <p className="leading-relaxed">
-                <span className="font-semibold text-amber-300">원어민 코멘트:</span>{' '}
-                {selectedChoice.feedback}
+                <span className="font-semibold text-emerald-300">씬 상황:</span> {turn.situationHint}
               </p>
             </div>
           </div>
-
-          {/* Speech Recorder Sub-Module */}
-          <SpeechRecorder
-            targetScript={selectedChoice.targetScript}
-            guideAudioUrl={`/audio/guides/ep${episode.episodeNumber}_turn${turn.turnIndex}_${selectedChoice.id}.mp3`}
-            isMuted={isMuted}
-            onPass={onSubmitTurn}
-            onCancelChoice={() => onSelectChoice(null as unknown as Choice)}
-          />
         </div>
-      )}
+
+        {/* Right Column (Desktop 5 cols): Turn Progress + Interactive Acting Deck (Choices / Mic) */}
+        <div className="md:col-span-5 space-y-3.5">
+          {/* Turn Progress Capsules (3 Glowing Capsules) */}
+          <div className="flex items-center justify-between space-x-2 pt-1 pb-0.5">
+            {[0, 1, 2].map((idx) => {
+              const isCurrent = idx === turnIndex;
+              const isDone = idx < turnIndex;
+              return (
+                <div key={idx} className="flex-1 flex flex-col space-y-1">
+                  <div
+                    className={`h-2 rounded-full transition-all duration-500 ${
+                      isCurrent
+                        ? 'bg-gradient-to-r from-emerald-400 to-cyan-400 shadow-md shadow-emerald-500/40'
+                        : isDone
+                        ? 'bg-emerald-500/80'
+                        : 'bg-zinc-800'
+                    }`}
+                  />
+                  <span className="text-[10px] text-center font-bold text-zinc-500">
+                    TURN {idx + 1}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Choice Selection Phase */}
+          {!selectedChoice ? (
+            <div className="space-y-2.5 pt-1">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-bold text-zinc-400 tracking-wider">
+                  당신의 대사를 선택하세요 (3 CHANCES)
+                </span>
+                <button
+                  type="button"
+                  onClick={toggleAllTranslations}
+                  className="flex items-center space-x-1 text-[11px] text-zinc-400 hover:text-cyan-300 bg-white/[0.04] hover:bg-white/[0.08] px-2 py-0.5 rounded-md border border-white/10 transition-colors"
+                  title="전체 대사 한글 번역 토글"
+                >
+                  <Languages className="w-3 h-3 text-cyan-400" />
+                  <span>{showAllTranslations ? '전체 번역 숨기기' : '전체 번역 보기'}</span>
+                </button>
+              </div>
+
+              <div className="space-y-2.5">
+                {turn.choices.map((choice) => {
+                  const isRevealed = !!revealedTranslations[choice.id];
+                  return (
+                    <button
+                      key={choice.id}
+                      type="button"
+                      onClick={() => onSelectChoice(choice)}
+                      className="w-full text-left p-3 sm:p-3.5 rounded-xl glass-panel-interactive border border-white/[0.08] relative group active:scale-[0.98] transition-all"
+                    >
+                      <div className="flex items-start space-x-3">
+                        <span className="w-6 h-6 rounded-lg bg-white/10 border border-white/15 flex items-center justify-center font-bold text-xs text-white group-hover:bg-cyan-500 group-hover:text-black transition-colors shrink-0">
+                          {choice.id}
+                        </span>
+                        <div className="flex-1 space-y-1.5">
+                          <p className="text-sm font-semibold text-white leading-snug group-hover:text-cyan-200 transition-colors">
+                            {choice.text}
+                          </p>
+
+                          {/* Korean Translation: Only displayed when clicking translation */}
+                          {isRevealed ? (
+                            <div className="pt-0.5">
+                              <div className="flex items-center justify-between bg-cyan-950/40 border border-cyan-500/25 rounded-lg px-2.5 py-1">
+                                <p className="text-xs text-cyan-200 leading-snug">
+                                  {choice.koreanMeaning}
+                                </p>
+                                <span
+                                  role="button"
+                                  tabIndex={0}
+                                  onClick={(e) => toggleTranslation(choice.id, e)}
+                                  onKeyDown={(e) => {
+                                    if (e.key === 'Enter' || e.key === ' ') {
+                                      toggleTranslation(choice.id, e);
+                                    }
+                                  }}
+                                  className="text-[10px] text-zinc-400 hover:text-zinc-200 ml-2 shrink-0 underline cursor-pointer"
+                                  title="한글 번역 숨기기"
+                                >
+                                  숨기기
+                                </span>
+                              </div>
+                            </div>
+                          ) : (
+                            <div className="pt-0.5">
+                              <span
+                                role="button"
+                                tabIndex={0}
+                                onClick={(e) => toggleTranslation(choice.id, e)}
+                                onKeyDown={(e) => {
+                                  if (e.key === 'Enter' || e.key === ' ') {
+                                    toggleTranslation(choice.id, e);
+                                  }
+                                }}
+                                className="inline-flex items-center space-x-1 text-[11px] text-zinc-400 hover:text-cyan-300 bg-white/[0.04] hover:bg-white/[0.08] px-2 py-0.5 rounded-md border border-white/10 transition-colors cursor-pointer"
+                                title="한글 번역 보기"
+                              >
+                                <Languages className="w-3 h-3 text-cyan-400" />
+                                <span>번역</span>
+                              </span>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          ) : (
+            /* Selected Choice Feedback + Speech Mission Phase */
+            <div className="space-y-3">
+              {/* Feedback Card */}
+              <div className="p-3.5 rounded-xl bg-white/[0.04] border border-white/10 space-y-2 text-left">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-bold text-zinc-300">
+                    선택한 대사 [Option {selectedChoice.id}]
+                  </span>
+                  <span
+                    className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${
+                      choiceTypeBadge(selectedChoice.type).color
+                    }`}
+                  >
+                    {choiceTypeBadge(selectedChoice.type).label}
+                  </span>
+                </div>
+
+                <p className="text-sm font-bold text-white">
+                  &ldquo;{selectedChoice.text}&rdquo;
+                </p>
+
+                {/* Selected choice Korean translation in feedback card */}
+                <div className="flex items-center space-x-1.5 text-xs text-cyan-300/90 bg-cyan-950/30 px-2 py-1 rounded-md border border-cyan-500/20">
+                  <Languages className="w-3 h-3 text-cyan-400 shrink-0" />
+                  <span>{selectedChoice.koreanMeaning}</span>
+                </div>
+
+                {/* Native Speaker Rationale Feedback */}
+                <div className="pt-1 border-t border-white/[0.06] flex items-start space-x-2 text-xs text-zinc-300">
+                  <Sparkles className="w-3.5 h-3.5 text-amber-400 shrink-0 mt-0.5" />
+                  <p className="leading-relaxed">
+                    <span className="font-semibold text-amber-300">원어민 코멘트:</span>{' '}
+                    {selectedChoice.feedback}
+                  </p>
+                </div>
+              </div>
+
+              {/* Speech Recorder Sub-Module */}
+              <SpeechRecorder
+                targetScript={selectedChoice.targetScript}
+                guideAudioUrl={`/audio/guides/ep${episode.episodeNumber}_turn${turn.turnIndex}_${selectedChoice.id}.mp3`}
+                isMuted={isMuted}
+                onPass={onSubmitTurn}
+                onCancelChoice={() => onSelectChoice(null as unknown as Choice)}
+              />
+            </div>
+          )}
+        </div>
+      </div>
 
       {/* Voice Tuning Modal */}
       <VoiceSettingsModal
