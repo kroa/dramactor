@@ -61,13 +61,28 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
     return () => clearInterval(interval);
   }, []);
 
-  // Synchronize video playback strictly with speech audio state
+  // Reset video cleanly to start when turn or episode changes
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      try {
+        video.pause();
+        video.currentTime = 0;
+        video.playbackRate = 1.0;
+      } catch {
+        // Safe fallback
+      }
+    }
+  }, [turnIndex, episode.episodeNumber]);
+
+  // Synchronize video playback with speech audio state without end-of-line snap-back
   useEffect(() => {
     const video = videoRef.current;
     if (!video || !isVideoEnabled || videoError) return;
 
     if (isPlayingTTS) {
       try {
+        // Clean start at 0s for each speech playback
         video.currentTime = 0;
         const playPromise = video.play();
         if (playPromise && typeof playPromise.catch === 'function') {
@@ -80,26 +95,28 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
       }
     } else {
       try {
+        // Naturally pause at the dialogue completion pose without jarring snap-back to 0
         video.pause();
-        video.currentTime = 0;
       } catch {
         // Safe fallback
       }
     }
   }, [isPlayingTTS, isVideoEnabled, visualConfig.videoSrc, videoError]);
 
-  // Sub-frame level audio-to-video synchronization to prevent lip drift during dialogue
+  // Dynamically calibrate playback rate so video spans the full dialogue without looping
   useEffect(() => {
     if (!isPlayingTTS || !isVideoEnabled || videoError) return;
 
-    const unsubscribe = subscribeAudioTime((audioCurrentTime) => {
+    const unsubscribe = subscribeAudioTime((_audioCurrentTime, audioDuration) => {
       const video = videoRef.current;
       if (!video || !video.duration || video.paused) return;
 
-      const targetVideoTime = audioCurrentTime % video.duration;
-      // Resync gently if video drifts by more than 180ms
-      if (Math.abs(video.currentTime - targetVideoTime) > 0.18) {
-        video.currentTime = targetVideoTime;
+      if (audioDuration > 0 && video.duration > 0) {
+        // Calibrate speed so visual performance spans the entire dialogue line without looping
+        const targetRate = Math.max(0.66, Math.min(1.15, video.duration / audioDuration));
+        if (Math.abs(video.playbackRate - targetRate) > 0.03) {
+          video.playbackRate = targetRate;
+        }
       }
     });
 
@@ -114,12 +131,11 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
           : 'min-h-[210px] sm:min-h-[250px] md:min-h-[300px] lg:min-h-[340px]'
       }`}
     >
-      {/* Background Layer: Real HTML5 Looping Video (100% Opacity, Crystal Clear) */}
+      {/* Background Layer: Real HTML5 Video (No abrupt loop, holds natural pose on speech end) */}
       {isVideoEnabled && !videoError ? (
         <video
           ref={videoRef}
           src={visualConfig.videoSrc}
-          loop
           muted
           playsInline
           onLoadedData={() => {
