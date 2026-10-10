@@ -5,12 +5,14 @@ import {
   createSpeechRecognizer,
   isSpeechRecognitionSupported,
   playNativeDialogue,
+  playStudioClip,
   playCinematicSound,
   type SpeechRecognitionInstance,
 } from '../utils/speechMatch';
 
 interface SpeechRecorderProps {
   targetScript: string;
+  guideAudioUrl?: string;
   isMuted: boolean;
   onPass: (transcript: string, similarity: number, passed: boolean) => void;
   onCancelChoice: () => void;
@@ -18,6 +20,7 @@ interface SpeechRecorderProps {
 
 export const SpeechRecorder: React.FC<SpeechRecorderProps> = ({
   targetScript,
+  guideAudioUrl,
   isMuted,
   onPass,
   onCancelChoice,
@@ -129,10 +132,19 @@ export const SpeechRecorder: React.FC<SpeechRecorderProps> = ({
   const handlePlayGuideTTS = () => {
     if (isPlayingTTS) return;
     setIsPlayingTTS(true);
-    playNativeDialogue(targetScript, {
-      onEnd: () => setIsPlayingTTS(false),
-      rate: 0.9,
-    });
+    if (guideAudioUrl) {
+      playStudioClip(guideAudioUrl, {
+        fallbackText: targetScript,
+        onStart: () => setIsPlayingTTS(true),
+        onEnd: () => setIsPlayingTTS(false),
+      });
+    } else {
+      playNativeDialogue(targetScript, {
+        onStart: () => setIsPlayingTTS(true),
+        onEnd: () => setIsPlayingTTS(false),
+        rate: 0.92,
+      });
+    }
   };
 
   const handleTapPass = () => {

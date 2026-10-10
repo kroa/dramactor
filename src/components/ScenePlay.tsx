@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Volume2, VolumeX, Sparkles, MessageSquare, Sliders } from 'lucide-react';
 import type { Choice, Episode, SceneTurn } from '../types';
-import { playNativeDialogue, stopNativeSpeech } from '../utils/speechMatch';
+import { playStudioClip, stopNativeSpeech } from '../utils/speechMatch';
 import { SpeechRecorder } from './SpeechRecorder';
 import { VoiceSettingsModal } from './VoiceSettingsModal';
 
@@ -28,13 +28,15 @@ export const ScenePlay: React.FC<ScenePlayProps> = ({
   const [isVoiceModalOpen, setIsVoiceModalOpen] = useState<boolean>(false);
   const lastTurnIndexRef = useRef<number>(-1);
 
-  // Auto-play dialogue TTS when turn changes, unless muted
+  // Auto-play dialogue studio audio when turn changes, unless muted
   useEffect(() => {
     if (lastTurnIndexRef.current !== turnIndex) {
       lastTurnIndexRef.current = turnIndex;
       if (!isMuted) {
-        playNativeDialogue(turn.dialogue, {
+        const clipUrl = `/audio/dialogues/ep${episode.episodeNumber}_turn${turn.turnIndex}.mp3`;
+        playStudioClip(clipUrl, {
           speaker: turn.speaker,
+          fallbackText: turn.dialogue,
           onStart: () => setIsPlayingTTS(true),
           onEnd: () => setIsPlayingTTS(false),
         });
@@ -43,7 +45,7 @@ export const ScenePlay: React.FC<ScenePlayProps> = ({
     return () => {
       stopNativeSpeech();
     };
-  }, [turnIndex, turn.dialogue, turn.speaker, isMuted]);
+  }, [turnIndex, turn.dialogue, turn.speaker, episode.episodeNumber, turn.turnIndex, isMuted]);
 
   const handleManualPlayTTS = () => {
     if (isPlayingTTS) {
@@ -51,8 +53,10 @@ export const ScenePlay: React.FC<ScenePlayProps> = ({
       setIsPlayingTTS(false);
       return;
     }
-    playNativeDialogue(turn.dialogue, {
+    const clipUrl = `/audio/dialogues/ep${episode.episodeNumber}_turn${turn.turnIndex}.mp3`;
+    playStudioClip(clipUrl, {
       speaker: turn.speaker,
+      fallbackText: turn.dialogue,
       onStart: () => setIsPlayingTTS(true),
       onEnd: () => setIsPlayingTTS(false),
     });
@@ -262,6 +266,7 @@ export const ScenePlay: React.FC<ScenePlayProps> = ({
           {/* Speech Recorder Sub-Module */}
           <SpeechRecorder
             targetScript={selectedChoice.targetScript}
+            guideAudioUrl={`/audio/guides/ep${episode.episodeNumber}_turn${turn.turnIndex}_${selectedChoice.id}.mp3`}
             isMuted={isMuted}
             onPass={onSubmitTurn}
             onCancelChoice={() => onSelectChoice(null as unknown as Choice)}

@@ -526,6 +526,85 @@ export function playNativeDialogue(text: string, options?: DialoguePlayOptions):
   return true;
 }
 
+/**
+ * Plays pre-rendered Hollywood/Netflix studio neural voice clip with instant playback.
+ * Falls back to dynamic dialogue engine if file cannot be loaded.
+ */
+export function playStudioClip(
+  url: string,
+  options?: {
+    onStart?: () => void;
+    onEnd?: () => void;
+    fallbackText?: string;
+    speaker?: string;
+  }
+): void {
+  if (typeof window === 'undefined') {
+    options?.onEnd?.();
+    return;
+  }
+
+  stopNativeSpeech();
+  const currentToken = ++activePlaybackToken;
+
+  try {
+    const audio = new Audio(url);
+    activeAudioElement = audio;
+
+    audio.onplay = () => {
+      if (currentToken !== activePlaybackToken) {
+        audio.pause();
+        return;
+      }
+      options?.onStart?.();
+    };
+
+    audio.onended = () => {
+      if (currentToken !== activePlaybackToken) return;
+      options?.onEnd?.();
+    };
+
+    audio.onerror = () => {
+      if (currentToken !== activePlaybackToken) return;
+      if (options?.fallbackText) {
+        playNativeDialogue(options.fallbackText, {
+          speaker: options.speaker,
+          onStart: options.onStart,
+          onEnd: options.onEnd,
+        });
+      } else {
+        options?.onEnd?.();
+      }
+    };
+
+    const playPromise = audio.play();
+    if (playPromise) {
+      playPromise.catch(() => {
+        if (currentToken !== activePlaybackToken) return;
+        if (options?.fallbackText) {
+          playNativeDialogue(options.fallbackText, {
+            speaker: options.speaker,
+            onStart: options.onStart,
+            onEnd: options.onEnd,
+          });
+        } else {
+          options?.onEnd?.();
+        }
+      });
+    }
+  } catch {
+    if (options?.fallbackText) {
+      playNativeDialogue(options.fallbackText, {
+        speaker: options.speaker,
+        onStart: options.onStart,
+        onEnd: options.onEnd,
+      });
+    } else {
+      options?.onEnd?.();
+    }
+  }
+}
+
 export function stopNativeSpeech(): void {
   activePlaybackToken++;
   if (activeAudioElement) {
