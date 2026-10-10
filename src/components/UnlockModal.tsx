@@ -69,7 +69,7 @@ export const UnlockModal: React.FC<UnlockModalProps> = ({
             <h3 className="text-base sm:text-lg font-bold text-white tracking-tight">
               PRO 무제한 아카이브 패스
             </h3>
-            <p className="text-[11px] text-zinc-400">Lemon Squeezy License Pass</p>
+            <p className="text-[11px] text-zinc-400">5,900원 ($4.99) &bull; 커피 1잔으로 평생 무제한</p>
           </div>
         </div>
 
@@ -170,7 +170,7 @@ export const UnlockModal: React.FC<UnlockModalProps> = ({
               </form>
 
               <p className="mt-2 text-[10px] text-zinc-500 leading-normal text-center">
-                * Lemon Squeezy는 글로벌 디지털 상품 결제 플랫폼으로, 결제 완료 시 이메일로 라이선스 키가 자동 발급됩니다.
+                * 카카오페이 &bull; 토스 &bull; 네이버페이 &bull; 카드 결제 지원 (구매 즉시 발급된 키를 입력하면 평생 영구 소장됩니다)
               </p>
             </div>
           </div>
