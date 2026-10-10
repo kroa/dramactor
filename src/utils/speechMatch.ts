@@ -359,6 +359,29 @@ export interface DialoguePlayOptions {
 let activePlaybackToken = 0;
 let activeAudioElement: HTMLAudioElement | null = null;
 
+export type AudioTimeListener = (currentTime: number, duration: number) => void;
+const audioTimeListeners = new Set<AudioTimeListener>();
+
+/**
+ * Subscribe to studio audio playback time updates for sub-frame video lip synchronization.
+ */
+export function subscribeAudioTime(listener: AudioTimeListener): () => void {
+  audioTimeListeners.add(listener);
+  return () => {
+    audioTimeListeners.delete(listener);
+  };
+}
+
+function notifyAudioTime(currentTime: number, duration: number): void {
+  audioTimeListeners.forEach((fn) => {
+    try {
+      fn(currentTime, duration);
+    } catch {
+      // Safe fallback
+    }
+  });
+}
+
 /**
  * High-definition native American English speech synthesis via Google Studio Stream.
  * Guarantees 100% authentic American pronunciation on any PC without relying on local OS voice packs.
@@ -391,11 +414,17 @@ export function playGoogleHDDialogue(text: string, options?: DialoguePlayOptions
       const audio = new Audio(url);
       activeAudioElement = audio;
 
+      audio.ontimeupdate = () => {
+        if (currentToken !== activePlaybackToken) return;
+        notifyAudioTime(audio.currentTime, audio.duration || 0);
+      };
+
       audio.onplay = () => {
         if (currentToken !== activePlaybackToken) {
           audio.pause();
           return;
         }
+        notifyAudioTime(audio.currentTime, audio.duration || 0);
         if (!hasStarted) {
           hasStarted = true;
           options?.onStart?.();
@@ -578,16 +607,23 @@ export function playStudioClip(
     const audio = new Audio(url);
     activeAudioElement = audio;
 
+    audio.ontimeupdate = () => {
+      if (currentToken !== activePlaybackToken) return;
+      notifyAudioTime(audio.currentTime, audio.duration || 0);
+    };
+
     audio.onplay = () => {
       if (currentToken !== activePlaybackToken) {
         audio.pause();
         return;
       }
+      notifyAudioTime(audio.currentTime, audio.duration || 0);
       options?.onStart?.();
     };
 
     audio.onended = () => {
       if (currentToken !== activePlaybackToken) return;
+      notifyAudioTime(0, 0);
       options?.onEnd?.();
     };
 
@@ -600,14 +636,23 @@ export function playStudioClip(
           onEnd: options.onEnd,
         });
       } else {
+        notifyAudioTime(0, 0);
         options?.onEnd?.();
       }
     };
 
     const playPromise = audio.play();
     if (playPromise) {
-      playPromise.catch(() => {
+      playPromise.catch((err: unknown) => {
         if (currentToken !== activePlaybackToken) return;
+        // If autoplay is blocked by browser policy without user gesture, stop cleanly and wait for user tap
+        const errName = (err && typeof err === 'object' && 'name' in err) ? (err as { name: string }).name : '';
+        if (errName === 'NotAllowedError' || errName === 'AbortError') {
+          notifyAudioTime(0, 0);
+          options?.onEnd?.();
+          return;
+        }
+
         if (options?.fallbackText) {
           playNativeDialogue(options.fallbackText, {
             speaker: options.speaker,
@@ -615,6 +660,7 @@ export function playStudioClip(
             onEnd: options.onEnd,
           });
         } else {
+          notifyAudioTime(0, 0);
           options?.onEnd?.();
         }
       });
@@ -627,6 +673,7 @@ export function playStudioClip(
         onEnd: options.onEnd,
       });
     } else {
+      notifyAudioTime(0, 0);
       options?.onEnd?.();
     }
   }
@@ -643,6 +690,7 @@ export function stopNativeSpeech(): void {
     }
     activeAudioElement = null;
   }
+  notifyAudioTime(0, 0);
   if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
     window.speechSynthesis.cancel();
   }

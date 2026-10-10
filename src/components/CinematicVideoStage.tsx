@@ -7,9 +7,11 @@ import {
   Maximize2,
   Minimize2,
   Sliders,
+  Play,
 } from 'lucide-react';
 import type { Episode, SceneTurn } from '../types';
 import { getSceneVisualConfig } from '../utils/sceneVisualMap';
+import { subscribeAudioTime } from '../utils/speechMatch';
 
 interface CinematicVideoStageProps {
   episode: Episode;
@@ -59,21 +61,50 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
     return () => clearInterval(interval);
   }, []);
 
-  // Ensure video keeps playing smoothly
+  // Synchronize video playback strictly with speech audio state
   useEffect(() => {
-    if (videoRef.current && isVideoEnabled && !videoError) {
+    const video = videoRef.current;
+    if (!video || !isVideoEnabled || videoError) return;
+
+    if (isPlayingTTS) {
       try {
-        const playPromise = videoRef.current.play();
+        video.currentTime = 0;
+        const playPromise = video.play();
         if (playPromise && typeof playPromise.catch === 'function') {
           playPromise.catch(() => {
-            // Autoplay may be restricted until first user interaction; video remains ready
+            // Handled safely
           });
         }
       } catch {
-        // Safe fallback in test or headless environments
+        // Safe fallback
+      }
+    } else {
+      try {
+        video.pause();
+        video.currentTime = 0;
+      } catch {
+        // Safe fallback
       }
     }
-  }, [isVideoEnabled, visualConfig.videoSrc, videoError]);
+  }, [isPlayingTTS, isVideoEnabled, visualConfig.videoSrc, videoError]);
+
+  // Sub-frame level audio-to-video synchronization to prevent lip drift during dialogue
+  useEffect(() => {
+    if (!isPlayingTTS || !isVideoEnabled || videoError) return;
+
+    const unsubscribe = subscribeAudioTime((audioCurrentTime) => {
+      const video = videoRef.current;
+      if (!video || !video.duration || video.paused) return;
+
+      const targetVideoTime = audioCurrentTime % video.duration;
+      // Resync gently if video drifts by more than 180ms
+      if (Math.abs(video.currentTime - targetVideoTime) > 0.18) {
+        video.currentTime = targetVideoTime;
+      }
+    });
+
+    return () => unsubscribe();
+  }, [isPlayingTTS, isVideoEnabled, videoError]);
 
   return (
     <div
@@ -88,17 +119,55 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
         <video
           ref={videoRef}
           src={visualConfig.videoSrc}
-          autoPlay
           loop
           muted
           playsInline
-          onLoadedData={() => setIsVideoLoaded(true)}
+          onLoadedData={() => {
+            setIsVideoLoaded(true);
+            if (videoRef.current && !isPlayingTTS) {
+              try {
+                videoRef.current.pause();
+                videoRef.current.currentTime = 0;
+              } catch {
+                // Safe fallback
+              }
+            }
+          }}
           onError={() => setVideoError(true)}
           className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
             isVideoLoaded ? 'opacity-100' : 'opacity-0'
           }`}
         />
       ) : null}
+
+      {/* Interactive Center Play Overlay when dialogue is idle */}
+      {isVideoEnabled && !videoError && isVideoLoaded && !isPlayingTTS && (
+        <div
+          onClick={onPlayTTS}
+          className="absolute inset-0 flex items-center justify-center cursor-pointer group z-20"
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') onPlayTTS();
+          }}
+          title="대사 듣기 (클릭하여 재생)"
+        >
+          <div className="flex items-center space-x-2.5 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-black/60 hover:bg-black/85 border border-cyan-400/60 hover:border-cyan-400 text-white shadow-2xl shadow-cyan-500/25 backdrop-blur-md transition-all duration-300 group-hover:scale-105 active:scale-95">
+            <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-cyan-400 flex items-center justify-center text-black shadow-md shadow-cyan-400/50 group-hover:bg-cyan-300 transition-colors">
+              <Play className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-black text-black ml-0.5" />
+            </span>
+            <div className="text-left">
+              <div className="text-xs sm:text-sm font-bold text-white flex items-center space-x-1.5">
+                <span>대사 듣기</span>
+                <span className="text-[10px] text-cyan-300 font-mono font-normal">PLAY</span>
+              </div>
+              <div className="text-[9px] sm:text-[10px] text-zinc-300">
+                {turn.speaker}의 대사와 영상 동기화 재생
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Atmospheric Fallback Backdrop (Rendered only when video is disabled or buffering) */}
       {(!isVideoEnabled || videoError || !isVideoLoaded) && (
