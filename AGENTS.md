@@ -40,3 +40,4 @@
 - **Speech Engine**: Web Speech API (`SpeechRecognition`, `speechSynthesis`), Levenshtein Distance similarity matching (>= 75% threshold)
 - **Viral Engine**: One-click emoji result card generation for messenger viral loops (`navigator.clipboard`)
 - **Monetization Slot**: Semantic 300x250 native ad container (`#ad-slot-native`) + Lemon Squeezy archive pass unlock simulation (`PRO-DRAMACTOR-2026`)
+

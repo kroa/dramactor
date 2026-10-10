@@ -208,3 +208,4 @@ export function stopNativeSpeech(): void {
     window.speechSynthesis.cancel();
   }
 }
+
