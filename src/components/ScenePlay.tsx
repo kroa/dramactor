@@ -4,6 +4,7 @@ import type { Choice, Episode, SceneTurn } from '../types';
 import { playStudioClip, stopNativeSpeech } from '../utils/speechMatch';
 import { SpeechRecorder } from './SpeechRecorder';
 import { VoiceSettingsModal } from './VoiceSettingsModal';
+import { CinematicVideoStage } from './CinematicVideoStage';
 
 interface ScenePlayProps {
   episode: Episode;
@@ -83,9 +84,9 @@ export const ScenePlay: React.FC<ScenePlayProps> = ({
   };
 
   return (
-    <div className="w-full max-w-md mx-auto space-y-4 px-3 py-2 text-left">
+    <div className="w-full max-w-md mx-auto space-y-3.5 px-3 py-2 text-left">
       {/* Turn Progress Capsules (3 Glowing Capsules) */}
-      <div className="flex items-center justify-between space-x-2 pt-1 pb-1">
+      <div className="flex items-center justify-between space-x-2 pt-1 pb-0.5">
         {[0, 1, 2].map((idx) => {
           const isCurrent = idx === turnIndex;
           const isDone = idx < turnIndex;
@@ -109,7 +110,7 @@ export const ScenePlay: React.FC<ScenePlayProps> = ({
       </div>
 
       {/* Episode Header Info */}
-      <div className="flex items-center justify-between text-xs text-zinc-400 border-b border-white/[0.06] pb-2">
+      <div className="flex items-center justify-between text-xs text-zinc-400 border-b border-white/[0.06] pb-1.5">
         <span className="font-semibold text-white truncate max-w-[260px]">
           EP #{episode.episodeNumber.toString().padStart(2, '0')} : {episode.title}
         </span>
@@ -118,9 +119,19 @@ export const ScenePlay: React.FC<ScenePlayProps> = ({
         </span>
       </div>
 
+      {/* Cinematic Drama Video Viewport (ARRI Viewfinder & Video Stage) */}
+      <CinematicVideoStage
+        episode={episode}
+        turn={turn}
+        turnIndex={turnIndex}
+        isPlayingTTS={isPlayingTTS}
+        onPlayTTS={handleManualPlayTTS}
+        onOpenVoiceSettings={() => setIsVoiceModalOpen(true)}
+      />
+
       {/* Situation Hint Card */}
-      <div className="p-3 rounded-xl bg-white/[0.03] border border-white/[0.07] text-xs text-zinc-300 leading-relaxed shadow-sm">
-        <div className="flex items-center space-x-1.5 text-zinc-400 font-semibold mb-1">
+      <div className="p-2.5 rounded-xl bg-white/[0.03] border border-white/[0.07] text-xs text-zinc-300 leading-relaxed shadow-sm">
+        <div className="flex items-center space-x-1.5 text-zinc-400 font-semibold mb-0.5">
           <MessageSquare className="w-3.5 h-3.5 text-emerald-400" />
           <span>씬 상황 (Situation)</span>
         </div>
@@ -128,7 +139,7 @@ export const ScenePlay: React.FC<ScenePlayProps> = ({
       </div>
 
       {/* Opponent Dialogue Box (Cinematic Subtitle View) */}
-      <div className="p-4 rounded-2xl bg-gradient-to-b from-white/[0.05] to-white/[0.02] border border-white/10 backdrop-blur-xl shadow-xl relative overflow-hidden">
+      <div className="p-3.5 rounded-2xl bg-gradient-to-b from-white/[0.05] to-white/[0.02] border border-white/10 backdrop-blur-xl shadow-xl relative overflow-hidden">
         {/* Ambient Top Glow */}
         <div className="absolute top-0 left-1/4 right-1/4 h-px bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent" />
 
@@ -136,16 +147,16 @@ export const ScenePlay: React.FC<ScenePlayProps> = ({
           {/* Avatar with Audio Pulse Ring */}
           <div className="relative shrink-0">
             <div
-              className={`w-12 h-12 rounded-2xl flex items-center justify-center text-2xl bg-zinc-900 border border-white/15 shadow-inner transition-all duration-300 ${
+              className={`w-11 h-11 rounded-xl flex items-center justify-center text-2xl bg-zinc-900 border border-white/15 shadow-inner transition-all duration-300 ${
                 isPlayingTTS ? 'animate-glow-ring border-cyan-400' : ''
               }`}
             >
               <span className="select-none">{turn.avatarEmoji}</span>
             </div>
             {isPlayingTTS && (
-              <span className="absolute -bottom-1 -right-1 flex h-4 w-4">
+              <span className="absolute -bottom-1 -right-1 flex h-3.5 w-3.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-4 w-4 bg-cyan-500 border border-zinc-950 items-center justify-center text-[8px] text-black font-bold">
+                <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-cyan-500 border border-zinc-950 items-center justify-center text-[7px] text-black font-bold">
                   ♫
                 </span>
               </span>
@@ -153,7 +164,7 @@ export const ScenePlay: React.FC<ScenePlayProps> = ({
           </div>
 
           {/* Dialogue Speaker & Text */}
-          <div className="flex-1 space-y-1.5">
+          <div className="flex-1 space-y-1">
             <div className="flex items-center justify-between">
               <h3 className="text-xs font-bold text-cyan-300 tracking-wide">
                 {turn.speaker}
