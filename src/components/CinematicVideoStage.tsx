@@ -103,20 +103,22 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
     }
   }, [isPlayingTTS, isVideoEnabled, visualConfig.videoSrc, videoError]);
 
-  // Dynamically calibrate playback rate so video spans the full dialogue without looping
+  // Sub-frame level audio-to-video synchronization locked strictly at natural 1.0x tempo
   useEffect(() => {
     if (!isPlayingTTS || !isVideoEnabled || videoError) return;
 
-    const unsubscribe = subscribeAudioTime((_audioCurrentTime, audioDuration) => {
+    const unsubscribe = subscribeAudioTime((audioCurrentTime) => {
       const video = videoRef.current;
       if (!video || !video.duration || video.paused) return;
 
-      if (audioDuration > 0 && video.duration > 0) {
-        // Calibrate speed so visual performance spans the entire dialogue line without looping
-        const targetRate = Math.max(0.66, Math.min(1.15, video.duration / audioDuration));
-        if (Math.abs(video.playbackRate - targetRate) > 0.03) {
-          video.playbackRate = targetRate;
-        }
+      // Lock playback rate strictly at 1.0x natural speech tempo
+      if (video.playbackRate !== 1.0) {
+        video.playbackRate = 1.0;
+      }
+
+      // Gently re-align video time if drift exceeds 200ms
+      if (audioCurrentTime > 0 && Math.abs(video.currentTime - audioCurrentTime) > 0.2) {
+        video.currentTime = audioCurrentTime;
       }
     });
 

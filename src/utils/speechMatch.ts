@@ -419,14 +419,10 @@ export function playGoogleHDDialogue(text: string, options?: DialoguePlayOptions
         notifyAudioTime(audio.currentTime, audio.duration || 0);
       };
 
-      audio.onplay = () => {
-        if (currentToken !== activePlaybackToken) {
-          audio.pause();
-          return;
-        }
-        notifyAudioTime(audio.currentTime, audio.duration || 0);
-        if (!hasStarted) {
+      const triggerStart = () => {
+        if (!hasStarted && currentToken === activePlaybackToken) {
           hasStarted = true;
+          notifyAudioTime(audio.currentTime, audio.duration || 0);
           options?.onStart?.();
         }
       };
@@ -452,9 +448,15 @@ export function playGoogleHDDialogue(text: string, options?: DialoguePlayOptions
 
       const playPromise = audio.play();
       if (playPromise) {
-        playPromise.catch(() => {
-          playWebSpeechDialogue(text, options);
-        });
+        playPromise
+          .then(() => {
+            triggerStart();
+          })
+          .catch(() => {
+            playWebSpeechDialogue(text, options);
+          });
+      } else {
+        triggerStart();
       }
     } catch {
       playWebSpeechDialogue(text, options);
@@ -612,13 +614,13 @@ export function playStudioClip(
       notifyAudioTime(audio.currentTime, audio.duration || 0);
     };
 
-    audio.onplay = () => {
-      if (currentToken !== activePlaybackToken) {
-        audio.pause();
-        return;
+    let hasStarted = false;
+    const triggerStart = () => {
+      if (!hasStarted && currentToken === activePlaybackToken) {
+        hasStarted = true;
+        notifyAudioTime(audio.currentTime, audio.duration || 0);
+        options?.onStart?.();
       }
-      notifyAudioTime(audio.currentTime, audio.duration || 0);
-      options?.onStart?.();
     };
 
     audio.onended = () => {
@@ -643,27 +645,36 @@ export function playStudioClip(
 
     const playPromise = audio.play();
     if (playPromise) {
-      playPromise.catch((err: unknown) => {
-        if (currentToken !== activePlaybackToken) return;
-        // If autoplay is blocked by browser policy without user gesture, stop cleanly and wait for user tap
-        const errName = (err && typeof err === 'object' && 'name' in err) ? (err as { name: string }).name : '';
-        if (errName === 'NotAllowedError' || errName === 'AbortError') {
-          notifyAudioTime(0, 0);
-          options?.onEnd?.();
-          return;
-        }
+      playPromise
+        .then(() => {
+          triggerStart();
+        })
+        .catch((err: unknown) => {
+          if (currentToken !== activePlaybackToken) return;
+          // If autoplay is blocked by browser policy without user gesture, stop cleanly and wait for user tap
+          const errName =
+            err && typeof err === 'object' && 'name' in err
+              ? (err as { name: string }).name
+              : '';
+          if (errName === 'NotAllowedError' || errName === 'AbortError') {
+            notifyAudioTime(0, 0);
+            options?.onEnd?.();
+            return;
+          }
 
-        if (options?.fallbackText) {
-          playNativeDialogue(options.fallbackText, {
-            speaker: options.speaker,
-            onStart: options.onStart,
-            onEnd: options.onEnd,
-          });
-        } else {
-          notifyAudioTime(0, 0);
-          options?.onEnd?.();
-        }
-      });
+          if (options?.fallbackText) {
+            playNativeDialogue(options.fallbackText, {
+              speaker: options.speaker,
+              onStart: options.onStart,
+              onEnd: options.onEnd,
+            });
+          } else {
+            notifyAudioTime(0, 0);
+            options?.onEnd?.();
+          }
+        });
+    } else {
+      triggerStart();
     }
   } catch {
     if (options?.fallbackText) {
