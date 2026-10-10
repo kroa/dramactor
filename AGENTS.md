@@ -11,8 +11,9 @@
 
 ### A. Autonomous Execution (자율 실행 & 무질문 원칙)
 1. **Zero-Question Policy**: Do not interrupt the user with minor technical questions, design choices, or trivial confirmations.
-2. **Self-Healing Loop**: If any lint error, TypeScript type check failure, test case failure, or Vite build failure occurs, autonomously inspect logs, debug, and fix without user intervention.
-3. **Continuous Verification**: A task is only considered done when lint checks, type checks, unit tests, and production builds succeed with 0 errors.
+2. **Immediate Full-Autonomous Action (선조치 완결 원칙)**: When a request is received, NEVER ask "진행할까요?" or seek confirmation. Proactively execute file modifications, debugging, testing, building, and commits in one uninterrupted autonomous cycle.
+3. **Self-Healing Loop**: If any lint error, TypeScript type check failure, test case failure, or Vite build failure occurs, autonomously inspect logs, debug, and fix without user intervention.
+4. **Continuous Verification**: A task is only considered done when lint checks, type checks, unit tests, and production builds succeed with 0 errors.
 
 ### B. Strict Zero-Cost & Serverless Architecture (비용 0원 서버리스 아키텍처)
 1. **100% Client-Side Static App**: No backend server, Docker container, or Node server required at runtime.
