@@ -62,9 +62,16 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
   // Ensure video keeps playing smoothly
   useEffect(() => {
     if (videoRef.current && isVideoEnabled && !videoError) {
-      videoRef.current.play().catch(() => {
-        // Autoplay may be restricted until first user interaction; video remains ready
-      });
+      try {
+        const playPromise = videoRef.current.play();
+        if (playPromise && typeof playPromise.catch === 'function') {
+          playPromise.catch(() => {
+            // Autoplay may be restricted until first user interaction; video remains ready
+          });
+        }
+      } catch {
+        // Safe fallback in test or headless environments
+      }
     }
   }, [isVideoEnabled, visualConfig.videoSrc, videoError]);
 

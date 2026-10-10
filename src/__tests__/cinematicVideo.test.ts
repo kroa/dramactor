@@ -36,3 +36,4 @@ describe('Cinematic Scene Visual Map Engine', () => {
     expect(ep4.cameraRig).toContain('VENICE');
   });
 });
+

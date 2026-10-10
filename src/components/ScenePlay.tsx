@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Volume2, VolumeX, Sparkles, MessageSquare, Sliders } from 'lucide-react';
+import { Volume2, VolumeX, Sparkles, MessageSquare, Sliders, Languages } from 'lucide-react';
 import type { Choice, Episode, SceneTurn } from '../types';
 import { playStudioClip, stopNativeSpeech } from '../utils/speechMatch';
 import { SpeechRecorder } from './SpeechRecorder';
@@ -27,7 +27,48 @@ export const ScenePlay: React.FC<ScenePlayProps> = ({
 }) => {
   const [isPlayingTTS, setIsPlayingTTS] = useState<boolean>(false);
   const [isVoiceModalOpen, setIsVoiceModalOpen] = useState<boolean>(false);
+  const [translationState, setTranslationState] = useState<{
+    turnIndex: number;
+    revealed: Record<string, boolean>;
+    showAll: boolean;
+  }>({
+    turnIndex,
+    revealed: {},
+    showAll: false,
+  });
   const lastTurnIndexRef = useRef<number>(-1);
+
+  const isSameTurn = translationState.turnIndex === turnIndex;
+  const revealedTranslations = isSameTurn ? translationState.revealed : {};
+  const showAllTranslations = isSameTurn ? translationState.showAll : false;
+
+  const toggleTranslation = (id: string, e: React.MouseEvent | React.KeyboardEvent) => {
+    e.stopPropagation();
+    setTranslationState((prev) => {
+      const current = prev.turnIndex === turnIndex ? prev.revealed : {};
+      return {
+        turnIndex,
+        revealed: {
+          ...current,
+          [id]: !current[id],
+        },
+        showAll: prev.turnIndex === turnIndex ? prev.showAll : false,
+      };
+    });
+  };
+
+  const toggleAllTranslations = () => {
+    const nextState = !showAllTranslations;
+    const updated: Record<string, boolean> = {};
+    turn.choices.forEach((c) => {
+      updated[c.id] = nextState;
+    });
+    setTranslationState({
+      turnIndex,
+      revealed: updated,
+      showAll: nextState,
+    });
+  };
 
   // Auto-play dialogue studio audio when turn changes, unless muted
   useEffect(() => {
@@ -214,32 +255,83 @@ export const ScenePlay: React.FC<ScenePlayProps> = ({
             <span className="text-xs font-bold text-zinc-400 tracking-wider">
               당신의 대사를 선택하세요 (3 CHANCES)
             </span>
-            <span className="text-[10px] text-zinc-500">정답을 맞추면 킬러 보너스</span>
+            <button
+              type="button"
+              onClick={toggleAllTranslations}
+              className="flex items-center space-x-1 text-[11px] text-zinc-400 hover:text-cyan-300 bg-white/[0.04] hover:bg-white/[0.08] px-2 py-0.5 rounded-md border border-white/10 transition-colors"
+              title="전체 대사 한글 번역 토글"
+            >
+              <Languages className="w-3 h-3 text-cyan-400" />
+              <span>{showAllTranslations ? '전체 번역 숨기기' : '전체 번역 보기'}</span>
+            </button>
           </div>
 
           <div className="space-y-2.5">
-            {turn.choices.map((choice) => (
-              <button
-                key={choice.id}
-                type="button"
-                onClick={() => onSelectChoice(choice)}
-                className="w-full text-left p-3.5 rounded-xl glass-panel-interactive border border-white/[0.08] relative group active:scale-[0.98] transition-all"
-              >
-                <div className="flex items-start space-x-3">
-                  <span className="w-6 h-6 rounded-lg bg-white/10 border border-white/15 flex items-center justify-center font-bold text-xs text-white group-hover:bg-cyan-500 group-hover:text-black transition-colors shrink-0">
-                    {choice.id}
-                  </span>
-                  <div className="flex-1 space-y-1">
-                    <p className="text-sm font-semibold text-white leading-snug group-hover:text-cyan-200 transition-colors">
-                      {choice.text}
-                    </p>
-                    <p className="text-xs text-zinc-400 leading-snug">
-                      {choice.koreanMeaning}
-                    </p>
+            {turn.choices.map((choice) => {
+              const isRevealed = !!revealedTranslations[choice.id];
+              return (
+                <button
+                  key={choice.id}
+                  type="button"
+                  onClick={() => onSelectChoice(choice)}
+                  className="w-full text-left p-3.5 rounded-xl glass-panel-interactive border border-white/[0.08] relative group active:scale-[0.98] transition-all"
+                >
+                  <div className="flex items-start space-x-3">
+                    <span className="w-6 h-6 rounded-lg bg-white/10 border border-white/15 flex items-center justify-center font-bold text-xs text-white group-hover:bg-cyan-500 group-hover:text-black transition-colors shrink-0">
+                      {choice.id}
+                    </span>
+                    <div className="flex-1 space-y-1.5">
+                      <p className="text-sm font-semibold text-white leading-snug group-hover:text-cyan-200 transition-colors">
+                        {choice.text}
+                      </p>
+
+                      {/* Korean Translation: Only displayed when clicking translation */}
+                      {isRevealed ? (
+                        <div className="pt-0.5">
+                          <div className="flex items-center justify-between bg-cyan-950/40 border border-cyan-500/25 rounded-lg px-2.5 py-1">
+                            <p className="text-xs text-cyan-200 leading-snug">
+                              {choice.koreanMeaning}
+                            </p>
+                            <span
+                              role="button"
+                              tabIndex={0}
+                              onClick={(e) => toggleTranslation(choice.id, e)}
+                              onKeyDown={(e) => {
+                                if (e.key === 'Enter' || e.key === ' ') {
+                                  toggleTranslation(choice.id, e);
+                                }
+                              }}
+                              className="text-[10px] text-zinc-400 hover:text-zinc-200 ml-2 shrink-0 underline cursor-pointer"
+                              title="한글 번역 숨기기"
+                            >
+                              숨기기
+                            </span>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="pt-0.5">
+                          <span
+                            role="button"
+                            tabIndex={0}
+                            onClick={(e) => toggleTranslation(choice.id, e)}
+                            onKeyDown={(e) => {
+                              if (e.key === 'Enter' || e.key === ' ') {
+                                toggleTranslation(choice.id, e);
+                              }
+                            }}
+                            className="inline-flex items-center space-x-1 text-[11px] text-zinc-400 hover:text-cyan-300 bg-white/[0.04] hover:bg-white/[0.08] px-2 py-0.5 rounded-md border border-white/10 transition-colors cursor-pointer"
+                            title="한글 번역 보기"
+                          >
+                            <Languages className="w-3 h-3 text-cyan-400" />
+                            <span>번역</span>
+                          </span>
+                        </div>
+                      )}
+                    </div>
                   </div>
-                </div>
-              </button>
-            ))}
+                </button>
+              );
+            })}
           </div>
         </div>
       ) : (
@@ -263,6 +355,12 @@ export const ScenePlay: React.FC<ScenePlayProps> = ({
             <p className="text-sm font-bold text-white">
               &ldquo;{selectedChoice.text}&rdquo;
             </p>
+
+            {/* Selected choice Korean translation in feedback card */}
+            <div className="flex items-center space-x-1.5 text-xs text-cyan-300/90 bg-cyan-950/30 px-2 py-1 rounded-md border border-cyan-500/20">
+              <Languages className="w-3 h-3 text-cyan-400 shrink-0" />
+              <span>{selectedChoice.koreanMeaning}</span>
+            </div>
 
             {/* Native Speaker Rationale Feedback */}
             <div className="pt-1 border-t border-white/[0.06] flex items-start space-x-2 text-xs text-zinc-300">
