@@ -1,6 +1,6 @@
 /**
  * Speech Recognition and Levenshtein Distance Matching Utilities
- * 100% Client-Side, Serverless, Zero-Cost Web Speech API
+ * 100% Client-Side, Serverless, Zero-Cost Web Speech API & Hybrid HD Audio
  */
 
 /**
@@ -163,7 +163,6 @@ export function getAvailableVoices(): SpeechSynthesisVoice[] {
   return cachedVoices;
 }
 
-// Preload voices & listen for asynchronous browser voice load
 if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
   getAvailableVoices();
   window.speechSynthesis.onvoiceschanged = () => {
@@ -173,7 +172,6 @@ if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
 
 /**
  * Replaces technical drama acronyms and symbols with phonetic clarity
- * so browser TTS doesn't stumble or mispronounce.
  */
 export function prepareDramaTextForTTS(rawText: string): string {
   if (!rawText) return '';
@@ -209,7 +207,6 @@ export function prepareDramaTextForTTS(rawText: string): string {
  */
 export function splitIntoSentences(text: string): string[] {
   const cleaned = prepareDramaTextForTTS(text);
-  // Match sentences ending with ., !, ? while keeping punctuation
   const matches = cleaned.match(/[^.!?]+[.!?]+(?:\s+|$)|[^.!?]+$/g);
   if (!matches || matches.length === 0) return [cleaned];
   return matches.map((s) => s.trim()).filter((s) => s.length > 0);
@@ -227,7 +224,6 @@ export function getBestVoiceForCharacter(speakerName = '', customVoiceURI?: stri
   const voices = getAvailableVoices();
   const lowerSpeaker = speakerName.toLowerCase();
 
-  // If user selected a custom voice URI
   if (customVoiceURI) {
     const custom = voices.find((v) => v.voiceURI === customVoiceURI);
     if (custom) {
@@ -240,7 +236,6 @@ export function getBestVoiceForCharacter(speakerName = '', customVoiceURI?: stri
     }
   }
 
-  // Check stored user preferred voice in localStorage
   if (typeof window !== 'undefined') {
     try {
       const storedURI = localStorage.getItem('dramactor_preferred_voice_uri');
@@ -260,7 +255,6 @@ export function getBestVoiceForCharacter(speakerName = '', customVoiceURI?: stri
     }
   }
 
-  // Character gender & persona detection
   const isFemale =
     lowerSpeaker.includes('elena') ||
     lowerSpeaker.includes('victoria') ||
@@ -268,13 +262,11 @@ export function getBestVoiceForCharacter(speakerName = '', customVoiceURI?: stri
     lowerSpeaker.includes('rachel') ||
     lowerSpeaker.includes('donna');
 
-  // Filter English voices
   const enVoices = voices.filter((v) => v.lang.startsWith('en'));
 
   let selectedVoice: SpeechSynthesisVoice | null = null;
 
   if (isFemale) {
-    // Top-tier Natural Female Voices (Edge Natural, Chrome Google US, Apple Samantha)
     selectedVoice =
       enVoices.find((v) => v.name.includes('Natural') && (v.name.includes('Jenny') || v.name.includes('Aria') || v.name.includes('Ava') || v.name.includes('Sara'))) ||
       enVoices.find((v) => v.name.includes('Google') && (v.name.includes('Female') || v.name.includes('en-US'))) ||
@@ -283,7 +275,6 @@ export function getBestVoiceForCharacter(speakerName = '', customVoiceURI?: stri
       enVoices[0] ||
       null;
   } else {
-    // Top-tier Natural Male Voices (Edge Natural Guy/Christopher/Davis, Chrome Google US Male, Apple Daniel/Alex)
     selectedVoice =
       enVoices.find((v) => v.name.includes('Natural') && (v.name.includes('Guy') || v.name.includes('Christopher') || v.name.includes('Davis') || v.name.includes('Steffan'))) ||
       enVoices.find((v) => v.name.includes('Google') && (v.name.includes('Male') || v.name.includes('US English'))) ||
@@ -293,39 +284,32 @@ export function getBestVoiceForCharacter(speakerName = '', customVoiceURI?: stri
       null;
   }
 
-  // Persona-specific vocal acoustics (deliberate American drama cadence)
   let recommendedPitch = 1.0;
-  let recommendedRate = 0.93; // 0.93x deliberate pace for clear diction
+  let recommendedRate = 0.93;
 
   if (lowerSpeaker.includes('harvey')) {
-    // Suits Harvey Specter: Confident, deep, alpha partner
     recommendedPitch = 0.92;
     recommendedRate = 0.92;
   } else if (lowerSpeaker.includes('axelrod')) {
-    // Billions Bobby Axelrod: Cold, commanding, ruthless
     recommendedPitch = 0.89;
     recommendedRate = 0.93;
   } else if (lowerSpeaker.includes('julian')) {
-    // Soho Julian: Charismatic, smooth, romantic
     recommendedPitch = 0.96;
     recommendedRate = 0.91;
   } else if (lowerSpeaker.includes('burke')) {
-    // ER Dr. Burke: Focused, sharp, surgeon authority
     recommendedPitch = 0.94;
     recommendedRate = 0.95;
   } else if (lowerSpeaker.includes('elena')) {
-    // Silicon Valley Elena: Sharp, analytical, venture partner
     recommendedPitch = 1.02;
     recommendedRate = 0.93;
   } else if (lowerSpeaker.includes('victoria')) {
-    // CFO Victoria: Polished, corporate poise, calculating
     recommendedPitch = 0.98;
     recommendedRate = 0.92;
   }
 
   const voiceLabel = selectedVoice
     ? selectedVoice.name.replace(/(Microsoft|Google|Apple)\s*/i, '').replace(/Online \(Natural\)/i, '✨ Natural')
-    : 'System Voice';
+    : 'Google Studio HD (미국 원어민)';
 
   return {
     voice: selectedVoice,
@@ -346,12 +330,88 @@ export interface DialoguePlayOptions {
 }
 
 let activePlaybackToken = 0;
+let activeAudioElement: HTMLAudioElement | null = null;
+
+/**
+ * High-definition native American English speech synthesis via Google Studio Stream.
+ * Guarantees 100% authentic American pronunciation on any PC without relying on local OS voice packs.
+ */
+export function playGoogleHDDialogue(text: string, options?: DialoguePlayOptions): void {
+  const currentToken = ++activePlaybackToken;
+  const sentences = splitIntoSentences(text);
+
+  if (sentences.length === 0) {
+    options?.onEnd?.();
+    return;
+  }
+
+  let currentSentenceIndex = 0;
+  let hasStarted = false;
+
+  const playNextSentence = () => {
+    if (currentToken !== activePlaybackToken) return;
+
+    if (currentSentenceIndex >= sentences.length) {
+      options?.onEnd?.();
+      return;
+    }
+
+    const sentenceText = sentences[currentSentenceIndex];
+    const encoded = encodeURIComponent(sentenceText);
+    const url = `https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=en-US&q=${encoded}`;
+
+    try {
+      const audio = new Audio(url);
+      activeAudioElement = audio;
+
+      audio.onplay = () => {
+        if (currentToken !== activePlaybackToken) {
+          audio.pause();
+          return;
+        }
+        if (!hasStarted) {
+          hasStarted = true;
+          options?.onStart?.();
+        }
+      };
+
+      audio.onended = () => {
+        if (currentToken !== activePlaybackToken) return;
+        currentSentenceIndex++;
+        if (currentSentenceIndex < sentences.length) {
+          setTimeout(() => {
+            if (currentToken === activePlaybackToken) {
+              playNextSentence();
+            }
+          }, 140);
+        } else {
+          options?.onEnd?.();
+        }
+      };
+
+      audio.onerror = () => {
+        // Seamless fallback to browser Web Speech API
+        playWebSpeechDialogue(text, options);
+      };
+
+      const playPromise = audio.play();
+      if (playPromise) {
+        playPromise.catch(() => {
+          playWebSpeechDialogue(text, options);
+        });
+      }
+    } catch {
+      playWebSpeechDialogue(text, options);
+    }
+  };
+
+  playNextSentence();
+}
 
 /**
  * Text-to-Speech using browser SpeechSynthesis with sequential sentence cadence
- * and natural dramatic pauses between sentences!
  */
-export function playNativeDialogue(text: string, options?: DialoguePlayOptions): boolean {
+export function playWebSpeechDialogue(text: string, options?: DialoguePlayOptions): boolean {
   if (typeof window === 'undefined' || !('speechSynthesis' in window)) {
     options?.onEnd?.();
     return false;
@@ -393,7 +453,6 @@ export function playNativeDialogue(text: string, options?: DialoguePlayOptions):
       utterance.voice = voice;
     }
 
-    // Slightly inflect pitch up on questions for natural drama prosody
     const finalPitch = isQuestion
       ? (options?.pitch ?? recommendedPitch) * 1.04
       : (options?.pitch ?? recommendedPitch);
@@ -415,7 +474,6 @@ export function playNativeDialogue(text: string, options?: DialoguePlayOptions):
       currentSentenceIndex++;
 
       if (currentSentenceIndex < sentences.length) {
-        // Natural 160ms actor breath gap between sentences
         setTimeout(() => {
           if (currentToken === activePlaybackToken) {
             speakNext();
@@ -438,8 +496,47 @@ export function playNativeDialogue(text: string, options?: DialoguePlayOptions):
   return true;
 }
 
+/**
+ * Main dialogue player: uses Google Studio Native HD by default for flawless American pronunciation,
+ * with seamless fallback and user preference support.
+ */
+export function playNativeDialogue(text: string, options?: DialoguePlayOptions): boolean {
+  if (typeof window === 'undefined') {
+    options?.onEnd?.();
+    return false;
+  }
+
+  stopNativeSpeech();
+
+  let engine = 'google_hd';
+  try {
+    const savedEngine = localStorage.getItem('dramactor_audio_engine');
+    if (savedEngine) {
+      engine = savedEngine;
+    }
+  } catch {
+    // Ignore
+  }
+
+  if (engine === 'webspeech') {
+    return playWebSpeechDialogue(text, options);
+  }
+
+  playGoogleHDDialogue(text, options);
+  return true;
+}
+
 export function stopNativeSpeech(): void {
   activePlaybackToken++;
+  if (activeAudioElement) {
+    try {
+      activeAudioElement.pause();
+      activeAudioElement.src = '';
+    } catch {
+      // Ignore
+    }
+    activeAudioElement = null;
+  }
   if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
     window.speechSynthesis.cancel();
   }

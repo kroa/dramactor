@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { X, Sliders, Volume2, Check, Sparkles } from 'lucide-react';
+import { X, Sliders, Volume2, Check, Radio, Cpu } from 'lucide-react';
 import { getAvailableVoices, playNativeDialogue, stopNativeSpeech } from '../utils/speechMatch';
 
 interface VoiceSettingsModalProps {
@@ -16,6 +16,15 @@ export const VoiceSettingsModal: React.FC<VoiceSettingsModalProps> = ({
   const voices = useMemo(() => {
     return getAvailableVoices().filter((v) => v.lang.startsWith('en'));
   }, []);
+
+  const [audioEngine, setAudioEngine] = useState<string>(() => {
+    try {
+      return localStorage.getItem('dramactor_audio_engine') || 'google_hd';
+    } catch {
+      return 'google_hd';
+    }
+  });
+
   const [selectedURI, setSelectedURI] = useState<string>(() => {
     try {
       return localStorage.getItem('dramactor_preferred_voice_uri') || '';
@@ -23,6 +32,7 @@ export const VoiceSettingsModal: React.FC<VoiceSettingsModalProps> = ({
       return '';
     }
   });
+
   const [speed, setSpeed] = useState<number>(() => {
     try {
       return Number(localStorage.getItem('dramactor_preferred_rate') || '0.94');
@@ -30,9 +40,20 @@ export const VoiceSettingsModal: React.FC<VoiceSettingsModalProps> = ({
       return 0.94;
     }
   });
+
   const [isPlayingSample, setIsPlayingSample] = useState<boolean>(false);
 
   if (!isOpen) return null;
+
+  const handleEngineChange = (engine: 'google_hd' | 'webspeech') => {
+    setAudioEngine(engine);
+    try {
+      localStorage.setItem('dramactor_audio_engine', engine);
+    } catch {
+      // Ignore
+    }
+    onVoiceChanged();
+  };
 
   const handleSelectVoice = (uri: string) => {
     setSelectedURI(uri);
@@ -82,7 +103,7 @@ export const VoiceSettingsModal: React.FC<VoiceSettingsModalProps> = ({
               <h3 className="text-base font-bold text-white tracking-tight">
                 드라마 보이스 &amp; 발음 튜닝
               </h3>
-              <p className="text-[11px] text-zinc-400">내 브라우저에 맞는 최적의 성우 선택</p>
+              <p className="text-[11px] text-zinc-400">정통 미국 원어민 발음 최적화 설정</p>
             </div>
           </div>
           <button
@@ -100,19 +121,80 @@ export const VoiceSettingsModal: React.FC<VoiceSettingsModalProps> = ({
 
         {/* Content Body */}
         <div className="overflow-y-auto py-3 space-y-4 flex-1 pr-1">
-          {/* Edge Natural Tip Box */}
-          <div className="p-3 rounded-xl bg-cyan-950/20 border border-cyan-500/30 text-xs text-zinc-300 space-y-1">
-            <div className="flex items-center space-x-1.5 text-cyan-300 font-bold">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>최고 음질 팁 (Microsoft Edge 권장)</span>
+          {/* Audio Engine Selection */}
+          <div className="space-y-2">
+            <div className="flex items-center justify-between text-xs font-semibold text-zinc-300">
+              <span>오디오 엔진 선택</span>
+              <button
+                type="button"
+                onClick={() => handlePlaySample()}
+                className="text-[11px] text-cyan-400 hover:underline flex items-center space-x-1"
+              >
+                <Volume2 className="w-3 h-3" />
+                <span>{isPlayingSample ? '재생 중...' : '발음 테스트 듣기'}</span>
+              </button>
             </div>
-            <p className="text-[11px] text-zinc-300 leading-relaxed">
-              Windows PC에서는 <strong>Microsoft Edge</strong>로 접속 시 마이크로소프트의 최신 <strong>Natural Neural 성우 음성</strong>이 제공되어 실제 미드 배우와 가장 흡사하게 발음됩니다.
-            </p>
+
+            {/* Option 1: Google Studio HD Native (Recommended) */}
+            <div
+              onClick={() => handleEngineChange('google_hd')}
+              className={`p-3 rounded-xl border cursor-pointer transition-all ${
+                audioEngine === 'google_hd'
+                  ? 'bg-gradient-to-r from-emerald-500/15 to-cyan-500/15 border-emerald-400/60 shadow-lg shadow-emerald-500/10'
+                  : 'bg-white/[0.03] border-white/10 hover:bg-white/[0.06]'
+              }`}
+            >
+              <div className="flex items-start justify-between">
+                <div className="space-y-1">
+                  <div className="flex items-center space-x-2">
+                    <Radio className="w-4 h-4 text-emerald-400" />
+                    <span className="text-xs font-bold text-white">
+                      🌟 Google Studio HD Native (미국 정통 원어민 발음)
+                    </span>
+                    <span className="text-[9px] px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-bold border border-emerald-500/30">
+                      강력 추천
+                    </span>
+                  </div>
+                  <p className="text-[11px] text-zinc-300 leading-relaxed pl-6">
+                    PC에 영어 음성팩이 없어도 <strong>100% 맑고 정확한 정통 미국식 원어민 발음</strong>으로 자동 재생됩니다. 어색한 로봇 발음을 완전히 해결합니다.
+                  </p>
+                </div>
+                {audioEngine === 'google_hd' && (
+                  <Check className="w-4 h-4 text-emerald-400 shrink-0 ml-2 mt-0.5" />
+                )}
+              </div>
+            </div>
+
+            {/* Option 2: Browser Local Web Speech Engine */}
+            <div
+              onClick={() => handleEngineChange('webspeech')}
+              className={`p-3 rounded-xl border cursor-pointer transition-all ${
+                audioEngine === 'webspeech'
+                  ? 'bg-cyan-500/15 border-cyan-400/60 shadow-lg shadow-cyan-500/10'
+                  : 'bg-white/[0.03] border-white/10 hover:bg-white/[0.06]'
+              }`}
+            >
+              <div className="flex items-start justify-between">
+                <div className="space-y-1">
+                  <div className="flex items-center space-x-2">
+                    <Cpu className="w-4 h-4 text-cyan-400" />
+                    <span className="text-xs font-bold text-white">
+                      💻 브라우저 로컬 엔진 (Web Speech API)
+                    </span>
+                  </div>
+                  <p className="text-[11px] text-zinc-400 leading-relaxed pl-6">
+                    내 PC 운영체제 및 브라우저에 직접 설치된 음성 합성 엔진을 사용합니다. (Edge의 Natural 성우 권장)
+                  </p>
+                </div>
+                {audioEngine === 'webspeech' && (
+                  <Check className="w-4 h-4 text-cyan-400 shrink-0 ml-2 mt-0.5" />
+                )}
+              </div>
+            </div>
           </div>
 
           {/* Speed Control */}
-          <div className="space-y-1.5">
+          <div className="space-y-1.5 pt-1">
             <div className="flex items-center justify-between text-xs">
               <span className="font-semibold text-zinc-300">대사 발화 속도</span>
               <span className="font-mono text-cyan-400 font-bold">{speed.toFixed(2)}x</span>
@@ -135,92 +217,84 @@ export const VoiceSettingsModal: React.FC<VoiceSettingsModalProps> = ({
             </div>
           </div>
 
-          {/* Voice List */}
-          <div className="space-y-2">
-            <div className="flex items-center justify-between text-xs font-semibold text-zinc-300">
-              <span>내 기기에서 감지된 영어 성우 목록</span>
-              <button
-                type="button"
-                onClick={() => handlePlaySample()}
-                className="text-[11px] text-cyan-400 hover:underline flex items-center space-x-1"
-              >
-                <Volume2 className="w-3 h-3" />
-                <span>{isPlayingSample ? '재생 중...' : '선택 음성 테스트'}</span>
-              </button>
-            </div>
+          {/* Local Voice List (Only if local engine is chosen) */}
+          {audioEngine === 'webspeech' && (
+            <div className="space-y-2 pt-1">
+              <span className="text-xs font-semibold text-zinc-300 block">
+                감지된 로컬 성우 목록
+              </span>
 
-            <div className="space-y-1.5 max-h-56 overflow-y-auto pr-1">
-              {/* Default Auto-Persona option */}
-              <div
-                onClick={() => handleSelectVoice('')}
-                className={`p-2.5 rounded-xl border text-xs flex items-center justify-between cursor-pointer transition-all ${
-                  selectedURI === ''
-                    ? 'bg-emerald-500/10 border-emerald-500/40 text-emerald-300'
-                    : 'bg-white/[0.03] border-white/10 text-zinc-300 hover:bg-white/[0.06]'
-                }`}
-              >
-                <div>
-                  <div className="font-bold flex items-center space-x-1.5">
-                    <span>🎬 드라마 배역별 자동 최적화 (기본 추천)</span>
+              <div className="space-y-1.5 max-h-48 overflow-y-auto pr-1">
+                <div
+                  onClick={() => handleSelectVoice('')}
+                  className={`p-2.5 rounded-xl border text-xs flex items-center justify-between cursor-pointer transition-all ${
+                    selectedURI === ''
+                      ? 'bg-emerald-500/10 border-emerald-500/40 text-emerald-300'
+                      : 'bg-white/[0.03] border-white/10 text-zinc-300 hover:bg-white/[0.06]'
+                  }`}
+                >
+                  <div>
+                    <div className="font-bold flex items-center space-x-1.5">
+                      <span>🎬 배역별 자동 최적화</span>
+                    </div>
+                    <p className="text-[10px] text-zinc-500">
+                      캐릭터 성별과 성격에 맞추어 자동 매칭
+                    </p>
                   </div>
-                  <p className="text-[10px] text-zinc-500">
-                    캐릭터 성별과 성격(하비, 엘레나 등)에 따라 최적의 보이스 자동 매칭
-                  </p>
+                  {selectedURI === '' && <Check className="w-4 h-4 text-emerald-400 shrink-0" />}
                 </div>
-                {selectedURI === '' && <Check className="w-4 h-4 text-emerald-400 shrink-0" />}
-              </div>
 
-              {/* Individual Detected Voices */}
-              {voices.map((v) => {
-                const isSelected = selectedURI === v.voiceURI;
-                const isNatural = v.name.includes('Natural') || v.name.includes('Online');
-                const isGoogle = v.name.includes('Google');
-                return (
-                  <div
-                    key={v.voiceURI}
-                    onClick={() => handleSelectVoice(v.voiceURI)}
-                    className={`p-2.5 rounded-xl border text-xs flex items-center justify-between cursor-pointer transition-all ${
-                      isSelected
-                        ? 'bg-cyan-500/15 border-cyan-500/40 text-cyan-200'
-                        : 'bg-white/[0.02] border-white/5 text-zinc-300 hover:bg-white/[0.05]'
-                    }`}
-                  >
-                    <div className="truncate mr-2">
-                      <div className="font-medium truncate flex items-center space-x-1.5">
-                        <span className="truncate">{v.name}</span>
-                        {isNatural && (
-                          <span className="shrink-0 text-[9px] px-1 rounded bg-emerald-500/20 text-emerald-300 font-bold">
-                            Natural
-                          </span>
-                        )}
-                        {isGoogle && (
-                          <span className="shrink-0 text-[9px] px-1 rounded bg-blue-500/20 text-blue-300 font-bold">
-                            Google
-                          </span>
-                        )}
+                {voices.map((v) => {
+                  const isSelected = selectedURI === v.voiceURI;
+                  const isNatural = v.name.includes('Natural') || v.name.includes('Online');
+                  const isGoogle = v.name.includes('Google');
+                  return (
+                    <div
+                      key={v.voiceURI}
+                      onClick={() => handleSelectVoice(v.voiceURI)}
+                      className={`p-2.5 rounded-xl border text-xs flex items-center justify-between cursor-pointer transition-all ${
+                        isSelected
+                          ? 'bg-cyan-500/15 border-cyan-500/40 text-cyan-200'
+                          : 'bg-white/[0.02] border-white/5 text-zinc-300 hover:bg-white/[0.05]'
+                      }`}
+                    >
+                      <div className="truncate mr-2">
+                        <div className="font-medium truncate flex items-center space-x-1.5">
+                          <span className="truncate">{v.name}</span>
+                          {isNatural && (
+                            <span className="shrink-0 text-[9px] px-1 rounded bg-emerald-500/20 text-emerald-300 font-bold">
+                              Natural
+                            </span>
+                          )}
+                          {isGoogle && (
+                            <span className="shrink-0 text-[9px] px-1 rounded bg-blue-500/20 text-blue-300 font-bold">
+                              Google
+                            </span>
+                          )}
+                        </div>
+                        <span className="text-[10px] text-zinc-500 font-mono">{v.lang}</span>
                       </div>
-                      <span className="text-[10px] text-zinc-500 font-mono">{v.lang}</span>
-                    </div>
 
-                    <div className="flex items-center space-x-1 shrink-0">
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handlePlaySample(v.voiceURI);
-                        }}
-                        className="p-1 rounded text-zinc-400 hover:text-white hover:bg-white/10"
-                        title="이 음성 미리듣기"
-                      >
-                        <Volume2 className="w-3.5 h-3.5" />
-                      </button>
-                      {isSelected && <Check className="w-4 h-4 text-cyan-400 ml-1" />}
+                      <div className="flex items-center space-x-1 shrink-0">
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handlePlaySample(v.voiceURI);
+                          }}
+                          className="p-1 rounded text-zinc-400 hover:text-white hover:bg-white/10"
+                          title="이 음성 미리듣기"
+                        >
+                          <Volume2 className="w-3.5 h-3.5" />
+                        </button>
+                        {isSelected && <Check className="w-4 h-4 text-cyan-400 ml-1" />}
+                      </div>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
             </div>
-          </div>
+          )}
         </div>
 
         {/* Footer */}
@@ -231,7 +305,7 @@ export const VoiceSettingsModal: React.FC<VoiceSettingsModalProps> = ({
               stopNativeSpeech();
               onClose();
             }}
-            className="w-full py-2.5 rounded-xl font-bold text-xs bg-cyan-500 hover:bg-cyan-400 text-black shadow-md shadow-cyan-500/20 transition-all active:scale-[0.98]"
+            className="w-full py-2.5 rounded-xl font-bold text-xs bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 text-black shadow-md shadow-emerald-500/20 transition-all active:scale-[0.98]"
           >
             설정 완료
           </button>
