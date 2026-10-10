@@ -7,7 +7,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-Strict_Mode-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
 [![Vite](https://img.shields.io/badge/Vite-8.3-646CFF?logo=vite&logoColor=white)](https://vite.dev)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.3-38B2AC?logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
-[![Vitest](https://img.shields.io/badge/Vitest-36_Tests_PASS-green?logo=vitest&logoColor=white)](https://vitest.dev)
+[![Vitest](https://img.shields.io/badge/Vitest-41_Tests_PASS-green?logo=vitest&logoColor=white)](https://vitest.dev)
 [![Zero-Cost](https://img.shields.io/badge/Backend-100%25_Serverless-emerald)](https://pages.cloudflare.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -27,7 +27,8 @@
 ## ✨ 핵심 기능 (Key Features)
 
 ### 1. 🎥 시네마틱 비디오 스테이지 (Cinematic Video Stage)
-- **16:9 와이드 시네마 스크린**: 에피소드 장르별 고화질 현장 영상 루프 자동 재생
+- **16:9 와이드 시네마 스크린**: 7개 전 에피소드 고화질 실제 미드 배우 연기 영상 탑재 (100% 선명도)
+- **PC vs 모바일 반응형 듀얼 레이아웃**: PC 데스크톱에서는 2열 와이드 Cinema Studio (좌측 16:9 영상 및 자막 + 우측 대사 선택/녹음 덱), 모바일 환경에서는 한 손 조작 1열 세로 스택으로 자동 최적화
 - **할리우드 ARRI / RED 필름 HUD 오버레이**:
   - `● REC` 실시간 점멸 레드 레코딩 인디케이터
   - `00:01:24:18` 프레임 단위 실시간 SMPTE 타임코드
@@ -89,7 +90,7 @@
 | **Icons & VFX** | **Lucide-React**, **canvas-confetti** | 세련된 시네마틱 UI 아이콘 및 결과 화면 폭죽 파티클 |
 | **Audio Engine** | **Edge Neural TTS Pre-renderer** | 84개 스튜디오 고음질 대사 오디오 에셋 (지연시간 0ms) |
 | **Speech Engine** | **Web Speech Recognition** + **Levenshtein** | 브라우저 표준 실시간 음성인식 및 유사도 검증 |
-| **Testing** | **Vitest 5.0**, **Testing Library** | 6개 테스트 스위트, 36개 단위/컴포넌트 테스트 100% 패스 |
+| **Testing** | **Vitest 5.0**, **Testing Library** | 9개 테스트 스위트, 41개 단위/컴포넌트 테스트 100% 패스 |
 | **Code Quality** | **Oxlint** | 0 Warnings, 0 Errors 초고속 린트 검증 |
 | **Architecture** | **100% Client-Side Static App** | 무과금 Cloudflare Pages 배포 완벽 지원 |
 
