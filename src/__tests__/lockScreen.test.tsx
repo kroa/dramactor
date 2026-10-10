@@ -51,3 +51,4 @@ describe('LockScreen Component', () => {
     expect(handleOpenArchive).toHaveBeenCalledTimes(1);
   });
 });
+

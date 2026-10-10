@@ -40,3 +40,4 @@ describe('UnlockModal Component', () => {
     expect(screen.getByText('PRO 패스 활성화 완료')).toBeInTheDocument();
   });
 });
+
