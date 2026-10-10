@@ -101,3 +101,4 @@ describe('ScenePlay Component - Translation Click-to-Reveal', () => {
     expect(screen.getByText('이미 끝난 일로 보시죠.')).toBeInTheDocument();
   });
 });
+
