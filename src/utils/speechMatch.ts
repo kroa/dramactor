@@ -51,6 +51,24 @@ export function levenshteinDistance(a: string, b: string): number {
 }
 
 /**
+ * Helper to expand common speech contractions for lenient conversational matching
+ */
+export function expandContractionsForMatching(str: string): string {
+  return str
+    .replace(/\bill\b/g, 'i will')
+    .replace(/\bive\b/g, 'i have')
+    .replace(/\bweve\b/g, 'we have')
+    .replace(/\byouve\b/g, 'you have')
+    .replace(/\btheyve\b/g, 'they have')
+    .replace(/\bdont\b/g, 'do not')
+    .replace(/\bcant\b/g, 'can not')
+    .replace(/\bwont\b/g, 'will not')
+    .replace(/\bthats\b/g, 'that is')
+    .replace(/\bwhats\b/g, 'what is')
+    .replace(/\btheres\b/g, 'there is');
+}
+
+/**
  * Calculates similarity percentage (0 ~ 100) based on Levenshtein distance
  */
 export function calculateSimilarity(recognized: string, target: string): number {
@@ -61,13 +79,20 @@ export function calculateSimilarity(recognized: string, target: string): number 
   if (normRec === normTarget) return 100;
   if (!normRec) return 0;
 
-  const distance = levenshteinDistance(normRec, normTarget);
-  const maxLength = Math.max(normRec.length, normTarget.length);
+  // Raw normalized calculation
+  const rawDist = levenshteinDistance(normRec, normTarget);
+  const rawMax = Math.max(normRec.length, normTarget.length);
+  const rawSim = rawMax === 0 ? 100 : Math.max(0, (1 - rawDist / rawMax) * 100);
 
-  if (maxLength === 0) return 100;
+  // Expanded contractions calculation (e.g., "I will" vs "I'll")
+  const expRec = expandContractionsForMatching(normRec);
+  const expTarget = expandContractionsForMatching(normTarget);
+  const expDist = levenshteinDistance(expRec, expTarget);
+  const expMax = Math.max(expRec.length, expTarget.length);
+  const expSim = expMax === 0 ? 100 : Math.max(0, (1 - expDist / expMax) * 100);
 
-  const similarity = Math.max(0, (1 - distance / maxLength) * 100);
-  return Math.round(similarity * 10) / 10;
+  const bestSim = Math.max(rawSim, expSim);
+  return Math.round(bestSim * 10) / 10;
 }
 
 /**
@@ -199,6 +224,8 @@ export function prepareDramaTextForTTS(rawText: string): string {
     .replace(/\b45\s*days\b/gi, 'forty-five days')
     .replace(/\b18\s*months\b/gi, 'eighteen months')
     .replace(/\b12\s*million\b/gi, 'twelve million')
+    .replace(/\bAPAC\b/g, 'A.P.A.C.')
+    .replace(/\bSAFE\b/g, 'safe')
     .replace(/\bYC\b/g, 'Y Combinator');
 }
 

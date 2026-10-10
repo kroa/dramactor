@@ -53,6 +53,12 @@ describe('speechMatch Utility Test Suite', () => {
       expect(calculateSimilarity(recognized, target)).toBe(100);
     });
 
+    it('matches spoken full forms with target contractions fairly', () => {
+      const target = "Consider it done. I'll have the draft on your desk.";
+      const spokenFull = "Consider it done. I will have the draft on your desk.";
+      expect(calculateSimilarity(spokenFull, target)).toBe(100);
+    });
+
     it('returns 0 for completely empty recognition', () => {
       expect(calculateSimilarity('', 'Some text')).toBe(0);
     });
@@ -95,13 +101,15 @@ describe('speechMatch Utility Test Suite', () => {
 
   describe('prepareDramaTextForTTS and splitIntoSentences', () => {
     it('expands technical acronyms for clear pronunciation', () => {
-      const input = 'OpenAI and VC will pitch to the CFO and FTC before 11 PM.';
+      const input = 'OpenAI and VC will pitch to the CFO and FTC before 11 PM for APAC SAFE note.';
       const output = prepareDramaTextForTTS(input);
       expect(output).toContain('Open A.I.');
       expect(output).toContain('V.C.');
       expect(output).toContain('C.F.O.');
       expect(output).toContain('F.T.C.');
       expect(output).toContain('eleven P.M.');
+      expect(output).toContain('A.P.A.C.');
+      expect(output).toContain('safe');
     });
 
     it('splits multi-sentence dialogues into breathing chunks', () => {

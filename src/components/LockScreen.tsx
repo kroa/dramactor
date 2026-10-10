@@ -28,7 +28,7 @@ export const LockScreen: React.FC<LockScreenProps> = ({
   }, []);
 
   return (
-    <div className="w-full max-w-md mx-auto space-y-5 px-3 py-6 text-center animate-fade-in">
+    <div className="w-full max-w-md md:max-w-xl mx-auto space-y-6 px-3 py-6 sm:py-10 text-center animate-fade-in">
       {/* Film Slate Lock Graphic */}
       <div className="relative inline-flex items-center justify-center">
         <div className="w-20 h-20 rounded-3xl bg-zinc-900 border border-white/10 flex items-center justify-center text-3xl shadow-2xl">

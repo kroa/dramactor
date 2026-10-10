@@ -49,7 +49,7 @@ export const UnlockModal: React.FC<UnlockModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fade-in">
-      <div className="relative w-full max-w-sm rounded-2xl bg-[#0e1017] border border-white/10 p-5 sm:p-6 shadow-2xl text-left">
+      <div className="relative w-full max-w-sm sm:max-w-md md:max-w-lg rounded-2xl bg-[#0e1017] border border-white/10 p-5 sm:p-6 shadow-2xl text-left max-h-[90vh] overflow-y-auto">
         {/* Close Button */}
         <button
           onClick={onClose}
@@ -172,6 +172,25 @@ export const UnlockModal: React.FC<UnlockModalProps> = ({
               <p className="mt-2 text-[10px] text-zinc-500 leading-normal text-center">
                 * 카카오페이 &bull; 토스 &bull; 네이버페이 &bull; 카드 결제 지원 (구매 즉시 발급된 키를 입력하면 평생 영구 소장됩니다)
               </p>
+            </div>
+
+            {/* FAQ Accordion Section */}
+            <div className="pt-2 border-t border-white/[0.08] space-y-2 text-left">
+              <span className="text-[11px] font-bold text-zinc-400 block">💡 자주 묻는 질문 (FAQ)</span>
+              <div className="space-y-1.5 text-[11px] text-zinc-400 bg-white/[0.02] p-2.5 rounded-xl border border-white/5">
+                <div>
+                  <p className="font-semibold text-zinc-300">Q. 로그인 없이 1회 제한을 어떻게 체크하나요?</p>
+                  <p className="text-[10px] text-zinc-400 pl-2">
+                    &bull; Dramactor는 별도 가입 없이 브라우저 로컬 저장소(LocalStorage)에 KST 자정 기준 날짜를 기록하여 누구나 즉시 1회 플레이가 가능합니다.
+                  </p>
+                </div>
+                <div className="pt-1 border-t border-white/5">
+                  <p className="font-semibold text-zinc-300">Q. Lemon Squeezy는 무엇인가요?</p>
+                  <p className="text-[10px] text-zinc-400 pl-2">
+                    &bull; Stripe 기반 글로벌 안전 결제 플랫폼으로, 카카오페이/토스/네이버페이 및 신용카드를 통한 결제가 가능합니다.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         )}
