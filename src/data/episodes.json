@@ -1,0 +1,786 @@
+[
+  {
+    "date": "2026-10-10",
+    "episodeNumber": 1,
+    "title": "뉴욕 로펌 첫 출근: 하비와의 독대",
+    "genre": "Legal",
+    "synopsis": "맨해튼 최고의 로펌 피어슨 하드먼의 시니어 파트너 하비 스펙터의 오피스. 첫날부터 살벌한 케이스 브리핑을 요구받는다. 기선 제압을 당하지 않고 프로페셔널한 신뢰를 얻어야 한다.",
+    "turns": [
+      {
+        "turnIndex": 1,
+        "speaker": "Harvey (Senior Partner)",
+        "avatarEmoji": "👔",
+        "dialogue": "I don't care that it's your first day. Pearson wants the Henderson merger brief on my desk by noon. Can you handle it, or should I get an associate who actually wants to win?",
+        "situationHint": "하비가 첫날부터 정오까지 헨더슨 합병 브리프를 제출할 수 있겠냐며 도발한다.",
+        "choices": [
+          {
+            "id": "A",
+            "text": "I will try my best to do it.",
+            "koreanMeaning": "최선을 다해 해보도록 노력하겠습니다.",
+            "type": "mediocre",
+            "feedback": "‘try my best’는 성실하지만 월가 탑티어 로펌에서는 확신이 부족해 보입니다.",
+            "targetScript": "I will try my best to do it."
+          },
+          {
+            "id": "B",
+            "text": "Consider it done. I'll have the redlined draft on your desk before the deadline.",
+            "koreanMeaning": "이미 끝난 일로 보시죠. 마감 전에 검토본을 책상 위에 올려놓겠습니다.",
+            "type": "native_killer",
+            "feedback": "‘Consider it done’은 하비 스펙터가 가장 신뢰하는 극강의 자신감 표현입니다.",
+            "targetScript": "Consider it done. I'll have the redlined draft on your desk before the deadline."
+          },
+          {
+            "id": "C",
+            "text": "Don't worry, I can check this document very quickly.",
+            "koreanMeaning": "걱정 마세요, 제가 이 문서를 아주 빠르게 체크할 수 있습니다.",
+            "type": "wrong_konglish",
+            "feedback": "‘check’는 부하직원을 감시하거나 단순 확인할 때 씁니다. 파트너에게는 ‘review/draft’가 맞습니다.",
+            "targetScript": "Don't worry, I can check this document very quickly."
+          }
+        ]
+      },
+      {
+        "turnIndex": 2,
+        "speaker": "Harvey (Senior Partner)",
+        "avatarEmoji": "👔",
+        "dialogue": "Confidence is cheap. The opposing counsel is Tanner. He fights dirty and looks for any procedural loophole. What's your play when he pushes back?",
+        "situationHint": "상대 변호사 태너가 비열한 편법을 쓰며 압박해올 때 어떻게 대응할지 묻는다.",
+        "choices": [
+          {
+            "id": "A",
+            "text": "We anticipate his next move and hold all the leverage before he even blinks.",
+            "koreanMeaning": "상대가 눈치채기도 전에 다음 수를 읽고 모든 협상 주도권을 우리가 쥡니다.",
+            "type": "native_killer",
+            "feedback": "‘hold all the leverage’는 미드 슈츠의 시그니처 협상 전략 용어입니다.",
+            "targetScript": "We anticipate his next move and hold all the leverage before he even blinks."
+          },
+          {
+            "id": "B",
+            "text": "I will tell him not to do dirty tricks.",
+            "koreanMeaning": "더러운 속임수를 쓰지 말라고 제가 말하겠습니다.",
+            "type": "wrong_konglish",
+            "feedback": "유치원 훈계 같은 표현입니다. 비즈니스 협상에서는 법적 레버리지로 압박해야 합니다.",
+            "targetScript": "I will tell him not to do dirty tricks."
+          },
+          {
+            "id": "C",
+            "text": "We should follow standard legal procedures strictly.",
+            "koreanMeaning": "우리는 표준 법적 절차를 엄격히 따라야 합니다.",
+            "type": "mediocre",
+            "feedback": "틀린 말은 아니지만 공격적인 상대를 제압하기엔 너무 방어적입니다.",
+            "targetScript": "We should follow standard legal procedures strictly."
+          }
+        ]
+      },
+      {
+        "turnIndex": 3,
+        "speaker": "Harvey (Senior Partner)",
+        "avatarEmoji": "👔",
+        "dialogue": "Fair enough. Walk with me to court. But remember this: When someone points a gun at your face, you don't back down. What do you do?",
+        "situationHint": "하비가 그의 유명한 철학적 질문을 던지며 당신의 배짱을 최종 시험한다.",
+        "choices": [
+          {
+            "id": "A",
+            "text": "You call the police immediately.",
+            "koreanMeaning": "즉시 경찰에 신고합니다.",
+            "type": "wrong_konglish",
+            "feedback": "문맥을 이해하지 못한 직역 반응입니다. 하비의 혈압을 올리는 답변입니다.",
+            "targetScript": "You call the police immediately."
+          },
+          {
+            "id": "B",
+            "text": "You pull out a bigger gun, or you call their bluff.",
+            "koreanMeaning": "더 큰 총을 꺼내 들거나, 상대의 허세를 까발리는 거죠.",
+            "type": "native_killer",
+            "feedback": "하비 스펙터의 명대사를 그대로 맞받아쳐 완벽한 파트너로 인정받는 킬러 대사!",
+            "targetScript": "You pull out a bigger gun, or you call their bluff."
+          },
+          {
+            "id": "C",
+            "text": "You try to negotiate calmly with them.",
+            "koreanMeaning": "차분하게 대화로 타협하려 노력합니다.",
+            "type": "mediocre",
+            "feedback": "상식적인 답변이지만 하비의 로펌에선 살아남기 어렵습니다.",
+            "targetScript": "You try to negotiate calmly with them."
+          }
+        ]
+      }
+    ],
+    "keyTakeaway": {
+      "expression": "Consider it done. / Hold the leverage.",
+      "usageNote": "'Consider it done'은 '맡겨만 주시면 이미 끝난 일이나 다름없습니다'라는 뜻으로 최상위 프로페셔널의 신뢰를 줍니다."
+    }
+  },
+  {
+    "date": "2026-10-11",
+    "episodeNumber": 2,
+    "title": "실리콘밸리 VC 피칭: 샌드힐 로드의 기습 질문",
+    "genre": "Startup",
+    "synopsis": "팔로알토 샌드힐 로드 세쿼이아 캐피탈 회의실. 100억 규모 시리즈 A 투자 심사역들이 당신의 AI 스타트업 비즈니스 모델에 날카로운 의문을 제기한다.",
+    "turns": [
+      {
+        "turnIndex": 1,
+        "speaker": "Elena (Lead Partner, VC)",
+        "avatarEmoji": "💼",
+        "dialogue": "Your retention curve is decent, but let's be real: Google or OpenAI can replicate this in two sprints. Where is your actual defensive moat?",
+        "situationHint": "빅테크가 두 달 안에 베낄 수 있지 않냐며 방어 가능한 독점 해자(Moat)를 묻는다.",
+        "choices": [
+          {
+            "id": "A",
+            "text": "Our proprietary enterprise workflow data creates high switching costs that compound weekly.",
+            "koreanMeaning": "우리의 독점 기업 워크플로우 데이터가 매주 누적되는 막대한 전환 비용을 창출합니다.",
+            "type": "native_killer",
+            "feedback": "‘proprietary data’, ‘switching costs’, ‘compounding’은 실리콘밸리 VC들이 열광하는 핵심 키워드입니다.",
+            "targetScript": "Our proprietary enterprise workflow data creates high switching costs that compound weekly."
+          },
+          {
+            "id": "B",
+            "text": "Our developers are very smart and work overnight.",
+            "koreanMeaning": "우리 개발자들은 매우 똑똑하고 야근을 열심히 합니다.",
+            "type": "wrong_konglish",
+            "feedback": "‘야근(overnight)’은 기술적 해자(Moat)가 아닙니다. 투자자에게 비효율로 보입니다.",
+            "targetScript": "Our developers are very smart and work overnight."
+          },
+          {
+            "id": "C",
+            "text": "We have good features and fast customer service.",
+            "koreanMeaning": "저희는 좋은 기능들과 빠른 고객 서비스가 있습니다.",
+            "type": "mediocre",
+            "feedback": "모든 앱이 하는 말입니다. 투자 유치를 이끌어내기엔 차별점이 약합니다.",
+            "targetScript": "We have good features and fast customer service."
+          }
+        ]
+      },
+      {
+        "turnIndex": 2,
+        "speaker": "Elena (Lead Partner, VC)",
+        "avatarEmoji": "💼",
+        "dialogue": "What about your burn rate? You're burning two hundred grand a month with only eighteen months of runway. What if the macroeconomic climate turns sour?",
+        "situationHint": "월 번레이트가 너무 높고 런웨이가 18개월뿐인데 시장 침체가 오면 어쩔 건지 압박한다.",
+        "choices": [
+          {
+            "id": "A",
+            "text": "We will ask our parents or bank for minus account.",
+            "koreanMeaning": "부모님께 부탁하거나 마이너스 통장을 만들겠습니다.",
+            "type": "wrong_konglish",
+            "feedback": "‘minus account’는 콩글리시(credit line/overdraft)이며 스타트업 투자자에겐 황당한 답변입니다.",
+            "targetScript": "We will ask our parents or bank for credit lines."
+          },
+          {
+            "id": "B",
+            "text": "We have an emergency playbook to reach default-alive status within 45 days if needed.",
+            "koreanMeaning": "필요시 45일 이내에 자체 생존(Default-alive) 상태로 전환하는 비상 플레이북이 완비되어 있습니다.",
+            "type": "native_killer",
+            "feedback": "폴 그레이엄의 명언인 'Default-alive'를 인용한 최고 수준의 리스크 관리 답변입니다.",
+            "targetScript": "We have an emergency playbook to reach default-alive status within 45 days if needed."
+          },
+          {
+            "id": "C",
+            "text": "We can cut marketing budget and fire some staff.",
+            "koreanMeaning": "마케팅 예산을 깎고 직원을 일부 해고할 수 있습니다.",
+            "type": "mediocre",
+            "feedback": "너무 직설적이고 거칠어 리더십의 전략적 안정감이 떨어져 보입니다.",
+            "targetScript": "We can cut marketing budget and reduce headcounts."
+          }
+        ]
+      },
+      {
+        "turnIndex": 3,
+        "speaker": "Elena (Lead Partner, VC)",
+        "avatarEmoji": "💼",
+        "dialogue": "Impressive poise. We're considering issuing a term sheet by Friday, but we want 22% equity. Thoughts?",
+        "situationHint": "금요일까지 텀시트를 주겠으나 지분 22%를 요구하는 VC의 조건에 답변해야 한다.",
+        "choices": [
+          {
+            "id": "A",
+            "text": "That's way too expensive, no way.",
+            "koreanMeaning": "그건 너무 비싸요, 절대 안 됩니다.",
+            "type": "wrong_konglish",
+            "feedback": "지분율에 'expensive'를 쓰는 것은 어색하며 감정적인 거절은 딜을 깹니다.",
+            "targetScript": "That is way too high, no way."
+          },
+          {
+            "id": "B",
+            "text": "We value your mentorship, but let's align on 15% to keep founding team incentives intact.",
+            "koreanMeaning": "파트너님의 전문성을 존중하지만, 창업팀의 동기부여를 위해 15% 선에서 조율하길 제안합니다.",
+            "type": "native_killer",
+            "feedback": "‘align on’, ‘incentives intact’로 파트너십을 존중하면서 밸류를 지키는 명품 카운터오퍼!",
+            "targetScript": "We value your mentorship, but let's align on 15% to keep founding team incentives intact."
+          },
+          {
+            "id": "C",
+            "text": "Can you give us a little bit better price?",
+            "koreanMeaning": "조금만 더 좋은 가격으로 깎아주실 수 있나요?",
+            "type": "mediocre",
+            "feedback": "스타트업 밸류에이션을 물건값 깎듯이 말하면 신뢰도가 하락합니다.",
+            "targetScript": "Can you give us a little bit better price?"
+          }
+        ]
+      }
+    ],
+    "keyTakeaway": {
+      "expression": "Default-alive / Align on [terms]",
+      "usageNote": "'Default-alive'는 추가 투자 없이도 자생 가능한 상태, 'Align on'은 서로의 눈높이와 합의점을 맞출 때 씁니다."
+    }
+  },
+  {
+    "date": "2026-10-12",
+    "episodeNumber": 3,
+    "title": "맨해튼 본사 연봉 협상: CFO의 압박 면담",
+    "genre": "Corporate",
+    "synopsis": "포춘 500대 미디어 그룹 뉴욕 본사 45층. 사내 핵심 프로젝트를 대성공시킨 후 진행되는 CFO와의 1:1 보상 협상 테이블. 단호하고 우아하게 내 가치를 증명해야 한다.",
+    "turns": [
+      {
+        "turnIndex": 1,
+        "speaker": "Victoria (Chief Financial Officer)",
+        "avatarEmoji": "📊",
+        "dialogue": "Look, I know you led the European rollout, but HR's standard band only allows a 4% merit increase this cycle. You're asking for twenty.",
+        "situationHint": "CFO가 사내 규정상 인상률 상한선은 4%인데 왜 20%나 요구하냐며 압박한다.",
+        "choices": [
+          {
+            "id": "A",
+            "text": "Give me more money because my rent is getting higher.",
+            "koreanMeaning": "월세가 오르고 있으니 돈을 더 주세요.",
+            "type": "wrong_konglish",
+            "feedback": "개인 사정을 회사 연봉 협상에서 꺼내는 것은 가장 피해야 할 아마추어적 발언입니다.",
+            "targetScript": "Give me more money because my rent is getting higher."
+          },
+          {
+            "id": "B",
+            "text": "My deliverable generated twelve million in recurring ARR; my ask simply reflects the market value of that impact.",
+            "koreanMeaning": "제가 이끈 성과로 연간 1,200만 달러의 반복 매출이 발생했습니다. 제 요구는 그 임팩트의 시장 가치를 반영한 것입니다.",
+            "type": "native_killer",
+            "feedback": "감정이 아닌 정량화된 숫자(ARR, market value)로 CFO를 압도하는 탑티어 임원식 화법입니다.",
+            "targetScript": "My deliverable generated twelve million in recurring ARR; my ask simply reflects the market value of that impact."
+          },
+          {
+            "id": "C",
+            "text": "I really worked hard day and night for the company.",
+            "koreanMeaning": "저는 회사를 위해 밤낮으로 정말 열심히 일했습니다.",
+            "type": "mediocre",
+            "feedback": "열심히 했다는 호소만으로는 CFO의 지갑을 열 수 없습니다.",
+            "targetScript": "I really worked hard day and night for the company."
+          }
+        ]
+      },
+      {
+        "turnIndex": 2,
+        "speaker": "Victoria (Chief Financial Officer)",
+        "avatarEmoji": "📊",
+        "dialogue": "Even if the board recognizes your numbers, breaking the salary band creates internal friction with other VP peers.",
+        "situationHint": "성과는 인정하지만 밴드를 깨면 다른 부사장들과 사내 형평성 문제가 생긴다고 난색을 표한다.",
+        "choices": [
+          {
+            "id": "A",
+            "text": "Then we can structure the difference through performance-based equity grants and milestone bonuses.",
+            "koreanMeaning": "그렇다면 기본급 대신 성과 연동 주식 보상과 마일스톤 보너스로 차액을 구조화하면 됩니다.",
+            "type": "native_killer",
+            "feedback": "‘structure the difference’, ‘equity grants’로 CFO의 예산 고민을 해결해주는 솔루션 중심 답변!",
+            "targetScript": "Then we can structure the difference through performance-based equity grants and milestone bonuses."
+          },
+          {
+            "id": "B",
+            "text": "I don't care about other people, only me.",
+            "koreanMeaning": "다른 사람은 상관없고 제 것만 신경 씁니다.",
+            "type": "wrong_konglish",
+            "feedback": "조직 융화력과 팀워크를 무시하는 위험한 발언입니다.",
+            "targetScript": "I do not care about other people, only me."
+          },
+          {
+            "id": "C",
+            "text": "Can't you just make an exception for me this one time?",
+            "koreanMeaning": "이번 한 번만 특별히 예외로 해주시면 안 될까요?",
+            "type": "mediocre",
+            "feedback": "읍소하는 태도는 협상의 주도권을 완전히 상대에게 넘겨줍니다.",
+            "targetScript": "Can't you just make an exception for me this one time?"
+          }
+        ]
+      },
+      {
+        "turnIndex": 3,
+        "speaker": "Victoria (Chief Financial Officer)",
+        "avatarEmoji": "📊",
+        "dialogue": "You're tough. If we approve this package, I expect you to take over the APAC integration next quarter without hesitation. Deal?",
+        "situationHint": "CFO가 제안을 승인하는 대신 다음 분기 아시아 태평양 통합 프로젝트까지 총괄하라고 제안한다.",
+        "choices": [
+          {
+            "id": "A",
+            "text": "You have a deal. Send over the revised agreement and I'll hit the ground running.",
+            "koreanMeaning": "좋습니다, 합의하죠. 수정된 계약서를 보내주시면 즉시 총력전에 돌입하겠습니다.",
+            "type": "native_killer",
+            "feedback": "‘hit the ground running’은 시작부터 전속력으로 성과를 내겠다는 세련된 비즈니스 관용구입니다.",
+            "targetScript": "You have a deal. Send over the revised agreement and I'll hit the ground running."
+          },
+          {
+            "id": "B",
+            "text": "Yes, I will sign the contract and go quickly.",
+            "koreanMeaning": "네, 계약서에 사인하고 빨리 가겠습니다.",
+            "type": "wrong_konglish",
+            "feedback": "‘go quickly’는 어디로 도망친다는 뉘앙스로 오해받을 수 있습니다.",
+            "targetScript": "Yes, I will sign the contract and go quickly."
+          },
+          {
+            "id": "C",
+            "text": "Okay, thank you for accepting my proposal.",
+            "koreanMeaning": "알겠습니다, 제 제안을 수락해 주셔서 감사합니다.",
+            "type": "mediocre",
+            "feedback": "예의 바르지만 자신감 넘치는 주도적 리더의 포스가 아쉽습니다.",
+            "targetScript": "Okay, thank you for accepting my proposal."
+          }
+        ]
+      }
+    ],
+    "keyTakeaway": {
+      "expression": "Hit the ground running",
+      "usageNote": "'Hit the ground running'은 지체 없이 즉각 투입되어 눈부신 성과를 내기 시작할 때 쓰는 완벽한 표현입니다."
+    }
+  },
+  {
+    "date": "2026-10-13",
+    "episodeNumber": 4,
+    "title": "ER 긴급 수술실: 치프 서전의 긴급 오더",
+    "genre": "Medical",
+    "synopsis": "시애틀 메모리얼 병원 외상센터 외과 수술실(OR 3). 다발성 외상 환자의 혈압이 급격히 곤두박질치는 일촉즉발 상황에서 치프 외과의와의 칼날 같은 소통이 시작된다.",
+    "turns": [
+      {
+        "turnIndex": 1,
+        "speaker": "Dr. Burke (Chief of Surgery)",
+        "avatarEmoji": "🩺",
+        "dialogue": "Patient's crashing! Systolic is down to sixty and the suction is filling with arterial blood. What are you waiting for, doctor?!",
+        "situationHint": "환자의 수축기 혈압이 60으로 떨어지고 출혈이 심해지며 치프가 다그친다.",
+        "choices": [
+          {
+            "id": "A",
+            "text": "Wait a minute, I am thinking right now.",
+            "koreanMeaning": "잠깐만요, 지금 생각 중입니다.",
+            "type": "wrong_konglish",
+            "feedback": "수술실에서 'Wait a minute'은 환자의 생명을 위협하는 금기어입니다.",
+            "targetScript": "Wait a minute, I am thinking right now."
+          },
+          {
+            "id": "B",
+            "text": "Clamping the hepatic artery now! Push two units of O-negative and prep the bypass!",
+            "koreanMeaning": "간동맥 즉시 겸자 결찰합니다! O형 음성 2유닛 급속 투여하고 바이패스 준비하세요!",
+            "type": "native_killer",
+            "feedback": "명확한 의학 명령과 침착한 즉각 대응으로 치프의 신뢰를 쟁취하는 완벽한 턴!",
+            "targetScript": "Clamping the hepatic artery now! Push two units of O-negative and prep the bypass!"
+          },
+          {
+            "id": "C",
+            "text": "I will give more blood and check the wound.",
+            "koreanMeaning": "혈액을 더 투여하고 상처를 확인하겠습니다.",
+            "type": "mediocre",
+            "feedback": "일반적인 대응이지만 급박한 혈압 저하를 막기엔 구체적 술기가 부족합니다.",
+            "targetScript": "I will give more blood and check the wound."
+          }
+        ]
+      },
+      {
+        "turnIndex": 2,
+        "speaker": "Dr. Burke (Chief of Surgery)",
+        "avatarEmoji": "🩺",
+        "dialogue": "Bleeding is contained, but there's a micro-tear along the inferior vena cava. Do you want to resect or place a patch?",
+        "situationHint": "하대정맥 미세 파열이 발견된 상황에서 절제술을 할지 패치를 댈지 당신의 임상적 결단을 묻는다.",
+        "choices": [
+          {
+            "id": "A",
+            "text": "A Dacron patch minimizes ischemic time and preserves systemic return. I'll suture it.",
+            "koreanMeaning": "다크론 패치가 허혈 시간을 최소화하고 정맥 환류를 보존합니다. 제가 직접 봉합하겠습니다.",
+            "type": "native_killer",
+            "feedback": "의학적 근거(ischemic time)와 자신 있는 봉합 집도의 선언으로 주연의 품격을 증명합니다.",
+            "targetScript": "A Dacron patch minimizes ischemic time and preserves systemic return. I'll suture it."
+          },
+          {
+            "id": "B",
+            "text": "You are the boss, so whatever you want to do.",
+            "koreanMeaning": "선생님이 보스시니 원하시는 대로 하세요.",
+            "type": "wrong_konglish",
+            "feedback": "동료 외과의로서의 전문성과 주도성을 스스로 포기하는 무책임한 대답입니다.",
+            "targetScript": "You are the boss, so whatever you want to do."
+          },
+          {
+            "id": "C",
+            "text": "I think patching might be safer for the patient.",
+            "koreanMeaning": "패치를 대는 것이 환자에게 더 안전할 것 같습니다.",
+            "type": "mediocre",
+            "feedback": "방향은 맞으나 논리적 의학 근거 제시가 다소 밋밋합니다.",
+            "targetScript": "I think patching might be safer for the patient."
+          }
+        ]
+      },
+      {
+        "turnIndex": 3,
+        "speaker": "Dr. Burke (Chief of Surgery)",
+        "avatarEmoji": "🩺",
+        "dialogue": "Flawless knot, doctor. Vitals are stabilizing. You've got steady hands under fire. Take over closure.",
+        "situationHint": "바이탈이 안정화되자 치프가 당신의 침착함을 칭찬하며 수술 마무리 봉합을 맡긴다.",
+        "choices": [
+          {
+            "id": "A",
+            "text": "Thank you, chief. I'll close layer by layer and monitor post-op saturation.",
+            "koreanMeaning": "감사합니다, 치프. 층별로 깔끔하게 닫고 수술 후 산소포화도도 밀착 모니터링하겠습니다.",
+            "type": "native_killer",
+            "feedback": "‘close layer by layer’와 수술 후 케어까지 책임지는 진정한 펠로우의 마인드!",
+            "targetScript": "Thank you, chief. I'll close layer by layer and monitor post-op saturation."
+          },
+          {
+            "id": "B",
+            "text": "Okay, I will stitch the skin quickly and go home.",
+            "koreanMeaning": "네, 피부를 얼른 꿰매고 퇴근하겠습니다.",
+            "type": "wrong_konglish",
+            "feedback": "수술 환자를 두고 퇴근을 언급하는 것은 의료 윤리상 치명적 감점 요인입니다.",
+            "targetScript": "Okay, I will stitch the skin quickly and go home."
+          },
+          {
+            "id": "C",
+            "text": "I will do my best to finish the operation.",
+            "koreanMeaning": "수술을 마치기 위해 최선을 다하겠습니다.",
+            "type": "mediocre",
+            "feedback": "무난하지만 구체적인 사후 관리 계획이 빠져 있습니다.",
+            "targetScript": "I will do my best to finish the operation."
+          }
+        ]
+      }
+    ],
+    "keyTakeaway": {
+      "expression": "Under fire / Steady hands",
+      "usageNote": "'Under fire'는 극심한 비판이나 위기 압박 속을 뜻하며, 'Steady hands under fire'는 위기 속에서도 흔들림 없는 전문가를 칭송할 때 씁니다."
+    }
+  },
+  {
+    "date": "2026-10-14",
+    "episodeNumber": 5,
+    "title": "소호 루프탑 바: 치명적인 첫 만남의 스몰토크",
+    "genre": "Dating",
+    "synopsis": "뉴욕 소호의 핫한 멤버십 라운지 테라스. 칵테일 한 잔을 들고 우연히 마주친 매력적인 아트 큐레이터 줄리안과의 밀당 스몰토크. 진부한 멘트는 금물이다.",
+    "turns": [
+      {
+        "turnIndex": 1,
+        "speaker": "Julian (Art Curator)",
+        "avatarEmoji": "🍸",
+        "dialogue": "You've been nursing that Mezcal Negroni for twenty minutes while looking at the downtown skyline. Deep in thought or just avoiding the crowd?",
+        "situationHint": "칵테일을 오래 쥐고 야경을 보는 당신에게 생각을 깊게 하는 중인지 사람들을 피하는 중인지 묻는다.",
+        "choices": [
+          {
+            "id": "A",
+            "text": "I have headache because people are so noisy.",
+            "koreanMeaning": "사람들이 너무 시끄러워서 머리가 아픕니다.",
+            "type": "wrong_konglish",
+            "feedback": "파티 분위기를 깨는 부정적이고 어색한 불평입니다.",
+            "targetScript": "I have headache because people are so noisy."
+          },
+          {
+            "id": "B",
+            "text": "A bit of both. But mostly wondering if the view looks better from here or through an artist's eyes.",
+            "koreanMeaning": "둘 다예요. 하지만 주로 이 야경이 여기서 볼 때 더 멋진지, 아니면 예술가의 눈으로 볼 때 더 멋진지 생각 중이었죠.",
+            "type": "native_killer",
+            "feedback": "상대방의 직업(Art Curator)을 자연스럽게 띄워주며 호기심을 유발하는 최고급 위트!",
+            "targetScript": "A bit of both. But mostly wondering if the view looks better from here or through an artist's eyes."
+          },
+          {
+            "id": "C",
+            "text": "Just enjoying the view. It is very beautiful tonight.",
+            "koreanMeaning": "그냥 경치를 즐기고 있어요. 오늘 밤 참 예쁘네요.",
+            "type": "mediocre",
+            "feedback": "무난하지만 상대방의 흥미를 끌어당기는 스파크가 없습니다.",
+            "targetScript": "Just enjoying the view. It is very beautiful tonight."
+          }
+        ]
+      },
+      {
+        "turnIndex": 2,
+        "speaker": "Julian (Art Curator)",
+        "avatarEmoji": "🍸",
+        "dialogue": "Touché. Most people here talk endlessly about their seed funding or crypto portfolios. It's refreshing to meet someone who actually observes.",
+        "situationHint": "다들 돈 얘기만 하는데 관찰력 있는 사람을 만나 신선하다며 칭찬한다.",
+        "choices": [
+          {
+            "id": "A",
+            "text": "Life's too short for transactional small talk. I'd rather hear about what genuinely moves you.",
+            "koreanMeaning": "비즈니스식 계산적 대화만 하기엔 인생이 너무 짧잖아요. 당신의 마음을 진심으로 움직이는 게 뭔지 듣고 싶어요.",
+            "type": "native_killer",
+            "feedback": "‘transactional small talk’를 넘어서 진정성 있는 감정선으로 이끄는 세련된 대화법!",
+            "targetScript": "Life's too short for transactional small talk. I'd rather hear about what genuinely moves you."
+          },
+          {
+            "id": "B",
+            "text": "I also have a lot of bitcoins in my wallet.",
+            "koreanMeaning": "저도 지갑에 비트코인 엄청 많이 갖고 있습니다.",
+            "type": "wrong_konglish",
+            "feedback": "상대가 방금 질린다고 한 주제를 자랑삼아 늘어놓는 최악의 턴입니다.",
+            "targetScript": "I also have a lot of bitcoins in my wallet."
+          },
+          {
+            "id": "C",
+            "text": "Yes, I also dislike talking about work at bars.",
+            "koreanMeaning": "맞아요, 저도 바에서 일 얘기하는 거 싫어합니다.",
+            "type": "mediocre",
+            "feedback": "공감은 하지만 대화를 발전시키는 매력적인 질문이 빠져 있습니다.",
+            "targetScript": "Yes, I also dislike talking about work at bars."
+          }
+        ]
+      },
+      {
+        "turnIndex": 3,
+        "speaker": "Julian (Art Curator)",
+        "avatarEmoji": "🍸",
+        "dialogue": "Now you've caught my attention. I'm hosting a private exhibition opening in Chelsea tomorrow evening. Care to be my plus-one?",
+        "situationHint": "호감을 느낀 줄리안이 내일 저녁 첼시 프라이빗 오프닝 전시에 파트너로 동행하자고 제안한다.",
+        "choices": [
+          {
+            "id": "A",
+            "text": "Only if we grab late-night tacos afterward to deconstruct the art.",
+            "koreanMeaning": "전시 끝나고 심야 타코 먹으면서 작품 품평해 준다는 조건이라면 기꺼이요.",
+            "type": "native_killer",
+            "feedback": "‘Only if...’로 쿨하게 밀당하면서 2차 데이트 코스까지 자연스럽게 확정하는 고수 스킬!",
+            "targetScript": "Only if we grab late-night tacos afterward to deconstruct the art."
+          },
+          {
+            "id": "B",
+            "text": "I am so honored, thank you very much for inviting me!",
+            "koreanMeaning": "정말 영광입니다, 절 초대해 주셔서 대단히 감사합니다!",
+            "type": "wrong_konglish",
+            "feedback": "너무 격식 차리고 황송해하면 로맨틱한 동등성이 무너집니다.",
+            "targetScript": "I am so honored, thank you very much for inviting me!"
+          },
+          {
+            "id": "C",
+            "text": "Sure, that sounds fun. What time does it start?",
+            "koreanMeaning": "좋아요, 재밌겠네요. 몇 시에 시작하나요?",
+            "type": "mediocre",
+            "feedback": "흔한 승낙이지만 설렘을 배가시키는 매력은 다소 부족합니다.",
+            "targetScript": "Sure, that sounds fun. What time does it start?"
+          }
+        ]
+      }
+    ],
+    "keyTakeaway": {
+      "expression": "Care to be my plus-one? / Only if...",
+      "usageNote": "'Plus-one'은 행사나 파티에 동반하는 파트너를 뜻하며, 'Only if...'는 가벼운 조건을 걸며 유쾌하게 승낙할 때 씁니다."
+    }
+  },
+  {
+    "date": "2026-10-15",
+    "episodeNumber": 6,
+    "title": "월가 M&A 전야: 비밀 조항 수정을 건 담판",
+    "genre": "Corporate",
+    "synopsis": "월스트리트 록펠러 센터 최상층 펜트하우스. 내일 아침 증시 개장 전 발표될 40억 달러 적대적 인수합병 계약서에서 독소 조항을 삭제해야만 한다.",
+    "turns": [
+      {
+        "turnIndex": 1,
+        "speaker": "Axelrod (Hedge Fund Titan)",
+        "avatarEmoji": "🦁",
+        "dialogue": "The ink is practically dry. You walk into my boardroom at 11 PM demanding to strike Section 9? Give me one reason why I shouldn't throw you out right now.",
+        "situationHint": "밤 11시에 독소 조항 9번을 삭제하라고 요구하는 당신에게 악셀로드가 분노를 표출한다.",
+        "choices": [
+          {
+            "id": "A",
+            "text": "Because keeping Section 9 triggers an automatic FTC antitrust review that stalls your deal for eighteen months.",
+            "koreanMeaning": "9번 조항을 유지하는 순간 연방거래위원회(FTC) 반독점 심사가 자동 발동되어 딜이 18개월간 묶이기 때문입니다.",
+            "type": "native_killer",
+            "feedback": "상대방의 가장 큰 약점(FTC 규제 리스크)을 정밀 타격하여 주도권을 단숨에 뒤집는 대사입니다.",
+            "targetScript": "Because keeping Section 9 triggers an automatic FTC antitrust review that stalls your deal for eighteen months."
+          },
+          {
+            "id": "B",
+            "text": "Please be generous and listen to my opinion kindly.",
+            "koreanMeaning": "제발 너그럽게 제 의견을 친절하게 들어주십시오.",
+            "type": "wrong_konglish",
+            "feedback": "월가의 포식자에게 자비를 구하는 것은 즉각적인 패배를 의미합니다.",
+            "targetScript": "Please be generous and listen to my opinion kindly."
+          },
+          {
+            "id": "C",
+            "text": "That clause is unfair to our company's board of directors.",
+            "koreanMeaning": "그 조항은 우리 회사 이사회에 불공정합니다.",
+            "type": "mediocre",
+            "feedback": "불공정하다는 주장만으로는 헤지펀드 거물을 설득할 수 없습니다.",
+            "targetScript": "That clause is unfair to our company's board of directors."
+          }
+        ]
+      },
+      {
+        "turnIndex": 2,
+        "speaker": "Axelrod (Hedge Fund Titan)",
+        "avatarEmoji": "🦁",
+        "dialogue": "Don't bluff me with regulatory bogeymen. Lina Khan doesn't have the teeth to block this merger.",
+        "situationHint": "규제 당국은 이 합병을 막을 이빨(실효성)이 없다며 블러핑하지 말라고 맞선다.",
+        "choices": [
+          {
+            "id": "A",
+            "text": "She doesn't need to block it; the mere injunction leaks your proprietary margins to the press.",
+            "koreanMeaning": "막을 필요도 없습니다. 가처분 신청만 걸려도 당신의 마진 구조가 언론에 유출되니까요.",
+            "type": "native_killer",
+            "feedback": "‘mere injunction’, ‘leaks margins’로 상대가 감당할 수 없는 진짜 손실을 짚어낸 명대사!",
+            "targetScript": "She doesn't need to block it; the mere injunction leaks your proprietary margins to the press."
+          },
+          {
+            "id": "B",
+            "text": "I saw news on internet that government will block it.",
+            "koreanMeaning": "정부가 막을 거라는 뉴스를 인터넷에서 봤습니다.",
+            "type": "wrong_konglish",
+            "feedback": "‘saw news on internet’은 월가 협상에서 신빙성을 완전히 떨어뜨립니다.",
+            "targetScript": "I saw news on internet that government will block it."
+          },
+          {
+            "id": "C",
+            "text": "We have legal opinions from top law firms saying otherwise.",
+            "koreanMeaning": "반대 의견을 가진 정상급 로펌들의 법률 자문서가 있습니다.",
+            "type": "mediocre",
+            "feedback": "일반적인 근거 제시이나 상대의 폐부를 찌르기엔 임팩트가 약합니다.",
+            "targetScript": "We have legal opinions from top law firms saying otherwise."
+          }
+        ]
+      },
+      {
+        "turnIndex": 3,
+        "speaker": "Axelrod (Hedge Fund Titan)",
+        "avatarEmoji": "🦁",
+        "dialogue": "You've got sharp fangs. Fine. We strike Section 9. But in exchange, your founder pledges full voting proxy for the first three quarters.",
+        "situationHint": "악셀로드가 조항 삭제에 동의하는 대신 3분기 동안의 의결권 위임을 역제안한다.",
+        "choices": [
+          {
+            "id": "A",
+            "text": "Only for non-dilutive resolutions. We sign now and toast before the opening bell.",
+            "koreanMeaning": "지분 희석이 없는 안건에 한해서만 가능합니다. 지금 서명하고 개장 종 치기 전에 축배를 들죠.",
+            "type": "native_killer",
+            "feedback": "경영권 방어 단서(non-dilutive)를 달며 쿨하게 딜을 매듭짓는 마스터클래스 피날레!",
+            "targetScript": "Only for non-dilutive resolutions. We sign now and toast before the opening bell."
+          },
+          {
+            "id": "B",
+            "text": "Okay, take all our voting powers as you like.",
+            "koreanMeaning": "좋습니다, 원하시는 대로 의결권 다 가져가세요.",
+            "type": "wrong_konglish",
+            "feedback": "회사 경영권을 통째로 넘겨버리는 위험천만한 양보입니다.",
+            "targetScript": "Okay, take all our voting powers as you like."
+          },
+          {
+            "id": "C",
+            "text": "We need to discuss this with our lawyers first.",
+            "koreanMeaning": "변호사들과 먼저 상의해 봐야겠습니다.",
+            "type": "mediocre",
+            "feedback": "밤 11시 긴급 담판에서 결정을 미루면 모멘텀을 잃게 됩니다.",
+            "targetScript": "We need to discuss this with our lawyers first."
+          }
+        ]
+      }
+    ],
+    "keyTakeaway": {
+      "expression": "Strike a clause / Before the opening bell",
+      "usageNote": "'Strike a clause'는 계약서에서 특정 조항을 삭제할 때 쓰는 법률/금융 실전 표현입니다."
+    }
+  },
+  {
+    "date": "2026-10-16",
+    "episodeNumber": 7,
+    "title": "YC 데모데이 백스테이지: 탑티어 엔젤의 제안",
+    "genre": "Startup",
+    "synopsis": "샌프란시스코 팰리스 오브 파인 아츠 백스테이지. 3분간의 환상적인 피칭 직후, 피터 틸 스타일의 전설적인 슈퍼 엔젤 투자자가 다가와 리드 투자를 타진한다.",
+    "turns": [
+      {
+        "turnIndex": 1,
+        "speaker": "Marcus (Legendary Angel)",
+        "avatarEmoji": "🕶️",
+        "dialogue": "That was the crispest pitch of the cohort. Your autonomous agent architecture is six months ahead of the curve. How much room is left on your SAFE note?",
+        "situationHint": "가장 뛰어난 피칭이었다며 SAFE 노트에 투자 참여할 여유 한도가 얼마나 남았는지 묻는다.",
+        "choices": [
+          {
+            "id": "A",
+            "text": "We're currently three times oversubscribed, but we carved out a half-million allocation specifically for strategic angels.",
+            "koreanMeaning": "현재 3배 초과 청약 상태이지만, 전략적 엔젤 분들을 위해 특별히 50만 달러 규모를 배정해 두었습니다.",
+            "type": "native_killer",
+            "feedback": "‘oversubscribed’, ‘carved out an allocation’으로 희소성과 VIP 대우를 동시에 주는 완벽한 화법!",
+            "targetScript": "We're currently three times oversubscribed, but we carved out a half-million allocation specifically for strategic angels."
+          },
+          {
+            "id": "B",
+            "text": "We are very poor, so we have empty space for any money.",
+            "koreanMeaning": "저희는 너무 가난해서 어떤 돈이든 빈자리가 많습니다.",
+            "type": "wrong_konglish",
+            "feedback": "절박함을 드러내는 것은 투자자의 심리적 가치를 급락시킵니다.",
+            "targetScript": "We are very poor, so we have empty space for any money."
+          },
+          {
+            "id": "C",
+            "text": "There is still plenty of room if you want to invest.",
+            "koreanMeaning": "투자하고 싶으시면 아직 자리는 넉넉합니다.",
+            "type": "mediocre",
+            "feedback": "수요가 적어 보여 투자자의 FOMO(놓칠까 두려운 심리)를 자극하지 못합니다.",
+            "targetScript": "There is still plenty of room if you want to invest."
+          }
+        ]
+      },
+      {
+        "turnIndex": 2,
+        "speaker": "Marcus (Legendary Angel)",
+        "avatarEmoji": "🕶️",
+        "dialogue": "Smart operator. I'll take that entire allocation right now on an uncapped MFN note. Wire transfers in the morning.",
+        "situationHint": "마커스가 그 50만 달러 한도를 전액 가져가겠다고 제안한다.",
+        "choices": [
+          {
+            "id": "A",
+            "text": "We don't do uncapped notes; we set a firm thirty-million post-money cap to protect our cap table hygiene.",
+            "koreanMeaning": "저희는 언캡(한도 없는) 조건은 진행하지 않습니다. 지분표 건전성을 지키기 위해 포스트 밸류 3,000만 달러 캡을 고수하고 있습니다.",
+            "type": "native_killer",
+            "feedback": "‘cap table hygiene’을 언급하며 전설적인 투자자의 무리한 조건도 단호하게 통제하는 창업자의 기개!",
+            "targetScript": "We don't do uncapped notes; we set a firm thirty-million post-money cap to protect our cap table hygiene."
+          },
+          {
+            "id": "B",
+            "text": "Okay, uncapped is fine because you have sunglasses and look cool.",
+            "koreanMeaning": "선글라스 끼고 멋있어 보이시니 한도 없어도 괜찮습니다.",
+            "type": "wrong_konglish",
+            "feedback": "비즈니스 원칙을 외모나 분위기로 타협하는 황당한 답변입니다.",
+            "targetScript": "Okay, uncapped is fine because you look cool."
+          },
+          {
+            "id": "C",
+            "text": "Can we talk about the cap tomorrow instead?",
+            "koreanMeaning": "캡에 대해서는 내일 다시 얘기할 수 있을까요?",
+            "type": "mediocre",
+            "feedback": "결정권을 미루어 유리한 협상 모멘텀을 흘려보내게 됩니다.",
+            "targetScript": "Can we talk about the cap tomorrow instead?"
+          }
+        ]
+      },
+      {
+        "turnIndex": 3,
+        "speaker": "Marcus (Legendary Angel)",
+        "avatarEmoji": "🕶️",
+        "dialogue": "I love founders who protect their equity. Thirty million post it is. I'm introducing you to Satya Nadella's M&A chief on Monday.",
+        "situationHint": "마커스가 가치관에 감탄하며 3,000만 캡을 수락하고 빅테크 M&A 총괄을 소개해 주겠다고 약속한다.",
+        "choices": [
+          {
+            "id": "A",
+            "text": "Thrilled to partner with you, Marcus. Let's build the category-defining platform.",
+            "koreanMeaning": "마커스, 파트너가 되어 기쁩니다. 업계의 새로운 카테고리를 정의하는 플랫폼을 함께 만드시죠.",
+            "type": "native_killer",
+            "feedback": "‘category-defining platform’으로 유니콘 기업을 향한 원대한 비전을 선언하는 감동의 피날레!",
+            "targetScript": "Thrilled to partner with you, Marcus. Let's build the category-defining platform."
+          },
+          {
+            "id": "B",
+            "text": "Wow, thank you big brother, you are my hero!",
+            "koreanMeaning": "와우, 감사합니다 형님, 제 영웅이십니다!",
+            "type": "wrong_konglish",
+            "feedback": "‘big brother’는 투자자에게 쓰는 표현이 아니며 미숙함을 드러냅니다.",
+            "targetScript": "Wow, thank you big brother, you are my hero!"
+          },
+          {
+            "id": "C",
+            "text": "That's great. I will send the wire details to your assistant.",
+            "koreanMeaning": "좋네요. 비서분께 송금 계좌 정보를 보내드리겠습니다.",
+            "type": "mediocre",
+            "feedback": "실무적이지만 역사적인 파트너십의 흥분과 비전을 공유하기엔 건조합니다.",
+            "targetScript": "That's great. I will send the wire details to your assistant."
+          }
+        ]
+      }
+    ],
+    "keyTakeaway": {
+      "expression": "Cap table hygiene / Category-defining",
+      "usageNote": "'Cap table hygiene'은 건전한 지분 구조 관리, 'Category-defining'은 기존에 없던 새로운 시장 영역을 개척하고 장악함을 뜻합니다."
+    }
+  }
+]
