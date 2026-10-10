@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Volume2, VolumeX, Sparkles, MessageSquare } from 'lucide-react';
+import { Volume2, VolumeX, Sparkles, MessageSquare, Sliders } from 'lucide-react';
 import type { Choice, Episode, SceneTurn } from '../types';
 import { playNativeDialogue, stopNativeSpeech } from '../utils/speechMatch';
 import { SpeechRecorder } from './SpeechRecorder';
+import { VoiceSettingsModal } from './VoiceSettingsModal';
 
 interface ScenePlayProps {
   episode: Episode;
@@ -24,6 +25,7 @@ export const ScenePlay: React.FC<ScenePlayProps> = ({
   onSubmitTurn,
 }) => {
   const [isPlayingTTS, setIsPlayingTTS] = useState<boolean>(false);
+  const [isVoiceModalOpen, setIsVoiceModalOpen] = useState<boolean>(false);
   const lastTurnIndexRef = useRef<number>(-1);
 
   // Auto-play dialogue TTS when turn changes, unless muted
@@ -152,24 +154,35 @@ export const ScenePlay: React.FC<ScenePlayProps> = ({
               <h3 className="text-xs font-bold text-cyan-300 tracking-wide">
                 {turn.speaker}
               </h3>
-              <button
-                type="button"
-                onClick={handleManualPlayTTS}
-                className="flex items-center space-x-1 text-[11px] text-zinc-400 hover:text-white bg-white/[0.05] px-2 py-0.5 rounded-md border border-white/10 transition-colors"
-                title="상대방 대사 다시 듣기"
-              >
-                {isPlayingTTS ? (
-                  <>
-                    <VolumeX className="w-3 h-3 text-cyan-400" />
-                    <span>정지</span>
-                  </>
-                ) : (
-                  <>
-                    <Volume2 className="w-3 h-3 text-cyan-400" />
-                    <span>대사 듣기</span>
-                  </>
-                )}
-              </button>
+              <div className="flex items-center space-x-1.5">
+                <button
+                  type="button"
+                  onClick={() => setIsVoiceModalOpen(true)}
+                  className="flex items-center space-x-1 text-[11px] text-zinc-400 hover:text-white bg-white/[0.05] hover:bg-white/10 px-2 py-0.5 rounded-md border border-white/10 transition-colors"
+                  title="성우 목소리 및 속도 튜닝"
+                >
+                  <Sliders className="w-3 h-3 text-cyan-400" />
+                  <span>음성 튜닝</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={handleManualPlayTTS}
+                  className="flex items-center space-x-1 text-[11px] text-zinc-400 hover:text-white bg-white/[0.05] hover:bg-white/10 px-2 py-0.5 rounded-md border border-white/10 transition-colors"
+                  title="상대방 대사 다시 듣기"
+                >
+                  {isPlayingTTS ? (
+                    <>
+                      <VolumeX className="w-3 h-3 text-cyan-400" />
+                      <span>정지</span>
+                    </>
+                  ) : (
+                    <>
+                      <Volume2 className="w-3 h-3 text-cyan-400" />
+                      <span>대사 듣기</span>
+                    </>
+                  )}
+                </button>
+              </div>
             </div>
 
             <p className="text-sm sm:text-base font-medium text-white leading-relaxed tracking-tight">
@@ -255,6 +268,13 @@ export const ScenePlay: React.FC<ScenePlayProps> = ({
           />
         </div>
       )}
+
+      {/* Voice Tuning Modal */}
+      <VoiceSettingsModal
+        isOpen={isVoiceModalOpen}
+        onClose={() => setIsVoiceModalOpen(false)}
+        onVoiceChanged={() => {}}
+      />
     </div>
   );
 };

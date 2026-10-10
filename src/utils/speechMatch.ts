@@ -152,7 +152,7 @@ export function createSpeechRecognizer(): SpeechRecognitionInstance | null {
 
 let cachedVoices: SpeechSynthesisVoice[] = [];
 
-function loadVoices(): SpeechSynthesisVoice[] {
+export function getAvailableVoices(): SpeechSynthesisVoice[] {
   if (typeof window === 'undefined' || !('speechSynthesis' in window)) {
     return [];
   }
@@ -165,23 +165,100 @@ function loadVoices(): SpeechSynthesisVoice[] {
 
 // Preload voices & listen for asynchronous browser voice load
 if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
-  loadVoices();
+  getAvailableVoices();
   window.speechSynthesis.onvoiceschanged = () => {
-    loadVoices();
+    getAvailableVoices();
   };
+}
+
+/**
+ * Replaces technical drama acronyms and symbols with phonetic clarity
+ * so browser TTS doesn't stumble or mispronounce.
+ */
+export function prepareDramaTextForTTS(rawText: string): string {
+  if (!rawText) return '';
+  return rawText
+    .replace(/\bOpenAI\b/gi, 'Open A.I.')
+    .replace(/\bFTC\b/g, 'F.T.C.')
+    .replace(/\bVC\b/g, 'V.C.')
+    .replace(/\bVCs\b/g, 'V.C.s')
+    .replace(/\bCFO\b/g, 'C.F.O.')
+    .replace(/\bVP\b/g, 'V.P.')
+    .replace(/\bARR\b/g, 'A.R.R.')
+    .replace(/\bER\b/g, 'E.R.')
+    .replace(/\bOR\s*3\b/gi, 'O.R. three')
+    .replace(/\bOR\b/g, 'O.R.')
+    .replace(/\bHR's\b/gi, "H.R.'s")
+    .replace(/\bHR\b/gi, 'H.R.')
+    .replace(/\bMFN\b/g, 'M.F.N.')
+    .replace(/\bO-negative\b/gi, 'O negative')
+    .replace(/\bO-neg\b/gi, 'O neg')
+    .replace(/\bSection 9\b/gi, 'Section nine')
+    .replace(/\b22%\b/g, 'twenty-two percent')
+    .replace(/\b15%\b/g, 'fifteen percent')
+    .replace(/\b4%\b/g, 'four percent')
+    .replace(/\b11\s*PM\b/gi, 'eleven P.M.')
+    .replace(/\b45\s*days\b/gi, 'forty-five days')
+    .replace(/\b18\s*months\b/gi, 'eighteen months')
+    .replace(/\b12\s*million\b/gi, 'twelve million')
+    .replace(/\bYC\b/g, 'Y Combinator');
+}
+
+/**
+ * Splits text into natural sentence chunks for actor breathing pauses
+ */
+export function splitIntoSentences(text: string): string[] {
+  const cleaned = prepareDramaTextForTTS(text);
+  // Match sentences ending with ., !, ? while keeping punctuation
+  const matches = cleaned.match(/[^.!?]+[.!?]+(?:\s+|$)|[^.!?]+$/g);
+  if (!matches || matches.length === 0) return [cleaned];
+  return matches.map((s) => s.trim()).filter((s) => s.length > 0);
 }
 
 /**
  * Selects the highest quality natural/neural voice based on character persona and gender
  */
-export function getBestVoiceForCharacter(speakerName = ''): {
+export function getBestVoiceForCharacter(speakerName = '', customVoiceURI?: string): {
   voice: SpeechSynthesisVoice | null;
   recommendedPitch: number;
   recommendedRate: number;
   voiceLabel: string;
 } {
-  const voices = cachedVoices.length > 0 ? cachedVoices : loadVoices();
+  const voices = getAvailableVoices();
   const lowerSpeaker = speakerName.toLowerCase();
+
+  // If user selected a custom voice URI
+  if (customVoiceURI) {
+    const custom = voices.find((v) => v.voiceURI === customVoiceURI);
+    if (custom) {
+      return {
+        voice: custom,
+        recommendedPitch: 1.0,
+        recommendedRate: 0.94,
+        voiceLabel: custom.name.replace(/(Microsoft|Google|Apple)\s*/i, ''),
+      };
+    }
+  }
+
+  // Check stored user preferred voice in localStorage
+  if (typeof window !== 'undefined') {
+    try {
+      const storedURI = localStorage.getItem('dramactor_preferred_voice_uri');
+      if (storedURI) {
+        const storedVoice = voices.find((v) => v.voiceURI === storedURI);
+        if (storedVoice) {
+          return {
+            voice: storedVoice,
+            recommendedPitch: 1.0,
+            recommendedRate: 0.94,
+            voiceLabel: storedVoice.name.replace(/(Microsoft|Google|Apple)\s*/i, ''),
+          };
+        }
+      }
+    } catch {
+      // Ignore
+    }
+  }
 
   // Character gender & persona detection
   const isFemale =
@@ -218,16 +295,16 @@ export function getBestVoiceForCharacter(speakerName = ''): {
 
   // Persona-specific vocal acoustics (deliberate American drama cadence)
   let recommendedPitch = 1.0;
-  let recommendedRate = 0.94; // slightly slower than robotic 1.0 for cinematic diction
+  let recommendedRate = 0.93; // 0.93x deliberate pace for clear diction
 
   if (lowerSpeaker.includes('harvey')) {
     // Suits Harvey Specter: Confident, deep, alpha partner
     recommendedPitch = 0.92;
-    recommendedRate = 0.93;
+    recommendedRate = 0.92;
   } else if (lowerSpeaker.includes('axelrod')) {
     // Billions Bobby Axelrod: Cold, commanding, ruthless
     recommendedPitch = 0.89;
-    recommendedRate = 0.94;
+    recommendedRate = 0.93;
   } else if (lowerSpeaker.includes('julian')) {
     // Soho Julian: Charismatic, smooth, romantic
     recommendedPitch = 0.96;
@@ -235,11 +312,11 @@ export function getBestVoiceForCharacter(speakerName = ''): {
   } else if (lowerSpeaker.includes('burke')) {
     // ER Dr. Burke: Focused, sharp, surgeon authority
     recommendedPitch = 0.94;
-    recommendedRate = 0.96;
+    recommendedRate = 0.95;
   } else if (lowerSpeaker.includes('elena')) {
     // Silicon Valley Elena: Sharp, analytical, venture partner
     recommendedPitch = 1.02;
-    recommendedRate = 0.94;
+    recommendedRate = 0.93;
   } else if (lowerSpeaker.includes('victoria')) {
     // CFO Victoria: Polished, corporate poise, calculating
     recommendedPitch = 0.98;
@@ -263,12 +340,16 @@ export interface DialoguePlayOptions {
   rate?: number;
   pitch?: number;
   volume?: number;
+  customVoiceURI?: string;
   onStart?: () => void;
   onEnd?: () => void;
 }
 
+let activePlaybackToken = 0;
+
 /**
- * Text-to-Speech using browser SpeechSynthesis with cinematic persona voice tuning
+ * Text-to-Speech using browser SpeechSynthesis with sequential sentence cadence
+ * and natural dramatic pauses between sentences!
  */
 export function playNativeDialogue(text: string, options?: DialoguePlayOptions): boolean {
   if (typeof window === 'undefined' || !('speechSynthesis' in window)) {
@@ -278,36 +359,87 @@ export function playNativeDialogue(text: string, options?: DialoguePlayOptions):
 
   window.speechSynthesis.cancel();
 
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = 'en-US';
+  const currentToken = ++activePlaybackToken;
+  const sentences = splitIntoSentences(text);
 
-  const { voice, recommendedPitch, recommendedRate } = getBestVoiceForCharacter(options?.speaker);
-
-  if (voice) {
-    utterance.voice = voice;
+  if (sentences.length === 0) {
+    options?.onEnd?.();
+    return false;
   }
 
-  utterance.rate = options?.rate ?? recommendedRate;
-  utterance.pitch = options?.pitch ?? recommendedPitch;
-  utterance.volume = options?.volume ?? 1.0;
+  const { voice, recommendedPitch, recommendedRate } = getBestVoiceForCharacter(
+    options?.speaker,
+    options?.customVoiceURI
+  );
 
-  utterance.onstart = () => {
-    options?.onStart?.();
+  let currentSentenceIndex = 0;
+  let hasStarted = false;
+
+  const speakNext = () => {
+    if (currentToken !== activePlaybackToken) return;
+
+    if (currentSentenceIndex >= sentences.length) {
+      options?.onEnd?.();
+      return;
+    }
+
+    const sentenceText = sentences[currentSentenceIndex];
+    const isQuestion = sentenceText.trim().endsWith('?');
+
+    const utterance = new SpeechSynthesisUtterance(sentenceText);
+    utterance.lang = 'en-US';
+
+    if (voice) {
+      utterance.voice = voice;
+    }
+
+    // Slightly inflect pitch up on questions for natural drama prosody
+    const finalPitch = isQuestion
+      ? (options?.pitch ?? recommendedPitch) * 1.04
+      : (options?.pitch ?? recommendedPitch);
+
+    utterance.pitch = Math.min(1.4, Math.max(0.7, finalPitch));
+    utterance.rate = options?.rate ?? recommendedRate;
+    utterance.volume = options?.volume ?? 1.0;
+
+    utterance.onstart = () => {
+      if (currentToken !== activePlaybackToken) return;
+      if (!hasStarted) {
+        hasStarted = true;
+        options?.onStart?.();
+      }
+    };
+
+    utterance.onend = () => {
+      if (currentToken !== activePlaybackToken) return;
+      currentSentenceIndex++;
+
+      if (currentSentenceIndex < sentences.length) {
+        // Natural 160ms actor breath gap between sentences
+        setTimeout(() => {
+          if (currentToken === activePlaybackToken) {
+            speakNext();
+          }
+        }, 160);
+      } else {
+        options?.onEnd?.();
+      }
+    };
+
+    utterance.onerror = () => {
+      if (currentToken !== activePlaybackToken) return;
+      options?.onEnd?.();
+    };
+
+    window.speechSynthesis.speak(utterance);
   };
 
-  utterance.onend = () => {
-    options?.onEnd?.();
-  };
-
-  utterance.onerror = () => {
-    options?.onEnd?.();
-  };
-
-  window.speechSynthesis.speak(utterance);
+  speakNext();
   return true;
 }
 
 export function stopNativeSpeech(): void {
+  activePlaybackToken++;
   if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
     window.speechSynthesis.cancel();
   }
@@ -320,13 +452,14 @@ export function playCinematicSound(type: 'click' | 'pass' | 'turn'): void {
   if (typeof window === 'undefined') return;
 
   try {
-    const AudioContextClass = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+    const AudioContextClass =
+      window.AudioContext ||
+      (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
     if (!AudioContextClass) return;
 
     const ctx = new AudioContextClass();
 
     if (type === 'click') {
-      // Gentle film slate click
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
       osc.type = 'sine';
@@ -339,7 +472,6 @@ export function playCinematicSound(type: 'click' | 'pass' | 'turn'): void {
       osc.start();
       osc.stop(ctx.currentTime + 0.05);
     } else if (type === 'pass') {
-      // Cinematic harmonious chord
       [523.25, 659.25, 783.99].forEach((freq, idx) => {
         const osc = ctx.createOscillator();
         const gain = ctx.createGain();

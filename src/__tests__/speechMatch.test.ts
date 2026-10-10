@@ -4,6 +4,8 @@ import {
   levenshteinDistance,
   calculateSimilarity,
   isSpeechPassing,
+  prepareDramaTextForTTS,
+  splitIntoSentences,
 } from '../utils/speechMatch';
 
 describe('speechMatch Utility Test Suite', () => {
@@ -90,5 +92,27 @@ describe('speechMatch Utility Test Suite', () => {
       expect(isSpeechPassing(textA, textB, 90).passed).toBe(false);
     });
   });
+
+  describe('prepareDramaTextForTTS and splitIntoSentences', () => {
+    it('expands technical acronyms for clear pronunciation', () => {
+      const input = 'OpenAI and VC will pitch to the CFO and FTC before 11 PM.';
+      const output = prepareDramaTextForTTS(input);
+      expect(output).toContain('Open A.I.');
+      expect(output).toContain('V.C.');
+      expect(output).toContain('C.F.O.');
+      expect(output).toContain('F.T.C.');
+      expect(output).toContain('eleven P.M.');
+    });
+
+    it('splits multi-sentence dialogues into breathing chunks', () => {
+      const text = "I don't care that it's your first day. Pearson wants the brief. Can you handle it?";
+      const chunks = splitIntoSentences(text);
+      expect(chunks.length).toBe(3);
+      expect(chunks[0]).toBe("I don't care that it's your first day.");
+      expect(chunks[1]).toBe('Pearson wants the brief.');
+      expect(chunks[2]).toBe('Can you handle it?');
+    });
+  });
 });
+
 
