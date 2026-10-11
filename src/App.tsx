@@ -25,6 +25,7 @@ export const App: React.FC = () => {
     unlockWithKey,
     selectChoice,
     submitTurn,
+    goToTurn,
     resetGame,
     selectArchiveEpisode,
   } = useDramactorGame();
@@ -83,8 +84,10 @@ export const App: React.FC = () => {
             turn={currentTurn}
             isMuted={isMuted}
             selectedChoice={selectedChoice}
+            turnResults={turnResults}
             onSelectChoice={selectChoice}
             onSubmitTurn={submitTurn}
+            onGoToTurn={goToTurn}
           />
         )}
       </main>

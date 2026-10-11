@@ -201,7 +201,8 @@ export function useDramactorGame() {
         scoreEarned,
       };
 
-      const updatedResults = [...turnResults, newResult];
+      const updatedResults = [...turnResults];
+      updatedResults[currentTurnIndex] = newResult;
       setTurnResults(updatedResults);
       setSelectedChoice(null);
 
@@ -217,6 +218,21 @@ export function useDramactorGame() {
       }
     },
     [currentEpisode.turns.length, currentTurnIndex, isMuted, recordGameCompletion, selectedChoice, triggerConfetti, turnResults]
+  );
+
+  // Navigate to a specific turn (e.g. returning to turn 1 to replay or re-record)
+  const goToTurn = useCallback(
+    (targetIndex: number) => {
+      if (targetIndex >= 0 && targetIndex < currentEpisode.turns.length) {
+        setCurrentTurnIndex(targetIndex);
+        if (turnResults[targetIndex]) {
+          setSelectedChoice(turnResults[targetIndex].selectedChoice);
+        } else {
+          setSelectedChoice(null);
+        }
+      }
+    },
+    [currentEpisode.turns.length, turnResults]
   );
 
   // Restart or replay game (allowed if unlocked or for testing/practice)
@@ -255,6 +271,7 @@ export function useDramactorGame() {
     unlockWithKey,
     selectChoice,
     submitTurn,
+    goToTurn,
     resetGame,
     selectArchiveEpisode,
   };

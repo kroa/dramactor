@@ -34,7 +34,8 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
   const [isTheaterMode, setIsTheaterMode] = useState<boolean>(false);
   const [isVideoLoaded, setIsVideoLoaded] = useState<boolean>(false);
   const [videoError, setVideoError] = useState<boolean>(false);
-  const [timecode, setTimecode] = useState<string>('00:01:24:18');
+  const [playTimecode, setPlayTimecode] = useState<string>('00:00:00:00');
+  const displayTimecode = isPlayingTTS ? playTimecode : '00:00:00:00';
 
   const videoRef = useRef<HTMLVideoElement>(null);
   const visualConfig = getSceneVisualConfig(episode.episodeNumber, turn.turnIndex);
@@ -58,27 +59,25 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
     }
   };
 
-  // Realistic SMPTE 24FPS Timecode simulation
-  useEffect(() => {
-    let frame = 18;
-    let sec = 24;
-    let min = 1;
-    const interval = setInterval(() => {
-      frame += 1;
-      if (frame >= 24) {
-        frame = 0;
-        sec += 1;
-        if (sec >= 60) {
-          sec = 0;
-          min += 1;
-        }
-      }
-      const pad = (n: number) => n.toString().padStart(2, '0');
-      setTimecode(`00:${pad(min)}:${pad(sec)}:${pad(frame)}`);
-    }, 1000 / 24);
+  const formatSMPTE = (totalSec: number) => {
+    const clamped = Math.max(0, totalSec);
+    const m = Math.floor(clamped / 60);
+    const s = Math.floor(clamped % 60);
+    const f = Math.floor((clamped % 1) * 24);
+    const pad = (n: number) => n.toString().padStart(2, '0');
+    return `00:${pad(m)}:${pad(s)}:${pad(f)}`;
+  };
 
-    return () => clearInterval(interval);
-  }, []);
+  // Realistic SMPTE timecode: tracks active audio/video playback during speech
+  useEffect(() => {
+    if (!isPlayingTTS) return;
+
+    const unsubscribe = subscribeAudioTime((audioCurrentTime) => {
+      setPlayTimecode(formatSMPTE(audioCurrentTime));
+    });
+
+    return () => unsubscribe();
+  }, [isPlayingTTS]);
 
   // Reset video cleanly to start when turn or episode changes
   useEffect(() => {
@@ -251,11 +250,18 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
       <div className="absolute top-2.5 inset-x-3 sm:inset-x-4 flex items-center justify-between text-[10px] sm:text-[11px] font-mono tracking-wider z-10 pointer-events-none">
         {/* Left: Recording Status & Timecode */}
         <div className="flex items-center space-x-2">
-          <span className="flex items-center space-x-1 px-1.5 py-0.5 rounded bg-red-600/40 border border-red-500/60 text-red-200 font-bold backdrop-blur-md">
-            <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse inline-block shadow-sm shadow-red-500" />
-            <span>REC</span>
-          </span>
-          <span className="font-bold text-white drop-shadow-md">{timecode}</span>
+          {isPlayingTTS ? (
+            <span className="flex items-center space-x-1 px-1.5 py-0.5 rounded bg-red-600/40 border border-red-500/60 text-red-200 font-bold backdrop-blur-md">
+              <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse inline-block shadow-sm shadow-red-500" />
+              <span>REC</span>
+            </span>
+          ) : (
+            <span className="flex items-center space-x-1 px-1.5 py-0.5 rounded bg-zinc-800/80 border border-zinc-600/60 text-zinc-300 font-bold backdrop-blur-md">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 inline-block shadow-sm shadow-emerald-400/50" />
+              <span>STBY</span>
+            </span>
+          )}
+          <span className="font-bold text-white drop-shadow-md">{displayTimecode}</span>
           <span className="hidden sm:inline-block px-1.5 py-0.5 rounded bg-black/50 border border-white/15 text-zinc-300 backdrop-blur-md">
             SCENE {turn.turnIndex} • TAKE {turnIndex + 1}
           </span>

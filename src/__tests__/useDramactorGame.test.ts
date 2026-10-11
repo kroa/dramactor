@@ -108,5 +108,37 @@ describe('useDramactorGame Hook Test Suite', () => {
 
     expect(result.current.isMuted).toBe(!initialMute);
   });
+
+  it('allows navigating back to previous turns and returning forward', () => {
+    const { result } = renderHook(() => useDramactorGame());
+
+    // Complete Turn 1
+    const choice1 = result.current.currentTurn.choices[0];
+    act(() => {
+      result.current.selectChoice(choice1);
+    });
+    act(() => {
+      result.current.submitTurn('script 1', 95, true);
+    });
+
+    // Currently at Turn 2 (index 1)
+    expect(result.current.currentTurnIndex).toBe(1);
+    expect(result.current.turnResults.length).toBe(1);
+
+    // Navigate back to Turn 1 (index 0)
+    act(() => {
+      result.current.goToTurn(0);
+    });
+
+    expect(result.current.currentTurnIndex).toBe(0);
+    expect(result.current.selectedChoice).toEqual(choice1);
+
+    // Navigate back forward to Turn 2 (index 1)
+    act(() => {
+      result.current.goToTurn(1);
+    });
+
+    expect(result.current.currentTurnIndex).toBe(1);
+  });
 });
 

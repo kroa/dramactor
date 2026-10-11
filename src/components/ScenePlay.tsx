@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Sparkles, MessageSquare, Languages } from 'lucide-react';
-import type { Choice, Episode, SceneTurn } from '../types';
+import type { Choice, Episode, SceneTurn, TurnResult } from '../types';
 import { playStudioClip, stopNativeSpeech } from '../utils/speechMatch';
 import { SpeechRecorder } from './SpeechRecorder';
 import { VoiceSettingsModal } from './VoiceSettingsModal';
@@ -12,8 +12,10 @@ interface ScenePlayProps {
   turn: SceneTurn;
   isMuted: boolean;
   selectedChoice: Choice | null;
+  turnResults?: TurnResult[];
   onSelectChoice: (choice: Choice) => void;
   onSubmitTurn: (transcript: string, similarity: number, passed: boolean) => void;
+  onGoToTurn?: (index: number) => void;
 }
 
 export const ScenePlay: React.FC<ScenePlayProps> = ({
@@ -22,8 +24,10 @@ export const ScenePlay: React.FC<ScenePlayProps> = ({
   turn,
   isMuted,
   selectedChoice,
+  turnResults,
   onSelectChoice,
   onSubmitTurn,
+  onGoToTurn,
 }) => {
   const [isPlayingTTS, setIsPlayingTTS] = useState<boolean>(false);
   const [isVoiceModalOpen, setIsVoiceModalOpen] = useState<boolean>(false);
@@ -126,16 +130,44 @@ export const ScenePlay: React.FC<ScenePlayProps> = ({
 
   return (
     <div className="w-full max-w-md md:max-w-4xl lg:max-w-6xl mx-auto space-y-4 px-2 sm:px-4 py-2 text-left">
-      {/* Top Episode Header Info */}
-      <div className="flex items-center justify-between text-xs text-zinc-400 border-b border-white/[0.06] pb-2">
-        <span className="font-semibold text-white truncate max-w-[280px] sm:max-w-md">
-          EP #{episode.episodeNumber.toString().padStart(2, '0')} : {episode.title}
-        </span>
-        <div className="flex items-center space-x-2">
+      {/* Top Episode Header Info & Turn Navigation */}
+      <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-zinc-400 border-b border-white/[0.06] pb-2">
+        <div className="flex items-center space-x-2 truncate">
+          <span className="font-semibold text-white truncate max-w-[200px] sm:max-w-md">
+            EP #{episode.episodeNumber.toString().padStart(2, '0')} : {episode.title}
+          </span>
           <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-white/[0.06] border border-white/10 text-cyan-300">
             {episode.genre}
           </span>
-          <span className="hidden md:inline-flex px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">
+        </div>
+
+        {/* Turn Navigation Controls */}
+        <div className="flex items-center space-x-1.5 shrink-0">
+          {turnIndex > 0 && onGoToTurn && (
+            <button
+              type="button"
+              onClick={() => onGoToTurn(turnIndex - 1)}
+              className="flex items-center space-x-1 px-2.5 py-1 rounded-lg bg-white/[0.08] hover:bg-white/20 border border-white/15 hover:border-cyan-400 text-xs font-semibold text-zinc-200 hover:text-white transition-all active:scale-95 shadow-sm cursor-pointer"
+              title={`Turn ${turnIndex}으로 돌아가기`}
+            >
+              <span>◀</span>
+              <span>이전 턴 (Turn {turnIndex})</span>
+            </button>
+          )}
+
+          {turnResults && turnIndex < turnResults.length && onGoToTurn && (
+            <button
+              type="button"
+              onClick={() => onGoToTurn(turnIndex + 1)}
+              className="flex items-center space-x-1 px-2.5 py-1 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/35 border border-emerald-500/40 text-xs font-semibold text-emerald-300 hover:text-white transition-all active:scale-95 shadow-sm cursor-pointer"
+              title={`다음 턴 (Turn ${turnIndex + 2})으로 이동`}
+            >
+              <span>다음 턴 (Turn {turnIndex + 2})</span>
+              <span>▶</span>
+            </button>
+          )}
+
+          <span className="hidden sm:inline-flex px-2 py-1 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">
             TURN {turnIndex + 1} / 3
           </span>
         </div>
@@ -183,13 +215,35 @@ export const ScenePlay: React.FC<ScenePlayProps> = ({
 
         {/* Right Column (Desktop 5 cols): Turn Progress + Interactive Acting Deck (Choices / Mic) */}
         <div className="md:col-span-5 space-y-3.5">
-          {/* Turn Progress Capsules (3 Glowing Capsules) */}
+          {/* Interactive Turn Navigation Capsules */}
           <div className="flex items-center justify-between space-x-2 pt-1 pb-0.5">
             {[0, 1, 2].map((idx) => {
               const isCurrent = idx === turnIndex;
-              const isDone = idx < turnIndex;
+              const isDone = turnResults ? idx < turnResults.length : idx < turnIndex;
+              const maxAvailable = turnResults ? turnResults.length : turnIndex;
+              const isClickable = Boolean(onGoToTurn && idx <= maxAvailable);
+
               return (
-                <div key={idx} className="flex-1 flex flex-col space-y-1">
+                <button
+                  key={idx}
+                  type="button"
+                  disabled={!isClickable}
+                  onClick={() => isClickable && onGoToTurn?.(idx)}
+                  className={`flex-1 flex flex-col space-y-1 text-left transition-all p-1.5 rounded-lg border ${
+                    isCurrent
+                      ? 'border-cyan-500/50 bg-cyan-950/20 shadow-sm'
+                      : isClickable
+                      ? 'border-transparent hover:border-white/10 hover:bg-white/[0.04] cursor-pointer'
+                      : 'border-transparent opacity-50 cursor-default'
+                  }`}
+                  title={
+                    isCurrent
+                      ? `현재 진행 중인 Turn ${idx + 1}`
+                      : isClickable
+                      ? `Turn ${idx + 1}로 이동 (클릭하여 대사 다시 듣기 / 변경)`
+                      : `Turn ${idx + 1} (이전 턴 완료 후 진행)`
+                  }
+                >
                   <div
                     className={`h-2 rounded-full transition-all duration-500 ${
                       isCurrent
@@ -199,13 +253,46 @@ export const ScenePlay: React.FC<ScenePlayProps> = ({
                         : 'bg-zinc-800'
                     }`}
                   />
-                  <span className="text-[10px] text-center font-bold text-zinc-500">
-                    TURN {idx + 1}
-                  </span>
-                </div>
+                  <div className="flex items-center justify-between text-[10px] px-0.5 font-bold">
+                    <span
+                      className={
+                        isCurrent
+                          ? 'text-cyan-300'
+                          : isDone
+                          ? 'text-emerald-400'
+                          : 'text-zinc-500'
+                      }
+                    >
+                      TURN {idx + 1}
+                    </span>
+                    {isDone && !isCurrent && (
+                      <span className="text-[9px] text-emerald-400 font-mono">완료</span>
+                    )}
+                    {isCurrent && (
+                      <span className="text-[9px] text-cyan-300 animate-pulse font-mono">LIVE</span>
+                    )}
+                  </div>
+                </button>
               );
             })}
           </div>
+
+          {/* Completed Turn Notice Banner when revisiting */}
+          {turnResults && turnIndex < turnResults.length && onGoToTurn && (
+            <div className="flex items-center justify-between px-3 py-2 rounded-xl bg-cyan-950/40 border border-cyan-500/30 text-xs text-zinc-300">
+              <span className="flex items-center space-x-1.5">
+                <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                <span>이전 완료 턴입니다.</span>
+              </span>
+              <button
+                type="button"
+                onClick={() => onGoToTurn(turnIndex + 1)}
+                className="shrink-0 ml-2 px-2.5 py-1 rounded-md bg-emerald-500/30 hover:bg-emerald-500/50 border border-emerald-500/40 text-emerald-300 font-bold text-[11px] transition-colors cursor-pointer"
+              >
+                다음 턴 (Turn {turnIndex + 2}) ▶
+              </button>
+            </div>
+          )}
 
           {/* Choice Selection Phase */}
           {!selectedChoice ? (
