@@ -133,21 +133,19 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
       const drift = targetTime - video.currentTime;
 
       if (audioCurrentTime > 0) {
-        if (Math.abs(drift) > 0.35) {
-          // Major drift (e.g. background tab or manual seek): snap directly
+        if (Math.abs(drift) > 0.5) {
+          // Major drift: snap directly to audio time
           video.currentTime = targetTime;
           video.playbackRate = 1.0;
-        } else if (drift > 0.05) {
-          // Video slightly lagging behind audio: gently accelerate to catch up without decoder freeze
+        } else if (drift > 0.12) {
+          // Video slightly behind audio: gently accelerate to catch up
           video.playbackRate = 1.05;
-        } else if (drift < -0.05) {
-          // Video slightly ahead: gently decelerate to lock into sync
+        } else if (drift < -0.12) {
+          // Video slightly ahead of audio: gently decelerate to lock in
           video.playbackRate = 0.95;
-        } else {
-          // In tight sync: maintain exact 1.0x natural speech tempo
-          if (video.playbackRate !== 1.0) {
-            video.playbackRate = 1.0;
-          }
+        } else if (video.playbackRate !== 1.0) {
+          // Within tight deadband: lock at exact 1.0x smooth natural tempo
+          video.playbackRate = 1.0;
         }
       }
     });
