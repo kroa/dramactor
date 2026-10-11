@@ -129,7 +129,7 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
       const video = videoRef.current;
       if (!video || !video.duration || video.paused) return;
 
-      const targetTime = video.duration > 0 ? (audioCurrentTime % video.duration) : audioCurrentTime;
+      const targetTime = video.duration > 0 ? Math.min(audioCurrentTime, Math.max(0, video.duration - 0.05)) : audioCurrentTime;
       const drift = targetTime - video.currentTime;
 
       if (audioCurrentTime > 0) {
@@ -170,7 +170,15 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
           src={activeVideoSrc}
           muted
           playsInline
-          loop
+          onEnded={() => {
+            if (videoRef.current) {
+              try {
+                videoRef.current.pause();
+              } catch {
+                // Safe fallback
+              }
+            }
+          }}
           onLoadedData={() => {
             setIsVideoLoaded(true);
             if (videoRef.current && !isPlayingTTS) {

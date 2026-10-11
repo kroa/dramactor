@@ -9,6 +9,7 @@ const STORAGE_KEYS = {
   IS_UNLOCKED: 'dramactor_is_unlocked',
   MUTED: 'dramactor_is_muted',
   HISTORY: 'dramactor_history',
+  ACTIVE_DATE: 'dramactor_active_date',
 };
 
 export const UNLOCK_PRO_KEY = 'PRO-DRAMACTOR-2026';
@@ -49,7 +50,7 @@ export function useDramactorGame() {
     }
   });
 
-  // Selected episode (defaults to today's daily episode or ?ep= / ?date= param)
+  // Selected episode (defaults to URL param ?ep= / ?date=, or saved active episode, or today's daily)
   const [selectedDate, setSelectedDate] = useState<string>(() => {
     try {
       if (typeof window !== 'undefined' && window.location.search) {
@@ -62,6 +63,11 @@ export function useDramactorGame() {
         }
         const dateParam = params.get('date');
         if (dateParam) return dateParam;
+      }
+      const savedDate = localStorage.getItem(STORAGE_KEYS.ACTIVE_DATE);
+      if (savedDate) {
+        const matched = EPISODES.find((e) => e.date === savedDate);
+        if (matched) return matched.date;
       }
     } catch {
       // fallback
@@ -262,6 +268,11 @@ export function useDramactorGame() {
 
   // Switch to another episode in archive mode
   const selectArchiveEpisode = useCallback((date: string) => {
+    try {
+      localStorage.setItem(STORAGE_KEYS.ACTIVE_DATE, date);
+    } catch {
+      // ignore
+    }
     setSelectedDate(date);
     setCurrentTurnIndex(0);
     setTurnResults([]);
