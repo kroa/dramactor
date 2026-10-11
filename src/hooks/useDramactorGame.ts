@@ -1,7 +1,7 @@
 import { useState, useCallback, useMemo } from 'react';
 import confetti from 'canvas-confetti';
 import type { Choice, Episode, TurnResult } from '../types';
-import { getEpisodeForDate, getKSTDateString, getKSTDayNumber } from '../utils/episodeDate';
+import { getEpisodeForDate, getKSTDateString, getKSTDayNumber, EPISODES } from '../utils/episodeDate';
 
 const STORAGE_KEYS = {
   STREAK: 'dramactor_streak',
@@ -49,8 +49,25 @@ export function useDramactorGame() {
     }
   });
 
-  // Selected episode (defaults to today's daily episode)
-  const [selectedDate, setSelectedDate] = useState<string>(todayKST);
+  // Selected episode (defaults to today's daily episode or ?ep= / ?date= param)
+  const [selectedDate, setSelectedDate] = useState<string>(() => {
+    try {
+      if (typeof window !== 'undefined' && window.location.search) {
+        const params = new URLSearchParams(window.location.search);
+        const epParam = params.get('ep');
+        if (epParam) {
+          const epNum = parseInt(epParam, 10);
+          const matched = EPISODES.find((e) => e.episodeNumber === epNum);
+          if (matched) return matched.date;
+        }
+        const dateParam = params.get('date');
+        if (dateParam) return dateParam;
+      }
+    } catch {
+      // fallback
+    }
+    return todayKST;
+  });
 
   // Active episode object
   const currentEpisode: Episode = useMemo(() => {
