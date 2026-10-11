@@ -122,7 +122,7 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
     }
   }, [isPlayingTTS, isVideoEnabled, activeVideoSrc, videoError]);
 
-  // Sub-frame level audio-to-video synchronization locked strictly at natural 1.0x tempo
+  // Sub-frame level audio-to-video synchronization with smooth drift-correction
   useEffect(() => {
     if (!isPlayingTTS || !isVideoEnabled || videoError) return;
 
@@ -130,15 +130,26 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
       const video = videoRef.current;
       if (!video || !video.duration || video.paused) return;
 
-      // Lock playback rate strictly at 1.0x natural speech tempo
-      if (video.playbackRate !== 1.0) {
-        video.playbackRate = 1.0;
-      }
-
-      // High-precision alignment: keep video time strictly within 150ms of audio
       const targetTime = video.duration > 0 ? (audioCurrentTime % video.duration) : audioCurrentTime;
-      if (audioCurrentTime > 0 && Math.abs(video.currentTime - targetTime) > 0.15) {
-        video.currentTime = targetTime;
+      const drift = targetTime - video.currentTime;
+
+      if (audioCurrentTime > 0) {
+        if (Math.abs(drift) > 0.35) {
+          // Major drift (e.g. background tab or manual seek): snap directly
+          video.currentTime = targetTime;
+          video.playbackRate = 1.0;
+        } else if (drift > 0.05) {
+          // Video slightly lagging behind audio: gently accelerate to catch up without decoder freeze
+          video.playbackRate = 1.05;
+        } else if (drift < -0.05) {
+          // Video slightly ahead: gently decelerate to lock into sync
+          video.playbackRate = 0.95;
+        } else {
+          // In tight sync: maintain exact 1.0x natural speech tempo
+          if (video.playbackRate !== 1.0) {
+            video.playbackRate = 1.0;
+          }
+        }
       }
     });
 
