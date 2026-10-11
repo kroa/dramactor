@@ -88,3 +88,32 @@
 .glass-panel-interactive:active {
   transform: scale(0.98);
 }
+
+/* Cinematic Drama Atmosphere & Camera Motion */
+@keyframes cinematicFloat {
+  0%, 100% {
+    transform: scale(1.01) translate(0px, 0px);
+  }
+  33% {
+    transform: scale(1.018) translate(-1.5px, -1px);
+  }
+  66% {
+    transform: scale(1.014) translate(1.2px, -0.8px);
+  }
+}
+
+.animate-cinematic-float {
+  animation: cinematicFloat 6s ease-in-out infinite;
+}
+
+@keyframes filmGrain {
+  0%, 100% { transform: translate(0, 0); }
+  20% { transform: translate(-1px, 1px); }
+  40% { transform: translate(1px, -1px); }
+  60% { transform: translate(-1px, -1px); }
+  80% { transform: translate(1px, 1px); }
+}
+
+.animate-film-grain {
+  animation: filmGrain 0.25s steps(4) infinite;
+}

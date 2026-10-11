@@ -185,9 +185,15 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
           onError={handleVideoError}
           className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
             isVideoLoaded ? 'opacity-100' : 'opacity-0'
-          }`}
+          } ${isPlayingTTS ? 'animate-cinematic-float' : ''}`}
         />
       ) : null}
+
+      {/* Cinematic Lens Vignette & Depth Falloff */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_50%,rgba(0,0,0,0.55)_100%)] pointer-events-none" />
+
+      {/* Subtle 35mm Analog Film Grain Overlay */}
+      <div className="absolute inset-0 opacity-[0.035] pointer-events-none animate-film-grain bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px] mix-blend-screen" />
 
       {/* Interactive Center Play Overlay when dialogue is idle */}
       {isVideoEnabled && !videoError && isVideoLoaded && !isPlayingTTS && (
@@ -238,12 +244,12 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
       {/* Bottom Edge Gradient for Clear Controls Contrast */}
       <div className="absolute bottom-0 inset-x-0 h-24 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none" />
 
-      {/* Viewfinder Framing Guidelines (Subtle Film Camera Corner Brackets) */}
-      <div className="absolute inset-2 sm:inset-3 pointer-events-none border border-white/10 rounded-xl">
-        <div className="absolute -top-0.5 -left-0.5 w-3 h-3 border-t-2 border-l-2 border-cyan-400" />
-        <div className="absolute -top-0.5 -right-0.5 w-3 h-3 border-t-2 border-r-2 border-cyan-400" />
-        <div className="absolute -bottom-0.5 -left-0.5 w-3 h-3 border-b-2 border-l-2 border-cyan-400" />
-        <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 border-b-2 border-r-2 border-cyan-400" />
+      {/* Viewfinder Framing Guidelines (Subtle Film Camera Corner Brackets with Speech Glow) */}
+      <div className="absolute inset-2 sm:inset-3 pointer-events-none border border-white/10 rounded-xl transition-all duration-500">
+        <div className={`absolute -top-0.5 -left-0.5 w-3 h-3 border-t-2 border-l-2 transition-all ${isPlayingTTS ? 'border-cyan-400 drop-shadow-[0_0_6px_rgba(6,182,212,0.8)]' : 'border-cyan-400'}`} />
+        <div className={`absolute -top-0.5 -right-0.5 w-3 h-3 border-t-2 border-r-2 transition-all ${isPlayingTTS ? 'border-cyan-400 drop-shadow-[0_0_6px_rgba(6,182,212,0.8)]' : 'border-cyan-400'}`} />
+        <div className={`absolute -bottom-0.5 -left-0.5 w-3 h-3 border-b-2 border-l-2 transition-all ${isPlayingTTS ? 'border-cyan-400 drop-shadow-[0_0_6px_rgba(6,182,212,0.8)]' : 'border-cyan-400'}`} />
+        <div className={`absolute -bottom-0.5 -right-0.5 w-3 h-3 border-b-2 border-r-2 transition-all ${isPlayingTTS ? 'border-cyan-400 drop-shadow-[0_0_6px_rgba(6,182,212,0.8)]' : 'border-cyan-400'}`} />
       </div>
 
       {/* Production Monitor Top HUD */}
