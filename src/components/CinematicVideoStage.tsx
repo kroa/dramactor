@@ -135,9 +135,10 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
         video.playbackRate = 1.0;
       }
 
-      // High-precision alignment: keep video time strictly within 100ms of audio
-      if (audioCurrentTime > 0 && Math.abs(video.currentTime - audioCurrentTime) > 0.1) {
-        video.currentTime = audioCurrentTime;
+      // High-precision alignment: keep video time strictly within 150ms of audio
+      const targetTime = video.duration > 0 ? (audioCurrentTime % video.duration) : audioCurrentTime;
+      if (audioCurrentTime > 0 && Math.abs(video.currentTime - targetTime) > 0.15) {
+        video.currentTime = targetTime;
       }
     });
 
@@ -159,6 +160,7 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
           src={activeVideoSrc}
           muted
           playsInline
+          loop
           onLoadedData={() => {
             setIsVideoLoaded(true);
             if (videoRef.current && !isPlayingTTS) {
