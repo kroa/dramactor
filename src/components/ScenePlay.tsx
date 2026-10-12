@@ -5,6 +5,8 @@ import { playStudioClip, stopNativeSpeech } from '../utils/speechMatch';
 import { SpeechRecorder } from './SpeechRecorder';
 import { VoiceSettingsModal } from './VoiceSettingsModal';
 import { CinematicVideoStage } from './CinematicVideoStage';
+import { WordModal } from './WordModal';
+import { InteractiveText } from './InteractiveText';
 
 interface ScenePlayProps {
   episode: Episode;
@@ -31,6 +33,16 @@ export const ScenePlay: React.FC<ScenePlayProps> = ({
 }) => {
   const [isPlayingTTS, setIsPlayingTTS] = useState<boolean>(false);
   const [isVoiceModalOpen, setIsVoiceModalOpen] = useState<boolean>(false);
+  const [dictModalWord, setDictModalWord] = useState<string>('');
+  const [dictModalSentence, setDictModalSentence] = useState<string>('');
+  const [isDictModalOpen, setIsDictModalOpen] = useState<boolean>(false);
+
+  const handleWordClick = (word: string, contextSentence: string) => {
+    setDictModalWord(word);
+    setDictModalSentence(contextSentence);
+    setIsDictModalOpen(true);
+  };
+
   const [translationState, setTranslationState] = useState<{
     turnIndex: number;
     revealed: Record<string, boolean>;
@@ -215,11 +227,19 @@ export const ScenePlay: React.FC<ScenePlayProps> = ({
                         : '번역 보기'}
                     </span>
                   </button>
+                  <span className="text-[10px] text-[#DFB15B]/80 font-mono hidden md:inline-flex items-center space-x-1">
+                    <span>💡 단어 클릭 시 뜻·발음</span>
+                  </span>
                   <span className="text-[10px] text-[#C5A059] font-mono hidden sm:inline-block">PRESTIGE SCRIPT</span>
                 </div>
               </div>
               <p className="text-sm sm:text-base lg:text-lg font-bold text-white leading-relaxed tracking-tight font-serif">
-                &ldquo;{turn.dialogue}&rdquo;
+                &ldquo;
+                <InteractiveText
+                  text={turn.dialogue}
+                  onWordClick={handleWordClick}
+                />
+                &rdquo;
               </p>
               {(showAllTranslations || Boolean(revealedTranslations['main_dialogue'])) && turn.dialogueKorean && (
                 <div className="pt-1 text-xs sm:text-sm text-[#F3E5AB] font-medium leading-relaxed bg-[#18140d]/95 px-3 py-2 rounded-xl border border-[#DFB15B]/30 animate-fade-in shadow-inner">
@@ -354,7 +374,7 @@ export const ScenePlay: React.FC<ScenePlayProps> = ({
                         </span>
                         <div className="flex-1 space-y-1.5">
                           <p className="text-sm font-semibold text-white leading-snug group-hover:text-[#FFF1BD] transition-colors">
-                            {choice.text}
+                            <InteractiveText text={choice.text} onWordClick={handleWordClick} />
                           </p>
 
                           {/* Korean Translation: Only displayed when clicking translation */}
@@ -391,7 +411,7 @@ export const ScenePlay: React.FC<ScenePlayProps> = ({
                                       toggleTranslation(choice.id, e);
                                     }
                                   }}
-                                className="inline-flex items-center space-x-1 text-[11px] text-[#C5A059] hover:text-[#FFF1BD] bg-[#16130d] hover:bg-[#201b12] px-2 py-0.5 rounded-md border border-[#DFB15B]/20 transition-colors cursor-pointer"
+                                className="inline-flex items-center space-x-1 text-[11px] text-[#C5A059] hover:text-[#FFF1BD] bg-[#18140d] hover:bg-[#201b12] px-2 py-0.5 rounded-md border border-[#DFB15B]/20 transition-colors cursor-pointer"
                                 title="한글 번역 보기"
                               >
                                 <Languages className="w-3 h-3 text-[#DFB15B]" />
@@ -425,7 +445,9 @@ export const ScenePlay: React.FC<ScenePlayProps> = ({
                 </div>
 
                 <p className="text-sm font-semibold text-white font-serif">
-                  &ldquo;{selectedChoice.text}&rdquo;
+                  &ldquo;
+                  <InteractiveText text={selectedChoice.text} onWordClick={handleWordClick} />
+                  &rdquo;
                 </p>
 
                 {/* Selected choice Korean translation in feedback card */}
@@ -462,6 +484,14 @@ export const ScenePlay: React.FC<ScenePlayProps> = ({
         isOpen={isVoiceModalOpen}
         onClose={() => setIsVoiceModalOpen(false)}
         onVoiceChanged={() => {}}
+      />
+
+      {/* Word Definition Modal */}
+      <WordModal
+        isOpen={isDictModalOpen}
+        onClose={() => setIsDictModalOpen(false)}
+        word={dictModalWord}
+        contextSentence={dictModalSentence}
       />
     </div>
   );

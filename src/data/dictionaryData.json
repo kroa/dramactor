@@ -1,0 +1,5154 @@
+{
+  "4": {
+    "word": "4",
+    "partOfSpeech": "수사",
+    "meaning": "4 (넷, 포)",
+    "phonetic": "[fɔːr]",
+    "contextNote": "숫자 4",
+    "level": "기초"
+  },
+  "9": {
+    "word": "9",
+    "partOfSpeech": "수사",
+    "meaning": "9 (아홉, 나인)",
+    "phonetic": "[naɪn]",
+    "contextNote": "숫자 9",
+    "level": "기초"
+  },
+  "11": {
+    "word": "11",
+    "partOfSpeech": "수사",
+    "meaning": "11 (일레븐)",
+    "phonetic": "[ɪˈlɛvən]",
+    "contextNote": "숫자 11",
+    "level": "기초"
+  },
+  "15": {
+    "word": "15",
+    "partOfSpeech": "수사",
+    "meaning": "15 (피프틴)",
+    "phonetic": "[ˌfɪfˈtiːn]",
+    "contextNote": "숫자 15",
+    "level": "기초"
+  },
+  "22": {
+    "word": "22",
+    "partOfSpeech": "수사",
+    "meaning": "22 (트웬티투)",
+    "phonetic": "[ˌtwɛntiˈtuː]",
+    "contextNote": "숫자 22",
+    "level": "기초"
+  },
+  "45": {
+    "word": "45",
+    "partOfSpeech": "수사",
+    "meaning": "45 (포티파이브)",
+    "phonetic": "[ˌfɔːrtiˈfaɪv]",
+    "contextNote": "숫자 45",
+    "level": "기초"
+  },
+  "a": {
+    "word": "a",
+    "partOfSpeech": "관사",
+    "meaning": "하나의, 어떤 (자음 앞)",
+    "phonetic": "[eɪ / ə]",
+    "contextNote": "부정관사",
+    "level": "기초"
+  },
+  "an": {
+    "word": "an",
+    "partOfSpeech": "관사",
+    "meaning": "하나의, 어떤 (모음 앞)",
+    "phonetic": "[æn / ən]",
+    "contextNote": "부정관사",
+    "level": "기초"
+  },
+  "the": {
+    "word": "the",
+    "partOfSpeech": "정관사",
+    "meaning": "그 (특정한 대상을 지칭)",
+    "phonetic": "[ðiː / ðə]",
+    "contextNote": "정관사",
+    "level": "기초"
+  },
+  "i": {
+    "word": "i",
+    "partOfSpeech": "대명사",
+    "meaning": "나, 저 (주격)",
+    "phonetic": "[aɪ]",
+    "contextNote": "1인칭 주격 대명사",
+    "level": "기초"
+  },
+  "me": {
+    "word": "me",
+    "partOfSpeech": "대명사",
+    "meaning": "나를, 나에게 (목적격)",
+    "phonetic": "[miː]",
+    "contextNote": "1인칭 목적격 대명사",
+    "level": "기초"
+  },
+  "my": {
+    "word": "my",
+    "partOfSpeech": "대명사",
+    "meaning": "나의 (소유격)",
+    "phonetic": "[maɪ]",
+    "contextNote": "1인칭 소유격 대명사",
+    "level": "기초"
+  },
+  "you": {
+    "word": "you",
+    "partOfSpeech": "대명사",
+    "meaning": "너, 당신, 여러분",
+    "phonetic": "[juː]",
+    "contextNote": "2인칭 대명사",
+    "level": "기초"
+  },
+  "your": {
+    "word": "your",
+    "partOfSpeech": "대명사",
+    "meaning": "너의, 당신의",
+    "phonetic": "[jʊər / jɔːr]",
+    "contextNote": "2인칭 소유격 대명사",
+    "level": "기초"
+  },
+  "youre": {
+    "word": "youre",
+    "partOfSpeech": "대명사+동사",
+    "meaning": "너는 ~이다 (You are의 축약)",
+    "phonetic": "[jʊər]",
+    "contextNote": "구어체 축약형",
+    "level": "기초"
+  },
+  "youve": {
+    "word": "youve",
+    "partOfSpeech": "대명사+조동사",
+    "meaning": "너는 ~해왔다 (You have의 축약)",
+    "phonetic": "[juːv]",
+    "contextNote": "현재완료 축약형",
+    "level": "기초"
+  },
+  "he": {
+    "word": "he",
+    "partOfSpeech": "대명사",
+    "meaning": "그는, 그가",
+    "phonetic": "[hiː]",
+    "contextNote": "3인칭 남성 주격 대명사",
+    "level": "기초"
+  },
+  "him": {
+    "word": "him",
+    "partOfSpeech": "대명사",
+    "meaning": "그를, 그에게",
+    "phonetic": "[hɪm]",
+    "contextNote": "3인칭 남성 목적격 대명사",
+    "level": "기초"
+  },
+  "his": {
+    "word": "his",
+    "partOfSpeech": "대명사",
+    "meaning": "그의, 그의 것",
+    "phonetic": "[hɪz]",
+    "contextNote": "3인칭 남성 소유격/소유대명사",
+    "level": "기초"
+  },
+  "she": {
+    "word": "she",
+    "partOfSpeech": "대명사",
+    "meaning": "그녀는, 그녀가",
+    "phonetic": "[ʃiː]",
+    "contextNote": "3인칭 여성 주격 대명사",
+    "level": "기초"
+  },
+  "it": {
+    "word": "it",
+    "partOfSpeech": "대명사",
+    "meaning": "그것은, 그것을",
+    "phonetic": "[ɪt]",
+    "contextNote": "3인칭 사물 대명사",
+    "level": "기초"
+  },
+  "its": {
+    "word": "its",
+    "partOfSpeech": "대명사",
+    "meaning": "그것의",
+    "phonetic": "[ɪts]",
+    "contextNote": "3인칭 사물 소유격 대명사",
+    "level": "기초"
+  },
+  "we": {
+    "word": "we",
+    "partOfSpeech": "대명사",
+    "meaning": "우리는, 우리가",
+    "phonetic": "[wiː]",
+    "contextNote": "1인칭 복수 주격 대명사",
+    "level": "기초"
+  },
+  "our": {
+    "word": "our",
+    "partOfSpeech": "대명사",
+    "meaning": "우리의",
+    "phonetic": "[aʊər]",
+    "contextNote": "1인칭 복수 소유격 대명사",
+    "level": "기초"
+  },
+  "us": {
+    "word": "us",
+    "partOfSpeech": "대명사",
+    "meaning": "우리를, 우리에게",
+    "phonetic": "[ʌs]",
+    "contextNote": "1인칭 복수 목적격 대명사",
+    "level": "기초"
+  },
+  "they": {
+    "word": "they",
+    "partOfSpeech": "대명사",
+    "meaning": "그들은, 그들이",
+    "phonetic": "[ðeɪ]",
+    "contextNote": "3인칭 복수 주격 대명사",
+    "level": "기초"
+  },
+  "them": {
+    "word": "them",
+    "partOfSpeech": "대명사",
+    "meaning": "그들을, 그들에게",
+    "phonetic": "[ðɛm]",
+    "contextNote": "3인칭 복수 목적격 대명사",
+    "level": "기초"
+  },
+  "their": {
+    "word": "their",
+    "partOfSpeech": "대명사",
+    "meaning": "그들의",
+    "phonetic": "[ðɛər]",
+    "contextNote": "3인칭 복수 소유격 대명사",
+    "level": "기초"
+  },
+  "who": {
+    "word": "who",
+    "partOfSpeech": "의문사/관계사",
+    "meaning": "누구, ~하는 사람",
+    "phonetic": "[huː]",
+    "contextNote": "인칭 의문사",
+    "level": "기초"
+  },
+  "what": {
+    "word": "what",
+    "partOfSpeech": "의문사/관계사",
+    "meaning": "무엇, 무슨, ~하는 것",
+    "phonetic": "[wʌt]",
+    "contextNote": "사물 의문사",
+    "level": "기초"
+  },
+  "whats": {
+    "word": "whats",
+    "partOfSpeech": "의문사+동사",
+    "meaning": "무엇인가 (What is의 축약)",
+    "phonetic": "[wʌts]",
+    "contextNote": "구어체 축약형",
+    "level": "기초"
+  },
+  "whatever": {
+    "word": "whatever",
+    "partOfSpeech": "대명사/부사",
+    "meaning": "무엇이든지, 상관없이",
+    "phonetic": "[wʌtˈɛvər]",
+    "contextNote": "복합관계대명사",
+    "level": "중급"
+  },
+  "when": {
+    "word": "when",
+    "partOfSpeech": "의문사/접속사",
+    "meaning": "언제, ~할 때",
+    "phonetic": "[wɛn]",
+    "contextNote": "시간 접속사",
+    "level": "기초"
+  },
+  "where": {
+    "word": "where",
+    "partOfSpeech": "의문사/접속사",
+    "meaning": "어디에, ~하는 곳",
+    "phonetic": "[wɛər]",
+    "contextNote": "장소 접속사",
+    "level": "기초"
+  },
+  "why": {
+    "word": "why",
+    "partOfSpeech": "의문사",
+    "meaning": "왜, 어째서",
+    "phonetic": "[waɪ]",
+    "contextNote": "이유 의문사",
+    "level": "기초"
+  },
+  "how": {
+    "word": "how",
+    "partOfSpeech": "의문사/부사",
+    "meaning": "어떻게, 얼마나",
+    "phonetic": "[haʊ]",
+    "contextNote": "방법/정도 의문사",
+    "level": "기초"
+  },
+  "this": {
+    "word": "this",
+    "partOfSpeech": "대명사/형용사",
+    "meaning": "이것, 이",
+    "phonetic": "[ðɪs]",
+    "contextNote": "지시대명사",
+    "level": "기초"
+  },
+  "that": {
+    "word": "that",
+    "partOfSpeech": "대명사/접속사",
+    "meaning": "저것, 그, ~라는 것",
+    "phonetic": "[ðæt]",
+    "contextNote": "지시대명사 및 명사절 접속사",
+    "level": "기초"
+  },
+  "thats": {
+    "word": "thats",
+    "partOfSpeech": "대명사+동사",
+    "meaning": "그것은 ~이다 (That is의 축약)",
+    "phonetic": "[ðæts]",
+    "contextNote": "구어체 축약형",
+    "level": "기초"
+  },
+  "there": {
+    "word": "there",
+    "partOfSpeech": "부사/유도부사",
+    "meaning": "거기에, ~가 있다",
+    "phonetic": "[ðɛər]",
+    "contextNote": "장소 및 존재 유도",
+    "level": "기초"
+  },
+  "theres": {
+    "word": "theres",
+    "partOfSpeech": "구문",
+    "meaning": "~가 있다 (There is의 축약)",
+    "phonetic": "[ðɛərz]",
+    "contextNote": "존재 구문 축약형",
+    "level": "기초"
+  },
+  "here": {
+    "word": "here",
+    "partOfSpeech": "부사",
+    "meaning": "여기에, 이곳에",
+    "phonetic": "[hɪər]",
+    "contextNote": "현재 위치 지칭",
+    "level": "기초"
+  },
+  "and": {
+    "word": "and",
+    "partOfSpeech": "접속사",
+    "meaning": "그리고, ~와/과",
+    "phonetic": "[ænd / ənd]",
+    "contextNote": "등위접속사",
+    "level": "기초"
+  },
+  "but": {
+    "word": "but",
+    "partOfSpeech": "접속사",
+    "meaning": "하지만, 그러나",
+    "phonetic": "[bʌt]",
+    "contextNote": "역접 접속사",
+    "level": "기초"
+  },
+  "or": {
+    "word": "or",
+    "partOfSpeech": "접속사",
+    "meaning": "또는, 혹은",
+    "phonetic": "[ɔːr]",
+    "contextNote": "선택 접속사",
+    "level": "기초"
+  },
+  "if": {
+    "word": "if",
+    "partOfSpeech": "접속사",
+    "meaning": "만약 ~라면, ~인지 아닌지",
+    "phonetic": "[ɪf]",
+    "contextNote": "조건 및 양보 접속사",
+    "level": "기초"
+  },
+  "because": {
+    "word": "because",
+    "partOfSpeech": "접속사",
+    "meaning": "왜냐하면, ~때문에",
+    "phonetic": "[bɪˈkɒz / bɪˈkəz]",
+    "contextNote": "원인 접속사",
+    "level": "기초"
+  },
+  "so": {
+    "word": "so",
+    "partOfSpeech": "접속사/부사",
+    "meaning": "그래서, 너무, 그렇게",
+    "phonetic": "[soʊ]",
+    "contextNote": "결과 접속사 및 강조 부사",
+    "level": "기초"
+  },
+  "as": {
+    "word": "as",
+    "partOfSpeech": "접속사/전치사",
+    "meaning": "~로서, ~할 때, ~만큼",
+    "phonetic": "[æz / əz]",
+    "contextNote": "비교/시간/자격 접속사",
+    "level": "기초"
+  },
+  "while": {
+    "word": "while",
+    "partOfSpeech": "접속사/명사",
+    "meaning": "~하는 동안에, 반면에; 잠시",
+    "phonetic": "[waɪl]",
+    "contextNote": "대조 및 동시동작",
+    "level": "중급"
+  },
+  "afterward": {
+    "word": "afterward",
+    "partOfSpeech": "부사",
+    "meaning": "그 후에, 나중에",
+    "phonetic": "[ˈæftərwərd]",
+    "contextNote": "시간 순서 표현",
+    "level": "중급"
+  },
+  "in": {
+    "word": "in",
+    "partOfSpeech": "전치사/부사",
+    "meaning": "~ 안에, ~에서",
+    "phonetic": "[ɪn]",
+    "contextNote": "공간/시간 전치사",
+    "level": "기초"
+  },
+  "on": {
+    "word": "on",
+    "partOfSpeech": "전치사/부사",
+    "meaning": "~ 위에, ~에 관하여, 켜져 있는",
+    "phonetic": "[ɒn / ɑːn]",
+    "contextNote": "접촉/주제 전치사",
+    "level": "기초"
+  },
+  "at": {
+    "word": "at",
+    "partOfSpeech": "전치사",
+    "meaning": "~에, ~에서 (특정 시점/장소)",
+    "phonetic": "[æt / ət]",
+    "contextNote": "시점/지점 전치사",
+    "level": "기초"
+  },
+  "to": {
+    "word": "to",
+    "partOfSpeech": "전치사/부정사",
+    "meaning": "~로, ~에게, ~하기 위해",
+    "phonetic": "[tuː / tə]",
+    "contextNote": "방향 전치사 및 to부정사",
+    "level": "기초"
+  },
+  "for": {
+    "word": "for",
+    "partOfSpeech": "전치사",
+    "meaning": "~을 위해, ~동안, ~에 대해",
+    "phonetic": "[fɔːr / fər]",
+    "contextNote": "목적/기간 전치사",
+    "level": "기초"
+  },
+  "with": {
+    "word": "with",
+    "partOfSpeech": "전치사",
+    "meaning": "~와 함께, ~을 가지고",
+    "phonetic": "[wɪð]",
+    "contextNote": "동반/수단 전치사",
+    "level": "기초"
+  },
+  "within": {
+    "word": "within",
+    "partOfSpeech": "전치사",
+    "meaning": "~ 이내에, ~의 안에",
+    "phonetic": "[wɪˈðɪn]",
+    "contextNote": "범위 한정 전치사",
+    "level": "중급"
+  },
+  "without": {
+    "word": "without",
+    "partOfSpeech": "전치사",
+    "meaning": "~ 없이, ~하지 않고",
+    "phonetic": "[wɪˈðaʊt]",
+    "contextNote": "부재 전치사",
+    "level": "기초"
+  },
+  "by": {
+    "word": "by",
+    "partOfSpeech": "전치사",
+    "meaning": "~까지, ~에 의해, ~옆에",
+    "phonetic": "[baɪ]",
+    "contextNote": "기한/수단 전치사",
+    "level": "기초"
+  },
+  "from": {
+    "word": "from",
+    "partOfSpeech": "전치사",
+    "meaning": "~로부터, ~에서",
+    "phonetic": "[frɒm / frəm]",
+    "contextNote": "출발점 전치사",
+    "level": "기초"
+  },
+  "of": {
+    "word": "of",
+    "partOfSpeech": "전치사",
+    "meaning": "~의, ~중에서",
+    "phonetic": "[ɒv / əv]",
+    "contextNote": "소유/소속 전치사",
+    "level": "기초"
+  },
+  "into": {
+    "word": "into",
+    "partOfSpeech": "전치사",
+    "meaning": "~ 안으로",
+    "phonetic": "[ˈɪntuː]",
+    "contextNote": "이동/변화 전치사",
+    "level": "기초"
+  },
+  "through": {
+    "word": "through",
+    "partOfSpeech": "전치사",
+    "meaning": "~을 통해, 처음부터 끝까지",
+    "phonetic": "[θruː]",
+    "contextNote": "관통/수단 전치사",
+    "level": "기초"
+  },
+  "over": {
+    "word": "over",
+    "partOfSpeech": "전치사/부사",
+    "meaning": "~ 위에, 넘어서, 끝난",
+    "phonetic": "[ˈoʊvər]",
+    "contextNote": "초과/종료 전치사",
+    "level": "기초"
+  },
+  "under": {
+    "word": "under",
+    "partOfSpeech": "전치사",
+    "meaning": "~ 아래에, ~의 영향을 받는",
+    "phonetic": "[ˈʌndər]",
+    "contextNote": "하위/조건 전치사",
+    "level": "기초"
+  },
+  "before": {
+    "word": "before",
+    "partOfSpeech": "전치사/접속사",
+    "meaning": "~ 전에, ~의 앞에",
+    "phonetic": "[bɪˈfɔːr]",
+    "contextNote": "시간 선행 전치사",
+    "level": "기초"
+  },
+  "down": {
+    "word": "down",
+    "partOfSpeech": "부사/전치사",
+    "meaning": "아래로, 무너져",
+    "phonetic": "[daʊn]",
+    "contextNote": "방향/하강 부사",
+    "level": "기초"
+  },
+  "up": {
+    "word": "up",
+    "partOfSpeech": "부사/전치사",
+    "meaning": "위로, 완전히",
+    "phonetic": "[ʌp]",
+    "contextNote": "상승/완료 부사",
+    "level": "기초"
+  },
+  "out": {
+    "word": "out",
+    "partOfSpeech": "부사/전치사",
+    "meaning": "밖으로, 다 떨어진",
+    "phonetic": "[aʊt]",
+    "contextNote": "외부/소진 부사",
+    "level": "기초"
+  },
+  "off": {
+    "word": "off",
+    "partOfSpeech": "부사/전치사",
+    "meaning": "떨어져, 쉬는, 벗겨진",
+    "phonetic": "[ɒf]",
+    "contextNote": "분리/이탈 부사",
+    "level": "기초"
+  },
+  "back": {
+    "word": "back",
+    "partOfSpeech": "부사/명사/동사",
+    "meaning": "뒤로, 다시; 등; 지지하다",
+    "phonetic": "[bæk]",
+    "contextNote": "위치/복귀 부사",
+    "level": "기초"
+  },
+  "ahead": {
+    "word": "ahead",
+    "partOfSpeech": "부사",
+    "meaning": "앞으로, 미리, 앞선",
+    "phonetic": "[əˈhɛd]",
+    "contextNote": "진행/시간적 앞섬",
+    "level": "중급"
+  },
+  "along": {
+    "word": "along",
+    "partOfSpeech": "전치사/부사",
+    "meaning": "~을 따라, 함께",
+    "phonetic": "[əˈlɒŋ]",
+    "contextNote": "동행/경로 전치사",
+    "level": "기초"
+  },
+  "about": {
+    "word": "about",
+    "partOfSpeech": "전치사/부사",
+    "meaning": "~에 대하여, 대략",
+    "phonetic": "[əˈbaʊt]",
+    "contextNote": "주제/근사 부사",
+    "level": "기초"
+  },
+  "is": {
+    "word": "is",
+    "partOfSpeech": "동사",
+    "meaning": "~이다, 있다 (3인칭 단수 현재)",
+    "phonetic": "[ɪz]",
+    "contextNote": "be동사 단수",
+    "level": "기초"
+  },
+  "am": {
+    "word": "am",
+    "partOfSpeech": "동사",
+    "meaning": "~이다, 있다 (1인칭 단수 현재)",
+    "phonetic": "[æm / əm]",
+    "contextNote": "be동사 1인칭",
+    "level": "기초"
+  },
+  "are": {
+    "word": "are",
+    "partOfSpeech": "동사",
+    "meaning": "~이다, 있다 (2인칭/복수 현재)",
+    "phonetic": "[ɑːr / ər]",
+    "contextNote": "be동사 복수",
+    "level": "기초"
+  },
+  "was": {
+    "word": "was",
+    "partOfSpeech": "동사",
+    "meaning": "~이었다 (is/am의 과거)",
+    "phonetic": "[wɒz / wəz]",
+    "contextNote": "be동사 단수 과거",
+    "level": "기초"
+  },
+  "were": {
+    "word": "were",
+    "partOfSpeech": "동사",
+    "meaning": "~이었다 (are의 과거)",
+    "phonetic": "[wɜːr / wər]",
+    "contextNote": "be동사 복수 과거",
+    "level": "기초"
+  },
+  "be": {
+    "word": "be",
+    "partOfSpeech": "동사",
+    "meaning": "~이다, 존재하다, 되다 (원형)",
+    "phonetic": "[biː]",
+    "contextNote": "be동사 원형",
+    "level": "기초"
+  },
+  "been": {
+    "word": "been",
+    "partOfSpeech": "동사",
+    "meaning": "~이어왔다 (be의 과거분사)",
+    "phonetic": "[bɪn / biːn]",
+    "contextNote": "be동사 완료분사",
+    "level": "기초"
+  },
+  "do": {
+    "word": "do",
+    "partOfSpeech": "동사/조동사",
+    "meaning": "하다 (일반동사/의문문 강조)",
+    "phonetic": "[duː]",
+    "contextNote": "기본 동작 및 조동사",
+    "level": "기초"
+  },
+  "does": {
+    "word": "does",
+    "partOfSpeech": "동사/조동사",
+    "meaning": "하다 (3인칭 단수 현재)",
+    "phonetic": "[dʌz]",
+    "contextNote": "3인칭 단수 동사",
+    "level": "기초"
+  },
+  "doesnt": {
+    "word": "doesnt",
+    "partOfSpeech": "조동사",
+    "meaning": "하지 않는다 (does not의 축약)",
+    "phonetic": "[ˈdʌznt]",
+    "contextNote": "부정 조동사",
+    "level": "기초"
+  },
+  "dont": {
+    "word": "dont",
+    "partOfSpeech": "조동사",
+    "meaning": "하지 마라, 안 한다 (do not의 축약)",
+    "phonetic": "[doʊnt]",
+    "contextNote": "부정 조동사",
+    "level": "기초"
+  },
+  "done": {
+    "word": "done",
+    "partOfSpeech": "형용사/과거분사",
+    "meaning": "다 끝난, 완료된; do의 과거분사",
+    "phonetic": "[dʌn]",
+    "contextNote": "'Consider it done'은 이미 끝난 일로 여기라는 확신 표현",
+    "level": "기초"
+  },
+  "have": {
+    "word": "have",
+    "partOfSpeech": "동사/조동사",
+    "meaning": "가지다, (완료형) ~했다",
+    "phonetic": "[hæv / həv]",
+    "contextNote": "소유 및 완료 조동사",
+    "level": "기초"
+  },
+  "had": {
+    "word": "had",
+    "partOfSpeech": "동사",
+    "meaning": "가졌다 (have의 과거/과거분사)",
+    "phonetic": "[hæd]",
+    "contextNote": "과거 완료 동사",
+    "level": "기초"
+  },
+  "will": {
+    "word": "will",
+    "partOfSpeech": "조동사",
+    "meaning": "~할 것이다 (미래/의지)",
+    "phonetic": "[wɪl]",
+    "contextNote": "미래 조동사",
+    "level": "기초"
+  },
+  "can": {
+    "word": "can",
+    "partOfSpeech": "조동사",
+    "meaning": "~할 수 있다 (능력/허가)",
+    "phonetic": "[kæn / kən]",
+    "contextNote": "가능 조동사",
+    "level": "기초"
+  },
+  "cant": {
+    "word": "cant",
+    "partOfSpeech": "조동사",
+    "meaning": "~할 수 없다 (cannot의 축약)",
+    "phonetic": "[kænt]",
+    "contextNote": "불가능 조동사",
+    "level": "기초"
+  },
+  "could": {
+    "word": "could",
+    "partOfSpeech": "조동사",
+    "meaning": "~할 수 있었다, ~할 수 있을 텐데",
+    "phonetic": "[kʊd]",
+    "contextNote": "과거 가능/가정법 조동사",
+    "level": "기초"
+  },
+  "should": {
+    "word": "should",
+    "partOfSpeech": "조동사",
+    "meaning": "~해야 한다 (의무/권고)",
+    "phonetic": "[ʃʊd]",
+    "contextNote": "당위 조동사",
+    "level": "기초"
+  },
+  "shouldnt": {
+    "word": "shouldnt",
+    "partOfSpeech": "조동사",
+    "meaning": "~해서는 안 된다 (should not 축약)",
+    "phonetic": "[ˈʃʊdnt]",
+    "contextNote": "금지/부정 조동사",
+    "level": "기초"
+  },
+  "might": {
+    "word": "might",
+    "partOfSpeech": "조동사",
+    "meaning": "~일지도 모른다 (약한 추측)",
+    "phonetic": "[maɪt]",
+    "contextNote": "추측 조동사",
+    "level": "중급"
+  },
+  "im": {
+    "word": "im",
+    "partOfSpeech": "대명사+동사",
+    "meaning": "나는 ~이다 (I am의 축약)",
+    "phonetic": "[aɪm]",
+    "contextNote": "구어체 축약형",
+    "level": "기초"
+  },
+  "ill": {
+    "word": "ill",
+    "partOfSpeech": "대명사+조동사",
+    "meaning": "내가 ~하겠다 (I will의 축약)",
+    "phonetic": "[aɪl]",
+    "contextNote": "자신의 결심/실행 약속",
+    "level": "기초"
+  },
+  "id": {
+    "word": "id",
+    "partOfSpeech": "대명사+조동사",
+    "meaning": "나라면 ~할 것이다 (I would/I had 축약)",
+    "phonetic": "[aɪd]",
+    "contextNote": "가정법 구어 축약",
+    "level": "기초"
+  },
+  "not": {
+    "word": "not",
+    "partOfSpeech": "부사",
+    "meaning": "~아니다, 않다",
+    "phonetic": "[nɒt]",
+    "contextNote": "부정 부사",
+    "level": "기초"
+  },
+  "no": {
+    "word": "no",
+    "partOfSpeech": "형용사/감탄사",
+    "meaning": "아니오, 전혀 없는",
+    "phonetic": "[noʊ]",
+    "contextNote": "부정 및 거절",
+    "level": "기초"
+  },
+  "yes": {
+    "word": "yes",
+    "partOfSpeech": "감탄사",
+    "meaning": "네, 그렇습니다",
+    "phonetic": "[jɛs]",
+    "contextNote": "긍정 응답",
+    "level": "기초"
+  },
+  "okay": {
+    "word": "okay",
+    "partOfSpeech": "형용사/부사/감탄사",
+    "meaning": "좋아, 괜찮은, 알겠어",
+    "phonetic": "[oʊˈkeɪ]",
+    "contextNote": "동의 및 승낙",
+    "level": "기초"
+  },
+  "accepting": {
+    "word": "accepting",
+    "partOfSpeech": "동사/현재분사",
+    "meaning": "수락하는, 받아들이는",
+    "phonetic": "[əkˈsɛptɪŋ]",
+    "contextNote": "조건이나 제안을 받아들이는 태도",
+    "level": "중급"
+  },
+  "account": {
+    "word": "account",
+    "partOfSpeech": "명사/동사",
+    "meaning": "계좌, 고객사(어카운트); 설명하다",
+    "phonetic": "[əˈkaʊnt]",
+    "contextNote": "비즈니스에서 주요 클라이언트 계약 계정을 의미",
+    "level": "중급"
+  },
+  "actual": {
+    "word": "actual",
+    "partOfSpeech": "형용사",
+    "meaning": "실제의, 사실상의",
+    "phonetic": "[ˈæktʃuəl]",
+    "contextNote": "이론이나 서류상이 아닌 실질적인 상태",
+    "level": "기초"
+  },
+  "actually": {
+    "word": "actually",
+    "partOfSpeech": "부사",
+    "meaning": "실제로, 사실은",
+    "phonetic": "[ˈæktʃuəli]",
+    "contextNote": "상대방의 오해를 바로잡거나 강조할 때 사용",
+    "level": "기초"
+  },
+  "agent": {
+    "word": "agent",
+    "partOfSpeech": "명사",
+    "meaning": "에이전트, 대리인, 중개인",
+    "phonetic": "[ˈeɪdʒənt]",
+    "contextNote": "소속사를 대표하여 계약을 성사시키는 사람",
+    "level": "중급"
+  },
+  "agreement": {
+    "word": "agreement",
+    "partOfSpeech": "명사",
+    "meaning": "계약서, 합의서, 동의",
+    "phonetic": "[əˈɡriːmənt]",
+    "contextNote": "양측이 서명하여 법적 구속력을 갖는 문서",
+    "level": "중급"
+  },
+  "align": {
+    "word": "align",
+    "partOfSpeech": "동사",
+    "meaning": "일치시키다, 같은 방향으로 맞추다",
+    "phonetic": "[əˈlaɪn]",
+    "contextNote": "기업 목표나 양측의 이해관계를 정렬할 때 필수 비즈니스 단어",
+    "level": "중급"
+  },
+  "all": {
+    "word": "all",
+    "partOfSpeech": "형용사/대명사",
+    "meaning": "모든, 전부",
+    "phonetic": "[ɔːl]",
+    "contextNote": "전체를 포괄하는 표현",
+    "level": "중급"
+  },
+  "allocation": {
+    "word": "allocation",
+    "partOfSpeech": "명사",
+    "meaning": "할당, 배분 (투자 지분/자원)",
+    "phonetic": "[ˌæləˈkeɪʃən]",
+    "contextNote": "오버서브스크라이브된 투자 라운드에서 지분을 배분하는 것",
+    "level": "중급"
+  },
+  "allows": {
+    "word": "allows",
+    "partOfSpeech": "동사",
+    "meaning": "허용하다, 가능하게 하다",
+    "phonetic": "[əˈlaʊz]",
+    "contextNote": "조건이나 기술이 특정 행위를 가능케 함",
+    "level": "중급"
+  },
+  "also": {
+    "word": "also",
+    "partOfSpeech": "부사",
+    "meaning": "또한, 역시",
+    "phonetic": "[ˈɔːlsoʊ]",
+    "contextNote": "추가 정보 덧붙임",
+    "level": "기초"
+  },
+  "angels": {
+    "word": "angels",
+    "partOfSpeech": "명사(복수)",
+    "meaning": "엔젤 투자자들",
+    "phonetic": "[ˈeɪndʒəlz]",
+    "contextNote": "스타트업 극초기 단계에 개인 자금으로 시드 투자하는 부유한 개인들",
+    "level": "중급"
+  },
+  "anticipate": {
+    "word": "anticipate",
+    "partOfSpeech": "동사",
+    "meaning": "상대의 수를 미리 읽다, 예측하다",
+    "phonetic": "[ænˈtɪsɪpeɪt]",
+    "contextNote": "미드 협상 씬에서 상대의 수를 선제 간파할 때 사용",
+    "level": "미드 시그니처"
+  },
+  "antitrust": {
+    "word": "antitrust",
+    "partOfSpeech": "형용사",
+    "meaning": "반독점의, 독점 금지의",
+    "phonetic": "[ˌæntiˈtrʌst]",
+    "contextNote": "미국 FTC나 법무부가 빅테크 기업의 시장 독점을 규제할 때 쓰는 법률 용어",
+    "level": "고급"
+  },
+  "any": {
+    "word": "any",
+    "partOfSpeech": "형용사/대명사",
+    "meaning": "어떤 ~도, 조금의",
+    "phonetic": "[ˈɛni]",
+    "contextNote": "부정문이나 의문문에서 임의의 대상 지칭",
+    "level": "중급"
+  },
+  "apac": {
+    "word": "apac",
+    "partOfSpeech": "명사(약어)",
+    "meaning": "아시아 태평양 지역 (Asia-Pacific)",
+    "phonetic": "[ˈeɪpæk]",
+    "contextNote": "글로벌 기업의 아태지역 본부/시장",
+    "level": "중급"
+  },
+  "approve": {
+    "word": "approve",
+    "partOfSpeech": "동사",
+    "meaning": "승인하다, 결재하다",
+    "phonetic": "[əˈpruːv]",
+    "contextNote": "상사나 이사회가 안건을 공식 통과시킬 때",
+    "level": "중급"
+  },
+  "architecture": {
+    "word": "architecture",
+    "partOfSpeech": "명사",
+    "meaning": "아키텍처, 시스템 구조",
+    "phonetic": "[ˈɑːrkɪtɛktʃər]",
+    "contextNote": "소프트웨어 엔지니어링이나 조직의 기본 뼈대",
+    "level": "중급"
+  },
+  "arr": {
+    "word": "arr",
+    "partOfSpeech": "명사(약어)",
+    "meaning": "연간 반복 매출 (Annual Recurring Revenue)",
+    "phonetic": "[eɪ-ɑːr-ɑːr]",
+    "contextNote": "SaaS 스타트업의 기업 가치를 결정하는 핵심 잣대",
+    "level": "고급"
+  },
+  "art": {
+    "word": "art",
+    "partOfSpeech": "명사",
+    "meaning": "미술, 예술, 기술",
+    "phonetic": "[ɑːrt]",
+    "contextNote": "순수 예술 및 고도의 기법",
+    "level": "중급"
+  },
+  "artist's": {
+    "word": "artist's",
+    "partOfSpeech": "명사(소유격)",
+    "meaning": "예술가의, 작가의",
+    "phonetic": "[ˈɑːrtɪsts]",
+    "contextNote": "작가의 고유한 화풍이나 의도",
+    "level": "중급"
+  },
+  "arterial": {
+    "word": "arterial",
+    "partOfSpeech": "형용사",
+    "meaning": "동맥의, 주요 간선의",
+    "phonetic": "[ɑːrˈtɪəriəl]",
+    "contextNote": "의학 씬에서 심장에서 뻗어나가는 주요 동맥을 지칭",
+    "level": "고급"
+  },
+  "artery": {
+    "word": "artery",
+    "partOfSpeech": "명사",
+    "meaning": "동맥",
+    "phonetic": "[ˈɑːrtəri]",
+    "contextNote": "혈액을 온몸으로 공급하는 굵은 혈관",
+    "level": "고급"
+  },
+  "artists": {
+    "word": "artists",
+    "partOfSpeech": "명사(복수)",
+    "meaning": "예술가들, 작가들",
+    "phonetic": "[ˈɑːrtɪsts]",
+    "contextNote": "전시회나 갤러리의 출품 작가들",
+    "level": "중급"
+  },
+  "ask": {
+    "word": "ask",
+    "partOfSpeech": "동사",
+    "meaning": "묻다, 요청하다",
+    "phonetic": "[æsk]",
+    "contextNote": "질문하거나 조건을 요구함",
+    "level": "중급"
+  },
+  "asking": {
+    "word": "asking",
+    "partOfSpeech": "동사/현재분사",
+    "meaning": "요청하는, 묻는",
+    "phonetic": "[ˈæskɪŋ]",
+    "contextNote": "조건이나 의견을 구하는 상태",
+    "level": "중급"
+  },
+  "assistant": {
+    "word": "assistant",
+    "partOfSpeech": "명사",
+    "meaning": "어시스턴트, 조교, 비서",
+    "phonetic": "[əˈsɪstənt]",
+    "contextNote": "시니어의 업무를 보좌하는 직책",
+    "level": "중급"
+  },
+  "associate": {
+    "word": "associate",
+    "partOfSpeech": "명사",
+    "meaning": "(로펌) 소속 변호사, 어소시에이트",
+    "phonetic": "[əˈsoʊsiət]",
+    "contextNote": "로펌 파트너 밑에서 사건 실무를 전담하는 주니어/시니어 변호사",
+    "level": "미드 시그니처"
+  },
+  "attention": {
+    "word": "attention",
+    "partOfSpeech": "명사",
+    "meaning": "주의, 주목, 관심",
+    "phonetic": "[əˈtɛnʃən]",
+    "contextNote": "집중이나 관심 환기",
+    "level": "중급"
+  },
+  "automatic": {
+    "word": "automatic",
+    "partOfSpeech": "형용사",
+    "meaning": "자동의, 무의식적인",
+    "phonetic": "[ˌɔːtəˈmætɪk]",
+    "contextNote": "수동 개입 없이 스스로 일어남",
+    "level": "기초"
+  },
+  "autonomous": {
+    "word": "autonomous",
+    "partOfSpeech": "형용사",
+    "meaning": "자율적인, 자주적인",
+    "phonetic": "[ɔːˈtɒnəməs]",
+    "contextNote": "외부 지시 없이 스스로 판단하고 행동하는 상태",
+    "level": "기초"
+  },
+  "avoiding": {
+    "word": "avoiding",
+    "partOfSpeech": "동사/현재분사",
+    "meaning": "피하는, 회피하는",
+    "phonetic": "[əˈvɔɪdɪŋ]",
+    "contextNote": "리스크나 갈등을 회피함",
+    "level": "중급"
+  },
+  "band": {
+    "word": "band",
+    "partOfSpeech": "명사",
+    "meaning": "밴드, 대역, 끈",
+    "phonetic": "[bænd]",
+    "contextNote": "음악 밴드 또는 고정된 범위",
+    "level": "중급"
+  },
+  "bank": {
+    "word": "bank",
+    "partOfSpeech": "명사",
+    "meaning": "은행, 투자은행",
+    "phonetic": "[bæŋk]",
+    "contextNote": "금융 기관",
+    "level": "중급"
+  },
+  "bars": {
+    "word": "bars",
+    "partOfSpeech": "명사(복수)",
+    "meaning": "술집들, 막대들",
+    "phonetic": "[bɑːrz]",
+    "contextNote": "맨해튼의 바 또는 음향 이퀄라이저 바",
+    "level": "중급"
+  },
+  "beautiful": {
+    "word": "beautiful",
+    "partOfSpeech": "형용사",
+    "meaning": "아름다운, 멋진",
+    "phonetic": "[ˈbjuːtəfʊl]",
+    "contextNote": "시각적 우아함",
+    "level": "기초"
+  },
+  "bell": {
+    "word": "bell",
+    "partOfSpeech": "명사",
+    "meaning": "종, 벨",
+    "phonetic": "[bɛl]",
+    "contextNote": "경고음 또는 시간 신호",
+    "level": "중급"
+  },
+  "best": {
+    "word": "best",
+    "partOfSpeech": "형용사/부사",
+    "meaning": "최선의, 최고의",
+    "phonetic": "[bɛst]",
+    "contextNote": "'try my best'는 성실하지만 월가에서는 확신 부족으로 비침",
+    "level": "기초"
+  },
+  "better": {
+    "word": "better",
+    "partOfSpeech": "형용사/부사",
+    "meaning": "더 나은, 개선된",
+    "phonetic": "[ˈbɛtər]",
+    "contextNote": "비교급 표현",
+    "level": "기초"
+  },
+  "big": {
+    "word": "big",
+    "partOfSpeech": "형용사",
+    "meaning": "큰, 중대한",
+    "phonetic": "[bɪɡ]",
+    "contextNote": "규모나 중요도가 큼",
+    "level": "기초"
+  },
+  "bigger": {
+    "word": "bigger",
+    "partOfSpeech": "형용사(비교급)",
+    "meaning": "더 큰, 더 위협적인",
+    "phonetic": "[ˈbɪɡər]",
+    "contextNote": "'pull out a bigger gun'(더 큰 무기로 맞받아치다)의 핵심 단어",
+    "level": "미드 시그니처"
+  },
+  "bit": {
+    "word": "bit",
+    "partOfSpeech": "명사",
+    "meaning": "조금, 약간",
+    "phonetic": "[bɪt]",
+    "contextNote": "작은 양",
+    "level": "중급"
+  },
+  "bitcoins": {
+    "word": "bitcoins",
+    "partOfSpeech": "명사(복수)",
+    "meaning": "비트코인들",
+    "phonetic": "[ˈbɪtkɔɪnz]",
+    "contextNote": "암호화폐",
+    "level": "중급"
+  },
+  "bleeding": {
+    "word": "bleeding",
+    "partOfSpeech": "명사/현재분사",
+    "meaning": "출혈, 피를 흘리는; 자금 유출",
+    "phonetic": "[ˈbliːdɪŋ]",
+    "contextNote": "수술실 응급 출혈 또는 기업의 막대한 현금 손실",
+    "level": "중급"
+  },
+  "blinks": {
+    "word": "blinks",
+    "partOfSpeech": "동사",
+    "meaning": "눈을 깜빡이다, 기싸움에서 굴복하다",
+    "phonetic": "[blɪŋks]",
+    "contextNote": "'before he even blinks'(그가 알아차리기도 전에/눈 하나 깜빡 안 하고)",
+    "level": "미드 시그니처"
+  },
+  "block": {
+    "word": "block",
+    "partOfSpeech": "명사/동사",
+    "meaning": "차단, 블록; 막다",
+    "phonetic": "[blɒk]",
+    "contextNote": "수술에서 신경 차단이나 방어 행위",
+    "level": "중급"
+  },
+  "blood": {
+    "word": "blood",
+    "partOfSpeech": "명사",
+    "meaning": "피, 혈액",
+    "phonetic": "[blʌd]",
+    "contextNote": "응급 수술 씬의 혈액",
+    "level": "중급"
+  },
+  "bluff": {
+    "word": "bluff",
+    "partOfSpeech": "명사/동사",
+    "meaning": "허세, 블러핑; 엄포를 놓다",
+    "phonetic": "[blʌf]",
+    "contextNote": "'call someone's bluff'는 상대의 패가 허위임을 증명해 보이라고 맞서는 행위",
+    "level": "미드 시그니처"
+  },
+  "board": {
+    "word": "board",
+    "partOfSpeech": "명사",
+    "meaning": "이사회 (Board of Directors)",
+    "phonetic": "[bɔːrd]",
+    "contextNote": "회사의 경영권을 최종 감독하는 이사진",
+    "level": "중급"
+  },
+  "boardroom": {
+    "word": "boardroom",
+    "partOfSpeech": "명사",
+    "meaning": "이사회 회의실",
+    "phonetic": "[ˈbɔːrdruːm]",
+    "contextNote": "최고 경영진의 결전이 벌어지는 장소",
+    "level": "중급"
+  },
+  "bogeymen": {
+    "word": "bogeymen",
+    "partOfSpeech": "명사(복수)",
+    "meaning": "도깨비, 허구의 공포 대상들",
+    "phonetic": "[ˈboʊɡimɛn]",
+    "contextNote": "실제 위협이 아닌 과장된 공포를 비유",
+    "level": "중급"
+  },
+  "bonuses": {
+    "word": "bonuses",
+    "partOfSpeech": "명사(복수)",
+    "meaning": "보너스, 성과급들",
+    "phonetic": "[ˈboʊnəsɪz]",
+    "contextNote": "월가 투자은행이나 로펌의 연말 성과급",
+    "level": "중급"
+  },
+  "boss": {
+    "word": "boss",
+    "partOfSpeech": "명사",
+    "meaning": "상사, 보스, 대표",
+    "phonetic": "[bɒs]",
+    "contextNote": "직속 상관",
+    "level": "중급"
+  },
+  "both": {
+    "word": "both",
+    "partOfSpeech": "형용사/대명사",
+    "meaning": "양쪽 모두의",
+    "phonetic": "[boʊθ]",
+    "contextNote": "둘 다",
+    "level": "중급"
+  },
+  "breaking": {
+    "word": "breaking",
+    "partOfSpeech": "동사/현재분사",
+    "meaning": "깨뜨리는, 부수는",
+    "phonetic": "[ˈbreɪkɪŋ]",
+    "contextNote": "규칙을 깨거나 급보를 알림",
+    "level": "중급"
+  },
+  "brief": {
+    "word": "brief",
+    "partOfSpeech": "명사/동사",
+    "meaning": "(법률) 소송 적요서; 브리핑하다",
+    "phonetic": "[briːf]",
+    "contextNote": "법원에 제출하는 핵심 서면 보고서",
+    "level": "미드 시그니처"
+  },
+  "brother": {
+    "word": "brother",
+    "partOfSpeech": "명사",
+    "meaning": "형제, 동료",
+    "phonetic": "[ˈbrʌðər]",
+    "contextNote": "가족 또는 친밀한 호칭",
+    "level": "중급"
+  },
+  "budget": {
+    "word": "budget",
+    "partOfSpeech": "명사",
+    "meaning": "예산, 재정",
+    "phonetic": "[ˈbʌdʒɪt]",
+    "contextNote": "프로젝트에 배정된 운영 자금",
+    "level": "중급"
+  },
+  "build": {
+    "word": "build",
+    "partOfSpeech": "동사",
+    "meaning": "구축하다, 만들다",
+    "phonetic": "[bɪld]",
+    "contextNote": "신제품이나 팀을 구축함",
+    "level": "중급"
+  },
+  "burn": {
+    "word": "burn",
+    "partOfSpeech": "명사/동사",
+    "meaning": "자금 소진(번 레이트); 태우다",
+    "phonetic": "[bɜːrn]",
+    "contextNote": "스타트업의 매월 현금 순손실 속도",
+    "level": "미드 시그니처"
+  },
+  "burning": {
+    "word": "burning",
+    "partOfSpeech": "형용사/현재분사",
+    "meaning": "급격히 소진 중인, 타오르는",
+    "phonetic": "[ˈbɜːrnɪŋ]",
+    "contextNote": "현금이 빠르게 소모되고 있는 긴박한 상태",
+    "level": "기초"
+  },
+  "bypass": {
+    "word": "bypass",
+    "partOfSpeech": "명사/동사",
+    "meaning": "(외과) 우회로 조성술; 우회하다",
+    "phonetic": "[ˈbaɪpæs]",
+    "contextNote": "심장이나 막힌 혈관을 우회시키는 고난도 수술",
+    "level": "고급"
+  },
+  "call": {
+    "word": "call",
+    "partOfSpeech": "동사",
+    "meaning": "부르다, 전화하다, (허세를) 밝히다",
+    "phonetic": "[kɔːl]",
+    "contextNote": "'call their bluff'는 상대방의 허세를 시험한다는 뜻",
+    "level": "중급"
+  },
+  "calmly": {
+    "word": "calmly",
+    "partOfSpeech": "부사",
+    "meaning": "차분하게, 침착하게",
+    "phonetic": "[ˈkɑːmli]",
+    "contextNote": "위기 상황에서도 평정심을 유지하는 태도",
+    "level": "기초"
+  },
+  "can't": {
+    "word": "can't",
+    "partOfSpeech": "조동사",
+    "meaning": "~할 수 없다 (cannot의 축약)",
+    "phonetic": "[kænt]",
+    "contextNote": "불가능 조동사",
+    "level": "중급"
+  },
+  "cap": {
+    "word": "cap",
+    "partOfSpeech": "명사",
+    "meaning": "가치 상한선 (Valuation Cap), 한도",
+    "phonetic": "[kæp]",
+    "contextNote": "SAFE 투자 계약에서 인정받는 기업 가치의 상한",
+    "level": "고급"
+  },
+  "care": {
+    "word": "care",
+    "partOfSpeech": "동사/명사",
+    "meaning": "신경 쓰다, 돌보다; 관심",
+    "phonetic": "[kɛər]",
+    "contextNote": "'I don't care'는 내 알 바 아니다라는 직설적 냉담함",
+    "level": "중급"
+  },
+  "carved": {
+    "word": "carved",
+    "partOfSpeech": "형용사/과거분사",
+    "meaning": "새겨진, 깎아 만든",
+    "phonetic": "[kɑːrvd]",
+    "contextNote": "확고하게 굳어진 위치",
+    "level": "기초"
+  },
+  "category-defining": {
+    "word": "category-defining",
+    "partOfSpeech": "형용사",
+    "meaning": "새로운 카테고리를 정의하는, 독보적인",
+    "phonetic": "[ˌkætəɡəri-dɪˈfaɪnɪŋ]",
+    "contextNote": "기존 시장을 완전히 새로 개척하는 혁신 기업을 수식",
+    "level": "고급"
+  },
+  "categorydefining": {
+    "word": "categorydefining",
+    "partOfSpeech": "형용사",
+    "meaning": "새로운 카테고리를 정의하는, 독보적인",
+    "phonetic": "[ˌkætəɡəri-dɪˈfaɪnɪŋ]",
+    "contextNote": "기존 시장을 완전히 새로 개척하는 혁신 기업",
+    "level": "고급"
+  },
+  "caught": {
+    "word": "caught",
+    "partOfSpeech": "동사(과거)",
+    "meaning": "붙잡힌, 걸려든",
+    "phonetic": "[kɔːt]",
+    "contextNote": "상대의 덫이나 시선에 걸려듦",
+    "level": "중급"
+  },
+  "cava": {
+    "word": "cava",
+    "partOfSpeech": "명사",
+    "meaning": "카바 (스페인산 스파클링 와인)",
+    "phonetic": "[ˈkɑːvə]",
+    "contextNote": "샴페인 스타일의 고급 스페인 와인",
+    "level": "중급"
+  },
+  "cheap": {
+    "word": "cheap",
+    "partOfSpeech": "형용사",
+    "meaning": "값싼, 말뿐인, 하찮은",
+    "phonetic": "[tʃiːp]",
+    "contextNote": "'Confidence is cheap'(자신감이야 누구나 말로 다 하지)",
+    "level": "미드 시그니처"
+  },
+  "check": {
+    "word": "check",
+    "partOfSpeech": "동사/명사",
+    "meaning": "확인하다, 검토하다; 수표",
+    "phonetic": "[tʃɛk]",
+    "contextNote": "하비에게는 'check' 대신 'review/redline'을 써야 프로페셔널함",
+    "level": "중급"
+  },
+  "chelsea": {
+    "word": "chelsea",
+    "partOfSpeech": "명사(고유명사)",
+    "meaning": "첼시 (뉴욕 맨해튼의 유명 예술 갤러리 지구)",
+    "phonetic": "[ˈtʃɛlsi]",
+    "contextNote": "뉴욕 최고의 현대 미술 갤러리들이 밀집한 거리",
+    "level": "중급"
+  },
+  "chief": {
+    "word": "chief",
+    "partOfSpeech": "명사/형용사",
+    "meaning": "최고 책임자, 과장; 주요한",
+    "phonetic": "[tʃiːf]",
+    "contextNote": "Chief Executive(CEO) 또는 외과 과장(Chief of Surgery)",
+    "level": "중급"
+  },
+  "clamping": {
+    "word": "clamping",
+    "partOfSpeech": "명사/현재분사",
+    "meaning": "(혈관을) 겸자로 집기, 클램핑",
+    "phonetic": "[ˈklæmpɪŋ]",
+    "contextNote": "수술 중 대량 출혈을 막기 위해 혈관을 의료 기구로 임시 압박 차단하는 행위",
+    "level": "고급"
+  },
+  "clause": {
+    "word": "clause",
+    "partOfSpeech": "명사",
+    "meaning": "(계약서의) 조항",
+    "phonetic": "[klɔːz]",
+    "contextNote": "계약서 본문의 개별 세부 규정",
+    "level": "중급"
+  },
+  "climate": {
+    "word": "climate",
+    "partOfSpeech": "명사",
+    "meaning": "기후, (투자/정치) 풍토, 분위기",
+    "phonetic": "[ˈklaɪmət]",
+    "contextNote": "스타트업 투자 시장의 전반적 한파나 규제 분위기",
+    "level": "중급"
+  },
+  "close": {
+    "word": "close",
+    "partOfSpeech": "동사/형용사",
+    "meaning": "(거래를) 성사시키다, 닫다; 가까운",
+    "phonetic": "[kloʊz / kloʊs]",
+    "contextNote": "'close the deal'은 계약 최종 성사를 의미",
+    "level": "중급"
+  },
+  "closure": {
+    "word": "closure",
+    "partOfSpeech": "명사",
+    "meaning": "마무리, 폐쇄, 완결",
+    "phonetic": "[ˈkloʊʒər]",
+    "contextNote": "관계의 정리 또는 수술 부위의 최종 봉합",
+    "level": "중급"
+  },
+  "cohort": {
+    "word": "cohort",
+    "partOfSpeech": "명사",
+    "meaning": "코호트, 동일 집단, 동기 기수",
+    "phonetic": "[ˈkoʊhɔːrt]",
+    "contextNote": "특정 시점에 유입된 사용자 그룹의 리텐션 분석 단위",
+    "level": "고급"
+  },
+  "company": {
+    "word": "company",
+    "partOfSpeech": "명사",
+    "meaning": "회사, 기업, 일행",
+    "phonetic": "[ˈkʌmpəni]",
+    "contextNote": "비즈니스 법인",
+    "level": "중급"
+  },
+  "company's": {
+    "word": "company's",
+    "partOfSpeech": "명사(소유격)",
+    "meaning": "회사의",
+    "phonetic": "[ˈkʌmpəniz]",
+    "contextNote": "기업의 자산이나 지분",
+    "level": "중급"
+  },
+  "companys": {
+    "word": "companys",
+    "partOfSpeech": "명사(소유격)",
+    "meaning": "회사의",
+    "phonetic": "[ˈkʌmpəniz]",
+    "contextNote": "기업의 자산이나 지분",
+    "level": "중급"
+  },
+  "compound": {
+    "word": "compound",
+    "partOfSpeech": "동사/형용사",
+    "meaning": "복리로 불어나다, 가중시키다; 복합의",
+    "phonetic": "[ˈkɒmpaʊnd / kəmˈpaʊnd]",
+    "contextNote": "성장률이 기하급수적으로 복리 증식함",
+    "level": "중급"
+  },
+  "confidence": {
+    "word": "confidence",
+    "partOfSpeech": "명사",
+    "meaning": "자신감, 확신",
+    "phonetic": "[ˈkɒnfɪdəns]",
+    "contextNote": "파트너 앞에서 보여주어야 할 배짱",
+    "level": "중급"
+  },
+  "consider": {
+    "word": "consider",
+    "partOfSpeech": "동사",
+    "meaning": "~로 여기다, 고려하다",
+    "phonetic": "[kənˈsɪdər]",
+    "contextNote": "'Consider it done'은 이미 끝난 일로 여기라는 확신에 찬 승낙",
+    "level": "미드 시그니처"
+  },
+  "considering": {
+    "word": "considering",
+    "partOfSpeech": "전치사/현재분사",
+    "meaning": "~을 고려하면, 생각 중인",
+    "phonetic": "[kənˈsɪdərɪŋ]",
+    "contextNote": "상황을 감안할 때",
+    "level": "기초"
+  },
+  "contained": {
+    "word": "contained",
+    "partOfSpeech": "형용사/과거분사",
+    "meaning": "통제된, 억제된",
+    "phonetic": "[kənˈteɪnd]",
+    "contextNote": "출혈이나 스캔들이 번지지 않고 잡힘",
+    "level": "기초"
+  },
+  "contract": {
+    "word": "contract",
+    "partOfSpeech": "명사",
+    "meaning": "계약, 계약서",
+    "phonetic": "[ˈkɒntrækt]",
+    "contextNote": "법적 효력을 지닌 문서",
+    "level": "중급"
+  },
+  "cool": {
+    "word": "cool",
+    "partOfSpeech": "형용사",
+    "meaning": "멋진, 쿨한, 침착한",
+    "phonetic": "[kuːl]",
+    "contextNote": "세련되고 여유로운 상태",
+    "level": "기초"
+  },
+  "costs": {
+    "word": "costs",
+    "partOfSpeech": "명사(복수)",
+    "meaning": "비용들, 원가",
+    "phonetic": "[kɒsts]",
+    "contextNote": "소송 비용이나 회사 지출",
+    "level": "중급"
+  },
+  "counsel": {
+    "word": "counsel",
+    "partOfSpeech": "명사",
+    "meaning": "(법률) 변호인, 소송 대리인",
+    "phonetic": "[ˈkaʊnsəl]",
+    "contextNote": "법정에 출석하는 변호인단",
+    "level": "미드 시그니처"
+  },
+  "court": {
+    "word": "court",
+    "partOfSpeech": "명사",
+    "meaning": "법정, 법원",
+    "phonetic": "[kɔːrt]",
+    "contextNote": "재판이 진행되는 곳",
+    "level": "중급"
+  },
+  "crashing": {
+    "word": "crashing",
+    "partOfSpeech": "형용사/현재분사",
+    "meaning": "폭락하는, 충돌하는, 급격히 무너지는",
+    "phonetic": "[ˈkræʃɪŋ]",
+    "contextNote": "환자의 혈압이 급강하하거나 주가가 붕괴함",
+    "level": "기초"
+  },
+  "creates": {
+    "word": "creates",
+    "partOfSpeech": "동사",
+    "meaning": "창출하다, 만들어내다",
+    "phonetic": "[kriˈeɪts]",
+    "contextNote": "가치를 새로 형성함",
+    "level": "중급"
+  },
+  "crispest": {
+    "word": "crispest",
+    "partOfSpeech": "형용사(최상급)",
+    "meaning": "가장 군더더기 없고 명료한, 가장 산뜻한",
+    "phonetic": "[ˈkrɪspɪst]",
+    "contextNote": "대화나 와인이 깔끔하고 예리함",
+    "level": "기초"
+  },
+  "crowd": {
+    "word": "crowd",
+    "partOfSpeech": "명사",
+    "meaning": "군중, 청중, 사람들",
+    "phonetic": "[kraʊd]",
+    "contextNote": "행사장이나 오피스의 사람들",
+    "level": "중급"
+  },
+  "crypto": {
+    "word": "crypto",
+    "partOfSpeech": "명사",
+    "meaning": "크립토, 암호화폐",
+    "phonetic": "[ˈkrɪptoʊ]",
+    "contextNote": "블록체인 가상자산",
+    "level": "중급"
+  },
+  "currently": {
+    "word": "currently",
+    "partOfSpeech": "부사",
+    "meaning": "현재, 지금으로서는",
+    "phonetic": "[ˈkɜːrəntli]",
+    "contextNote": "현 시점의 상태 기술",
+    "level": "기초"
+  },
+  "curve": {
+    "word": "curve",
+    "partOfSpeech": "명사",
+    "meaning": "곡선, 성장 곡선",
+    "phonetic": "[kɜːrv]",
+    "contextNote": "J-curve처럼 가파른 성장세",
+    "level": "중급"
+  },
+  "customer": {
+    "word": "customer",
+    "partOfSpeech": "명사",
+    "meaning": "고객, 구매자",
+    "phonetic": "[ˈkʌstəmər]",
+    "contextNote": "제품의 실제 사용자",
+    "level": "중급"
+  },
+  "cut": {
+    "word": "cut",
+    "partOfSpeech": "동사/명사",
+    "meaning": "자르다, 삭감하다; 몫",
+    "phonetic": "[kʌt]",
+    "contextNote": "예산 삭감이나 지분 몫",
+    "level": "중급"
+  },
+  "cycle": {
+    "word": "cycle",
+    "partOfSpeech": "명사",
+    "meaning": "주기, 사이클, 순환",
+    "phonetic": "[ˈsaɪkəl]",
+    "contextNote": "세일즈나 시장의 순환 주기",
+    "level": "중급"
+  },
+  "dacron": {
+    "word": "dacron",
+    "partOfSpeech": "명사",
+    "meaning": "다크론 (인공 혈관 제작용 합성 섬유 패치)",
+    "phonetic": "[ˈdeɪkrɒn]",
+    "contextNote": "외과 수술에서 찢어진 대동맥을 덧댈 때 쓰는 특수 의료 직물",
+    "level": "고급"
+  },
+  "data": {
+    "word": "data",
+    "partOfSpeech": "명사",
+    "meaning": "데이터, 수치, 자료",
+    "phonetic": "[ˈdeɪtə / ˈdætə]",
+    "contextNote": "객관적 실적 근거",
+    "level": "중급"
+  },
+  "day": {
+    "word": "day",
+    "partOfSpeech": "명사",
+    "meaning": "날, 하루",
+    "phonetic": "[deɪ]",
+    "contextNote": "'first day'는 첫 출근일",
+    "level": "중급"
+  },
+  "days": {
+    "word": "days",
+    "partOfSpeech": "명사(복수)",
+    "meaning": "날들, 며칠",
+    "phonetic": "[deɪz]",
+    "contextNote": "기한 기간",
+    "level": "중급"
+  },
+  "deadline": {
+    "word": "deadline",
+    "partOfSpeech": "명사",
+    "meaning": "마감 시한, 제출 기한",
+    "phonetic": "[ˈdɛdlaɪn]",
+    "contextNote": "정해진 마감 시간",
+    "level": "중급"
+  },
+  "deal": {
+    "word": "deal",
+    "partOfSpeech": "명사/동사",
+    "meaning": "거래, 계약; 다루다",
+    "phonetic": "[diːl]",
+    "contextNote": "투자 유치나 M&A 계약 건",
+    "level": "중급"
+  },
+  "decent": {
+    "word": "decent",
+    "partOfSpeech": "형용사",
+    "meaning": "남부럽지 않은, 꽤 괜찮은",
+    "phonetic": "[ˈdiːsənt]",
+    "contextNote": "수준급의 만족스러운 조건",
+    "level": "기초"
+  },
+  "deconstruct": {
+    "word": "deconstruct",
+    "partOfSpeech": "동사",
+    "meaning": "해체 분석하다, 낱낱이 파헤치다",
+    "phonetic": "[ˌdiːkənˈstrʌkt]",
+    "contextNote": "상대의 논리를 낱낱이 분해해서 약점을 찾아냄",
+    "level": "고급"
+  },
+  "deep": {
+    "word": "deep",
+    "partOfSpeech": "형용사",
+    "meaning": "깊은, 심오한",
+    "phonetic": "[diːp]",
+    "contextNote": "기술이나 배경 지식의 깊이",
+    "level": "기초"
+  },
+  "default-alive": {
+    "word": "default-alive",
+    "partOfSpeech": "형용사",
+    "meaning": "추가 투자 없이도 자체 흑자 생존 가능한",
+    "phonetic": "[dɪˈfɔːlt əˈlaɪv]",
+    "contextNote": "스타트업이 현 자금으로 손익분기점을 넘길 수 있는 상태",
+    "level": "고급"
+  },
+  "defaultalive": {
+    "word": "defaultalive",
+    "partOfSpeech": "형용사",
+    "meaning": "추가 투자 없이도 자체 흑자 생존 가능한",
+    "phonetic": "[dɪˈfɔːlt əˈlaɪv]",
+    "contextNote": "스타트업이 현 자금으로 손익분기점을 넘길 수 있는 상태",
+    "level": "고급"
+  },
+  "defensive": {
+    "word": "defensive",
+    "partOfSpeech": "형용사",
+    "meaning": "방어적인, 수세에 몰린",
+    "phonetic": "[dɪˈfɛnsɪv]",
+    "contextNote": "공격에 수동적으로 방어만 하는 태도",
+    "level": "기초"
+  },
+  "deliverable": {
+    "word": "deliverable",
+    "partOfSpeech": "명사",
+    "meaning": "최종 산출물, 납품 결과물",
+    "phonetic": "[dɪˈlɪvərəbl]",
+    "contextNote": "약속된 기한까지 고객사나 상사에게 전달해야 할 완성품",
+    "level": "고급"
+  },
+  "demanding": {
+    "word": "demanding",
+    "partOfSpeech": "형용사",
+    "meaning": "요구 조건이 까다로운, 힘든",
+    "phonetic": "[dɪˈmændɪŋ]",
+    "contextNote": "눈높이가 극도로 높은 까다로운 상사나 고객",
+    "level": "기초"
+  },
+  "desk": {
+    "word": "desk",
+    "partOfSpeech": "명사",
+    "meaning": "책상, 집무실 책상",
+    "phonetic": "[dɛsk]",
+    "contextNote": "'on my desk by noon'(정오까지 내 책상 위에)",
+    "level": "중급"
+  },
+  "details": {
+    "word": "details",
+    "partOfSpeech": "명사(복수)",
+    "meaning": "세부 사항들",
+    "phonetic": "[ˈdiːteɪlz]",
+    "contextNote": "계약서나 환자 상태의 디테일",
+    "level": "중급"
+  },
+  "developers": {
+    "word": "developers",
+    "partOfSpeech": "명사(복수)",
+    "meaning": "소프트웨어 개발자들",
+    "phonetic": "[dɪˈvɛləpərz]",
+    "contextNote": "실제 코드를 작성하는 엔지니어들",
+    "level": "중급"
+  },
+  "difference": {
+    "word": "difference",
+    "partOfSpeech": "명사",
+    "meaning": "차이, 구별",
+    "phonetic": "[ˈdɪfrəns]",
+    "contextNote": "결정적 차별점",
+    "level": "중급"
+  },
+  "directors": {
+    "word": "directors",
+    "partOfSpeech": "명사(복수)",
+    "meaning": "이사들, 중역들",
+    "phonetic": "[dɪˈrɛktərz]",
+    "contextNote": "이사회 구성원들",
+    "level": "중급"
+  },
+  "dirty": {
+    "word": "dirty",
+    "partOfSpeech": "형용사",
+    "meaning": "치졸한, 비열한, 더러운",
+    "phonetic": "[ˈdɜːrti]",
+    "contextNote": "'He fights dirty'(상대 변호사는 온갖 치졸한 수법을 쓴다)",
+    "level": "중급"
+  },
+  "discuss": {
+    "word": "discuss",
+    "partOfSpeech": "동사",
+    "meaning": "논의하다, 협의하다",
+    "phonetic": "[dɪˈskʌs]",
+    "contextNote": "안건을 검토함",
+    "level": "중급"
+  },
+  "dislike": {
+    "word": "dislike",
+    "partOfSpeech": "동사/명사",
+    "meaning": "싫어하다; 반감",
+    "phonetic": "[dɪsˈlaɪk]",
+    "contextNote": "선호하지 않음",
+    "level": "중급"
+  },
+  "doctor": {
+    "word": "doctor",
+    "partOfSpeech": "명사",
+    "meaning": "의사, 박사",
+    "phonetic": "[ˈdɒktər]",
+    "contextNote": "수술실의 외과의",
+    "level": "중급"
+  },
+  "document": {
+    "word": "document",
+    "partOfSpeech": "명사",
+    "meaning": "문서, 서류",
+    "phonetic": "[ˈdɒkjʊmənt]",
+    "contextNote": "공식 법률/비즈니스 서면",
+    "level": "중급"
+  },
+  "doesn't": {
+    "word": "doesn't",
+    "partOfSpeech": "조동사",
+    "meaning": "하지 않는다 (does not의 축약)",
+    "phonetic": "[ˈdʌznt]",
+    "contextNote": "3인칭 단수 부정 조동사",
+    "level": "중급"
+  },
+  "don't": {
+    "word": "don't",
+    "partOfSpeech": "조동사",
+    "meaning": "하지 마라, 하지 않는다 (do not 축약)",
+    "phonetic": "[doʊnt]",
+    "contextNote": "부정 명령/부정문 조동사",
+    "level": "중급"
+  },
+  "downtown": {
+    "word": "downtown",
+    "partOfSpeech": "명사/부사",
+    "meaning": "다운타운, 도심 (월가/소호/첼시)",
+    "phonetic": "[ˈdaʊntaʊn]",
+    "contextNote": "맨해튼의 중심 상업/예술 지구",
+    "level": "중급"
+  },
+  "draft": {
+    "word": "draft",
+    "partOfSpeech": "명사/동사",
+    "meaning": "초안, 기안문; 작성하다",
+    "phonetic": "[dræft]",
+    "contextNote": "검토 대상이 되는 계약서 초안",
+    "level": "중급"
+  },
+  "dry": {
+    "word": "dry",
+    "partOfSpeech": "형용사",
+    "meaning": "단맛이 없는(드라이한), 건조한, 담백한",
+    "phonetic": "[draɪ]",
+    "contextNote": "와인이 달지 않고 산뜻함 또는 유머가 무미건조하게 날카로움",
+    "level": "기초"
+  },
+  "eighteen": {
+    "word": "eighteen",
+    "partOfSpeech": "수사",
+    "meaning": "18, 18개월",
+    "phonetic": "[ˌeɪˈtiːn]",
+    "contextNote": "런웨이 기간 단위",
+    "level": "기초"
+  },
+  "emergency": {
+    "word": "emergency",
+    "partOfSpeech": "명사/형용사",
+    "meaning": "응급, 비상사태; 긴급한",
+    "phonetic": "[ɪˈmɜːrdʒənsi]",
+    "contextNote": "수술실 초응급 호출",
+    "level": "중급"
+  },
+  "empty": {
+    "word": "empty",
+    "partOfSpeech": "형용사",
+    "meaning": "텅 빈, 실속 없는",
+    "phonetic": "[ˈɛmpti]",
+    "contextNote": "내용 없는 껍데기",
+    "level": "기초"
+  },
+  "endlessly": {
+    "word": "endlessly",
+    "partOfSpeech": "부사",
+    "meaning": "끝없이, 한없이",
+    "phonetic": "[ˈɛndləsli]",
+    "contextNote": "지속적으로 반복됨",
+    "level": "기초"
+  },
+  "enjoying": {
+    "word": "enjoying",
+    "partOfSpeech": "동사/현재분사",
+    "meaning": "즐기고 있는",
+    "phonetic": "[ɪnˈdʒɔɪɪŋ]",
+    "contextNote": "분위기나 대화를 즐김",
+    "level": "중급"
+  },
+  "enough": {
+    "word": "enough",
+    "partOfSpeech": "형용사/부사",
+    "meaning": "충분한, 족한",
+    "phonetic": "[ɪˈnʌf]",
+    "contextNote": "'Fair enough'(그 정도면 일리가 있군/좋아)",
+    "level": "기초"
+  },
+  "enterprise": {
+    "word": "enterprise",
+    "partOfSpeech": "명사",
+    "meaning": "대기업, 엔터프라이즈 기업 고객",
+    "phonetic": "[ˈɛntərpraɪz]",
+    "contextNote": "스타트업에서 최고 단가의 대기업 고객군",
+    "level": "고급"
+  },
+  "entire": {
+    "word": "entire",
+    "partOfSpeech": "형용사",
+    "meaning": "전체의, 온전한",
+    "phonetic": "[ɪnˈtaɪər]",
+    "contextNote": "모든 범위 포괄",
+    "level": "기초"
+  },
+  "equity": {
+    "word": "equity",
+    "partOfSpeech": "명사",
+    "meaning": "지분, 주식 지분율",
+    "phonetic": "[ˈɛkwəti]",
+    "contextNote": "창업자나 투자자가 보유한 회사의 소유 지분",
+    "level": "고급"
+  },
+  "european": {
+    "word": "european",
+    "partOfSpeech": "형용사/명사",
+    "meaning": "유럽의; 유럽인",
+    "phonetic": "[ˌjʊərəˈpiːən]",
+    "contextNote": "유럽 규제 당국이나 시장",
+    "level": "중급"
+  },
+  "even": {
+    "word": "even",
+    "partOfSpeech": "부사/형용사",
+    "meaning": "심지어, ~조차도; 평평한",
+    "phonetic": "[ˈiːvən]",
+    "contextNote": "극단적 상황 강조",
+    "level": "기초"
+  },
+  "evening": {
+    "word": "evening",
+    "partOfSpeech": "명사",
+    "meaning": "저녁, 밤",
+    "phonetic": "[ˈiːvnɪŋ]",
+    "contextNote": "칵테일 파티 시간",
+    "level": "중급"
+  },
+  "exception": {
+    "word": "exception",
+    "partOfSpeech": "명사",
+    "meaning": "예외, 특별 조항",
+    "phonetic": "[ɪkˈsɛpʃən]",
+    "contextNote": "규정 밖의 예외적 적용",
+    "level": "중급"
+  },
+  "exchange": {
+    "word": "exchange",
+    "partOfSpeech": "명사/동사",
+    "meaning": "교환, 대화; 주고받다",
+    "phonetic": "[ɪksˈtʃeɪndʒ]",
+    "contextNote": "의견이나 서류의 교환",
+    "level": "중급"
+  },
+  "exhibition": {
+    "word": "exhibition",
+    "partOfSpeech": "명사",
+    "meaning": "전시회, 전람회",
+    "phonetic": "[ˌɛksɪˈbɪʃən]",
+    "contextNote": "첼시 갤러리의 미술품 전시",
+    "level": "중급"
+  },
+  "expect": {
+    "word": "expect",
+    "partOfSpeech": "동사",
+    "meaning": "기대하다, 당연히 바라다",
+    "phonetic": "[ɪkˈspɛkt]",
+    "contextNote": "상대의 결과물을 요구함",
+    "level": "중급"
+  },
+  "expensive": {
+    "word": "expensive",
+    "partOfSpeech": "형용사",
+    "meaning": "비싼, 대가가 큰",
+    "phonetic": "[ɪkˈspɛnsɪv]",
+    "contextNote": "실수나 소송의 대가가 막대함",
+    "level": "기초"
+  },
+  "eyes": {
+    "word": "eyes",
+    "partOfSpeech": "명사(복수)",
+    "meaning": "눈, 시선",
+    "phonetic": "[aɪz]",
+    "contextNote": "관찰하는 시선",
+    "level": "중급"
+  },
+  "face": {
+    "word": "face",
+    "partOfSpeech": "명사/동사",
+    "meaning": "얼굴; 정면으로 마주하다",
+    "phonetic": "[feɪs]",
+    "contextNote": "'point a gun at your face'(총구를 면전에 들이댈 때)",
+    "level": "중급"
+  },
+  "fair": {
+    "word": "fair",
+    "partOfSpeech": "형용사",
+    "meaning": "공정한, 타당한",
+    "phonetic": "[fɛər]",
+    "contextNote": "'Fair enough'는 상대의 주장을 인정하는 쿨한 반응",
+    "level": "중급"
+  },
+  "fangs": {
+    "word": "fangs",
+    "partOfSpeech": "명사(복수)",
+    "meaning": "송곳니, 사나운 발톱",
+    "phonetic": "[fæŋz]",
+    "contextNote": "상대방의 공격적이고 매서운 무기",
+    "level": "중급"
+  },
+  "fast": {
+    "word": "fast",
+    "partOfSpeech": "형용사/부사",
+    "meaning": "빠른; 신속하게",
+    "phonetic": "[fæst]",
+    "contextNote": "속도의 신속함",
+    "level": "기초"
+  },
+  "features": {
+    "word": "features",
+    "partOfSpeech": "명사(복수)",
+    "meaning": "기능들, 특징들",
+    "phonetic": "[ˈfiːtʃərz]",
+    "contextNote": "제품 소프트웨어의 세부 기능",
+    "level": "중급"
+  },
+  "fights": {
+    "word": "fights",
+    "partOfSpeech": "동사",
+    "meaning": "싸우다, 다투다",
+    "phonetic": "[faɪts]",
+    "contextNote": "'He fights dirty'(그는 비열하게 싸운다)",
+    "level": "중급"
+  },
+  "filling": {
+    "word": "filling",
+    "partOfSpeech": "명사/현재분사",
+    "meaning": "채우기, 충전",
+    "phonetic": "[ˈfɪlɪŋ]",
+    "contextNote": "부족한 부분을 채움",
+    "level": "중급"
+  },
+  "fine": {
+    "word": "fine",
+    "partOfSpeech": "형용사/명사",
+    "meaning": "괜찮은, 훌륭한; 벌금",
+    "phonetic": "[faɪn]",
+    "contextNote": "양호한 상태",
+    "level": "중급"
+  },
+  "finish": {
+    "word": "finish",
+    "partOfSpeech": "동사/명사",
+    "meaning": "끝내다, 완결하다; 마감",
+    "phonetic": "[ˈfɪnɪʃ]",
+    "contextNote": "작업의 마무리",
+    "level": "중급"
+  },
+  "fire": {
+    "word": "fire",
+    "partOfSpeech": "명사/동사",
+    "meaning": "불; 해고하다, 발사하다",
+    "phonetic": "[ˈfaɪər]",
+    "contextNote": "열정 또는 조기 하차(You're fired)",
+    "level": "중급"
+  },
+  "firm": {
+    "word": "firm",
+    "partOfSpeech": "명사/형용사",
+    "meaning": "회사, 로펌; 단호한",
+    "phonetic": "[fɜːrm]",
+    "contextNote": "맨해튼의 최고 법률회사(Law firm)",
+    "level": "중급"
+  },
+  "firms": {
+    "word": "firms",
+    "partOfSpeech": "명사(복수/소유격)",
+    "meaning": "로펌의, 로펌들",
+    "phonetic": "[fɜːrmz]",
+    "contextNote": "법률회사의",
+    "level": "중급"
+  },
+  "first": {
+    "word": "first",
+    "partOfSpeech": "형용사/부사",
+    "meaning": "첫 번째의, 처음으로",
+    "phonetic": "[fɜːrst]",
+    "contextNote": "첫 출근",
+    "level": "기초"
+  },
+  "flawless": {
+    "word": "flawless",
+    "partOfSpeech": "형용사",
+    "meaning": "흠잡을 데 없는, 완벽한",
+    "phonetic": "[ˈflɔːlɪs]",
+    "contextNote": "단 하나의 결점도 없는 프로페셔널한 완성도",
+    "level": "고급"
+  },
+  "follow": {
+    "word": "follow",
+    "partOfSpeech": "동사",
+    "meaning": "따르다, 준수하다",
+    "phonetic": "[ˈfɒloʊ]",
+    "contextNote": "규정을 엄격히 따름",
+    "level": "중급"
+  },
+  "founder": {
+    "word": "founder",
+    "partOfSpeech": "명사",
+    "meaning": "창업자, 설립자",
+    "phonetic": "[ˈfaʊndər]",
+    "contextNote": "스타트업을 시작한 대표",
+    "level": "중급"
+  },
+  "founders": {
+    "word": "founders",
+    "partOfSpeech": "명사(복수/소유격)",
+    "meaning": "창업자들, 창업자의",
+    "phonetic": "[ˈfaʊndərz]",
+    "contextNote": "창업 멤버들",
+    "level": "중급"
+  },
+  "founding": {
+    "word": "founding",
+    "partOfSpeech": "형용사",
+    "meaning": "창립의, 창업 단계의",
+    "phonetic": "[ˈfaʊndɪŋ]",
+    "contextNote": "초기 설립 멤버",
+    "level": "기초"
+  },
+  "friction": {
+    "word": "friction",
+    "partOfSpeech": "명사",
+    "meaning": "마찰, 마찰 저항, 갈등",
+    "phonetic": "[ˈfrɪkʃən]",
+    "contextNote": "고객 온보딩 과정의 이탈 요인이나 내부 갈등",
+    "level": "중급"
+  },
+  "friday": {
+    "word": "friday",
+    "partOfSpeech": "명사",
+    "meaning": "금요일",
+    "phonetic": "[ˈfraɪdeɪ]",
+    "contextNote": "한 주의 마감 요일",
+    "level": "중급"
+  },
+  "ftc": {
+    "word": "ftc",
+    "partOfSpeech": "명사(약어)",
+    "meaning": "미국 연방거래위원회 (Federal Trade Commission)",
+    "phonetic": "[ɛf-tiː-siː]",
+    "contextNote": "미국의 빅테크 반독점 규제 총괄 국가기관",
+    "level": "고급"
+  },
+  "full": {
+    "word": "full",
+    "partOfSpeech": "형용사",
+    "meaning": "가득 찬, 완전한",
+    "phonetic": "[fʊl]",
+    "contextNote": "최대 한도",
+    "level": "기초"
+  },
+  "fun": {
+    "word": "fun",
+    "partOfSpeech": "명사/형용사",
+    "meaning": "재미, 유쾌함; 재미있는",
+    "phonetic": "[fʌn]",
+    "contextNote": "유쾌한 분위기",
+    "level": "중급"
+  },
+  "funding": {
+    "word": "funding",
+    "partOfSpeech": "명사",
+    "meaning": "투자 유치 자금, 자금 조달",
+    "phonetic": "[ˈfʌndɪŋ]",
+    "contextNote": "스타트업이 투자사로부터 받은 자본",
+    "level": "중급"
+  },
+  "generated": {
+    "word": "generated",
+    "partOfSpeech": "동사(과거분사)",
+    "meaning": "창출된, 생성된",
+    "phonetic": "[ˈdʒɛnəreɪtɪd]",
+    "contextNote": "매출이나 이익이 발생함",
+    "level": "중급"
+  },
+  "generous": {
+    "word": "generous",
+    "partOfSpeech": "형용사",
+    "meaning": "후한, 관대한",
+    "phonetic": "[ˈdʒɛnərəs]",
+    "contextNote": "조건이나 밸류에이션이 창업자에게 유리함",
+    "level": "기초"
+  },
+  "genuinely": {
+    "word": "genuinely",
+    "partOfSpeech": "부사",
+    "meaning": "진심으로, 진정으로",
+    "phonetic": "[ˈdʒɛnjuɪnli]",
+    "contextNote": "꾸밈없이 진실되게",
+    "level": "기초"
+  },
+  "get": {
+    "word": "get",
+    "partOfSpeech": "동사",
+    "meaning": "얻다, 데려오다, 이해하다",
+    "phonetic": "[ɡɛt]",
+    "contextNote": "결과를 얻어냄",
+    "level": "중급"
+  },
+  "getting": {
+    "word": "getting",
+    "partOfSpeech": "동사/현재분사",
+    "meaning": "얻는 중인, 되어가는",
+    "phonetic": "[ˈɡɛtɪŋ]",
+    "contextNote": "진행 과정",
+    "level": "중급"
+  },
+  "give": {
+    "word": "give",
+    "partOfSpeech": "동사",
+    "meaning": "주다, 양보하다",
+    "phonetic": "[ɡɪv]",
+    "contextNote": "조건을 부여함",
+    "level": "중급"
+  },
+  "go": {
+    "word": "go",
+    "partOfSpeech": "동사",
+    "meaning": "가다, 진행되다",
+    "phonetic": "[ɡoʊ]",
+    "contextNote": "실행에 옮김",
+    "level": "중급"
+  },
+  "good": {
+    "word": "good",
+    "partOfSpeech": "형용사",
+    "meaning": "좋은, 우수한",
+    "phonetic": "[ɡʊd]",
+    "contextNote": "긍정적 평가",
+    "level": "기초"
+  },
+  "google": {
+    "word": "google",
+    "partOfSpeech": "명사(고유명사)",
+    "meaning": "구글 (Google)",
+    "phonetic": "[ˈɡuːɡəl]",
+    "contextNote": "글로벌 빅테크 검색/AI 기업",
+    "level": "중급"
+  },
+  "got": {
+    "word": "got",
+    "partOfSpeech": "동사(과거)",
+    "meaning": "얻었다, 이해했다",
+    "phonetic": "[ɡɒt]",
+    "contextNote": "'I got it'(알겠습니다)",
+    "level": "중급"
+  },
+  "government": {
+    "word": "government",
+    "partOfSpeech": "명사",
+    "meaning": "정부, 당국",
+    "phonetic": "[ˈɡʌvərnmənt]",
+    "contextNote": "규제 감독 국가 기관",
+    "level": "중급"
+  },
+  "grab": {
+    "word": "grab",
+    "partOfSpeech": "동사",
+    "meaning": "움켜잡다, 한잔 걸치다",
+    "phonetic": "[ɡræb]",
+    "contextNote": "'grab a drink'는 가볍게 술 한잔하자는 친근한 제안",
+    "level": "중급"
+  },
+  "grand": {
+    "word": "grand",
+    "partOfSpeech": "형용사/명사",
+    "meaning": "웅장한, 대단한; 1,000달러(속어)",
+    "phonetic": "[ɡrænd]",
+    "contextNote": "스케일이 큼",
+    "level": "중급"
+  },
+  "grants": {
+    "word": "grants",
+    "partOfSpeech": "동사/명사",
+    "meaning": "부여하다, 허가하다; 보조금",
+    "phonetic": "[ɡrænts]",
+    "contextNote": "스톡옵션이나 지분을 부여함",
+    "level": "중급"
+  },
+  "great": {
+    "word": "great",
+    "partOfSpeech": "형용사",
+    "meaning": "훌륭한, 대단한",
+    "phonetic": "[ɡreɪt]",
+    "contextNote": "찬사 표현",
+    "level": "기초"
+  },
+  "ground": {
+    "word": "ground",
+    "partOfSpeech": "명사",
+    "meaning": "지면, 근거, 영역",
+    "phonetic": "[ɡraʊnd]",
+    "contextNote": "'hold your ground'는 물러서지 않고 자기 자리를 지킨다는 뜻",
+    "level": "중급"
+  },
+  "gun": {
+    "word": "gun",
+    "partOfSpeech": "명사",
+    "meaning": "총, 무기 (비유: 협상 무기)",
+    "phonetic": "[ɡʌn]",
+    "contextNote": "미드 슈츠에서 상대의 법적 압박 수단을 비유하는 핵심 단어",
+    "level": "미드 시그니처"
+  },
+  "half-million": {
+    "word": "half-million",
+    "partOfSpeech": "명사/수사",
+    "meaning": "50만 달러 (한화 약 7억 원)",
+    "phonetic": "[ˌhæf-ˈmɪljən]",
+    "contextNote": "초기 엔젤/시드 투자 금액 규모",
+    "level": "중급"
+  },
+  "halfmillion": {
+    "word": "halfmillion",
+    "partOfSpeech": "명사/수사",
+    "meaning": "50만 달러 (한화 약 7억 원)",
+    "phonetic": "[ˌhæf-ˈmɪljən]",
+    "contextNote": "초기 엔젤/시드 투자 금액 규모",
+    "level": "중급"
+  },
+  "handle": {
+    "word": "handle",
+    "partOfSpeech": "동사",
+    "meaning": "감당하다, 처리하다, 해결하다",
+    "phonetic": "[ˈhændəl]",
+    "contextNote": "'Can you handle it?'(자네가 감당할 수 있겠나?)",
+    "level": "중급"
+  },
+  "hands": {
+    "word": "hands",
+    "partOfSpeech": "명사(복수)",
+    "meaning": "손, 수중에 있는 패",
+    "phonetic": "[hændz]",
+    "contextNote": "주도권이나 역량",
+    "level": "중급"
+  },
+  "hard": {
+    "word": "hard",
+    "partOfSpeech": "형용사/부사",
+    "meaning": "어려운, 단단한; 열심히",
+    "phonetic": "[hɑːrd]",
+    "contextNote": "난이도가 높음",
+    "level": "기초"
+  },
+  "headache": {
+    "word": "headache",
+    "partOfSpeech": "명사",
+    "meaning": "골칫거리, 두통",
+    "phonetic": "[ˈhɛdeɪk]",
+    "contextNote": "까다로운 소송이나 규제 문제",
+    "level": "중급"
+  },
+  "hear": {
+    "word": "hear",
+    "partOfSpeech": "동사",
+    "meaning": "듣다, 소식을 듣다",
+    "phonetic": "[hɪər]",
+    "contextNote": "의견 청취",
+    "level": "중급"
+  },
+  "henderson": {
+    "word": "henderson",
+    "partOfSpeech": "명사(고유명사)",
+    "meaning": "헨더슨 (합병 의뢰 기업명)",
+    "phonetic": "[ˈhɛndərsən]",
+    "contextNote": "첫 출근날 하비가 맡긴 대형 합병 케이스의 고객사명",
+    "level": "중급"
+  },
+  "hepatic": {
+    "word": "hepatic",
+    "partOfSpeech": "형용사",
+    "meaning": "(의학) 간의, 간장의",
+    "phonetic": "[hɪˈpætɪk]",
+    "contextNote": "수술실에서 간 동맥이나 조직을 가리키는 외과 용어",
+    "level": "고급"
+  },
+  "hero": {
+    "word": "hero",
+    "partOfSpeech": "명사",
+    "meaning": "주인공, 영웅",
+    "phonetic": "[ˈhɪəroʊ]",
+    "contextNote": "극을 이끄는 주역",
+    "level": "중급"
+  },
+  "hesitation": {
+    "word": "hesitation",
+    "partOfSpeech": "명사",
+    "meaning": "망설임, 주저함",
+    "phonetic": "[ˌhɛzɪˈteɪʃən]",
+    "contextNote": "결단력 부족",
+    "level": "중급"
+  },
+  "high": {
+    "word": "high",
+    "partOfSpeech": "형용사/부사",
+    "meaning": "높은; 높게",
+    "phonetic": "[haɪ]",
+    "contextNote": "수치나 위험도가 높음",
+    "level": "기초"
+  },
+  "higher": {
+    "word": "higher",
+    "partOfSpeech": "형용사(비교급)",
+    "meaning": "더 높은",
+    "phonetic": "[ˈhaɪər]",
+    "contextNote": "더 높은 지분가치나 비용",
+    "level": "기초"
+  },
+  "hit": {
+    "word": "hit",
+    "partOfSpeech": "동사/명사",
+    "meaning": "달성하다, 치다; 대성공",
+    "phonetic": "[hɪt]",
+    "contextNote": "마일스톤을 달성함",
+    "level": "중급"
+  },
+  "hold": {
+    "word": "hold",
+    "partOfSpeech": "동사",
+    "meaning": "쥐다, 보유하다, 유지하다",
+    "phonetic": "[hoʊld]",
+    "contextNote": "'hold all the leverage'(모든 협상 주도권을 쥐다)",
+    "level": "미드 시그니처"
+  },
+  "home": {
+    "word": "home",
+    "partOfSpeech": "명사/부사",
+    "meaning": "집, 본거지; 집으로",
+    "phonetic": "[hoʊm]",
+    "contextNote": "퇴근",
+    "level": "중급"
+  },
+  "honored": {
+    "word": "honored",
+    "partOfSpeech": "형용사",
+    "meaning": "영광인, 영광으로 생각하는",
+    "phonetic": "[ˈɒnərd]",
+    "contextNote": "파트너의 초대에 정중히 응하는 인사",
+    "level": "기초"
+  },
+  "hosting": {
+    "word": "hosting",
+    "partOfSpeech": "동사/현재분사",
+    "meaning": "주최하는, 호스팅하는",
+    "phonetic": "[ˈhoʊstɪŋ]",
+    "contextNote": "이벤트나 파티를 주최함",
+    "level": "중급"
+  },
+  "hr's": {
+    "word": "hr's",
+    "partOfSpeech": "명사(소유격)",
+    "meaning": "인사팀의 (Human Resources)",
+    "phonetic": "[eɪtʃ-ɑːrz]",
+    "contextNote": "인사과 규정",
+    "level": "중급"
+  },
+  "hrs": {
+    "word": "hrs",
+    "partOfSpeech": "명사(약어)",
+    "meaning": "시간 (Hours의 약어)",
+    "phonetic": "[ˈaʊərz]",
+    "contextNote": "수술이나 납기 소요 시간",
+    "level": "중급"
+  },
+  "hundred": {
+    "word": "hundred",
+    "partOfSpeech": "수사",
+    "meaning": "100, 수백",
+    "phonetic": "[ˈhʌndrəd]",
+    "contextNote": "백 단위 숫자",
+    "level": "기초"
+  },
+  "hygiene": {
+    "word": "hygiene",
+    "partOfSpeech": "명사",
+    "meaning": "위생, 기초 원칙 관리",
+    "phonetic": "[ˈhaɪdʒiːn]",
+    "contextNote": "수술실 무균 원칙 또는 코드 기본 위생 관리",
+    "level": "중급"
+  },
+  "i'd": {
+    "word": "i'd",
+    "partOfSpeech": "대명사+조동사",
+    "meaning": "나라면 ~하겠다 (I would / I had 축약)",
+    "phonetic": "[aɪd]",
+    "contextNote": "가정법 구어 표현",
+    "level": "중급"
+  },
+  "i'll": {
+    "word": "i'll",
+    "partOfSpeech": "대명사+조동사",
+    "meaning": "내가 ~하겠다 (I will 축약)",
+    "phonetic": "[aɪl]",
+    "contextNote": "단호한 결심과 약속",
+    "level": "기초"
+  },
+  "i'm": {
+    "word": "i'm",
+    "partOfSpeech": "대명사+동사",
+    "meaning": "나는 ~이다 (I am 축약)",
+    "phonetic": "[aɪm]",
+    "contextNote": "자기소개 및 상태",
+    "level": "기초"
+  },
+  "immediately": {
+    "word": "immediately",
+    "partOfSpeech": "부사",
+    "meaning": "즉시, 곧바로",
+    "phonetic": "[ɪˈmiːdiətli]",
+    "contextNote": "지체 없이 실행함",
+    "level": "기초"
+  },
+  "impact": {
+    "word": "impact",
+    "partOfSpeech": "명사/동사",
+    "meaning": "영향, 충격; 영향을 미치다",
+    "phonetic": "[ˈɪmpækt]",
+    "contextNote": "시장에 미치는 파급력",
+    "level": "중급"
+  },
+  "impressive": {
+    "word": "impressive",
+    "partOfSpeech": "형용사",
+    "meaning": "인상적인, 감탄스러운",
+    "phonetic": "[ɪmˈprɛsɪv]",
+    "contextNote": "파트너가 성과를 칭찬할 때 사용",
+    "level": "기초"
+  },
+  "incentives": {
+    "word": "incentives",
+    "partOfSpeech": "명사(복수)",
+    "meaning": "인센티브, 장려책, 동기 부여",
+    "phonetic": "[ɪnˈsɛntɪvz]",
+    "contextNote": "성과에 따른 보상 체계",
+    "level": "중급"
+  },
+  "increase": {
+    "word": "increase",
+    "partOfSpeech": "동사/명사",
+    "meaning": "증가시키다, 늘리다; 증가",
+    "phonetic": "[ɪnˈkriːs]",
+    "contextNote": "성장률이나 혈압이 오름",
+    "level": "중급"
+  },
+  "inferior": {
+    "word": "inferior",
+    "partOfSpeech": "형용사",
+    "meaning": "열등한, 질이 떨어지는",
+    "phonetic": "[ɪnˈfɪəriər]",
+    "contextNote": "경쟁사 대비 부족한 상태",
+    "level": "기초"
+  },
+  "injunction": {
+    "word": "injunction",
+    "partOfSpeech": "명사",
+    "meaning": "(법원) 가처분 명령, 금지 명령",
+    "phonetic": "[ɪnˈdʒʌŋkʃən]",
+    "contextNote": "상대방의 불법 행위를 즉시 중단시키는 강력한 법원 명령",
+    "level": "미드 시그니처"
+  },
+  "ink": {
+    "word": "ink",
+    "partOfSpeech": "명사/동사",
+    "meaning": "잉크; 계약서에 최종 서명하다",
+    "phonetic": "[ɪŋk]",
+    "contextNote": "'ink the deal'은 계약서에 잉크로 정식 서명한다는 뜻",
+    "level": "중급"
+  },
+  "instead": {
+    "word": "instead",
+    "partOfSpeech": "부사",
+    "meaning": "대신에, 그보다는",
+    "phonetic": "[ɪnˈstɛd]",
+    "contextNote": "대안을 제시함",
+    "level": "기초"
+  },
+  "intact": {
+    "word": "intact",
+    "partOfSpeech": "형용사",
+    "meaning": "온전한, 손상되지 않은",
+    "phonetic": "[ɪnˈtækt]",
+    "contextNote": "혈관이나 핵심 지분이 훼손 없이 유지됨",
+    "level": "기초"
+  },
+  "integration": {
+    "word": "integration",
+    "partOfSpeech": "명사",
+    "meaning": "통합, 연동",
+    "phonetic": "[ˌɪntɪˈɡreɪʃən]",
+    "contextNote": "두 시스템이나 인수 기업의 물리적 결합",
+    "level": "중급"
+  },
+  "internal": {
+    "word": "internal",
+    "partOfSpeech": "형용사",
+    "meaning": "내부의, 체내의",
+    "phonetic": "[ɪnˈtɜːrnəl]",
+    "contextNote": "회사 내부 또는 체내 장기",
+    "level": "기초"
+  },
+  "internet": {
+    "word": "internet",
+    "partOfSpeech": "명사",
+    "meaning": "인터넷",
+    "phonetic": "[ˈɪntərnɛt]",
+    "contextNote": "온라인 네트워크",
+    "level": "중급"
+  },
+  "introducing": {
+    "word": "introducing",
+    "partOfSpeech": "동사/현재분사",
+    "meaning": "소개하는, 도입하는",
+    "phonetic": "[ˌɪntrəˈdjuːsɪŋ]",
+    "contextNote": "새 파트너를 소개함",
+    "level": "중급"
+  },
+  "invest": {
+    "word": "invest",
+    "partOfSpeech": "동사",
+    "meaning": "투자하다",
+    "phonetic": "[ɪnˈvɛst]",
+    "contextNote": "자본을 투입함",
+    "level": "중급"
+  },
+  "inviting": {
+    "word": "inviting",
+    "partOfSpeech": "형용사/현재분사",
+    "meaning": "매력적인; 초대하는",
+    "phonetic": "[ɪnˈvaɪtɪŋ]",
+    "contextNote": "흥미를 끄는 제안",
+    "level": "기초"
+  },
+  "ischemic": {
+    "word": "ischemic",
+    "partOfSpeech": "형용사",
+    "meaning": "(의학) 허혈성의, 혈류가 차단된",
+    "phonetic": "[ɪsˈkiːmɪk]",
+    "contextNote": "혈류가 막혀 산소 공급이 중단된 응급 외과 상태",
+    "level": "고급"
+  },
+  "issuing": {
+    "word": "issuing",
+    "partOfSpeech": "동사/현재분사",
+    "meaning": "발행하는, 교부하는",
+    "phonetic": "[ˈɪʃuːɪŋ]",
+    "contextNote": "신주나 법원 영장을 발행함",
+    "level": "중급"
+  },
+  "it's": {
+    "word": "it's",
+    "partOfSpeech": "대명사+동사",
+    "meaning": "그것은 ~이다 (it is의 축약)",
+    "phonetic": "[ɪts]",
+    "contextNote": "지시 대명사 축약형",
+    "level": "기초"
+  },
+  "just": {
+    "word": "just",
+    "partOfSpeech": "부사/형용사",
+    "meaning": "단지, 방금; 공정한",
+    "phonetic": "[dʒʌst]",
+    "contextNote": "단순 한정 또는 시점 강조",
+    "level": "기초"
+  },
+  "keep": {
+    "word": "keep",
+    "partOfSpeech": "동사",
+    "meaning": "유지하다, 계속하다",
+    "phonetic": "[kiːp]",
+    "contextNote": "상태 유지",
+    "level": "중급"
+  },
+  "keeping": {
+    "word": "keeping",
+    "partOfSpeech": "동사/현재분사",
+    "meaning": "유지하는 중인",
+    "phonetic": "[ˈkiːpɪŋ]",
+    "contextNote": "계속해서 지킴",
+    "level": "중급"
+  },
+  "khan": {
+    "word": "khan",
+    "partOfSpeech": "명사(고유명사)",
+    "meaning": "리나 칸 (Lina Khan, 전 미국 FTC 의장)",
+    "phonetic": "[kɑːn]",
+    "contextNote": "빅테크 반독점 규제의 상징적인 인물",
+    "level": "중급"
+  },
+  "kindly": {
+    "word": "kindly",
+    "partOfSpeech": "부사",
+    "meaning": "친절하게, 부디",
+    "phonetic": "[ˈkaɪndli]",
+    "contextNote": "정중한 요청",
+    "level": "기초"
+  },
+  "knot": {
+    "word": "knot",
+    "partOfSpeech": "명사/동사",
+    "meaning": "매듭; 매듭짓다",
+    "phonetic": "[nɒt]",
+    "contextNote": "외과 봉합사의 단단한 매듭",
+    "level": "중급"
+  },
+  "know": {
+    "word": "know",
+    "partOfSpeech": "동사",
+    "meaning": "알다, 이해하다",
+    "phonetic": "[noʊ]",
+    "contextNote": "지식이나 상황 파악",
+    "level": "중급"
+  },
+  "late-night": {
+    "word": "late-night",
+    "partOfSpeech": "형용사/명사",
+    "meaning": "심야의, 늦은 밤의",
+    "phonetic": "[ˌleɪtˈnaɪt]",
+    "contextNote": "새벽 야근이나 심야 미팅",
+    "level": "중급"
+  },
+  "latenight": {
+    "word": "latenight",
+    "partOfSpeech": "형용사/명사",
+    "meaning": "심야의, 늦은 밤의",
+    "phonetic": "[ˌleɪtˈnaɪt]",
+    "contextNote": "새벽 야근이나 심야 미팅",
+    "level": "중급"
+  },
+  "law": {
+    "word": "law",
+    "partOfSpeech": "명사",
+    "meaning": "법, 법률",
+    "phonetic": "[lɔː]",
+    "contextNote": "법리 및 규범",
+    "level": "중급"
+  },
+  "lawyers": {
+    "word": "lawyers",
+    "partOfSpeech": "명사(복수)",
+    "meaning": "변호사들",
+    "phonetic": "[ˈlɔːjərz]",
+    "contextNote": "로펌의 법률 전문가들",
+    "level": "중급"
+  },
+  "layer": {
+    "word": "layer",
+    "partOfSpeech": "명사",
+    "meaning": "계층, 레이어",
+    "phonetic": "[ˈleɪər]",
+    "contextNote": "소프트웨어 스택이나 혈관의 층",
+    "level": "중급"
+  },
+  "leaks": {
+    "word": "leaks",
+    "partOfSpeech": "명사(복수)/동사",
+    "meaning": "유출, 누수; 새어나가다",
+    "phonetic": "[liːks]",
+    "contextNote": "기밀 정보 유출이나 수술 혈관 누출",
+    "level": "중급"
+  },
+  "led": {
+    "word": "led",
+    "partOfSpeech": "동사(과거)",
+    "meaning": "이끌었다, 주도했다",
+    "phonetic": "[lɛd]",
+    "contextNote": "라운드를 리드함",
+    "level": "중급"
+  },
+  "left": {
+    "word": "left",
+    "partOfSpeech": "형용사/동사(과거)",
+    "meaning": "남겨진; 왼쪽의; 떠났다",
+    "phonetic": "[lɛft]",
+    "contextNote": "남은 자본이나 기한",
+    "level": "중급"
+  },
+  "legal": {
+    "word": "legal",
+    "partOfSpeech": "형용사",
+    "meaning": "법적인, 법률의",
+    "phonetic": "[ˈliːɡəl]",
+    "contextNote": "법률 드라마의 핵심 키워드",
+    "level": "기초"
+  },
+  "let's": {
+    "word": "let's",
+    "partOfSpeech": "동사(청유형)",
+    "meaning": "우리 ~하자 (Let us 축약)",
+    "phonetic": "[lɛts]",
+    "contextNote": "제안",
+    "level": "중급"
+  },
+  "lets": {
+    "word": "lets",
+    "partOfSpeech": "동사(청유형)",
+    "meaning": "우리 ~하자 (Let us의 축약)",
+    "phonetic": "[lɛts]",
+    "contextNote": "제안",
+    "level": "중급"
+  },
+  "leverage": {
+    "word": "leverage",
+    "partOfSpeech": "명사/동사",
+    "meaning": "협상 주도권, 지렛대 우위; 활용하다",
+    "phonetic": "[ˈlɛvərɪdʒ]",
+    "contextNote": "상대를 굴복시킬 수 있는 결정적 협상 패",
+    "level": "미드 시그니처"
+  },
+  "life's": {
+    "word": "life's",
+    "partOfSpeech": "명사(소유격)",
+    "meaning": "생명의, 삶의",
+    "phonetic": "[laɪfs]",
+    "contextNote": "환자의 생명",
+    "level": "중급"
+  },
+  "lifes": {
+    "word": "lifes",
+    "partOfSpeech": "명사(소유격)",
+    "meaning": "생명의, 삶의",
+    "phonetic": "[laɪfs]",
+    "contextNote": "환자의 생명",
+    "level": "중급"
+  },
+  "like": {
+    "word": "like",
+    "partOfSpeech": "동사/전치사",
+    "meaning": "좋아하다; ~처럼, 같은",
+    "phonetic": "[laɪk]",
+    "contextNote": "유사성 비유",
+    "level": "중급"
+  },
+  "lina": {
+    "word": "lina",
+    "partOfSpeech": "명사(고유명사)",
+    "meaning": "리나 (Lina Khan)",
+    "phonetic": "[ˈliːnə]",
+    "contextNote": "FTC 반독점 수장의 이름",
+    "level": "중급"
+  },
+  "listen": {
+    "word": "listen",
+    "partOfSpeech": "동사",
+    "meaning": "경청하다, 귀 기울이다",
+    "phonetic": "[ˈlɪsən]",
+    "contextNote": "집중해서 들음",
+    "level": "중급"
+  },
+  "little": {
+    "word": "little",
+    "partOfSpeech": "형용사/부사",
+    "meaning": "작은, 거의 없는",
+    "phonetic": "[ˈlɪtl]",
+    "contextNote": "양의 적음",
+    "level": "기초"
+  },
+  "look": {
+    "word": "look",
+    "partOfSpeech": "동사/명사",
+    "meaning": "보다, 바라보다; 모습",
+    "phonetic": "[lʊk]",
+    "contextNote": "관찰",
+    "level": "중급"
+  },
+  "looking": {
+    "word": "looking",
+    "partOfSpeech": "동사/현재분사",
+    "meaning": "찾고 있는, 바라보는",
+    "phonetic": "[ˈlʊkɪŋ]",
+    "contextNote": "탐색 중",
+    "level": "중급"
+  },
+  "looks": {
+    "word": "looks",
+    "partOfSpeech": "동사",
+    "meaning": "~처럼 보이다",
+    "phonetic": "[lʊks]",
+    "contextNote": "외견상 상태",
+    "level": "중급"
+  },
+  "loophole": {
+    "word": "loophole",
+    "partOfSpeech": "명사",
+    "meaning": "(법률·계약의) 허점, 빠져나갈 구멍",
+    "phonetic": "[ˈluːphoʊl]",
+    "contextNote": "교묘하게 규제를 피하는 법적 구멍",
+    "level": "미드 시그니처"
+  },
+  "lot": {
+    "word": "lot",
+    "partOfSpeech": "명사",
+    "meaning": "많음 (a lot of)",
+    "phonetic": "[lɒt]",
+    "contextNote": "다량",
+    "level": "중급"
+  },
+  "love": {
+    "word": "love",
+    "partOfSpeech": "동사/명사",
+    "meaning": "사랑하다; 애정",
+    "phonetic": "[lʌv]",
+    "contextNote": "강한 호감",
+    "level": "중급"
+  },
+  "m": {
+    "word": "m",
+    "partOfSpeech": "명사(약어)",
+    "meaning": "백만 (Million의 약어, 예: $30M)",
+    "phonetic": "[ɛm]",
+    "contextNote": "달러 금액 단위",
+    "level": "중급"
+  },
+  "ma": {
+    "word": "ma",
+    "partOfSpeech": "명사(약어)",
+    "meaning": "기업 인수합병 (M&A: Mergers and Acquisitions)",
+    "phonetic": "[ɛm-ænd-eɪ]",
+    "contextNote": "기업의 결합과 인수 거래",
+    "level": "고급"
+  },
+  "macroeconomic": {
+    "word": "macroeconomic",
+    "partOfSpeech": "형용사",
+    "meaning": "거시경제의 (금리/인플레이션 등)",
+    "phonetic": "[ˌmækroʊˌiːkəˈnɒmɪk]",
+    "contextNote": "개별 기업을 초월한 전반적 경제 환경",
+    "level": "고급"
+  },
+  "make": {
+    "word": "make",
+    "partOfSpeech": "동사",
+    "meaning": "만들다, 해내다",
+    "phonetic": "[meɪk]",
+    "contextNote": "'make the deadline'(마감을 맞추다)",
+    "level": "중급"
+  },
+  "marcus": {
+    "word": "marcus",
+    "partOfSpeech": "명사(고유명사)",
+    "meaning": "마커스 (극 중 캐릭터명)",
+    "phonetic": "[ˈmɑːrkəs]",
+    "contextNote": "등장인물 이름",
+    "level": "중급"
+  },
+  "margins": {
+    "word": "margins",
+    "partOfSpeech": "명사(복수)",
+    "meaning": "이익률, 마진, 여유",
+    "phonetic": "[ˈmɑːrdʒɪnz]",
+    "contextNote": "기업의 순이익 비율",
+    "level": "중급"
+  },
+  "market": {
+    "word": "market",
+    "partOfSpeech": "명사",
+    "meaning": "시장, 증시",
+    "phonetic": "[ˈmɑːrkɪt]",
+    "contextNote": "월가 시장이나 제품 시장",
+    "level": "중급"
+  },
+  "marketing": {
+    "word": "marketing",
+    "partOfSpeech": "명사",
+    "meaning": "마케팅, 홍보",
+    "phonetic": "[ˈmɑːrkɪtɪŋ]",
+    "contextNote": "시장 판매 촉진 활동",
+    "level": "중급"
+  },
+  "meet": {
+    "word": "meet",
+    "partOfSpeech": "동사",
+    "meaning": "만나다, 충족시키다",
+    "phonetic": "[miːt]",
+    "contextNote": "기준이나 목표를 맞춤",
+    "level": "중급"
+  },
+  "mentorship": {
+    "word": "mentorship",
+    "partOfSpeech": "명사",
+    "meaning": "멘토십, 지도 편달",
+    "phonetic": "[ˈmɛntɔːrʃɪp]",
+    "contextNote": "파트너가 주니어 변호사를 이끌어주는 관계",
+    "level": "중급"
+  },
+  "mere": {
+    "word": "mere",
+    "partOfSpeech": "형용사",
+    "meaning": "단순한, 겨우 ~에 불과한",
+    "phonetic": "[mɪər]",
+    "contextNote": "사소함을 강조",
+    "level": "기초"
+  },
+  "merger": {
+    "word": "merger",
+    "partOfSpeech": "명사",
+    "meaning": "(기업) 합병",
+    "phonetic": "[ˈmɜːrdʒər]",
+    "contextNote": "두 기업의 결합",
+    "level": "중급"
+  },
+  "merit": {
+    "word": "merit",
+    "partOfSpeech": "명사",
+    "meaning": "가치, 실력, 본안(법률)",
+    "phonetic": "[ˈmɛrɪt]",
+    "contextNote": "'on the merits'는 절차적 꼼수가 아닌 사건의 실체적 본안으로 승부한다는 뜻",
+    "level": "고급"
+  },
+  "mezcal": {
+    "word": "mezcal",
+    "partOfSpeech": "명사",
+    "meaning": "메스칼 (멕시코산 훈연 용설란 고급 증류주)",
+    "phonetic": "[mɛsˈkæl]",
+    "contextNote": "데킬라보다 깊은 스모키한 풍미를 지닌 고급 칵테일 베이스",
+    "level": "중급"
+  },
+  "mfn": {
+    "word": "mfn",
+    "partOfSpeech": "명사(약어)",
+    "meaning": "최혜국 대우 조항 (Most Favored Nation)",
+    "phonetic": "[ɛm-ɛf-ɛn]",
+    "contextNote": "투자 계약에서 후속 투자자에게 유리한 조건 발생 시 기존 투자자에게도 자동 적용되는 강력한 권리",
+    "level": "고급"
+  },
+  "micro-tear": {
+    "word": "micro-tear",
+    "partOfSpeech": "명사",
+    "meaning": "(의학) 미세 파열",
+    "phonetic": "[ˈmaɪkroʊ-tɛər]",
+    "contextNote": "혈관이나 조직에 발생한 미세한 찢어짐",
+    "level": "고급"
+  },
+  "microtear": {
+    "word": "microtear",
+    "partOfSpeech": "명사",
+    "meaning": "(의학) 미세 파열",
+    "phonetic": "[ˈmaɪkroʊ-tɛər]",
+    "contextNote": "혈관이나 조직에 발생한 미세한 찢어짐",
+    "level": "고급"
+  },
+  "milestone": {
+    "word": "milestone",
+    "partOfSpeech": "명사",
+    "meaning": "마일스톤, 중대 분기점",
+    "phonetic": "[ˈmaɪlstoʊn]",
+    "contextNote": "후속 투자를 받기 위해 달성해야 할 핵심 개발 단계",
+    "level": "중급"
+  },
+  "million": {
+    "word": "million",
+    "partOfSpeech": "수사",
+    "meaning": "100만 (한화 약 13~14억 원)",
+    "phonetic": "[ˈmɪljən]",
+    "contextNote": "투자 금액 단위",
+    "level": "기초"
+  },
+  "minimizes": {
+    "word": "minimizes",
+    "partOfSpeech": "동사",
+    "meaning": "최소화하다",
+    "phonetic": "[ˈmɪnɪmaɪzɪz]",
+    "contextNote": "리스크를 최대로 줄임",
+    "level": "중급"
+  },
+  "minus": {
+    "word": "minus",
+    "partOfSpeech": "전치사/명사",
+    "meaning": "~을 제외하고, 마이너스",
+    "phonetic": "[ˈmaɪnəs]",
+    "contextNote": "손실 상태",
+    "level": "중급"
+  },
+  "minute": {
+    "word": "minute",
+    "partOfSpeech": "명사",
+    "meaning": "분, 잠깐",
+    "phonetic": "[ˈmɪnɪt]",
+    "contextNote": "시간 단위",
+    "level": "중급"
+  },
+  "minutes": {
+    "word": "minutes",
+    "partOfSpeech": "명사(복수)",
+    "meaning": "분들, 회의록",
+    "phonetic": "[ˈmɪnɪts]",
+    "contextNote": "수술 잔여 시간 또는 이사회 의사록",
+    "level": "중급"
+  },
+  "moat": {
+    "word": "moat",
+    "partOfSpeech": "명사",
+    "meaning": "경제적 해자 (모방 불가능한 독점적 경쟁 우위)",
+    "phonetic": "[moʊt]",
+    "contextNote": "경쟁자가 쉽게 침범할 수 없는 진입 장벽",
+    "level": "고급"
+  },
+  "monday": {
+    "word": "monday",
+    "partOfSpeech": "명사",
+    "meaning": "월요일",
+    "phonetic": "[ˈmʌndeɪ]",
+    "contextNote": "주초",
+    "level": "중급"
+  },
+  "money": {
+    "word": "money",
+    "partOfSpeech": "명사",
+    "meaning": "돈, 자본",
+    "phonetic": "[ˈmʌni]",
+    "contextNote": "재정 자원",
+    "level": "중급"
+  },
+  "monitor": {
+    "word": "monitor",
+    "partOfSpeech": "동사/명사",
+    "meaning": "모니터링하다, 감시하다; 화면",
+    "phonetic": "[ˈmɒnɪtər]",
+    "contextNote": "환자의 생체 징후를 실시간 추적함",
+    "level": "중급"
+  },
+  "month": {
+    "word": "month",
+    "partOfSpeech": "명사",
+    "meaning": "월, 한 달",
+    "phonetic": "[mʌnθ]",
+    "contextNote": "기간",
+    "level": "중급"
+  },
+  "months": {
+    "word": "months",
+    "partOfSpeech": "명사(복수)",
+    "meaning": "개월들",
+    "phonetic": "[mʌnθs]",
+    "contextNote": "남은 런웨이 개월 수",
+    "level": "중급"
+  },
+  "more": {
+    "word": "more",
+    "partOfSpeech": "형용사/부사",
+    "meaning": "더 많은, 더",
+    "phonetic": "[mɔːr]",
+    "contextNote": "비교급 증가",
+    "level": "기초"
+  },
+  "morning": {
+    "word": "morning",
+    "partOfSpeech": "명사",
+    "meaning": "아침, 오전",
+    "phonetic": "[ˈmɔːrnɪŋ]",
+    "contextNote": "아침 시간",
+    "level": "중급"
+  },
+  "most": {
+    "word": "most",
+    "partOfSpeech": "형용사/부사",
+    "meaning": "가장 많은, 대부분의",
+    "phonetic": "[moʊst]",
+    "contextNote": "최상급",
+    "level": "기초"
+  },
+  "mostly": {
+    "word": "mostly",
+    "partOfSpeech": "부사",
+    "meaning": "주로, 대부분은",
+    "phonetic": "[ˈmoʊstli]",
+    "contextNote": "대체로",
+    "level": "기초"
+  },
+  "move": {
+    "word": "move",
+    "partOfSpeech": "명사/동사",
+    "meaning": "수, 조치, 행동; 움직이다",
+    "phonetic": "[muːv]",
+    "contextNote": "'his next move'는 체스나 협상에서 상대의 다음 수를 뜻함",
+    "level": "중급"
+  },
+  "moves": {
+    "word": "moves",
+    "partOfSpeech": "동사/명사(복수)",
+    "meaning": "움직이다; 전술들",
+    "phonetic": "[muːvz]",
+    "contextNote": "행동 조치",
+    "level": "중급"
+  },
+  "much": {
+    "word": "much",
+    "partOfSpeech": "형용사/부사",
+    "meaning": "많은, 훨씬",
+    "phonetic": "[mʌtʃ]",
+    "contextNote": "양의 풍부함",
+    "level": "기초"
+  },
+  "nadella's": {
+    "word": "nadella's",
+    "partOfSpeech": "명사(소유격)",
+    "meaning": "나델라의 (Satya Nadella, MS CEO)",
+    "phonetic": "[nəˈdɛləz]",
+    "contextNote": "마이크로소프트 CEO의 관점",
+    "level": "중급"
+  },
+  "nadellas": {
+    "word": "nadellas",
+    "partOfSpeech": "명사(소유격)",
+    "meaning": "나델라의 (Satya Nadella, MS CEO)",
+    "phonetic": "[nəˈdɛləz]",
+    "contextNote": "마이크로소프트 CEO의 관점",
+    "level": "중급"
+  },
+  "need": {
+    "word": "need",
+    "partOfSpeech": "동사/명사",
+    "meaning": "필요로 하다; 필요",
+    "phonetic": "[niːd]",
+    "contextNote": "필수 요구",
+    "level": "중급"
+  },
+  "needed": {
+    "word": "needed",
+    "partOfSpeech": "동사(과거)",
+    "meaning": "필요했다",
+    "phonetic": "[ˈniːdɪd]",
+    "contextNote": "과거 필요",
+    "level": "중급"
+  },
+  "negotiate": {
+    "word": "negotiate",
+    "partOfSpeech": "동사",
+    "meaning": "협상하다, 타결짓다",
+    "phonetic": "[nɪˈɡoʊʃieɪt]",
+    "contextNote": "조건을 조율함",
+    "level": "중급"
+  },
+  "negroni": {
+    "word": "negroni",
+    "partOfSpeech": "명사",
+    "meaning": "네그로니 (진, 캄파리, 스위트 베르무트로 만든 클래식 칵테일)",
+    "phonetic": "[nɪˈɡroʊni]",
+    "contextNote": "뉴욕 바에서 사랑받는 쌉싸름하고 세련된 시그니처 칵테일",
+    "level": "중급"
+  },
+  "news": {
+    "word": "news",
+    "partOfSpeech": "명사",
+    "meaning": "뉴스, 소식",
+    "phonetic": "[njuːz]",
+    "contextNote": "새로운 정보",
+    "level": "중급"
+  },
+  "next": {
+    "word": "next",
+    "partOfSpeech": "형용사/부사",
+    "meaning": "다음의, 옆의",
+    "phonetic": "[nɛkst]",
+    "contextNote": "차례",
+    "level": "기초"
+  },
+  "night": {
+    "word": "night",
+    "partOfSpeech": "명사",
+    "meaning": "밤, 야간",
+    "phonetic": "[naɪt]",
+    "contextNote": "야간",
+    "level": "중급"
+  },
+  "noisy": {
+    "word": "noisy",
+    "partOfSpeech": "형용사",
+    "meaning": "시끄러운, 잡음이 많은",
+    "phonetic": "[ˈnɔɪzi]",
+    "contextNote": "신호 대비 무의미한 시장 잡음",
+    "level": "기초"
+  },
+  "non-dilutive": {
+    "word": "non-dilutive",
+    "partOfSpeech": "형용사",
+    "meaning": "지분 희석이 없는 (정부 지원금 등)",
+    "phonetic": "[ˌnɒn-daɪˈluːtɪv]",
+    "contextNote": "창업자의 지분을 뺏기지 않고 조달하는 자금",
+    "level": "고급"
+  },
+  "nondilutive": {
+    "word": "nondilutive",
+    "partOfSpeech": "형용사",
+    "meaning": "지분 희석이 없는 (정부 지원금 등)",
+    "phonetic": "[ˌnɒn-daɪˈluːtɪv]",
+    "contextNote": "창업자의 지분을 뺏기지 않고 조달하는 자금",
+    "level": "고급"
+  },
+  "noon": {
+    "word": "noon",
+    "partOfSpeech": "명사",
+    "meaning": "정오, 낮 12시",
+    "phonetic": "[nuːn]",
+    "contextNote": "'by noon'(낮 12시 정오까지)",
+    "level": "중급"
+  },
+  "note": {
+    "word": "note",
+    "partOfSpeech": "명사/동사",
+    "meaning": "메모, 어음; 주목하다",
+    "phonetic": "[noʊt]",
+    "contextNote": "기록",
+    "level": "중급"
+  },
+  "notes": {
+    "word": "notes",
+    "partOfSpeech": "명사(복수)",
+    "meaning": "메모들, 투자 전환사채들",
+    "phonetic": "[noʊts]",
+    "contextNote": "Convertible notes",
+    "level": "중급"
+  },
+  "now": {
+    "word": "now",
+    "partOfSpeech": "부사",
+    "meaning": "지금, 현재",
+    "phonetic": "[naʊ]",
+    "contextNote": "현재",
+    "level": "기초"
+  },
+  "numbers": {
+    "word": "numbers",
+    "partOfSpeech": "명사(복수)",
+    "meaning": "수치들, 재무제표 실적",
+    "phonetic": "[ˈnʌmbərz]",
+    "contextNote": "객관적 매출 및 지표",
+    "level": "중급"
+  },
+  "nursing": {
+    "word": "nursing",
+    "partOfSpeech": "명사/형용사",
+    "meaning": "간호, 간호팀의",
+    "phonetic": "[ˈnɜːrsɪŋ]",
+    "contextNote": "수술실 간호 스태프",
+    "level": "중급"
+  },
+  "observes": {
+    "word": "observes",
+    "partOfSpeech": "동사",
+    "meaning": "관찰하다, 준수하다",
+    "phonetic": "[əbˈzɜːrvz]",
+    "contextNote": "예리하게 지켜봄",
+    "level": "중급"
+  },
+  "one": {
+    "word": "one",
+    "partOfSpeech": "수사/대명사",
+    "meaning": "하나, 한 사람",
+    "phonetic": "[wʌn]",
+    "contextNote": "수량",
+    "level": "중급"
+  },
+  "o-negative": {
+    "word": "o-negative",
+    "partOfSpeech": "명사",
+    "meaning": "O형 Rh- 음성 혈액 (응급 범용 수혈용)",
+    "phonetic": "[oʊ-ˈnɛɡətɪv]",
+    "contextNote": "검사 없이 모든 환자에게 즉시 수혈 가능한 유일한 혈액형",
+    "level": "고급"
+  },
+  "onegative": {
+    "word": "onegative",
+    "partOfSpeech": "명사",
+    "meaning": "O형 Rh- 음성 혈액 (응급 범용 수혈용)",
+    "phonetic": "[oʊ-ˈnɛɡətɪv]",
+    "contextNote": "검사 없이 모든 환자에게 즉시 수혈 가능한 유일한 혈액형",
+    "level": "고급"
+  },
+  "only": {
+    "word": "only",
+    "partOfSpeech": "부사/형용사",
+    "meaning": "오직, 유일한",
+    "phonetic": "[ˈoʊnli]",
+    "contextNote": "유일함",
+    "level": "기초"
+  },
+  "openai": {
+    "word": "openai",
+    "partOfSpeech": "명사(고유명사)",
+    "meaning": "오픈AI (OpenAI)",
+    "phonetic": "[ˌoʊpən-eɪ-aɪ]",
+    "contextNote": "챗GPT를 만든 글로벌 생성형 AI 선도 기업",
+    "level": "중급"
+  },
+  "opening": {
+    "word": "opening",
+    "partOfSpeech": "명사/현재분사",
+    "meaning": "오프닝, 기회, 틈; 여는",
+    "phonetic": "[ˈoʊpnɪŋ]",
+    "contextNote": "전시회 오프닝이나 상대의 허점",
+    "level": "중급"
+  },
+  "operation": {
+    "word": "operation",
+    "partOfSpeech": "명사",
+    "meaning": "수술; 운영, 작전",
+    "phonetic": "[ˌɒpəˈreɪʃən]",
+    "contextNote": "외과 수술 또는 기업 운영",
+    "level": "중급"
+  },
+  "operator": {
+    "word": "operator",
+    "partOfSpeech": "명사",
+    "meaning": "실전 운영자, 노련한 사업가",
+    "phonetic": "[ˈɒpəreɪtər]",
+    "contextNote": "이론가가 아닌 사업 실무를 강력하게 추진하는 실전파 창업자",
+    "level": "고급"
+  },
+  "opinion": {
+    "word": "opinion",
+    "partOfSpeech": "명사",
+    "meaning": "의견, 견해, (법률) 법적 의견서",
+    "phonetic": "[əˈpɪnjən]",
+    "contextNote": "전문가의 판단",
+    "level": "중급"
+  },
+  "opinions": {
+    "word": "opinions",
+    "partOfSpeech": "명사(복수)",
+    "meaning": "의견들",
+    "phonetic": "[əˈpɪnjənz]",
+    "contextNote": "다양한 시각",
+    "level": "중급"
+  },
+  "opposing": {
+    "word": "opposing",
+    "partOfSpeech": "형용사",
+    "meaning": "상대측의, 대립하는",
+    "phonetic": "[əˈpoʊzɪŋ]",
+    "contextNote": "'opposing counsel'은 재판에서 마주하는 상대방 변호사",
+    "level": "미드 시그니처"
+  },
+  "other": {
+    "word": "other",
+    "partOfSpeech": "형용사/대명사",
+    "meaning": "다른, 그 밖의",
+    "phonetic": "[ˈʌðər]",
+    "contextNote": "타자",
+    "level": "중급"
+  },
+  "otherwise": {
+    "word": "otherwise",
+    "partOfSpeech": "부사",
+    "meaning": "그렇지 않으면, 다른 방식으로는",
+    "phonetic": "[ˈʌðərwaɪz]",
+    "contextNote": "조건 반전",
+    "level": "기초"
+  },
+  "overnight": {
+    "word": "overnight",
+    "partOfSpeech": "부사/형용사",
+    "meaning": "밤새도록, 하룻밤 사이에",
+    "phonetic": "[ˌoʊvərˈnaɪt]",
+    "contextNote": "철야 작업",
+    "level": "기초"
+  },
+  "oversubscribed": {
+    "word": "oversubscribed",
+    "partOfSpeech": "형용사",
+    "meaning": "(투자 라운드가) 초과 청약된, 경쟁이 치열한",
+    "phonetic": "[ˌoʊvərsəbˈskraɪbd]",
+    "contextNote": "투자하겠다는 펀드가 목표 유치 금액을 훨씬 넘어선 인기 스타트업의 상태",
+    "level": "고급"
+  },
+  "package": {
+    "word": "package",
+    "partOfSpeech": "명사",
+    "meaning": "보상 패키지, 패키지",
+    "phonetic": "[ˈpækɪdʒ]",
+    "contextNote": "연봉 및 스톡옵션 총합",
+    "level": "중급"
+  },
+  "parents": {
+    "word": "parents",
+    "partOfSpeech": "명사(복수)",
+    "meaning": "부모님",
+    "phonetic": "[ˈpɛərənts]",
+    "contextNote": "가족",
+    "level": "중급"
+  },
+  "partner": {
+    "word": "partner",
+    "partOfSpeech": "명사",
+    "meaning": "파트너 변호사, 동업자",
+    "phonetic": "[ˈpɑːrtnər]",
+    "contextNote": "로펌의 지분 파트너",
+    "level": "미드 시그니처"
+  },
+  "patch": {
+    "word": "patch",
+    "partOfSpeech": "명사/동사",
+    "meaning": "패치, 덧대는 천; 덧대다",
+    "phonetic": "[pætʃ]",
+    "contextNote": "찢어진 대동맥을 꿰매는 인공 혈관 패치",
+    "level": "중급"
+  },
+  "patching": {
+    "word": "patching",
+    "partOfSpeech": "동사/현재분사",
+    "meaning": "덧대어 봉합하는 중인",
+    "phonetic": "[ˈpætʃɪŋ]",
+    "contextNote": "혈관 손상 부위 수술",
+    "level": "중급"
+  },
+  "patient": {
+    "word": "patient",
+    "partOfSpeech": "명사/형용사",
+    "meaning": "환자; 참을성 있는",
+    "phonetic": "[ˈpeɪʃənt]",
+    "contextNote": "수술 환자",
+    "level": "중급"
+  },
+  "patient's": {
+    "word": "patient's",
+    "partOfSpeech": "명사(소유격)",
+    "meaning": "환자의",
+    "phonetic": "[ˈpeɪʃənts]",
+    "contextNote": "환자의 상태나 생체 징후",
+    "level": "중급"
+  },
+  "patients": {
+    "word": "patients",
+    "partOfSpeech": "명사(복수/소유격)",
+    "meaning": "환자의, 환자들",
+    "phonetic": "[ˈpeɪʃənts]",
+    "contextNote": "환자의 생명",
+    "level": "중급"
+  },
+  "pearson": {
+    "word": "pearson",
+    "partOfSpeech": "명사(고유명사)",
+    "meaning": "피어슨 (Pearson Hardman 로펌)",
+    "phonetic": "[ˈpɪərsən]",
+    "contextNote": "미드 슈츠의 로펌 최고 대표 제시카 피어슨",
+    "level": "중급"
+  },
+  "peers": {
+    "word": "peers",
+    "partOfSpeech": "명사(복수)",
+    "meaning": "동료들, 경쟁사들",
+    "phonetic": "[pɪərz]",
+    "contextNote": "동급의 경쟁자들",
+    "level": "중급"
+  },
+  "people": {
+    "word": "people",
+    "partOfSpeech": "명사",
+    "meaning": "사람들",
+    "phonetic": "[ˈpiːpl]",
+    "contextNote": "대중",
+    "level": "중급"
+  },
+  "performance-based": {
+    "word": "performance-based",
+    "partOfSpeech": "형용사",
+    "meaning": "성과에 기반한, 성과급제의",
+    "phonetic": "[pərˈfɔːrməns-beɪst]",
+    "contextNote": "실적에 따라 차등 지급되는 보상 구조",
+    "level": "기초"
+  },
+  "performancebased": {
+    "word": "performancebased",
+    "partOfSpeech": "형용사",
+    "meaning": "성과에 기반한, 성과급제의",
+    "phonetic": "[pərˈfɔːrməns-beɪst]",
+    "contextNote": "실적에 따라 차등 지급되는 보상 구조",
+    "level": "기초"
+  },
+  "pitch": {
+    "word": "pitch",
+    "partOfSpeech": "명사/동사",
+    "meaning": "투자 설명(피치); 설득하다",
+    "phonetic": "[pɪtʃ]",
+    "contextNote": "투자자 앞에서의 사업 소개 발표",
+    "level": "중급"
+  },
+  "place": {
+    "word": "place",
+    "partOfSpeech": "명사/동사",
+    "meaning": "장소; 놓다",
+    "phonetic": "[pleɪs]",
+    "contextNote": "위치",
+    "level": "중급"
+  },
+  "platform": {
+    "word": "platform",
+    "partOfSpeech": "명사",
+    "meaning": "플랫폼, 기반 시스템",
+    "phonetic": "[ˈplætfɔːrm]",
+    "contextNote": "확장 가능한 기술 인프라",
+    "level": "중급"
+  },
+  "play": {
+    "word": "play",
+    "partOfSpeech": "명사/동사",
+    "meaning": "전략, 전술, 다음 수; 놀다",
+    "phonetic": "[pleɪ]",
+    "contextNote": "'What's your play?'(자네의 대응 전술은 무엇인가?)",
+    "level": "미드 시그니처"
+  },
+  "playbook": {
+    "word": "playbook",
+    "partOfSpeech": "명사",
+    "meaning": "플레이북, 대응 매뉴얼, 비법서",
+    "phonetic": "[ˈpleɪbʊk]",
+    "contextNote": "미식축구 전술서에서 유래한 위기 대응 전략집",
+    "level": "고급"
+  },
+  "please": {
+    "word": "please",
+    "partOfSpeech": "부사/동사",
+    "meaning": "부디, 제발; 기쁘게 하다",
+    "phonetic": "[pliːz]",
+    "contextNote": "공손한 표현",
+    "level": "중급"
+  },
+  "pledges": {
+    "word": "pledges",
+    "partOfSpeech": "명사(복수)/동사",
+    "meaning": "약정들, 서약들; 서약하다",
+    "phonetic": "[ˈplɛdʒɪz]",
+    "contextNote": "투자 집행 약속",
+    "level": "중급"
+  },
+  "plenty": {
+    "word": "plenty",
+    "partOfSpeech": "대명사/명사",
+    "meaning": "풍부함, 넉넉함",
+    "phonetic": "[ˈplɛnti]",
+    "contextNote": "여유 있는 양",
+    "level": "중급"
+  },
+  "plus-one": {
+    "word": "plus-one",
+    "partOfSpeech": "명사",
+    "meaning": "동반 1인 (초대장 동반자)",
+    "phonetic": "[ˌplʌsˈwʌn]",
+    "contextNote": "파티나 행사에 함께 데려가는 파트너",
+    "level": "중급"
+  },
+  "plusone": {
+    "word": "plusone",
+    "partOfSpeech": "명사",
+    "meaning": "동반 1인 (초대장 동반자)",
+    "phonetic": "[ˌplʌsˈwʌn]",
+    "contextNote": "파티나 행사에 함께 데려가는 파트너",
+    "level": "중급"
+  },
+  "pm": {
+    "word": "pm",
+    "partOfSpeech": "명사(약어)",
+    "meaning": "오후 (Post Meridiem)",
+    "phonetic": "[ˌpiːˈɛm]",
+    "contextNote": "오후 시간",
+    "level": "중급"
+  },
+  "points": {
+    "word": "points",
+    "partOfSpeech": "동사/명사(복수)",
+    "meaning": "겨누다, 지목하다; 요점들",
+    "phonetic": "[pɔɪnts]",
+    "contextNote": "'points a gun at your face'(얼굴에 총구를 겨누다)",
+    "level": "중급"
+  },
+  "poise": {
+    "word": "poise",
+    "partOfSpeech": "명사",
+    "meaning": "침착함, 당당한 태도, 품격",
+    "phonetic": "[pɔɪz]",
+    "contextNote": "압박 속에서도 잃지 않는 우아한 자신감",
+    "level": "고급"
+  },
+  "police": {
+    "word": "police",
+    "partOfSpeech": "명사",
+    "meaning": "경찰",
+    "phonetic": "[pəˈliːs]",
+    "contextNote": "사법 기관",
+    "level": "중급"
+  },
+  "poor": {
+    "word": "poor",
+    "partOfSpeech": "형용사",
+    "meaning": "서툰, 형편없는, 가난한",
+    "phonetic": "[pʊər]",
+    "contextNote": "수준 이하의 반응",
+    "level": "기초"
+  },
+  "portfolios": {
+    "word": "portfolios",
+    "partOfSpeech": "명사(복수)",
+    "meaning": "투자 포트폴리오들",
+    "phonetic": "[pɔːrtˈfoʊlioʊz]",
+    "contextNote": "VC가 투자한 기업들의 묶음",
+    "level": "중급"
+  },
+  "post": {
+    "word": "post",
+    "partOfSpeech": "접두사/명사",
+    "meaning": "이후의; 게시물",
+    "phonetic": "[poʊst]",
+    "contextNote": "사후 단계",
+    "level": "중급"
+  },
+  "post-money": {
+    "word": "post-money",
+    "partOfSpeech": "형용사",
+    "meaning": "투자 유치 후의 기업 가치",
+    "phonetic": "[poʊst-ˈmʌni]",
+    "contextNote": "투자금 입금 후 최종 밸류에이션",
+    "level": "고급"
+  },
+  "postmoney": {
+    "word": "postmoney",
+    "partOfSpeech": "형용사",
+    "meaning": "투자 유치 후의 기업 가치",
+    "phonetic": "[poʊst-ˈmʌni]",
+    "contextNote": "투자금 입금 후 최종 밸류에이션",
+    "level": "고급"
+  },
+  "post-op": {
+    "word": "post-op",
+    "partOfSpeech": "형용사/명사",
+    "meaning": "수술 후의(post-operative); 회복실",
+    "phonetic": "[poʊst-ɒp]",
+    "contextNote": "수술 후 경과 관찰 단계",
+    "level": "고급"
+  },
+  "postop": {
+    "word": "postop",
+    "partOfSpeech": "형용사/명사",
+    "meaning": "수술 후의(post-operative); 회복실",
+    "phonetic": "[poʊst-ɒp]",
+    "contextNote": "수술 후 경과 관찰 단계",
+    "level": "고급"
+  },
+  "powers": {
+    "word": "powers",
+    "partOfSpeech": "명사(복수)",
+    "meaning": "권한들, 힘들",
+    "phonetic": "[ˈpaʊərz]",
+    "contextNote": "정부나 이사회의 통제권",
+    "level": "중급"
+  },
+  "practically": {
+    "word": "practically",
+    "partOfSpeech": "부사",
+    "meaning": "사실상, 거의",
+    "phonetic": "[ˈpræktɪkli]",
+    "contextNote": "실제적으로",
+    "level": "기초"
+  },
+  "prep": {
+    "word": "prep",
+    "partOfSpeech": "동사/명사",
+    "meaning": "사전 준비하다; 준비",
+    "phonetic": "[prɛp]",
+    "contextNote": "수술 준비나 재판 변론 준비",
+    "level": "중급"
+  },
+  "preserves": {
+    "word": "preserves",
+    "partOfSpeech": "동사",
+    "meaning": "보존하다, 지키다",
+    "phonetic": "[prɪˈzɜːrvz]",
+    "contextNote": "지분이나 권리를 잃지 않고 지킴",
+    "level": "중급"
+  },
+  "press": {
+    "word": "press",
+    "partOfSpeech": "명사/동사",
+    "meaning": "언론, 기자단; 누르다, 압박하다",
+    "phonetic": "[prɛs]",
+    "contextNote": "언론 보도나 압박",
+    "level": "중급"
+  },
+  "price": {
+    "word": "price",
+    "partOfSpeech": "명사",
+    "meaning": "가격, 대가",
+    "phonetic": "[praɪs]",
+    "contextNote": "거래 대가",
+    "level": "중급"
+  },
+  "private": {
+    "word": "private",
+    "partOfSpeech": "형용사",
+    "meaning": "사적인, 비공개의",
+    "phonetic": "[ˈpraɪvɪt]",
+    "contextNote": "비공개 룸이나 독대",
+    "level": "기초"
+  },
+  "procedural": {
+    "word": "procedural",
+    "partOfSpeech": "형용사",
+    "meaning": "절차상의, 소송 절차의",
+    "phonetic": "[prəˈsiːdʒərəl]",
+    "contextNote": "실체보다 형식적 절차 규정을 따지는",
+    "level": "고급"
+  },
+  "procedures": {
+    "word": "procedures",
+    "partOfSpeech": "명사(복수)",
+    "meaning": "절차들, 규정들",
+    "phonetic": "[prəˈsiːdʒərz]",
+    "contextNote": "표준 업무 수칙",
+    "level": "중급"
+  },
+  "proposal": {
+    "word": "proposal",
+    "partOfSpeech": "명사",
+    "meaning": "제안, 제안서",
+    "phonetic": "[prəˈpoʊzəl]",
+    "contextNote": "공식 합의 제안",
+    "level": "중급"
+  },
+  "proprietary": {
+    "word": "proprietary",
+    "partOfSpeech": "형용사",
+    "meaning": "독점적인, 자체 소유의",
+    "phonetic": "[prəˈpraɪətɛri]",
+    "contextNote": "타사가 모방할 수 없는 자체 특허 기술",
+    "level": "고급"
+  },
+  "protect": {
+    "word": "protect",
+    "partOfSpeech": "동사",
+    "meaning": "보호하다, 지키다",
+    "phonetic": "[prəˈtɛkt]",
+    "contextNote": "이익을 수호함",
+    "level": "중급"
+  },
+  "proxy": {
+    "word": "proxy",
+    "partOfSpeech": "명사",
+    "meaning": "의결권 대리 행사, 위임장",
+    "phonetic": "[ˈprɒksi]",
+    "contextNote": "경영권 분쟁 시 주총 표 대결",
+    "level": "고급"
+  },
+  "pull": {
+    "word": "pull",
+    "partOfSpeech": "동사",
+    "meaning": "당기다, 뽑아내다",
+    "phonetic": "[pʊl]",
+    "contextNote": "'pull out a bigger gun'(더 큰 무기를 꺼내 들다)",
+    "level": "중급"
+  },
+  "push": {
+    "word": "push",
+    "partOfSpeech": "동사/명사",
+    "meaning": "밀어붙이다, 압박하다; 추진",
+    "phonetic": "[pʊʃ]",
+    "contextNote": "압박 가하기",
+    "level": "중급"
+  },
+  "pushes": {
+    "word": "pushes",
+    "partOfSpeech": "동사",
+    "meaning": "밀어붙이다, 압박해오다",
+    "phonetic": "[ˈpʊʃɪz]",
+    "contextNote": "'when he pushes back'(그가 공격적으로 반격해올 때)",
+    "level": "중급"
+  },
+  "quarter": {
+    "word": "quarter",
+    "partOfSpeech": "명사",
+    "meaning": "분기 (1년의 1/4), 25센트",
+    "phonetic": "[ˈkwɔːrtər]",
+    "contextNote": "기업 실적 분기",
+    "level": "중급"
+  },
+  "quarters": {
+    "word": "quarters",
+    "partOfSpeech": "명사(복수)",
+    "meaning": "분기들",
+    "phonetic": "[ˈkwɔːrtərz]",
+    "contextNote": "여러 분기",
+    "level": "중급"
+  },
+  "quickly": {
+    "word": "quickly",
+    "partOfSpeech": "부사",
+    "meaning": "빠르게, 신속히",
+    "phonetic": "[ˈkwɪkli]",
+    "contextNote": "속도",
+    "level": "기초"
+  },
+  "rate": {
+    "word": "rate",
+    "partOfSpeech": "명사/동사",
+    "meaning": "속도, 비율, 요율; 평가하다",
+    "phonetic": "[reɪt]",
+    "contextNote": "번 레이트나 심박수",
+    "level": "중급"
+  },
+  "rather": {
+    "word": "rather",
+    "partOfSpeech": "부사",
+    "meaning": "차라리, 오히려",
+    "phonetic": "[ˈræðər]",
+    "contextNote": "선호 대안",
+    "level": "기초"
+  },
+  "reach": {
+    "word": "reach",
+    "partOfSpeech": "동사",
+    "meaning": "도달하다, 손을 뻗다",
+    "phonetic": "[riːtʃ]",
+    "contextNote": "합의에 이름",
+    "level": "중급"
+  },
+  "real": {
+    "word": "real",
+    "partOfSpeech": "형용사",
+    "meaning": "진짜의, 실질적인",
+    "phonetic": "[rɪəl]",
+    "contextNote": "가짜가 아님",
+    "level": "기초"
+  },
+  "really": {
+    "word": "really",
+    "partOfSpeech": "부사",
+    "meaning": "정말로, 대단히",
+    "phonetic": "[ˈrɪəli]",
+    "contextNote": "강조",
+    "level": "기초"
+  },
+  "reason": {
+    "word": "reason",
+    "partOfSpeech": "명사",
+    "meaning": "이유, 근거, 이성",
+    "phonetic": "[ˈriːzən]",
+    "contextNote": "판단의 이유",
+    "level": "중급"
+  },
+  "recognizes": {
+    "word": "recognizes",
+    "partOfSpeech": "동사",
+    "meaning": "알아보다, 인정하다",
+    "phonetic": "[ˈrɛkəɡnaɪzɪz]",
+    "contextNote": "실력을 인정함",
+    "level": "중급"
+  },
+  "recurring": {
+    "word": "recurring",
+    "partOfSpeech": "형용사",
+    "meaning": "반복적인, 되풀이되는",
+    "phonetic": "[rɪˈkɜːrɪŋ]",
+    "contextNote": "구독 모델의 반복 매출(ARR)",
+    "level": "기초"
+  },
+  "redlined": {
+    "word": "redlined",
+    "partOfSpeech": "형용사",
+    "meaning": "수정 내역이 빨간 줄로 표시된 (초안 검토 완료본)",
+    "phonetic": "[ˈrɛdlaɪnd]",
+    "contextNote": "로펌이나 비즈니스 계약서의 첨삭 검토본",
+    "level": "미드 시그니처"
+  },
+  "reflects": {
+    "word": "reflects",
+    "partOfSpeech": "동사",
+    "meaning": "반영하다, 나타내다",
+    "phonetic": "[rɪˈflɛkts]",
+    "contextNote": "가치를 거울처럼 보여줌",
+    "level": "중급"
+  },
+  "refreshing": {
+    "word": "refreshing",
+    "partOfSpeech": "형용사",
+    "meaning": "신선한, 상쾌한",
+    "phonetic": "[rɪˈfrɛʃɪŋ]",
+    "contextNote": "틀에 박히지 않은 당찬 태도",
+    "level": "기초"
+  },
+  "regulatory": {
+    "word": "regulatory",
+    "partOfSpeech": "형용사",
+    "meaning": "규제의, 규제 당국의",
+    "phonetic": "[ˈrɛɡjʊlətɔːri]",
+    "contextNote": "정부 감독 당국의 인허가 규제",
+    "level": "고급"
+  },
+  "remember": {
+    "word": "remember",
+    "partOfSpeech": "동사",
+    "meaning": "기억하다, 명심하다",
+    "phonetic": "[rɪˈmɛmbər]",
+    "contextNote": "'remember this'(이 점을 명심해)",
+    "level": "중급"
+  },
+  "rent": {
+    "word": "rent",
+    "partOfSpeech": "명사/동사",
+    "meaning": "임대료; 임대하다",
+    "phonetic": "[rɛnt]",
+    "contextNote": "오피스 월세",
+    "level": "중급"
+  },
+  "replicate": {
+    "word": "replicate",
+    "partOfSpeech": "동사",
+    "meaning": "모방하다, 복제하다",
+    "phonetic": "[ˈrɛplɪkeɪt]",
+    "contextNote": "경쟁사가 우리 기술을 그대로 베낌",
+    "level": "중급"
+  },
+  "resect": {
+    "word": "resect",
+    "partOfSpeech": "동사",
+    "meaning": "(의학) 절제하다, 잘라내다",
+    "phonetic": "[rɪˈsɛkt]",
+    "contextNote": "수술실에서 병변이나 조직의 일부를 떼어냄",
+    "level": "고급"
+  },
+  "resolutions": {
+    "word": "resolutions",
+    "partOfSpeech": "명사(복수)",
+    "meaning": "(이사회) 결의안들, 다짐들",
+    "phonetic": "[ˌrɛzəˈluːʃənz]",
+    "contextNote": "이사회에서 통과된 공식 결의안",
+    "level": "중급"
+  },
+  "retention": {
+    "word": "retention",
+    "partOfSpeech": "명사",
+    "meaning": "고객 유지율, 리텐션",
+    "phonetic": "[rɪˈtɛnʃən]",
+    "contextNote": "서비스를 이탈하지 않고 남는 사용자 비율",
+    "level": "고급"
+  },
+  "return": {
+    "word": "return",
+    "partOfSpeech": "명사/동사",
+    "meaning": "수익률, 회수; 돌아오다",
+    "phonetic": "[rɪˈtɜːrn]",
+    "contextNote": "투자 원금 대비 수익",
+    "level": "중급"
+  },
+  "review": {
+    "word": "review",
+    "partOfSpeech": "동사/명사",
+    "meaning": "검토하다; 복습, 검토",
+    "phonetic": "[rɪˈvjuː]",
+    "contextNote": "계약서를 꼼꼼히 살핌",
+    "level": "중급"
+  },
+  "revised": {
+    "word": "revised",
+    "partOfSpeech": "형용사/과거분사",
+    "meaning": "수정된, 개정된",
+    "phonetic": "[rɪˈvaɪzd]",
+    "contextNote": "수정된 조건",
+    "level": "기초"
+  },
+  "right": {
+    "word": "right",
+    "partOfSpeech": "형용사/명사/부사",
+    "meaning": "맞는, 올바른; 권리; 바로",
+    "phonetic": "[raɪt]",
+    "contextNote": "정당함",
+    "level": "중급"
+  },
+  "rollout": {
+    "word": "rollout",
+    "partOfSpeech": "명사",
+    "meaning": "본격 출시, 전면 전개",
+    "phonetic": "[ˈroʊlaʊt]",
+    "contextNote": "신제품의 전국/글로벌 시장 공개",
+    "level": "중급"
+  },
+  "room": {
+    "word": "room",
+    "partOfSpeech": "명사",
+    "meaning": "방, 여지, 공간",
+    "phonetic": "[ruːm]",
+    "contextNote": "협상의 여지",
+    "level": "중급"
+  },
+  "running": {
+    "word": "running",
+    "partOfSpeech": "동사/현재분사",
+    "meaning": "달리는 중인, 운영하는",
+    "phonetic": "[ˈrʌnɪŋ]",
+    "contextNote": "사업 운영",
+    "level": "중급"
+  },
+  "runway": {
+    "word": "runway",
+    "partOfSpeech": "명사",
+    "meaning": "(스타트업) 남은 생존 기간, 런웨이",
+    "phonetic": "[ˈrʌnweɪ]",
+    "contextNote": "보유 자금으로 버틸 수 있는 잔여 개월 수",
+    "level": "미드 시그니처"
+  },
+  "safe": {
+    "word": "safe",
+    "partOfSpeech": "명사/형용사",
+    "meaning": "조건부 지분인수계약(SAFE); 안전한",
+    "phonetic": "[seɪf]",
+    "contextNote": "실리콘밸리 표준 초기 투자 계약 양식 (Simple Agreement for Future Equity)",
+    "level": "고급"
+  },
+  "safer": {
+    "word": "safer",
+    "partOfSpeech": "형용사(비교급)",
+    "meaning": "더 안전한",
+    "phonetic": "[ˈseɪfər]",
+    "contextNote": "리스크가 적음",
+    "level": "기초"
+  },
+  "salary": {
+    "word": "salary",
+    "partOfSpeech": "명사",
+    "meaning": "급여, 연봉",
+    "phonetic": "[ˈsæləri]",
+    "contextNote": "정기 급여",
+    "level": "중급"
+  },
+  "saturation": {
+    "word": "saturation",
+    "partOfSpeech": "명사",
+    "meaning": "포화도, 산소 포화도",
+    "phonetic": "[ˌsætʃəˈreɪʃən]",
+    "contextNote": "환자의 혈중 산소 농도",
+    "level": "중급"
+  },
+  "satya": {
+    "word": "satya",
+    "partOfSpeech": "명사(고유명사)",
+    "meaning": "사티아 (Satya Nadella)",
+    "phonetic": "[ˈsæt-jə]",
+    "contextNote": "MS 최고 경영자의 이름",
+    "level": "중급"
+  },
+  "saw": {
+    "word": "saw",
+    "partOfSpeech": "동사(과거)",
+    "meaning": "보았다",
+    "phonetic": "[sɔː]",
+    "contextNote": "과거 관찰",
+    "level": "중급"
+  },
+  "saying": {
+    "word": "saying",
+    "partOfSpeech": "동사/현재분사",
+    "meaning": "말하는 중인; 격언",
+    "phonetic": "[ˈseɪɪŋ]",
+    "contextNote": "발언",
+    "level": "중급"
+  },
+  "section": {
+    "word": "section",
+    "partOfSpeech": "명사",
+    "meaning": "조항, 섹션, 구역",
+    "phonetic": "[ˈsɛkʃən]",
+    "contextNote": "법률 계약서의 특정 절",
+    "level": "중급"
+  },
+  "seed": {
+    "word": "seed",
+    "partOfSpeech": "명사",
+    "meaning": "시드 단계, 초기 종잣돈",
+    "phonetic": "[siːd]",
+    "contextNote": "스타트업의 극초기 투자 라운드",
+    "level": "중급"
+  },
+  "send": {
+    "word": "send",
+    "partOfSpeech": "동사",
+    "meaning": "보내다, 전송하다",
+    "phonetic": "[sɛnd]",
+    "contextNote": "메일이나 서류 발송",
+    "level": "중급"
+  },
+  "service": {
+    "word": "service",
+    "partOfSpeech": "명사",
+    "meaning": "서비스, 용역",
+    "phonetic": "[ˈsɜːrvɪs]",
+    "contextNote": "사업 제공 가치",
+    "level": "중급"
+  },
+  "set": {
+    "word": "set",
+    "partOfSpeech": "동사/명사/형용사",
+    "meaning": "설정하다; 세트; 정해진",
+    "phonetic": "[sɛt]",
+    "contextNote": "기준 확립",
+    "level": "중급"
+  },
+  "sharp": {
+    "word": "sharp",
+    "partOfSpeech": "형용사/부사",
+    "meaning": "예리한, 날카로운; 정각에",
+    "phonetic": "[ʃɑːrp]",
+    "contextNote": "지적인 예리함",
+    "level": "기초"
+  },
+  "sheet": {
+    "word": "sheet",
+    "partOfSpeech": "명사",
+    "meaning": "시트, 서류, 용지 (term sheet)",
+    "phonetic": "[ʃiːt]",
+    "contextNote": "'term sheet'는 투자 조건 요약서",
+    "level": "중급"
+  },
+  "short": {
+    "word": "short",
+    "partOfSpeech": "형용사",
+    "meaning": "짧은, 부족한",
+    "phonetic": "[ʃɔːrt]",
+    "contextNote": "시간이나 자금 부족",
+    "level": "기초"
+  },
+  "shouldn't": {
+    "word": "shouldn't",
+    "partOfSpeech": "조동사",
+    "meaning": "하지 말아야 한다 (should not 축약)",
+    "phonetic": "[ˈʃʊdnt]",
+    "contextNote": "금지/부정 권고 조동사",
+    "level": "중급"
+  },
+  "sign": {
+    "word": "sign",
+    "partOfSpeech": "동사/명사",
+    "meaning": "서명하다; 징후",
+    "phonetic": "[saɪn]",
+    "contextNote": "계약서 서명",
+    "level": "중급"
+  },
+  "simply": {
+    "word": "simply",
+    "partOfSpeech": "부사",
+    "meaning": "단순히, 그저",
+    "phonetic": "[ˈsɪmpli]",
+    "contextNote": "간단히",
+    "level": "기초"
+  },
+  "six": {
+    "word": "six",
+    "partOfSpeech": "수사",
+    "meaning": "6",
+    "phonetic": "[sɪks]",
+    "contextNote": "숫자 6",
+    "level": "기초"
+  },
+  "sixty": {
+    "word": "sixty",
+    "partOfSpeech": "수사",
+    "meaning": "60",
+    "phonetic": "[ˈsɪksti]",
+    "contextNote": "숫자 60",
+    "level": "기초"
+  },
+  "skin": {
+    "word": "skin",
+    "partOfSpeech": "명사",
+    "meaning": "피부, (비유: 위험 감수)",
+    "phonetic": "[skɪn]",
+    "contextNote": "'skin in the game'은 자기 돈과 명예를 건 직접적 이해관계",
+    "level": "고급"
+  },
+  "skyline": {
+    "word": "skyline",
+    "partOfSpeech": "명사",
+    "meaning": "스카이라인 (맨해튼 고층 빌딩 능선)",
+    "phonetic": "[ˈskaɪlaɪn]",
+    "contextNote": "뉴욕 야경의 상징",
+    "level": "중급"
+  },
+  "small": {
+    "word": "small",
+    "partOfSpeech": "형용사",
+    "meaning": "작은, 사소한",
+    "phonetic": "[smɔːl]",
+    "contextNote": "소규모",
+    "level": "기초"
+  },
+  "smart": {
+    "word": "smart",
+    "partOfSpeech": "형용사",
+    "meaning": "영리한, 똑똑한",
+    "phonetic": "[smɑːrt]",
+    "contextNote": "명민함",
+    "level": "기초"
+  },
+  "some": {
+    "word": "some",
+    "partOfSpeech": "형용사/대명사",
+    "meaning": "어떤, 몇몇의",
+    "phonetic": "[sʌm]",
+    "contextNote": "일부",
+    "level": "중급"
+  },
+  "someone": {
+    "word": "someone",
+    "partOfSpeech": "대명사",
+    "meaning": "누군가",
+    "phonetic": "[ˈsʌmwʌn]",
+    "contextNote": "어떤 사람",
+    "level": "중급"
+  },
+  "sounds": {
+    "word": "sounds",
+    "partOfSpeech": "동사",
+    "meaning": "~처럼 들리다",
+    "phonetic": "[saʊndz]",
+    "contextNote": "'sounds good'(좋네요)",
+    "level": "중급"
+  },
+  "sour": {
+    "word": "sour",
+    "partOfSpeech": "형용사",
+    "meaning": "틀어진, 시큼한, 씁쓸한",
+    "phonetic": "[ˈsaʊər]",
+    "contextNote": "'go sour'는 협상이나 관계가 파탄으로 치닫는 것을 의미",
+    "level": "기초"
+  },
+  "space": {
+    "word": "space",
+    "partOfSpeech": "명사",
+    "meaning": "공간, 업계, 시장 분야",
+    "phonetic": "[speɪs]",
+    "contextNote": "특정 산업 섹터",
+    "level": "중급"
+  },
+  "specifically": {
+    "word": "specifically",
+    "partOfSpeech": "부사",
+    "meaning": "구체적으로, 특히",
+    "phonetic": "[spəˈsɪfɪkli]",
+    "contextNote": "명확히 지목함",
+    "level": "기초"
+  },
+  "sprints": {
+    "word": "sprints",
+    "partOfSpeech": "명사(복수)",
+    "meaning": "스프린트 (애자일 단기 개발 주기)",
+    "phonetic": "[sprɪnts]",
+    "contextNote": "스타트업의 1~2주 단위 집중 개발 사이클",
+    "level": "중급"
+  },
+  "stabilizing": {
+    "word": "stabilizing",
+    "partOfSpeech": "동사/현재분사",
+    "meaning": "안정화되는 중인",
+    "phonetic": "[ˈsteɪbəlaɪzɪŋ]",
+    "contextNote": "환자의 생체 징후가 정상을 되찾음",
+    "level": "중급"
+  },
+  "staff": {
+    "word": "staff",
+    "partOfSpeech": "명사",
+    "meaning": "직원, 의료진, 스태프",
+    "phonetic": "[stæf]",
+    "contextNote": "동료 팀원",
+    "level": "중급"
+  },
+  "stalls": {
+    "word": "stalls",
+    "partOfSpeech": "동사",
+    "meaning": "교착 상태에 빠지다, 지연되다",
+    "phonetic": "[stɔːlz]",
+    "contextNote": "협상 진척이 멈춤",
+    "level": "중급"
+  },
+  "standard": {
+    "word": "standard",
+    "partOfSpeech": "형용사/명사",
+    "meaning": "표준의; 기준",
+    "phonetic": "[ˈstændərd]",
+    "contextNote": "일반적 표준 규정",
+    "level": "중급"
+  },
+  "start": {
+    "word": "start",
+    "partOfSpeech": "동사/명사",
+    "meaning": "시작하다; 출발",
+    "phonetic": "[stɑːrt]",
+    "contextNote": "착수",
+    "level": "중급"
+  },
+  "status": {
+    "word": "status",
+    "partOfSpeech": "명사",
+    "meaning": "상태, 지위",
+    "phonetic": "[ˈsteɪtəs / ˈstætəs]",
+    "contextNote": "현재 진행 경과",
+    "level": "중급"
+  },
+  "steady": {
+    "word": "steady",
+    "partOfSpeech": "형용사",
+    "meaning": "흔들림 없는, 안정된",
+    "phonetic": "[ˈstɛdi]",
+    "contextNote": "수술 중 떨림 없는 메스 손길",
+    "level": "기초"
+  },
+  "still": {
+    "word": "still",
+    "partOfSpeech": "부사/형용사",
+    "meaning": "여전히, 아직도; 고요한",
+    "phonetic": "[stɪl]",
+    "contextNote": "지속 상태",
+    "level": "기초"
+  },
+  "stitch": {
+    "word": "stitch",
+    "partOfSpeech": "명사/동사",
+    "meaning": "바늘땀; 꿰매다",
+    "phonetic": "[stɪtʃ]",
+    "contextNote": "수술 부위의 한 땀",
+    "level": "중급"
+  },
+  "strategic": {
+    "word": "strategic",
+    "partOfSpeech": "형용사",
+    "meaning": "전략적인",
+    "phonetic": "[strəˈtiːdʒɪk]",
+    "contextNote": "장기적 승리를 위한",
+    "level": "기초"
+  },
+  "strictly": {
+    "word": "strictly",
+    "partOfSpeech": "부사",
+    "meaning": "엄격하게, 오로지",
+    "phonetic": "[ˈstrɪktli]",
+    "contextNote": "규정을 철저히 지킴",
+    "level": "기초"
+  },
+  "strike": {
+    "word": "strike",
+    "partOfSpeech": "동사/명사",
+    "meaning": "치다, 파업하다; 타격",
+    "phonetic": "[straɪk]",
+    "contextNote": "선제 타격",
+    "level": "중급"
+  },
+  "structure": {
+    "word": "structure",
+    "partOfSpeech": "명사/동사",
+    "meaning": "구조, 계약 구조; 설계하다",
+    "phonetic": "[ˈstrʌktʃər]",
+    "contextNote": "딜의 복잡한 조건 설계",
+    "level": "중급"
+  },
+  "suction": {
+    "word": "suction",
+    "partOfSpeech": "명사",
+    "meaning": "석션, 흡인 장치",
+    "phonetic": "[ˈsʌkʃən]",
+    "contextNote": "수술 부위 혈액을 빨아들여 시야를 확보하는 도구",
+    "level": "중급"
+  },
+  "sunglasses": {
+    "word": "sunglasses",
+    "partOfSpeech": "명사(복수)",
+    "meaning": "선글라스",
+    "phonetic": "[ˈsʌnˌɡlæsɪz]",
+    "contextNote": "스타일 아이템",
+    "level": "중급"
+  },
+  "sure": {
+    "word": "sure",
+    "partOfSpeech": "형용사/부사",
+    "meaning": "확신하는; 물론",
+    "phonetic": "[ʃʊər]",
+    "contextNote": "자신감",
+    "level": "기초"
+  },
+  "suture": {
+    "word": "suture",
+    "partOfSpeech": "명사/동사",
+    "meaning": "(의학) 봉합사, 봉합; 꿰매다",
+    "phonetic": "[ˈsuːtʃər]",
+    "contextNote": "외과 수술의 핵심 봉합",
+    "level": "고급"
+  },
+  "switching": {
+    "word": "switching",
+    "partOfSpeech": "명사/현재분사",
+    "meaning": "전환, 교체",
+    "phonetic": "[ˈswɪtʃɪŋ]",
+    "contextNote": "고객이 타사 제품으로 갈아타는 비용",
+    "level": "중급"
+  },
+  "systemic": {
+    "word": "systemic",
+    "partOfSpeech": "형용사",
+    "meaning": "전신적인, 구조 전체의",
+    "phonetic": "[sɪˈstɛmɪk]",
+    "contextNote": "몸 전체 또는 금융 시스템 전체에 퍼진 위험",
+    "level": "기초"
+  },
+  "systolic": {
+    "word": "systolic",
+    "partOfSpeech": "형용사",
+    "meaning": "(의학) 수축기의, 최고 혈압의",
+    "phonetic": "[sɪˈstɒlɪk]",
+    "contextNote": "심장이 수축할 때 측정되는 혈압",
+    "level": "고급"
+  },
+  "table": {
+    "word": "table",
+    "partOfSpeech": "명사",
+    "meaning": "협상 테이블, 탁자",
+    "phonetic": "[ˈteɪbəl]",
+    "contextNote": "'on the table'은 협상 안건으로 올라와 있다는 뜻",
+    "level": "중급"
+  },
+  "tacos": {
+    "word": "tacos",
+    "partOfSpeech": "명사(복수)",
+    "meaning": "타코",
+    "phonetic": "[ˈtɑːkoʊz]",
+    "contextNote": "음식",
+    "level": "중급"
+  },
+  "take": {
+    "word": "take",
+    "partOfSpeech": "동사",
+    "meaning": "취하다, 가져가다, 받아들이다",
+    "phonetic": "[teɪk]",
+    "contextNote": "제안을 수용함",
+    "level": "중급"
+  },
+  "talk": {
+    "word": "talk",
+    "partOfSpeech": "동사/명사",
+    "meaning": "말하다, 이야기하다; 대화",
+    "phonetic": "[tɔːk]",
+    "contextNote": "대화",
+    "level": "중급"
+  },
+  "talking": {
+    "word": "talking",
+    "partOfSpeech": "동사/현재분사",
+    "meaning": "이야기하는 중인",
+    "phonetic": "[ˈtɔːkɪŋ]",
+    "contextNote": "대화 진행",
+    "level": "중급"
+  },
+  "tanner": {
+    "word": "tanner",
+    "partOfSpeech": "명사(고유명사)",
+    "meaning": "태너 (Travis Tanner, 악명 높은 상대 변호사)",
+    "phonetic": "[ˈtænər]",
+    "contextNote": "미드 슈츠에서 온갖 편법을 쓰는 비열한 상대 변호사",
+    "level": "중급"
+  },
+  "team": {
+    "word": "team",
+    "partOfSpeech": "명사",
+    "meaning": "팀, 팀원들",
+    "phonetic": "[tiːm]",
+    "contextNote": "조직",
+    "level": "중급"
+  },
+  "teeth": {
+    "word": "teeth",
+    "partOfSpeech": "명사(복수)",
+    "meaning": "이빨, (비유: 법률의 실질적 강제력)",
+    "phonetic": "[tiːθ]",
+    "contextNote": "규정이 허울뿐이 아니라 실제로 상대를 처벌할 수 있는 강제력을 지녔음을 비유",
+    "level": "중급"
+  },
+  "tell": {
+    "word": "tell",
+    "partOfSpeech": "동사",
+    "meaning": "말하다, 알리다",
+    "phonetic": "[tɛl]",
+    "contextNote": "전달",
+    "level": "중급"
+  },
+  "term": {
+    "word": "term",
+    "partOfSpeech": "명사",
+    "meaning": "조건, 조항, 기간",
+    "phonetic": "[tɜːrm]",
+    "contextNote": "'term sheet'는 투자 조건 요약서",
+    "level": "중급"
+  },
+  "thank": {
+    "word": "thank",
+    "partOfSpeech": "동사",
+    "meaning": "감사하다",
+    "phonetic": "[θæŋk]",
+    "contextNote": "감사",
+    "level": "중급"
+  },
+  "that's": {
+    "word": "that's",
+    "partOfSpeech": "대명사+동사",
+    "meaning": "그것은 ~이다 (that is의 축약)",
+    "phonetic": "[ðæts]",
+    "contextNote": "축약형",
+    "level": "기초"
+  },
+  "then": {
+    "word": "then",
+    "partOfSpeech": "부사",
+    "meaning": "그때, 그러고 나서, 그러면",
+    "phonetic": "[ðɛn]",
+    "contextNote": "시간/인과 부사",
+    "level": "기초"
+  },
+  "there's": {
+    "word": "there's",
+    "partOfSpeech": "구문",
+    "meaning": "~가 있다 (there is의 축약)",
+    "phonetic": "[ðɛərz]",
+    "contextNote": "존재 구문 축약형",
+    "level": "기초"
+  },
+  "think": {
+    "word": "think",
+    "partOfSpeech": "동사",
+    "meaning": "생각하다, 여기다",
+    "phonetic": "[θɪŋk]",
+    "contextNote": "사고 판단",
+    "level": "기초"
+  },
+  "thinking": {
+    "word": "thinking",
+    "partOfSpeech": "동사/현재분사",
+    "meaning": "생각하는 중인",
+    "phonetic": "[ˈθɪŋkɪŋ]",
+    "contextNote": "사고 과정",
+    "level": "중급"
+  },
+  "thirty": {
+    "word": "thirty",
+    "partOfSpeech": "수사",
+    "meaning": "30",
+    "phonetic": "[ˈθɜːrti]",
+    "contextNote": "숫자 30",
+    "level": "기초"
+  },
+  "thirty-million": {
+    "word": "thirty-million",
+    "partOfSpeech": "명사/수사",
+    "meaning": "3,000만 달러 (한화 약 420억 원)",
+    "phonetic": "[ˌθɜːrti-ˈmɪljən]",
+    "contextNote": "시리즈 A/B 기업 가치 평가액 규모",
+    "level": "중급"
+  },
+  "thirtymillion": {
+    "word": "thirtymillion",
+    "partOfSpeech": "명사/수사",
+    "meaning": "3,000만 달러 (한화 약 420억 원)",
+    "phonetic": "[ˌθɜːrti-ˈmɪljən]",
+    "contextNote": "시리즈 A/B 기업 가치 평가액 규모",
+    "level": "중급"
+  },
+  "thought": {
+    "word": "thought",
+    "partOfSpeech": "명사/동사(과거)",
+    "meaning": "생각; 생각했다",
+    "phonetic": "[θɔːt]",
+    "contextNote": "의견",
+    "level": "중급"
+  },
+  "thoughts": {
+    "word": "thoughts",
+    "partOfSpeech": "명사(복수)",
+    "meaning": "생각들, 의견들",
+    "phonetic": "[θɔːts]",
+    "contextNote": "'What are your thoughts?'(어떻게 생각하시나요?)",
+    "level": "중급"
+  },
+  "three": {
+    "word": "three",
+    "partOfSpeech": "수사",
+    "meaning": "3, 세 번",
+    "phonetic": "[θriː]",
+    "contextNote": "3번의 티키타카 기회",
+    "level": "기초"
+  },
+  "thrilled": {
+    "word": "thrilled",
+    "partOfSpeech": "형용사",
+    "meaning": "아주 신난, 벅찬 영광의",
+    "phonetic": "[θrɪld]",
+    "contextNote": "극도의 기쁨을 나타내는 비즈니스 표현",
+    "level": "기초"
+  },
+  "throw": {
+    "word": "throw",
+    "partOfSpeech": "동사",
+    "meaning": "던지다",
+    "phonetic": "[θroʊ]",
+    "contextNote": "도전장을 던짐",
+    "level": "중급"
+  },
+  "time": {
+    "word": "time",
+    "partOfSpeech": "명사",
+    "meaning": "시간, 때",
+    "phonetic": "[taɪm]",
+    "contextNote": "시점",
+    "level": "중급"
+  },
+  "times": {
+    "word": "times",
+    "partOfSpeech": "명사(복수)",
+    "meaning": "시대, 횟수들",
+    "phonetic": "[taɪmz]",
+    "contextNote": "반복 횟수",
+    "level": "중급"
+  },
+  "toast": {
+    "word": "toast",
+    "partOfSpeech": "명사/동사",
+    "meaning": "건배; 건배를 제의하다",
+    "phonetic": "[toʊst]",
+    "contextNote": "파티에서 성공을 기리는 건배",
+    "level": "중급"
+  },
+  "tomorrow": {
+    "word": "tomorrow",
+    "partOfSpeech": "명사/부사",
+    "meaning": "내일",
+    "phonetic": "[təˈmɒroʊ]",
+    "contextNote": "다음 날",
+    "level": "중급"
+  },
+  "tonight": {
+    "word": "tonight",
+    "partOfSpeech": "명사/부사",
+    "meaning": "오늘 밤",
+    "phonetic": "[təˈnaɪt]",
+    "contextNote": "오늘 밤 칵테일 바",
+    "level": "중급"
+  },
+  "too": {
+    "word": "too",
+    "partOfSpeech": "부사",
+    "meaning": "너무, 지나치게; 역시",
+    "phonetic": "[tuː]",
+    "contextNote": "과도함",
+    "level": "기초"
+  },
+  "top": {
+    "word": "top",
+    "partOfSpeech": "형용사/명사",
+    "meaning": "최고의, 일류의; 정상",
+    "phonetic": "[tɒp]",
+    "contextNote": "맨해튼 최고 수준",
+    "level": "중급"
+  },
+  "touch": {
+    "word": "touch",
+    "partOfSpeech": "동사/명사",
+    "meaning": "건드리다; 손길, 감각",
+    "phonetic": "[tʌtʃ]",
+    "contextNote": "세련된 터치",
+    "level": "중급"
+  },
+  "tough": {
+    "word": "tough",
+    "partOfSpeech": "형용사",
+    "meaning": "거친, 강인한, 만만치 않은",
+    "phonetic": "[tʌf]",
+    "contextNote": "협상 상대가 만만치 않음",
+    "level": "기초"
+  },
+  "transactional": {
+    "word": "transactional",
+    "partOfSpeech": "형용사",
+    "meaning": "단순 거래 중심의, 인간미 없는",
+    "phonetic": "[trænˈzækʃənl]",
+    "contextNote": "장기적 관계 대신 당장의 이익만 따지는 메마른 태도",
+    "level": "고급"
+  },
+  "transfers": {
+    "word": "transfers",
+    "partOfSpeech": "명사(복수)/동사",
+    "meaning": "송금들, 이체들; 양도하다",
+    "phonetic": "[ˈtrænsfɜːrz]",
+    "contextNote": "은행 자금 이체",
+    "level": "중급"
+  },
+  "tricks": {
+    "word": "tricks",
+    "partOfSpeech": "명사(복수)",
+    "meaning": "꼼수들, 잔재주들",
+    "phonetic": "[trɪks]",
+    "contextNote": "치졸한 속임수",
+    "level": "중급"
+  },
+  "triggers": {
+    "word": "triggers",
+    "partOfSpeech": "동사/명사(복수)",
+    "meaning": "촉발하다; 방아쇠 조항들",
+    "phonetic": "[ˈtrɪɡərz]",
+    "contextNote": "계약 효력이 자동으로 발동되는 조건 조항",
+    "level": "중급"
+  },
+  "try": {
+    "word": "try",
+    "partOfSpeech": "동사",
+    "meaning": "시도하다, 노력하다",
+    "phonetic": "[traɪ]",
+    "contextNote": "노력함",
+    "level": "중급"
+  },
+  "turns": {
+    "word": "turns",
+    "partOfSpeech": "동사/명사(복수)",
+    "meaning": "돌아서다; 턴들, 차례들",
+    "phonetic": "[tɜːrnz]",
+    "contextNote": "대화의 주고받는 순서",
+    "level": "중급"
+  },
+  "twelve": {
+    "word": "twelve",
+    "partOfSpeech": "수사",
+    "meaning": "12",
+    "phonetic": "[twɛlv]",
+    "contextNote": "숫자 12",
+    "level": "기초"
+  },
+  "twenty": {
+    "word": "twenty",
+    "partOfSpeech": "수사",
+    "meaning": "20",
+    "phonetic": "[ˈtwɛnti]",
+    "contextNote": "숫자 20",
+    "level": "기초"
+  },
+  "two": {
+    "word": "two",
+    "partOfSpeech": "수사",
+    "meaning": "2",
+    "phonetic": "[tuː]",
+    "contextNote": "숫자 2",
+    "level": "기초"
+  },
+  "uncapped": {
+    "word": "uncapped",
+    "partOfSpeech": "형용사",
+    "meaning": "(투자) 가치 상한선이 없는",
+    "phonetic": "[ʌnˈkæpt]",
+    "contextNote": "초기 SAFE 계약에서 밸류에이션 캡이 없는 파격적 조건",
+    "level": "고급"
+  },
+  "unfair": {
+    "word": "unfair",
+    "partOfSpeech": "형용사",
+    "meaning": "불공정한, 부당한",
+    "phonetic": "[ˌʌnˈfɛər]",
+    "contextNote": "일방적으로 불리함",
+    "level": "기초"
+  },
+  "units": {
+    "word": "units",
+    "partOfSpeech": "명사(복수)",
+    "meaning": "단위들, 유닛들",
+    "phonetic": "[ˈjuːnɪts]",
+    "contextNote": "혈액 팩 단위나 제품 판매 대수",
+    "level": "중급"
+  },
+  "value": {
+    "word": "value",
+    "partOfSpeech": "명사/동사",
+    "meaning": "가치; 소중히 여기다",
+    "phonetic": "[ˈvæljuː]",
+    "contextNote": "비즈니스 가치",
+    "level": "중급"
+  },
+  "vena": {
+    "word": "vena",
+    "partOfSpeech": "명사",
+    "meaning": "(의학) 정맥 (Vena Cava: 대정맥)",
+    "phonetic": "[ˈviːnə]",
+    "contextNote": "심장으로 들어가는 대정맥을 뜻하는 해부학 용어",
+    "level": "고급"
+  },
+  "very": {
+    "word": "very",
+    "partOfSpeech": "부사",
+    "meaning": "매우, 아주",
+    "phonetic": "[ˈvɛri]",
+    "contextNote": "강조",
+    "level": "기초"
+  },
+  "view": {
+    "word": "view",
+    "partOfSpeech": "명사/동사",
+    "meaning": "전망, 관점; 바라보다",
+    "phonetic": "[vjuː]",
+    "contextNote": "맨해튼의 야경 뷰 또는 견해",
+    "level": "중급"
+  },
+  "vitals": {
+    "word": "vitals",
+    "partOfSpeech": "명사(복수)",
+    "meaning": "(의학) 생체 활력 징후 (혈압/맥박/체온)",
+    "phonetic": "[ˈvaɪtəlz]",
+    "contextNote": "환자의 생명 상태를 나타내는 기본 지표",
+    "level": "중급"
+  },
+  "voting": {
+    "word": "voting",
+    "partOfSpeech": "형용사/명사",
+    "meaning": "의결권이 있는; 투표",
+    "phonetic": "[ˈvoʊtɪŋ]",
+    "contextNote": "주주총회 의결권",
+    "level": "중급"
+  },
+  "vp": {
+    "word": "vp",
+    "partOfSpeech": "명사(약어)",
+    "meaning": "부사장 (Vice President)",
+    "phonetic": "[ˌviːˈpiː]",
+    "contextNote": "투자은행이나 기업의 중역 직급",
+    "level": "중급"
+  },
+  "wait": {
+    "word": "wait",
+    "partOfSpeech": "동사",
+    "meaning": "기다리다",
+    "phonetic": "[weɪt]",
+    "contextNote": "대기",
+    "level": "중급"
+  },
+  "waiting": {
+    "word": "waiting",
+    "partOfSpeech": "동사/현재분사",
+    "meaning": "기다리는 중인",
+    "phonetic": "[ˈweɪtɪŋ]",
+    "contextNote": "대기 상태",
+    "level": "중급"
+  },
+  "walk": {
+    "word": "walk",
+    "partOfSpeech": "동사/명사",
+    "meaning": "걷다; 산책",
+    "phonetic": "[wɔːk]",
+    "contextNote": "'Walk with me to court'(나랑 같이 법정으로 걷지)",
+    "level": "중급"
+  },
+  "wallet": {
+    "word": "wallet",
+    "partOfSpeech": "명사",
+    "meaning": "지갑, 가상자산 지갑",
+    "phonetic": "[ˈwɒlɪt]",
+    "contextNote": "돈주머니",
+    "level": "중급"
+  },
+  "want": {
+    "word": "want",
+    "partOfSpeech": "동사",
+    "meaning": "원하다",
+    "phonetic": "[wɒnt]",
+    "contextNote": "욕구",
+    "level": "중급"
+  },
+  "wants": {
+    "word": "wants",
+    "partOfSpeech": "동사",
+    "meaning": "원한다",
+    "phonetic": "[wɒnts]",
+    "contextNote": "3인칭 단수",
+    "level": "중급"
+  },
+  "way": {
+    "word": "way",
+    "partOfSpeech": "명사",
+    "meaning": "방법, 길, 방식",
+    "phonetic": "[weɪ]",
+    "contextNote": "접근법",
+    "level": "중급"
+  },
+  "weekly": {
+    "word": "weekly",
+    "partOfSpeech": "형용사/부사",
+    "meaning": "매주의, 주간의; 매주",
+    "phonetic": "[ˈwiːkli]",
+    "contextNote": "주간 단위",
+    "level": "기초"
+  },
+  "we're": {
+    "word": "we're",
+    "partOfSpeech": "대명사+동사",
+    "meaning": "우리는 ~이다 (we are 축약)",
+    "phonetic": "[wɪər]",
+    "contextNote": "복수 축약형",
+    "level": "기초"
+  },
+  "what's": {
+    "word": "what's",
+    "partOfSpeech": "의문사+동사",
+    "meaning": "무엇인가 (what is 축약)",
+    "phonetic": "[wʌts]",
+    "contextNote": "'What's your play?'(자네의 전술은 무엇인가?)",
+    "level": "기초"
+  },
+  "win": {
+    "word": "win",
+    "partOfSpeech": "동사/명사",
+    "meaning": "이기다, 승리하다; 승리",
+    "phonetic": "[wɪn]",
+    "contextNote": "'wants to win'(승리를 갈망하는)",
+    "level": "중급"
+  },
+  "wire": {
+    "word": "wire",
+    "partOfSpeech": "명사/동사",
+    "meaning": "전신 송금(와이어); 송금하다",
+    "phonetic": "[ˈwaɪər]",
+    "contextNote": "투자금을 즉시 은행 전신으로 송금하는 행위",
+    "level": "중급"
+  },
+  "wondering": {
+    "word": "wondering",
+    "partOfSpeech": "동사/현재분사",
+    "meaning": "궁금해하는 중인",
+    "phonetic": "[ˈwʌndərɪŋ]",
+    "contextNote": "상대의 의중을 떠봄",
+    "level": "중급"
+  },
+  "work": {
+    "word": "work",
+    "partOfSpeech": "동사/명사",
+    "meaning": "일하다, 효과가 있다; 일",
+    "phonetic": "[wɜːrk]",
+    "contextNote": "노력",
+    "level": "중급"
+  },
+  "worked": {
+    "word": "worked",
+    "partOfSpeech": "동사(과거)",
+    "meaning": "효과가 있었다, 일했다",
+    "phonetic": "[wɜːrkt]",
+    "contextNote": "전략이 들어맞음",
+    "level": "중급"
+  },
+  "workflow": {
+    "word": "workflow",
+    "partOfSpeech": "명사",
+    "meaning": "워크플로우, 업무 처리 흐름",
+    "phonetic": "[ˈwɜːrkfloʊ]",
+    "contextNote": "소프트웨어 자동화 절차",
+    "level": "중급"
+  },
+  "worry": {
+    "word": "worry",
+    "partOfSpeech": "동사/명사",
+    "meaning": "걱정하다; 우려",
+    "phonetic": "[ˈwʌri]",
+    "contextNote": "'Don't worry'",
+    "level": "중급"
+  },
+  "wound": {
+    "word": "wound",
+    "partOfSpeech": "명사/동사",
+    "meaning": "상처, 수술 부위; 상처를 입히다",
+    "phonetic": "[wuːnd]",
+    "contextNote": "환자의 상처 부위",
+    "level": "중급"
+  },
+  "wow": {
+    "word": "wow",
+    "partOfSpeech": "감탄사",
+    "meaning": "와, 대단하네",
+    "phonetic": "[waʊ]",
+    "contextNote": "감탄",
+    "level": "기초"
+  },
+  "you're": {
+    "word": "you're",
+    "partOfSpeech": "대명사+동사",
+    "meaning": "너는 ~이다 (you are 축약)",
+    "phonetic": "[jʊər]",
+    "contextNote": "구어체 축약",
+    "level": "기초"
+  },
+  "you've": {
+    "word": "you've",
+    "partOfSpeech": "대명사+조동사",
+    "meaning": "너는 ~해왔다 (you have 축약)",
+    "phonetic": "[juːv]",
+    "contextNote": "현재완료 축약",
+    "level": "기초"
+  }
+}

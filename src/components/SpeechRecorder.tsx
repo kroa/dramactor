@@ -9,6 +9,8 @@ import {
   playCinematicSound,
   type SpeechRecognitionInstance,
 } from '../utils/speechMatch';
+import { WordModal } from './WordModal';
+import { InteractiveText } from './InteractiveText';
 
 interface SpeechRecorderProps {
   targetScript: string;
@@ -32,6 +34,16 @@ export const SpeechRecorder: React.FC<SpeechRecorderProps> = ({
   const [isSupported] = useState<boolean>(isSpeechRecognitionSupported);
   const [isPlayingTTS, setIsPlayingTTS] = useState<boolean>(false);
   const [audioError, setAudioError] = useState<string | null>(null);
+
+  const [dictModalWord, setDictModalWord] = useState<string>('');
+  const [dictModalSentence, setDictModalSentence] = useState<string>('');
+  const [isDictModalOpen, setIsDictModalOpen] = useState<boolean>(false);
+
+  const handleWordClick = (word: string, contextSentence: string) => {
+    setDictModalWord(word);
+    setDictModalSentence(contextSentence);
+    setIsDictModalOpen(true);
+  };
 
   const recognizerRef = useRef<SpeechRecognitionInstance | null>(null);
 
@@ -169,7 +181,12 @@ export const SpeechRecorder: React.FC<SpeechRecorderProps> = ({
           </span>
         </div>
         <p className="text-base sm:text-lg font-bold text-white tracking-tight px-2 leading-relaxed font-serif">
-          &ldquo;{targetScript}&rdquo;
+          &ldquo;
+          <InteractiveText
+            text={targetScript}
+            onWordClick={handleWordClick}
+          />
+          &rdquo;
         </p>
 
         {/* Native Guide Audio Button */}
@@ -303,6 +320,14 @@ export const SpeechRecorder: React.FC<SpeechRecorderProps> = ({
           </button>
         )}
       </div>
+
+      {/* Word Definition Modal */}
+      <WordModal
+        isOpen={isDictModalOpen}
+        onClose={() => setIsDictModalOpen(false)}
+        word={dictModalWord}
+        contextSentence={dictModalSentence}
+      />
     </div>
   );
 };
