@@ -37,7 +37,8 @@
             "feedback": "‘check’는 부하직원을 감시하거나 단순 확인할 때 씁니다. 파트너에게는 ‘review/draft’가 맞습니다.",
             "targetScript": "Don't worry, I can check this document very quickly."
           }
-        ]
+        ],
+        "dialogueKorean": "첫날이든 뭐든 내 알 바 아니야. 피어슨 대표는 정오까지 내 책상 위에 헨더슨 합병 브리프가 올라오길 원해. 처리할 수 있겠어, 아니면 진짜 이기고 싶어 하는 다른 어소 변호사를 알아봐 줄까?"
       },
       {
         "turnIndex": 2,
@@ -70,7 +71,8 @@
             "feedback": "틀린 말은 아니지만 공격적인 상대를 제압하기엔 너무 방어적입니다.",
             "targetScript": "We should follow standard legal procedures strictly."
           }
-        ]
+        ],
+        "dialogueKorean": "자신감만으론 부족해. 상대 측 변호사는 태너야. 온갖 치졸한 수법과 절차적 허점만 파고드는 놈이지. 그자가 공격해오면 자네는 어떻게 받아칠 텐가?"
       },
       {
         "turnIndex": 3,
@@ -103,7 +105,8 @@
             "feedback": "상식적인 답변이지만 하비의 로펌에선 살아남기 어렵습니다.",
             "targetScript": "You try to negotiate calmly with them."
           }
-        ]
+        ],
+        "dialogueKorean": "좋아, 법정까지 같이 걷지. 하지만 이것만은 명심해: 누군가 네 얼굴에 총을 겨눌 때, 넌 결코 물러서선 안 돼. 그럴 때 넌 어떻게 하지?"
       }
     ],
     "keyTakeaway": {
@@ -149,7 +152,8 @@
             "feedback": "모든 앱이 하는 말입니다. 투자 유치를 이끌어내기엔 차별점이 약합니다.",
             "targetScript": "We have good features and fast customer service."
           }
-        ]
+        ],
+        "dialogueKorean": "초기 리텐션 지표는 나쁘지 않네요. 하지만 현실을 직시하죠. 구글이나 오픈AI가 두 번의 스프린트만 돌리면 바로 복제할 수 있어요. 당신들의 진짜 독점적 방어 해자는 어디에 있습니까?"
       },
       {
         "turnIndex": 2,
@@ -182,7 +186,8 @@
             "feedback": "너무 직설적이고 거칠어 리더십의 전략적 안정감이 떨어져 보입니다.",
             "targetScript": "We can cut marketing budget and reduce headcounts."
           }
-        ]
+        ],
+        "dialogueKorean": "월간 번레이트는 어쩌고요? 런웨이가 18개월밖에 안 남았는데 매달 20만 달러씩 태우고 있잖아요. 거시 경제 상황이 악화되면 어떻게 감당할 겁니까?"
       },
       {
         "turnIndex": 3,
@@ -215,7 +220,8 @@
             "feedback": "스타트업 밸류에이션을 물건값 깎듯이 말하면 신뢰도가 하락합니다.",
             "targetScript": "Can you give us a little bit better price?"
           }
-        ]
+        ],
+        "dialogueKorean": "인상적인 평정심이군요. 금요일까지 텀시트 발행을 검토 중입니다만, 저희는 지분 22%를 원합니다. 어떻게 생각하시죠?"
       }
     ],
     "keyTakeaway": {
@@ -261,7 +267,8 @@
             "feedback": "열심히 했다는 호소만으로는 CFO의 지갑을 열 수 없습니다.",
             "targetScript": "I really worked hard day and night for the company."
           }
-        ]
+        ],
+        "dialogueKorean": "제안서 잘 봤습니다. 지난 3분기 구조조정에서 당신의 기여는 분명했지만, 요즘 같은 긴축 재정 기조에서 기본급 25% 인상은 과합니다. 스톡옵션 인센티브 대신 왜 굳이 기본급이어야 하는지 설득해 보시죠."
       },
       {
         "turnIndex": 2,
@@ -294,7 +301,8 @@
             "feedback": "읍소하는 태도는 협상의 주도권을 완전히 상대에게 넘겨줍니다.",
             "targetScript": "Can't you just make an exception for me this one time?"
           }
-        ]
+        ],
+        "dialogueKorean": "모든 팀장들이 현금 기본급을 원하지만, 이사회에선 고정 비용을 엄격히 감시하고 있어요. 다른 회사에서 영입 제안을 받는다고 하셨는데, 당신이 내 입장이라면 이런 선례를 남기겠습니까?"
       },
       {
         "turnIndex": 3,
@@ -327,7 +335,8 @@
             "feedback": "예의 바르지만 자신감 넘치는 주도적 리더의 포스가 아쉽습니다.",
             "targetScript": "Okay, thank you for accepting my proposal."
           }
-        ]
+        ],
+        "dialogueKorean": "단도직입적으로 말하죠. 지금 기본급 12% 인상에, 4분기 ARR 목표 달성 시 30%가 지급되는 성과 연동형 주식 부여를 묶어주겠습니다. 이 조건으로 합의하시겠습니까?"
       }
     ],
     "keyTakeaway": {
@@ -373,7 +382,8 @@
             "feedback": "일반적인 대응이지만 급박한 혈압 저하를 막기엔 구체적 술기가 부족합니다.",
             "targetScript": "I will give more blood and check the wound."
           }
-        ]
+        ],
+        "dialogueKorean": "환자가 외상 쇼크 상태로 수축기 혈압이 70까지 떨어졌어요. 둔상으로 인한 비장 파열이 의심됩니다. 복부 초음파(FAST) 준비할까요, 아니면 개복 수술실로 직행합니까?"
       },
       {
         "turnIndex": 2,
@@ -406,7 +416,8 @@
             "feedback": "방향은 맞으나 논리적 의학 근거 제시가 다소 밋밋합니다.",
             "targetScript": "I think patching might be safer for the patient."
           }
-        ]
+        ],
+        "dialogueKorean": "심실세동 발생, 맥박이 잡히지 않습니다! 당장 심폐소생술(CPR) 시작하고 에피네프린 투여해야 합니다. 제세동기 몇 줄(Joule)로 충전할까요, 선생님?"
       },
       {
         "turnIndex": 3,
@@ -439,7 +450,8 @@
             "feedback": "무난하지만 구체적인 사후 관리 계획이 빠져 있습니다.",
             "targetScript": "I will do my best to finish the operation."
           }
-        ]
+        ],
+        "dialogueKorean": "동맥 출혈 부위 클램프 잡았습니다. 하지만 혈압이 계속 곤두박질치고 있어요. 대량 수혈 프로토콜(MTP) 즉시 가동하고 승압제(레보페드) 올려야 합니다. 승인하시겠습니까?"
       }
     ],
     "keyTakeaway": {
@@ -485,7 +497,8 @@
             "feedback": "무난하지만 상대방의 흥미를 끌어당기는 스파크가 없습니다.",
             "targetScript": "Just enjoying the view. It is very beautiful tonight."
           }
-        ]
+        ],
+        "dialogueKorean": "당신 프로필 봤을 때부터 궁금했어요. 핀테크 스타트업 창업가라니 정말 바쁘실 텐데, 일 말고 당신을 진짜 심장 뛰게 만드는 건 뭔가요?"
       },
       {
         "turnIndex": 2,
@@ -518,7 +531,8 @@
             "feedback": "공감은 하지만 대화를 발전시키는 매력적인 질문이 빠져 있습니다.",
             "targetScript": "Yes, I also dislike talking about work at bars."
           }
-        ]
+        ],
+        "dialogueKorean": "이 칵테일 진짜 매력적이네요. 근데 솔직히 말해봐요, 첫 데이트에서 항상 이렇게 침착하고 여유로우신 편인가요?"
       },
       {
         "turnIndex": 3,
@@ -551,7 +565,8 @@
             "feedback": "흔한 승낙이지만 설렘을 배가시키는 매력은 다소 부족합니다.",
             "targetScript": "Sure, that sounds fun. What time does it start?"
           }
-        ]
+        ],
+        "dialogueKorean": "내일 아침 일찍 중요한 미팅이 있긴 한데요... 솔직히 여기서 대화 끝내기 아쉬워요. 다른 곳으로 2차 갈까요, 아니면 루프탑 야경 조금 더 볼래요?"
       }
     ],
     "keyTakeaway": {
@@ -597,7 +612,8 @@
             "feedback": "불공정하다는 주장만으로는 헤지펀드 거물을 설득할 수 없습니다.",
             "targetScript": "That clause is unfair to our company's board of directors."
           }
-        ]
+        ],
+        "dialogueKorean": "시장 개장까지 딱 45분 남았습니다. 타깃 기업 이사회가 주당 42달러의 우리 인수 제안을 공식 거부했습니다. 이제 어떻게 할 겁니까? 위임장 대결(프록시 파이트)로 갈까요, 아니면 공개 매수로 전환합니까?"
       },
       {
         "turnIndex": 2,
@@ -630,7 +646,8 @@
             "feedback": "일반적인 근거 제시이나 상대의 폐부를 찌르기엔 임팩트가 약합니다.",
             "targetScript": "We have legal opinions from top law firms saying otherwise."
           }
-        ]
+        ],
+        "dialogueKorean": "경영진 측이 포이즌 필(신주인수권) 카드를 만지작거리며 백기사(White Knight)를 물색 중이라는 정보가 들어왔습니다. 상대의 방어벽을 깨부술 당신의 히든카드는 뭡니까?"
       },
       {
         "turnIndex": 3,
@@ -663,7 +680,8 @@
             "feedback": "밤 11시 긴급 담판에서 결정을 미루면 모멘텀을 잃게 됩니다.",
             "targetScript": "We need to discuss this with our lawyers first."
           }
-        ]
+        ],
+        "dialogueKorean": "주요 연기금 기관 투자자 3곳이 방금 우리 측에 지지를 표명했습니다. 지금 누르면 게임 끝입니다. 전면 인수전 발표 보도자료를 배포할까요?"
       }
     ],
     "keyTakeaway": {
@@ -709,7 +727,8 @@
             "feedback": "수요가 적어 보여 투자자의 FOMO(놓칠까 두려운 심리)를 자극하지 못합니다.",
             "targetScript": "There is still plenty of room if you want to invest."
           }
-        ]
+        ],
+        "dialogueKorean": "3분 피칭 타이머 시작합니다. 실리콘밸리 탑티어 투자자 500명이 듣고 있습니다. 당신의 AI 플랫폼이 해결하려는 전 세계적인 핵심 병목 문제는 무엇입니까?"
       },
       {
         "turnIndex": 2,
@@ -742,7 +761,8 @@
             "feedback": "결정권을 미루어 유리한 협상 모멘텀을 흘려보내게 됩니다.",
             "targetScript": "Can we talk about the cap tomorrow instead?"
           }
-        ]
+        ],
+        "dialogueKorean": "시장 규모는 거대합니다. 하지만 고객 획득 비용(CAC) 대비 고객 평생 가치(LTV) 비율이 아직 검증되지 않았어요. 초기 유닛 이코노믹스를 어떻게 입증하시겠습니까?"
       },
       {
         "turnIndex": 3,
@@ -775,7 +795,8 @@
             "feedback": "실무적이지만 역사적인 파트너십의 흥분과 비전을 공유하기엔 건조합니다.",
             "targetScript": "That's great. I will send the wire details to your assistant."
           }
-        ]
+        ],
+        "dialogueKorean": "피칭 정말 훌륭했습니다. 우리 펀드가 이번 라운드의 리드 투자자로 참여하고 싶은데요, 투자 유치 목표 금액과 밸류에이션 상한(Cap)은 얼마로 잡고 계십니까?"
       }
     ],
     "keyTakeaway": {
@@ -784,4 +805,3 @@
     }
   }
 ]
-

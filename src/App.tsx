@@ -76,6 +76,8 @@ export const App: React.FC = () => {
             turnResults={turnResults}
             onReplay={resetGame}
             onOpenArchive={() => setIsArchiveModalOpen(true)}
+            onOpenUnlockModal={() => setIsUnlockModalOpen(true)}
+            isUnlocked={isUnlocked}
           />
         ) : (
           <ScenePlay

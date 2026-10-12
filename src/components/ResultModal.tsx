@@ -10,6 +10,8 @@ interface ResultModalProps {
   turnResults: TurnResult[];
   onReplay: () => void;
   onOpenArchive: () => void;
+  onOpenUnlockModal?: () => void;
+  isUnlocked?: boolean;
 }
 
 export const ResultModal: React.FC<ResultModalProps> = ({
@@ -19,6 +21,8 @@ export const ResultModal: React.FC<ResultModalProps> = ({
   turnResults,
   onReplay,
   onOpenArchive,
+  onOpenUnlockModal,
+  isUnlocked,
 }) => {
   const [copied, setCopied] = useState<boolean>(false);
   const tier = getEndingTier(score);
@@ -106,6 +110,40 @@ export const ResultModal: React.FC<ResultModalProps> = ({
                 </>
               )}
             </button>
+
+            {/* PRO Upgrade Hook: Displayed after 3 turns are completed */}
+            {!isUnlocked && onOpenUnlockModal && (
+              <div className="mt-4 p-4 rounded-2xl bg-gradient-to-br from-amber-500/20 via-orange-500/10 to-yellow-500/20 border border-amber-500/40 backdrop-blur-md shadow-xl text-left space-y-2.5 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-24 h-24 bg-amber-400/10 rounded-full blur-2xl pointer-events-none" />
+                <div className="flex items-start space-x-2.5">
+                  <div className="w-8 h-8 rounded-xl bg-amber-400/25 border border-amber-400/50 flex items-center justify-center shrink-0 text-amber-300 font-bold shadow-inner">
+                    ✨
+                  </div>
+                  <div>
+                    <div className="flex items-center space-x-1.5">
+                      <span className="text-xs font-black text-amber-200">
+                        오늘의 3개 턴 완주! 내일 씬이 기다려지시나요?
+                      </span>
+                      <span className="text-[9px] px-1.5 py-0.5 rounded bg-amber-400 text-black font-extrabold uppercase tracking-wider">
+                        PRO
+                      </span>
+                    </div>
+                    <p className="text-[11px] text-amber-300/80 leading-relaxed mt-0.5">
+                      자정까지 기다리지 않고, 7편 전체 미드 풀코스와 무제한 다시듣기를 영구 언락하세요!
+                    </p>
+                  </div>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={onOpenUnlockModal}
+                  className="w-full py-2.5 rounded-xl font-black text-xs bg-gradient-to-r from-amber-400 to-yellow-400 hover:from-amber-300 hover:to-yellow-300 text-black shadow-lg shadow-amber-500/20 flex items-center justify-center space-x-1.5 transition-all active:scale-[0.98] cursor-pointer"
+                >
+                  <Sparkles className="w-3.5 h-3.5 fill-black" />
+                  <span>PRO 패스로 7일 전편 즉시 언락하기 (Lemon Squeezy)</span>
+                </button>
+              </div>
+            )}
           </div>
 
           {/* Navigation Buttons */}
@@ -136,19 +174,19 @@ export const ResultModal: React.FC<ResultModalProps> = ({
             </div>
             <div
               id="ad-slot-native"
-              className="w-[300px] h-[250px] mx-auto rounded-xl bg-zinc-900/90 border border-dashed border-zinc-700/80 flex flex-col items-center justify-center p-4 text-center shadow-inner relative overflow-hidden"
+              className="w-[300px] h-[250px] mx-auto rounded-2xl bg-gradient-to-b from-zinc-900/90 to-zinc-950/90 border border-zinc-800/80 flex flex-col items-center justify-center p-4 text-center shadow-2xl relative overflow-hidden group transition-all hover:border-zinc-700"
             >
-              <div className="w-10 h-10 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-2 text-emerald-400">
+              <div className="w-10 h-10 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-2 text-emerald-400 group-hover:scale-110 transition-transform">
                 🎬
               </div>
-              <span className="text-xs font-bold text-zinc-300 mb-1">
-                Dramactor Native Ad Space
+              <span className="text-xs font-bold text-zinc-200 mb-1">
+                Dramactor Native Sponsor Space
               </span>
-              <p className="text-[11px] text-zinc-500 max-w-[220px] leading-relaxed mb-2">
-                스폰서 제휴 광고가 송출되는 300x250 반응형 컨테이너입니다.
+              <p className="text-[11px] text-zinc-400 max-w-[220px] leading-relaxed mb-2">
+                글로벌 브랜드 및 스폰서 제휴 광고가 송출되는 반응형 300x250 슬롯입니다.
               </p>
-              <span className="text-[9px] font-mono text-zinc-600 px-2 py-0.5 rounded bg-black/40 border border-white/5">
-                Container ID: #ad-slot-native
+              <span className="text-[9px] font-mono text-zinc-500 px-2 py-0.5 rounded bg-black/60 border border-white/5">
+                Slot: #ad-slot-native &bull; 300x250
               </span>
             </div>
           </div>

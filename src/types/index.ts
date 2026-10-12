@@ -12,6 +12,7 @@ export interface SceneTurn {
   speaker: string; // 상대방 배역 (예: "Harvey (Senior Partner)")
   avatarEmoji: string; // 배역을 상징하는 시네마틱 아이콘/이모지
   dialogue: string; // 상대방 대사 (TTS 재생 대상)
+  dialogueKorean?: string; // 상대방 대사 한국어 번역
   situationHint: string; // 한국어 상황 설명
   choices: Choice[];
 }

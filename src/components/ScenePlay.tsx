@@ -67,6 +67,7 @@ export const ScenePlay: React.FC<ScenePlayProps> = ({
     turn.choices.forEach((c) => {
       updated[c.id] = nextState;
     });
+    updated['main_dialogue'] = nextState;
     setTranslationState({
       turnIndex,
       revealed: updated,
@@ -190,17 +191,42 @@ export const ScenePlay: React.FC<ScenePlayProps> = ({
           {/* Cinematic Subtitle & Situation Card */}
           <div className="p-3.5 sm:p-4 rounded-2xl bg-gradient-to-b from-white/[0.06] to-white/[0.02] border border-white/10 backdrop-blur-xl shadow-xl space-y-2.5">
             {/* Subtitle Dialogue Line */}
-            <div className="space-y-1">
+            <div className="space-y-1.5">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-1.5 text-xs text-cyan-300 font-bold">
                   <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
                   <span>{turn.speaker} 대사 (Line)</span>
                 </div>
-                <span className="text-[10px] text-zinc-500 font-mono">CINEMA SUBTITLE</span>
+                <div className="flex items-center space-x-2">
+                  <button
+                    type="button"
+                    onClick={(e) => toggleTranslation('main_dialogue', e)}
+                    className={`px-2 py-0.5 rounded text-[11px] font-medium border flex items-center space-x-1 transition-all ${
+                      showAllTranslations || Boolean(revealedTranslations['main_dialogue'])
+                        ? 'bg-cyan-500/25 text-cyan-300 border-cyan-500/50'
+                        : 'bg-white/[0.05] text-zinc-400 border-white/10 hover:text-white hover:bg-white/[0.1]'
+                    }`}
+                    title="메인 대사 한국어 번역 토글"
+                  >
+                    <Languages className="w-3 h-3" />
+                    <span>
+                      {showAllTranslations || Boolean(revealedTranslations['main_dialogue'])
+                        ? '번역 닫기'
+                        : '번역 보기'}
+                    </span>
+                  </button>
+                  <span className="text-[10px] text-zinc-500 font-mono hidden sm:inline-block">CINEMA SUBTITLE</span>
+                </div>
               </div>
               <p className="text-sm sm:text-base lg:text-lg font-bold text-white leading-relaxed tracking-tight">
                 &ldquo;{turn.dialogue}&rdquo;
               </p>
+              {(showAllTranslations || Boolean(revealedTranslations['main_dialogue'])) && turn.dialogueKorean && (
+                <div className="pt-1 text-xs sm:text-sm text-cyan-200 font-medium leading-relaxed bg-cyan-950/40 px-3 py-2 rounded-xl border border-cyan-500/30 animate-fade-in shadow-inner">
+                  <span className="text-cyan-400 font-bold mr-1">🇰🇷 한국어 번역:</span>
+                  <span>{turn.dialogueKorean}</span>
+                </div>
+              )}
             </div>
 
             {/* Situation Context */}
