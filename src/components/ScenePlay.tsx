@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Sparkles, MessageSquare, Languages } from 'lucide-react';
 import type { Choice, Episode, SceneTurn, TurnResult } from '../types';
-import { playStudioClip, stopNativeSpeech } from '../utils/speechMatch';
+import { playStudioClip, stopNativeSpeech, playCinematicSound } from '../utils/speechMatch';
 import { SpeechRecorder } from './SpeechRecorder';
 import { VoiceSettingsModal } from './VoiceSettingsModal';
 import { CinematicVideoStage } from './CinematicVideoStage';
@@ -36,6 +36,21 @@ export const ScenePlay: React.FC<ScenePlayProps> = ({
   const [dictModalWord, setDictModalWord] = useState<string>('');
   const [dictModalSentence, setDictModalSentence] = useState<string>('');
   const [isDictModalOpen, setIsDictModalOpen] = useState<boolean>(false);
+  const [isDeliveringRetort, setIsDeliveringRetort] = useState<boolean>(false);
+
+  const handleSelectChoiceWithVFX = (choice: Choice) => {
+    setIsDeliveringRetort(true);
+    playCinematicSound('pass');
+    onSelectChoice(choice);
+    window.setTimeout(() => {
+      setIsDeliveringRetort(false);
+    }, 1800);
+  };
+
+  const handleCancelChoiceWithVFX = () => {
+    setIsDeliveringRetort(false);
+    onSelectChoice(null as unknown as Choice);
+  };
 
   const handleWordClick = (word: string, contextSentence: string) => {
     setDictModalWord(word);
@@ -198,6 +213,8 @@ export const ScenePlay: React.FC<ScenePlayProps> = ({
             isPlayingTTS={isPlayingTTS}
             onPlayTTS={handleManualPlayTTS}
             onOpenVoiceSettings={() => setIsVoiceModalOpen(true)}
+            selectedChoice={selectedChoice}
+            isDeliveringRetort={isDeliveringRetort}
           />
 
           {/* Cinematic Subtitle & Situation Card */}
@@ -365,7 +382,7 @@ export const ScenePlay: React.FC<ScenePlayProps> = ({
                     <button
                       key={choice.id}
                       type="button"
-                      onClick={() => onSelectChoice(choice)}
+                      onClick={() => handleSelectChoiceWithVFX(choice)}
                       className="w-full text-left p-3 sm:p-3.5 rounded-xl glass-panel-interactive border border-[#DFB15B]/20 relative group active:scale-[0.98] transition-all hover:border-[#DFB15B]/60 cursor-pointer"
                     >
                       <div className="flex items-start space-x-3">
@@ -472,7 +489,7 @@ export const ScenePlay: React.FC<ScenePlayProps> = ({
                 guideAudioUrl={`/audio/guides/ep${episode.episodeNumber}_turn${turn.turnIndex}_${selectedChoice.id}.mp3`}
                 isMuted={isMuted}
                 onPass={onSubmitTurn}
-                onCancelChoice={() => onSelectChoice(null as unknown as Choice)}
+                onCancelChoice={handleCancelChoiceWithVFX}
               />
             </div>
           )}

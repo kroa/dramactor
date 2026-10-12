@@ -5,6 +5,7 @@ import { ResultModal } from './components/ResultModal';
 import { LockScreen } from './components/LockScreen';
 import { UnlockModal } from './components/UnlockModal';
 import { ArchiveModal } from './components/ArchiveModal';
+import { SceneIntroScreen } from './components/SceneIntroScreen';
 import { useDramactorGame } from './hooks/useDramactorGame';
 
 export const App: React.FC = () => {
@@ -33,12 +34,29 @@ export const App: React.FC = () => {
   const [isUnlockModalOpen, setIsUnlockModalOpen] = useState<boolean>(false);
   const [isArchiveModalOpen, setIsArchiveModalOpen] = useState<boolean>(false);
   const [isPracticeMode, setIsPracticeMode] = useState<boolean>(false);
+  const [hasStartedSession, setHasStartedSession] = useState<boolean>(() => {
+    try {
+      return sessionStorage.getItem('dramactor_has_started_session') === 'true';
+    } catch {
+      return false;
+    }
+  });
+
+  const handleStartScene = () => {
+    setHasStartedSession(true);
+    try {
+      sessionStorage.setItem('dramactor_has_started_session', 'true');
+    } catch {
+      // Ignore
+    }
+  };
 
   // Determine what view to show
   const showLockScreen = isAlreadyPlayedToday && !isUnlocked && !isPracticeMode && !isCompleted;
 
   const handleStartPractice = () => {
     setIsPracticeMode(true);
+    handleStartScene();
     resetGame();
   };
 
@@ -56,6 +74,7 @@ export const App: React.FC = () => {
         onToggleMute={toggleMute}
         onOpenUnlockModal={() => setIsUnlockModalOpen(true)}
         onOpenArchiveModal={() => setIsArchiveModalOpen(true)}
+        onOpenIntro={() => setHasStartedSession(false)}
       />
 
       {/* Main Stage Content - Responsive Web & App Container */}
@@ -78,6 +97,13 @@ export const App: React.FC = () => {
             onOpenArchive={() => setIsArchiveModalOpen(true)}
             onOpenUnlockModal={() => setIsUnlockModalOpen(true)}
             isUnlocked={isUnlocked}
+          />
+        ) : !hasStartedSession ? (
+          <SceneIntroScreen
+            episode={currentEpisode}
+            streak={streak}
+            onStartScene={handleStartScene}
+            onOpenArchive={() => setIsArchiveModalOpen(true)}
           />
         ) : (
           <ScenePlay
@@ -118,6 +144,7 @@ export const App: React.FC = () => {
         selectedDate={selectedDate}
         onSelectEpisode={(date) => {
           setIsPracticeMode(true);
+          handleStartScene();
           selectArchiveEpisode(date);
         }}
       />

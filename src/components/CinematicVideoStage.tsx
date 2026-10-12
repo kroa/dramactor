@@ -9,9 +9,9 @@ import {
   Sliders,
   Play,
 } from 'lucide-react';
-import type { Episode, SceneTurn } from '../types';
+import type { Choice, Episode, SceneTurn } from '../types';
 import { getSceneVisualConfig } from '../utils/sceneVisualMap';
-import { subscribeAudioTime } from '../utils/speechMatch';
+import { playNativeDialogue, subscribeAudioTime } from '../utils/speechMatch';
 
 interface CinematicVideoStageProps {
   episode: Episode;
@@ -20,6 +20,8 @@ interface CinematicVideoStageProps {
   isPlayingTTS: boolean;
   onPlayTTS: () => void;
   onOpenVoiceSettings: () => void;
+  selectedChoice?: Choice | null;
+  isDeliveringRetort?: boolean;
 }
 
 export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
@@ -29,6 +31,8 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
   isPlayingTTS,
   onPlayTTS,
   onOpenVoiceSettings,
+  selectedChoice,
+  isDeliveringRetort,
 }) => {
   const [isVideoEnabled, setIsVideoEnabled] = useState<boolean>(true);
   const [isTheaterMode, setIsTheaterMode] = useState<boolean>(false);
@@ -201,8 +205,13 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
       {/* Subtle 35mm Analog Film Grain Overlay */}
       <div className="absolute inset-0 opacity-[0.035] pointer-events-none animate-film-grain bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px] mix-blend-screen" />
 
-      {/* Interactive Center Play Overlay when dialogue is idle */}
-      {isVideoEnabled && !videoError && isVideoLoaded && !isPlayingTTS && (
+      {/* Retort Flash VFX Overlay when dialogue retort is fired */}
+      {isDeliveringRetort && (
+        <div className="absolute inset-0 bg-[#DFB15B]/25 pointer-events-none animate-retort-flash z-30 mix-blend-screen" />
+      )}
+
+      {/* Center Stage: Interactive Center Play Overlay when dialogue is idle and no choice selected */}
+      {isVideoEnabled && !videoError && isVideoLoaded && !isPlayingTTS && !selectedChoice && (
         <div
           onClick={onPlayTTS}
           className="absolute inset-0 flex items-center justify-center cursor-pointer group z-20"
@@ -227,13 +236,63 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
         </div>
       )}
 
+      {/* Center Stage: Lead Actor Retort Delivery (대사 날리기 반격 연출) */}
+      {selectedChoice && (
+        <div className="absolute inset-0 flex items-center justify-center p-3 sm:p-6 z-20 pointer-events-auto">
+          <div
+            className={`max-w-md sm:max-w-lg w-full bg-[#0a080c]/90 backdrop-blur-xl border border-[#DFB15B]/70 rounded-2xl p-3 sm:p-4.5 shadow-2xl shadow-[#DFB15B]/30 text-center space-y-2 transition-all ${
+              isDeliveringRetort ? 'animate-flying-retort' : ''
+            }`}
+          >
+            {/* Header chip */}
+            <div className="flex items-center justify-between border-b border-[#DFB15B]/20 pb-1.5">
+              <div className="flex items-center space-x-1.5">
+                <span className="w-2 h-2 rounded-full bg-[#DFB15B] animate-ping" />
+                <span className="text-[10px] sm:text-[11px] font-mono font-black text-[#F3E5AB] tracking-widest uppercase">
+                  🎭 LEAD COUNTER-SHOT &bull; 대사 날리기
+                </span>
+              </div>
+              <span className="text-[9px] font-mono px-2 py-0.5 rounded bg-[#1c1810] border border-[#DFB15B]/40 text-[#DFB15B] font-bold">
+                OPTION {selectedChoice.id}
+              </span>
+            </div>
+
+            {/* Quote dialogue */}
+            <div className="py-0.5 space-y-1">
+              <p className="text-sm sm:text-lg md:text-xl font-bold font-serif text-white tracking-tight drop-shadow-lg leading-snug">
+                &ldquo;<span className="gold-gradient-text">{selectedChoice.text}</span>&rdquo;
+              </p>
+              <p className="text-[11px] sm:text-xs text-[#F3E5AB]/90 font-medium font-sans">
+                {selectedChoice.koreanMeaning}
+              </p>
+            </div>
+
+            {/* Native dialogue audio preview */}
+            <div className="flex items-center justify-center pt-1.5 border-t border-[#DFB15B]/15 gap-2">
+              <button
+                type="button"
+                onClick={() => playNativeDialogue(selectedChoice.text)}
+                className="px-3 py-1 rounded-full bg-gradient-to-r from-[#DFB15B] via-[#F3E5AB] to-[#C5A059] hover:brightness-105 text-[#140e03] font-bold text-[11px] sm:text-xs flex items-center space-x-1.5 shadow-md shadow-[#DFB15B]/20 cursor-pointer transition-all active:scale-95"
+                title="내 대사 원어민 발음 듣기"
+              >
+                <Volume2 className="w-3 h-3 fill-[#140e03]" />
+                <span>내 대사 원어민 발음 듣기</span>
+              </button>
+              <span className="text-[10px] text-[#C5A059] font-mono hidden sm:inline">
+                하단 마이크를 켜고 발화하세요
+              </span>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Atmospheric Fallback Backdrop (Rendered only when video is disabled or buffering) */}
       {(!isVideoEnabled || videoError || !isVideoLoaded) && (
         <div
           className={`absolute inset-0 bg-gradient-to-br ${visualConfig.themeColor} flex items-center justify-center`}
         >
           <div className="text-center space-y-2">
-            <span className="text-5xl">{turn.avatarEmoji}</span>
+            <span className="text-5xl">{selectedChoice ? '🎭' : turn.avatarEmoji}</span>
             <p className="text-xs text-[#DFB15B] font-mono tracking-widest uppercase">
               {visualConfig.locationTag}
             </p>
@@ -249,17 +308,22 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
 
       {/* Viewfinder Framing Guidelines (HBO Prestige Gold Corner Brackets with Speech Glow) */}
       <div className="absolute inset-2 sm:inset-3 pointer-events-none border border-[#DFB15B]/20 rounded-xl transition-all duration-500">
-        <div className={`absolute -top-0.5 -left-0.5 w-3.5 h-3.5 border-t-2 border-l-2 transition-all ${isPlayingTTS ? 'border-[#FFF1BD] drop-shadow-[0_0_10px_rgba(255,241,189,0.9)]' : 'border-[#DFB15B]/70'}`} />
-        <div className={`absolute -top-0.5 -right-0.5 w-3.5 h-3.5 border-t-2 border-r-2 transition-all ${isPlayingTTS ? 'border-[#FFF1BD] drop-shadow-[0_0_10px_rgba(255,241,189,0.9)]' : 'border-[#DFB15B]/70'}`} />
-        <div className={`absolute -bottom-0.5 -left-0.5 w-3.5 h-3.5 border-b-2 border-l-2 transition-all ${isPlayingTTS ? 'border-[#FFF1BD] drop-shadow-[0_0_10px_rgba(255,241,189,0.9)]' : 'border-[#DFB15B]/70'}`} />
-        <div className={`absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 border-b-2 border-r-2 transition-all ${isPlayingTTS ? 'border-[#FFF1BD] drop-shadow-[0_0_10px_rgba(255,241,189,0.9)]' : 'border-[#DFB15B]/70'}`} />
+        <div className={`absolute -top-0.5 -left-0.5 w-3.5 h-3.5 border-t-2 border-l-2 transition-all ${isPlayingTTS || selectedChoice ? 'border-[#FFF1BD] drop-shadow-[0_0_10px_rgba(255,241,189,0.9)]' : 'border-[#DFB15B]/70'}`} />
+        <div className={`absolute -top-0.5 -right-0.5 w-3.5 h-3.5 border-t-2 border-r-2 transition-all ${isPlayingTTS || selectedChoice ? 'border-[#FFF1BD] drop-shadow-[0_0_10px_rgba(255,241,189,0.9)]' : 'border-[#DFB15B]/70'}`} />
+        <div className={`absolute -bottom-0.5 -left-0.5 w-3.5 h-3.5 border-b-2 border-l-2 transition-all ${isPlayingTTS || selectedChoice ? 'border-[#FFF1BD] drop-shadow-[0_0_10px_rgba(255,241,189,0.9)]' : 'border-[#DFB15B]/70'}`} />
+        <div className={`absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 border-b-2 border-r-2 transition-all ${isPlayingTTS || selectedChoice ? 'border-[#FFF1BD] drop-shadow-[0_0_10px_rgba(255,241,189,0.9)]' : 'border-[#DFB15B]/70'}`} />
       </div>
 
       {/* Production Monitor Top HUD */}
       <div className="absolute top-2.5 inset-x-3 sm:inset-x-4 flex items-center justify-between text-[10px] sm:text-[11px] font-mono tracking-wider z-10 pointer-events-none">
         {/* Left: Recording Status & Timecode */}
         <div className="flex items-center space-x-2">
-          {isPlayingTTS ? (
+          {selectedChoice ? (
+            <span className="flex items-center space-x-1.5 px-2 py-0.5 rounded bg-[#1f1606] border border-[#DFB15B]/70 text-[#FFF1BD] font-black backdrop-blur-md shadow-md shadow-[#DFB15B]/30 animate-pulse">
+              <span className="w-2 h-2 rounded-full bg-[#DFB15B] inline-block shadow-[0_0_8px_rgba(223,177,91,0.9)]" />
+              <span>ACTION: LEAD RETORT</span>
+            </span>
+          ) : isPlayingTTS ? (
             <span className="flex items-center space-x-1.5 px-2 py-0.5 rounded bg-[#16130d] border border-[#DFB15B]/60 text-[#F3E5AB] font-bold backdrop-blur-md shadow-md shadow-[#DFB15B]/20">
               <span className="w-2 h-2 rounded-full bg-[#DFB15B] animate-pulse inline-block shadow-[0_0_8px_rgba(223,177,91,0.9)]" />
               <span>REC</span>
@@ -272,14 +336,14 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
           )}
           <span className="font-mono font-bold text-[#F3E5AB] drop-shadow-md">{displayTimecode}</span>
           <span className="hidden sm:inline-block px-1.5 py-0.5 rounded bg-black/60 border border-[#DFB15B]/20 text-[#C5A059] backdrop-blur-md">
-            SCENE {turn.turnIndex} • TAKE {turnIndex + 1}
+            {selectedChoice ? 'CAM B &bull; 85MM T1.5' : `SCENE ${turn.turnIndex} &bull; TAKE ${turnIndex + 1}`}
           </span>
         </div>
 
         {/* Right: 4K HDR Specs & Interactive View Controls */}
         <div className="flex items-center space-x-1.5 pointer-events-auto">
           <span className="hidden sm:inline-block text-[#C5A059] text-[10px] bg-black/60 px-2 py-0.5 rounded border border-[#DFB15B]/20 backdrop-blur-md font-mono">
-            <span className="text-[#F3E5AB] font-bold mr-1">4K HDR</span> • 24FPS
+            <span className="text-[#F3E5AB] font-bold mr-1">4K HDR</span> &bull; 24FPS
           </span>
 
           {/* Toggle Video On / Off */}
@@ -321,39 +385,48 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
       </div>
 
       {/* Speaking Active Indicator Banner (Top Right) */}
-      {isPlayingTTS && (
+      {selectedChoice ? (
+        <div className="absolute top-8 right-3.5 sm:right-4 z-10 pointer-events-none">
+          <span className="px-2.5 py-0.5 rounded-full text-[9px] sm:text-[10px] font-mono font-bold bg-gradient-to-r from-[#DFB15B] via-[#F3E5AB] to-[#C5A059] text-[#140e03] shadow-lg shadow-[#DFB15B]/30 uppercase tracking-widest flex items-center space-x-1.5 border border-[#FFF2C6]/50">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#140e03] animate-ping" />
+            <span>LEAD ACTOR READY</span>
+          </span>
+        </div>
+      ) : isPlayingTTS ? (
         <div className="absolute top-8 right-3.5 sm:right-4 z-10 pointer-events-none">
           <span className="px-2.5 py-0.5 rounded-full text-[9px] sm:text-[10px] font-mono font-bold bg-gradient-to-r from-[#DFB15B] via-[#F3E5AB] to-[#C5A059] text-[#140e03] shadow-lg shadow-[#DFB15B]/30 uppercase tracking-widest flex items-center space-x-1.5 border border-[#FFF2C6]/50">
             <span className="w-1.5 h-1.5 rounded-full bg-[#140e03] animate-ping" />
             <span>ACTOR SPEAKING</span>
           </span>
         </div>
-      )}
+      ) : null}
 
       {/* Bottom Cinematic HUD & Character Lower-Third */}
       <div className="absolute bottom-2 inset-x-2.5 sm:bottom-2.5 sm:inset-x-4 flex items-end justify-between z-10 gap-2">
         {/* Left: Character Info Banner with Avatar Badge */}
-        <div className="flex items-center space-x-2 sm:space-x-2.5 min-w-0 max-w-[160px] sm:max-w-xs">
+        <div className="flex items-center space-x-2 sm:space-x-2.5 min-w-0 max-w-[170px] sm:max-w-xs">
           <div
             className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-black/80 border flex items-center justify-center text-base sm:text-xl backdrop-blur-md shadow-lg shrink-0 transition-all ${
-              isPlayingTTS
+              selectedChoice
+                ? 'border-[#DFB15B] ring-2 ring-[#DFB15B]/60 shadow-[0_0_18px_rgba(223,177,91,0.5)] scale-105'
+                : isPlayingTTS
                 ? 'border-[#DFB15B] ring-2 ring-[#DFB15B]/40 shadow-[0_0_15px_rgba(223,177,91,0.3)] scale-105'
                 : 'border-[#DFB15B]/25'
             }`}
           >
-            <span>{turn.avatarEmoji}</span>
+            <span>{selectedChoice ? '🎭' : turn.avatarEmoji}</span>
           </div>
           <div className="space-y-0.5 min-w-0">
             <div className="flex items-center space-x-1.5">
               <h4 className="text-xs sm:text-sm font-bold text-white tracking-wide drop-shadow-md truncate font-serif">
-                {turn.speaker}
+                {selectedChoice ? 'YOU (주연 배우)' : turn.speaker}
               </h4>
               <span className="hidden sm:inline-block text-[9px] px-1.5 py-0.2 rounded bg-[#1c1810] border border-[#DFB15B]/30 text-[#F3E5AB] font-mono font-bold shrink-0">
-                OPPONENT
+                {selectedChoice ? 'LEAD ACTOR' : 'OPPONENT'}
               </span>
             </div>
             <p className="text-[9px] sm:text-[10px] text-[#C5A059] font-medium truncate drop-shadow-sm">
-              {visualConfig.roleDescription}
+              {selectedChoice ? 'Lead Protagonist &bull; 반격 발화' : visualConfig.roleDescription}
             </p>
           </div>
         </div>

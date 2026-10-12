@@ -97,3 +97,4 @@ export function lookupWord(rawWord: string): WordDefinition | null {
     level: '중급',
   };
 }
+

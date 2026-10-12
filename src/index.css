@@ -139,3 +139,41 @@
 .animate-film-grain {
   animation: filmGrain 0.25s steps(4) infinite;
 }
+
+/* Retort Line Delivery (대사 날리기) VFX */
+@keyframes flyingRetort {
+  0% {
+    opacity: 0;
+    transform: translateY(24px) scale(0.9);
+    filter: blur(4px);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-4px) scale(1.02);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-flying-retort {
+  animation: flyingRetort 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes retortFlash {
+  0% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.35;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.animate-retort-flash {
+  animation: retortFlash 0.8s ease-out forwards;
+}

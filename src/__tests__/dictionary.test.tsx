@@ -116,3 +116,4 @@ describe('WordModal Component', () => {
     expect(container).toBeEmptyDOMElement();
   });
 });
+

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flame, Volume2, VolumeX, Sparkles, FolderArchive } from 'lucide-react';
+import { Flame, Volume2, VolumeX, Sparkles, FolderArchive, HelpCircle } from 'lucide-react';
 
 interface HeaderProps {
   streak: number;
@@ -8,6 +8,7 @@ interface HeaderProps {
   onToggleMute: () => void;
   onOpenUnlockModal: () => void;
   onOpenArchiveModal: () => void;
+  onOpenIntro?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -17,6 +18,7 @@ export const Header: React.FC<HeaderProps> = ({
   onToggleMute,
   onOpenUnlockModal,
   onOpenArchiveModal,
+  onOpenIntro,
 }) => {
   return (
     <header className="sticky top-0 z-30 w-full backdrop-blur-xl bg-[#070709]/90 border-b border-[#DFB15B]/15 px-4 py-3">
@@ -43,6 +45,19 @@ export const Header: React.FC<HeaderProps> = ({
 
         {/* Action Controls */}
         <div className="flex items-center space-x-2">
+          {/* Scene Intro / Guide Button */}
+          {onOpenIntro && (
+            <button
+              onClick={onOpenIntro}
+              type="button"
+              className="p-1.5 px-2 rounded-lg border border-[#DFB15B]/25 text-[#F3E5AB] bg-[#16130d] hover:bg-[#201b12] hover:text-white transition-all cursor-pointer flex items-center space-x-1"
+              title="에피소드 소개 & 90초 룰 가이드"
+            >
+              <HelpCircle className="w-3.5 h-3.5 text-[#DFB15B]" />
+              <span className="hidden sm:inline text-xs font-mono font-medium">소개</span>
+            </button>
+          )}
+
           {/* Streak Flame Counter */}
           <div
             className="flex items-center space-x-1.5 px-2.5 py-1 rounded-full bg-[#16130d] border border-[#DFB15B]/30 text-[#F3E5AB] shadow-sm"

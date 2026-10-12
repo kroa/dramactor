@@ -1,3 +1,4 @@
 # Dramactor (드라맥터) - Ads.txt File for Ad Network Authorization
 # 구글 애드센스(Google AdSense) 승인 시 본인의 pub-코드로 수정하세요.
 # 예시: google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
+
