@@ -10,7 +10,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "preview": "vite preview",
-    "deploy": "npm run build && wrangler pages deploy dist --project-name=dramactor --branch=main"
+    "deploy": "npm run build && npx wrangler pages deploy dist --project-name=dramactor --branch=main"
   },
   "dependencies": {
     "canvas-confetti": "^1.9.4",
