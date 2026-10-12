@@ -46,7 +46,7 @@ export const ResultModal: React.FC<ResultModalProps> = ({
     <div className="w-full max-w-md md:max-w-4xl lg:max-w-5xl mx-auto px-2 sm:px-4 py-4 text-left animate-fade-in">
       {/* Toast Notification when Copied */}
       {copied && (
-        <div className="fixed top-16 left-1/2 -translate-x-1/2 z-50 bg-emerald-500 text-black font-bold text-xs px-4 py-2 rounded-full shadow-2xl flex items-center space-x-1.5 animate-bounce">
+        <div className="fixed top-16 left-1/2 -translate-x-1/2 z-50 bg-[#E50914] text-white font-bold text-xs px-4 py-2 rounded-full shadow-2xl flex items-center space-x-1.5 animate-bounce">
           <Check className="w-4 h-4" />
           <span>결과가 클립보드에 복사되었습니다! 단톡방에 붙여넣기 하세요.</span>
         </div>
@@ -57,13 +57,13 @@ export const ResultModal: React.FC<ResultModalProps> = ({
         {/* Left Column (Desktop 5 cols): Score Hero Card, Wordle Share, Navigation, Ad Space */}
         <div className="md:col-span-5 space-y-4">
           {/* Main Ending Result Card */}
-          <div className="p-6 rounded-3xl bg-gradient-to-b from-white/[0.08] to-white/[0.02] border border-white/10 backdrop-blur-2xl shadow-2xl relative overflow-hidden text-center">
+          <div className="p-6 rounded-3xl bg-[#181818] border border-white/10 backdrop-blur-2xl shadow-2xl relative overflow-hidden text-center">
             {/* Ambient Top Glow */}
-            <div className="absolute top-0 left-1/3 right-1/3 h-1 bg-gradient-to-r from-emerald-400 via-cyan-400 to-violet-500 rounded-full" />
+            <div className="absolute top-0 left-1/4 right-1/4 h-1 bg-gradient-to-r from-[#E50914] via-rose-500 to-[#E50914] rounded-full shadow-md shadow-red-600/50" />
 
             {/* Tier Emoji & Title */}
             <div className="text-5xl mb-2 select-none animate-pulse">{tier.emoji}</div>
-            <div className="inline-block px-3 py-1 rounded-full bg-white/10 text-xs font-bold text-zinc-300 mb-2 border border-white/15">
+            <div className="inline-block px-3 py-1 rounded-full bg-red-950/60 text-xs font-black text-red-300 mb-2 border border-red-600/40 uppercase tracking-wider">
               {tier.tier}
             </div>
             <h2 className="text-2xl font-black text-white tracking-tight mb-1">
@@ -75,17 +75,17 @@ export const ResultModal: React.FC<ResultModalProps> = ({
 
             {/* Score & Streak Stats Grid */}
             <div className="grid grid-cols-2 gap-3 mb-5">
-              <div className="p-3.5 rounded-2xl bg-white/[0.03] border border-white/10">
+              <div className="p-3.5 rounded-2xl bg-zinc-900 border border-white/10">
                 <span className="text-[11px] font-bold text-zinc-400 block mb-0.5">최종 연기력 점수</span>
-                <div className="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-300">
+                <div className="text-3xl font-black text-[#E50914]">
                   {score}
                   <span className="text-sm font-semibold text-zinc-500 ml-1">/ 100</span>
                 </div>
               </div>
 
-              <div className="p-3.5 rounded-2xl bg-white/[0.03] border border-white/10">
+              <div className="p-3.5 rounded-2xl bg-zinc-900 border border-white/10">
                 <span className="text-[11px] font-bold text-zinc-400 block mb-0.5">연속 생존 스트릭</span>
-                <div className="text-3xl font-black text-orange-400 flex items-center justify-center">
+                <div className="text-3xl font-black text-red-400 flex items-center justify-center">
                   🔥 {streak}
                   <span className="text-sm font-semibold text-zinc-500 ml-1">일차</span>
                 </div>
@@ -96,16 +96,16 @@ export const ResultModal: React.FC<ResultModalProps> = ({
             <button
               type="button"
               onClick={handleShare}
-              className="w-full py-3.5 rounded-2xl font-black text-sm bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 hover:from-emerald-300 hover:to-cyan-300 text-black shadow-xl shadow-emerald-500/25 flex items-center justify-center space-x-2 transition-all active:scale-[0.98]"
+              className="w-full py-3.5 rounded-2xl font-black text-sm bg-[#E50914] hover:bg-[#b80710] text-white shadow-xl shadow-red-600/35 flex items-center justify-center space-x-2 transition-all active:scale-[0.98]"
             >
               {copied ? (
                 <>
-                  <Check className="w-5 h-5 text-black" />
+                  <Check className="w-5 h-5 text-white" />
                   <span>클립보드 복사 완료!</span>
                 </>
               ) : (
                 <>
-                  <Share2 className="w-5 h-5 text-black" />
+                  <Share2 className="w-5 h-5 text-white" />
                   <span>단톡방에 내 연기력 공유하기 (Wordle식 복사)</span>
                 </>
               )}
@@ -113,22 +113,22 @@ export const ResultModal: React.FC<ResultModalProps> = ({
 
             {/* PRO Upgrade Hook: Displayed after 3 turns are completed */}
             {!isUnlocked && onOpenUnlockModal && (
-              <div className="mt-4 p-4 rounded-2xl bg-gradient-to-br from-amber-500/20 via-orange-500/10 to-yellow-500/20 border border-amber-500/40 backdrop-blur-md shadow-xl text-left space-y-2.5 relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-24 h-24 bg-amber-400/10 rounded-full blur-2xl pointer-events-none" />
+              <div className="mt-4 p-4 rounded-2xl bg-gradient-to-br from-red-950/40 via-zinc-900 to-zinc-950 border border-red-600/40 backdrop-blur-md shadow-xl text-left space-y-2.5 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-24 h-24 bg-red-600/10 rounded-full blur-2xl pointer-events-none" />
                 <div className="flex items-start space-x-2.5">
-                  <div className="w-8 h-8 rounded-xl bg-amber-400/25 border border-amber-400/50 flex items-center justify-center shrink-0 text-amber-300 font-bold shadow-inner">
+                  <div className="w-8 h-8 rounded-xl bg-[#E50914]/25 border border-red-500/50 flex items-center justify-center shrink-0 text-white font-bold shadow-inner">
                     ✨
                   </div>
                   <div>
                     <div className="flex items-center space-x-1.5">
-                      <span className="text-xs font-black text-amber-200">
+                      <span className="text-xs font-black text-red-200">
                         오늘의 3개 턴 완주! 내일 씬이 기다려지시나요?
                       </span>
-                      <span className="text-[9px] px-1.5 py-0.5 rounded bg-amber-400 text-black font-extrabold uppercase tracking-wider">
+                      <span className="text-[9px] px-1.5 py-0.5 rounded bg-[#E50914] text-white font-extrabold uppercase tracking-wider">
                         PRO
                       </span>
                     </div>
-                    <p className="text-[11px] text-amber-300/80 leading-relaxed mt-0.5">
+                    <p className="text-[11px] text-zinc-300 leading-relaxed mt-0.5">
                       자정까지 기다리지 않고, 7편 전체 미드 풀코스와 무제한 다시듣기를 영구 언락하세요!
                     </p>
                   </div>
@@ -137,9 +137,9 @@ export const ResultModal: React.FC<ResultModalProps> = ({
                 <button
                   type="button"
                   onClick={onOpenUnlockModal}
-                  className="w-full py-2.5 rounded-xl font-black text-xs bg-gradient-to-r from-amber-400 to-yellow-400 hover:from-amber-300 hover:to-yellow-300 text-black shadow-lg shadow-amber-500/20 flex items-center justify-center space-x-1.5 transition-all active:scale-[0.98] cursor-pointer"
+                  className="w-full py-2.5 rounded-xl font-black text-xs bg-gradient-to-r from-[#E50914] to-red-600 hover:from-[#f40612] hover:to-[#b80710] text-white shadow-lg shadow-red-600/30 flex items-center justify-center space-x-1.5 transition-all active:scale-[0.98] cursor-pointer"
                 >
-                  <Sparkles className="w-3.5 h-3.5 fill-black" />
+                  <Sparkles className="w-3.5 h-3.5 fill-white text-white" />
                   <span>PRO 패스로 7일 전편 즉시 언락하기 (Lemon Squeezy)</span>
                 </button>
               </div>
@@ -151,7 +151,7 @@ export const ResultModal: React.FC<ResultModalProps> = ({
             <button
               type="button"
               onClick={onReplay}
-              className="flex-1 py-3 rounded-xl text-xs font-bold text-zinc-200 bg-white/[0.05] hover:bg-white/[0.1] border border-white/10 flex items-center justify-center space-x-1.5 transition-all active:scale-[0.98]"
+              className="flex-1 py-3 rounded-xl text-xs font-bold text-zinc-200 bg-zinc-800 hover:bg-zinc-700 border border-white/15 flex items-center justify-center space-x-1.5 transition-all active:scale-[0.98]"
             >
               <RotateCcw className="w-4 h-4" />
               <span>다시 연습하기</span>
@@ -159,9 +159,9 @@ export const ResultModal: React.FC<ResultModalProps> = ({
             <button
               type="button"
               onClick={onOpenArchive}
-              className="flex-1 py-3 rounded-xl text-xs font-bold text-violet-300 bg-violet-600/20 hover:bg-violet-600/30 border border-violet-500/40 flex items-center justify-center space-x-1.5 transition-all active:scale-[0.98]"
+              className="flex-1 py-3 rounded-xl text-xs font-bold text-white bg-zinc-800 hover:bg-zinc-700 border border-white/15 hover:border-red-500/50 flex items-center justify-center space-x-1.5 transition-all active:scale-[0.98]"
             >
-              <FolderArchive className="w-4 h-4" />
+              <FolderArchive className="w-4 h-4 text-[#E50914]" />
               <span>아카이브 둘러보기</span>
             </button>
           </div>
@@ -174,9 +174,9 @@ export const ResultModal: React.FC<ResultModalProps> = ({
             </div>
             <div
               id="ad-slot-native"
-              className="w-[300px] h-[250px] mx-auto rounded-2xl bg-gradient-to-b from-zinc-900/90 to-zinc-950/90 border border-zinc-800/80 flex flex-col items-center justify-center p-4 text-center shadow-2xl relative overflow-hidden group transition-all hover:border-zinc-700"
+              className="w-[300px] h-[250px] mx-auto rounded-2xl bg-gradient-to-b from-zinc-900/90 to-zinc-950/90 border border-zinc-800/80 flex flex-col items-center justify-center p-4 text-center shadow-2xl relative overflow-hidden group transition-all hover:border-red-900/40"
             >
-              <div className="w-10 h-10 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-2 text-emerald-400 group-hover:scale-110 transition-transform">
+              <div className="w-10 h-10 rounded-full bg-red-950/40 border border-red-600/30 flex items-center justify-center mb-2 text-[#E50914] group-hover:scale-110 transition-transform">
                 🎬
               </div>
               <span className="text-xs font-bold text-zinc-200 mb-1">
@@ -195,9 +195,9 @@ export const ResultModal: React.FC<ResultModalProps> = ({
         {/* Right Column (Desktop 7 cols): Key Takeaway & Turn-by-Turn Scene Review */}
         <div className="md:col-span-7 space-y-4">
           {/* Key Takeaway Card */}
-          <div className="p-4 sm:p-5 rounded-2xl bg-violet-950/20 border border-violet-500/30 backdrop-blur-md space-y-2">
-            <div className="flex items-center space-x-1.5 text-xs font-bold text-violet-300">
-              <Sparkles className="w-4 h-4 text-violet-400" />
+          <div className="p-4 sm:p-5 rounded-2xl bg-[#181818] border border-red-600/30 backdrop-blur-md space-y-2 shadow-xl">
+            <div className="flex items-center space-x-1.5 text-xs font-bold text-red-300">
+              <Sparkles className="w-4 h-4 text-[#E50914]" />
               <span>오늘 배운 핵심 미드 표현 (Key Takeaway)</span>
             </div>
             <p className="text-base sm:text-lg font-bold text-white tracking-tight">
@@ -209,10 +209,10 @@ export const ResultModal: React.FC<ResultModalProps> = ({
           </div>
 
           {/* Turn-by-Turn Performance Breakdown */}
-          <div className="p-4 sm:p-5 rounded-2xl bg-white/[0.03] border border-white/10 space-y-3">
+          <div className="p-4 sm:p-5 rounded-2xl bg-[#181818] border border-white/10 space-y-3 shadow-xl">
             <div className="flex items-center justify-between text-xs">
               <div className="flex items-center space-x-1.5 font-bold text-zinc-400">
-                <Award className="w-4 h-4 text-emerald-400" />
+                <Award className="w-4 h-4 text-[#E50914]" />
                 <span>씬별 티키타카 리뷰 (Scene Breakdown)</span>
               </div>
               <span className="text-[11px] text-zinc-500 font-mono">3 TURNS COMPLETED</span>
@@ -222,24 +222,24 @@ export const ResultModal: React.FC<ResultModalProps> = ({
               {turnResults.map((res, i) => (
                 <div
                   key={i}
-                  className="p-3.5 rounded-xl bg-black/40 border border-white/5 text-xs space-y-1.5 transition-all hover:border-white/15"
+                  className="p-3.5 rounded-xl bg-black/50 border border-white/5 text-xs space-y-1.5 transition-all hover:border-red-600/30"
                 >
                   <div className="flex items-center justify-between font-semibold">
-                    <span className="text-cyan-400 font-mono text-[11px]">TURN #{res.turnIndex}</span>
+                    <span className="text-[#E50914] font-mono text-[11px] font-black">TURN #{res.turnIndex}</span>
                     <span
                       className={
                         res.scoreEarned >= 20
-                          ? 'text-emerald-400 font-bold'
+                          ? 'text-red-400 font-bold'
                           : res.scoreEarned > 0
-                          ? 'text-cyan-400 font-bold'
-                          : 'text-rose-400 font-bold'
+                          ? 'text-zinc-300 font-bold'
+                          : 'text-amber-400 font-bold'
                       }
                     >
                       +{Math.round(res.scoreEarned)}점 (발화 일치율 {res.similarityScore}%)
                     </span>
                   </div>
                   <p className="text-white font-medium text-sm">&ldquo;{res.selectedChoice.text}&rdquo;</p>
-                  <p className="text-[11px] text-cyan-200/80 bg-cyan-950/20 px-2 py-0.5 rounded border border-cyan-500/10">
+                  <p className="text-[11px] text-red-200 bg-red-950/40 px-2 py-0.5 rounded border border-red-600/20">
                     {res.selectedChoice.koreanMeaning}
                   </p>
                   <p className="text-[11px] text-zinc-400 pt-0.5 leading-relaxed">

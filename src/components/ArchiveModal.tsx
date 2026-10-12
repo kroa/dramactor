@@ -35,14 +35,14 @@ export const ArchiveModal: React.FC<ArchiveModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fade-in">
-      <div className="relative w-full max-w-md md:max-w-xl rounded-2xl bg-[#0e1017] border border-white/10 p-5 shadow-2xl flex flex-col max-h-[85vh]">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md animate-fade-in">
+      <div className="relative w-full max-w-md md:max-w-xl rounded-2xl bg-[#181818] border border-white/10 p-5 shadow-2xl flex flex-col max-h-[85vh]">
         {/* Header */}
         <div className="flex items-center justify-between pb-3 border-b border-white/10 shrink-0">
           <div className="flex items-center space-x-2">
-            <Film className="w-5 h-5 text-violet-400" />
-            <h3 className="text-base font-bold text-white tracking-tight">
-              미드 에피소드 아카이브 (7일 패스)
+            <Film className="w-5 h-5 text-[#E50914]" />
+            <h3 className="text-base font-black text-white tracking-tight">
+              시즌 1 에피소드 아카이브 (7일 패스)
             </h3>
           </div>
           <button
@@ -64,8 +64,8 @@ export const ArchiveModal: React.FC<ArchiveModalProps> = ({
                 key={ep.date}
                 className={`p-3.5 rounded-xl border transition-all text-left flex items-start justify-between cursor-pointer ${
                   isSelected
-                    ? 'bg-violet-500/10 border-violet-500/40 shadow-md shadow-violet-500/10'
-                    : 'bg-white/[0.03] border-white/[0.08] hover:bg-white/[0.06] hover:border-white/20'
+                    ? 'bg-red-950/40 border-red-600/60 shadow-md shadow-red-600/20'
+                    : 'bg-zinc-900/80 border-white/5 hover:bg-zinc-800 hover:border-red-600/30'
                 }`}
                 onClick={() => {
                   onSelectEpisode(ep.date);
@@ -75,17 +75,17 @@ export const ArchiveModal: React.FC<ArchiveModalProps> = ({
                 <div className="space-y-1 flex-1 pr-2">
                   <div className="flex items-center space-x-2">
                     <span className="text-[11px] font-mono text-zinc-400 flex items-center space-x-1">
-                      <Calendar className="w-3 h-3 mr-0.5 inline" />
+                      <Calendar className="w-3 h-3 mr-0.5 inline text-[#E50914]" />
                       {ep.date}
                     </span>
                     <span
-                      className={`text-[10px] px-1.5 py-0.5 rounded border font-semibold ${genreBadgeColor(
+                      className={`text-[10px] px-1.5 py-0.5 rounded border font-bold uppercase ${genreBadgeColor(
                         ep.genre
                       )}`}
                     >
                       {ep.genre}
                     </span>
-                    <span className="text-[11px] font-bold text-zinc-300">
+                    <span className="text-[11px] font-black text-white">
                       EP #{ep.episodeNumber.toString().padStart(2, '0')}
                     </span>
                   </div>
@@ -99,12 +99,12 @@ export const ArchiveModal: React.FC<ArchiveModalProps> = ({
 
                 <div className="pt-1 shrink-0">
                   {isSelected ? (
-                    <span className="flex items-center space-x-1 text-xs font-semibold text-violet-400">
-                      <CheckCircle className="w-4 h-4" />
+                    <span className="flex items-center space-x-1 text-xs font-semibold text-[#E50914]">
+                      <CheckCircle className="w-5 h-5" />
                     </span>
                   ) : (
-                    <span className="p-1.5 rounded-lg bg-white/5 text-zinc-400 hover:text-white inline-block">
-                      <Play className="w-3.5 h-3.5" />
+                    <span className="p-2 rounded-lg bg-[#E50914] text-white hover:bg-[#b80710] inline-block shadow-md shadow-red-600/30 transition-colors">
+                      <Play className="w-3.5 h-3.5 fill-white" />
                     </span>
                   )}
                 </div>

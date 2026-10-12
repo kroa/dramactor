@@ -43,10 +43,10 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#090A0F] text-zinc-100 flex flex-col relative selection:bg-emerald-500 selection:text-black">
-      {/* Cinematic Ambient Radial Glows */}
-      <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[600px] h-[350px] bg-gradient-to-b from-cyan-500/10 via-emerald-500/5 to-transparent rounded-full blur-3xl pointer-events-none" />
-      <div className="fixed bottom-0 right-0 w-[400px] h-[300px] bg-gradient-to-t from-violet-600/10 via-fuchsia-600/5 to-transparent rounded-full blur-3xl pointer-events-none" />
+    <div className="min-h-screen bg-[#141414] text-zinc-100 flex flex-col relative selection:bg-[#E50914] selection:text-white font-sans">
+      {/* Netflix Studio Crimson Radial Ambient Lighting */}
+      <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[700px] h-[420px] bg-gradient-to-b from-red-600/18 via-rose-900/8 to-transparent rounded-full blur-3xl pointer-events-none" />
+      <div className="fixed bottom-0 right-0 w-[500px] h-[350px] bg-gradient-to-t from-red-950/25 via-zinc-950/40 to-transparent rounded-full blur-3xl pointer-events-none" />
 
       {/* Main Top Header */}
       <Header
@@ -94,13 +94,13 @@ export const App: React.FC = () => {
         )}
       </main>
 
-      {/* Subtle Cinematic Footer */}
-      <footer className="w-full max-w-md md:max-w-4xl lg:max-w-6xl mx-auto py-4 px-4 text-center text-[11px] text-zinc-500 border-t border-white/[0.05] relative z-10 space-y-1">
-        <p className="font-medium text-zinc-400">
-          Dramactor (드라맥터) &bull; 매일 90초 미드 주연 스피킹
+      {/* Netflix Studio Footer */}
+      <footer className="w-full max-w-md md:max-w-4xl lg:max-w-6xl mx-auto py-4 px-4 text-center text-[11px] text-zinc-500 border-t border-white/[0.06] relative z-10 space-y-1">
+        <p className="font-semibold text-zinc-400 tracking-wide">
+          <span className="text-[#E50914] font-black mr-1">DRAMACTOR</span> ORIGINAL SERIES &bull; 매일 90초 미드 주연 스피킹
         </p>
         <p className="text-[10px] text-zinc-600">
-          100% Serverless &bull; Cloudflare Pages &bull; Web Speech API Powered
+          100% Serverless &bull; Cloudflare Pages &bull; Netflix Studio Premiere Edition
         </p>
       </footer>
 
