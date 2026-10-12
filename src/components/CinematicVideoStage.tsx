@@ -217,16 +217,11 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
             <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#E50914] flex items-center justify-center text-white shadow-md shadow-red-600/50 group-hover:bg-[#f40612] transition-colors">
               <Play className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-white text-white ml-0.5" />
             </span>
-            <div className="text-left">
-              <div className="text-xs sm:text-sm font-black text-black flex items-center space-x-1.5">
-                <span>대사 듣기</span>
-                <span className="text-[9px] px-1.5 py-0.2 rounded font-black bg-[#E50914] text-white font-mono uppercase tracking-wider">
-                  PLAY
-                </span>
-              </div>
-              <div className="text-[9px] sm:text-[10px] text-zinc-600 font-medium">
-                {turn.speaker}의 대사와 영상 동기화
-              </div>
+            <div className="flex items-center space-x-1.5 font-black text-xs sm:text-sm text-black">
+              <span>대사 듣기</span>
+              <span className="text-[9px] px-1.5 py-0.2 rounded font-black bg-[#E50914] text-white font-mono uppercase tracking-wider">
+                PLAY
+              </span>
             </div>
           </div>
         </div>
