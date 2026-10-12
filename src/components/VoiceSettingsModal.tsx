@@ -94,16 +94,16 @@ export const VoiceSettingsModal: React.FC<VoiceSettingsModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md animate-fade-in">
-      <div className="relative w-full max-w-md md:max-w-xl rounded-2xl bg-[#181818] border border-white/10 p-5 shadow-2xl flex flex-col max-h-[85vh] text-left">
+      <div className="relative w-full max-w-md md:max-w-xl rounded-2xl bg-[#0a0a0a] border border-white/[0.08] p-5 shadow-2xl flex flex-col max-h-[85vh] text-left">
         {/* Header */}
         <div className="flex items-center justify-between pb-3 border-b border-white/10 shrink-0">
           <div className="flex items-center space-x-2">
-            <Sliders className="w-5 h-5 text-[#E50914]" />
+            <Sliders className="w-5 h-5 text-zinc-300" />
             <div>
-              <h3 className="text-base font-black text-white tracking-tight">
+              <h3 className="text-base font-bold text-white tracking-tight">
                 드라마 보이스 &amp; 발음 튜닝
               </h3>
-              <p className="text-[11px] text-zinc-400">정통 미국 원어민 발음 최적화 설정</p>
+              <p className="text-[11px] text-zinc-400 font-mono">정통 미국 원어민 발음 최적화 설정</p>
             </div>
           </div>
           <button
@@ -112,7 +112,7 @@ export const VoiceSettingsModal: React.FC<VoiceSettingsModalProps> = ({
               onClose();
             }}
             type="button"
-            className="p-1.5 rounded-lg text-zinc-400 hover:text-white hover:bg-white/10 transition-colors"
+            className="p-1.5 rounded-lg text-zinc-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
             aria-label="닫기"
           >
             <X className="w-5 h-5" />
@@ -124,13 +124,13 @@ export const VoiceSettingsModal: React.FC<VoiceSettingsModalProps> = ({
           {/* Audio Engine Selection */}
           <div className="space-y-2">
             <div className="flex items-center justify-between text-xs font-semibold text-zinc-300">
-              <span>오디오 엔진 선택</span>
+              <span className="font-mono text-zinc-400">오디오 엔진 선택</span>
               <button
                 type="button"
                 onClick={() => handlePlaySample()}
-                className="text-[11px] text-[#E50914] hover:underline flex items-center space-x-1 font-bold"
+                className="text-[11px] text-zinc-300 hover:text-white flex items-center space-x-1 font-medium cursor-pointer"
               >
-                <Volume2 className="w-3 h-3" />
+                <Volume2 className="w-3 h-3 text-zinc-400" />
                 <span>{isPlayingSample ? '재생 중...' : '발음 테스트 듣기'}</span>
               </button>
             </div>
@@ -140,27 +140,27 @@ export const VoiceSettingsModal: React.FC<VoiceSettingsModalProps> = ({
               onClick={() => handleEngineChange('google_hd')}
               className={`p-3 rounded-xl border cursor-pointer transition-all ${
                 audioEngine === 'google_hd'
-                  ? 'bg-red-950/40 border-red-600/60 shadow-lg shadow-red-600/10'
-                  : 'bg-zinc-900/80 border-white/10 hover:bg-zinc-800'
+                  ? 'bg-zinc-900 border-white/30 shadow-lg shadow-white/5'
+                  : 'bg-zinc-950 border-white/5 hover:bg-zinc-900'
               }`}
             >
               <div className="flex items-start justify-between">
                 <div className="space-y-1">
                   <div className="flex items-center space-x-2">
-                    <Radio className="w-4 h-4 text-[#E50914]" />
+                    <Radio className="w-4 h-4 text-white" />
                     <span className="text-xs font-bold text-white">
                       🌟 Google Studio HD Native (미국 정통 원어민 발음)
                     </span>
-                    <span className="text-[9px] px-1.5 py-0.5 rounded bg-[#E50914] text-white font-black uppercase">
+                    <span className="text-[9px] px-1.5 py-0.5 rounded bg-white text-black font-mono font-bold uppercase">
                       강력 추천
                     </span>
                   </div>
-                  <p className="text-[11px] text-zinc-300 leading-relaxed pl-6">
+                  <p className="text-[11px] text-zinc-400 leading-relaxed pl-6">
                     PC에 영어 음성팩이 없어도 <strong>100% 맑고 정확한 정통 미국식 원어민 발음</strong>으로 자동 재생됩니다. 어색한 로봇 발음을 완전히 해결합니다.
                   </p>
                 </div>
                 {audioEngine === 'google_hd' && (
-                  <Check className="w-4 h-4 text-[#E50914] shrink-0 ml-2 mt-0.5" />
+                  <Check className="w-4 h-4 text-white shrink-0 ml-2 mt-0.5" />
                 )}
               </div>
             </div>
@@ -170,8 +170,8 @@ export const VoiceSettingsModal: React.FC<VoiceSettingsModalProps> = ({
               onClick={() => handleEngineChange('webspeech')}
               className={`p-3 rounded-xl border cursor-pointer transition-all ${
                 audioEngine === 'webspeech'
-                  ? 'bg-red-950/40 border-red-600/60 shadow-lg shadow-red-600/10'
-                  : 'bg-zinc-900/80 border-white/10 hover:bg-zinc-800'
+                  ? 'bg-zinc-900 border-white/30 shadow-lg shadow-white/5'
+                  : 'bg-zinc-950 border-white/5 hover:bg-zinc-900'
               }`}
             >
               <div className="flex items-start justify-between">
@@ -187,7 +187,7 @@ export const VoiceSettingsModal: React.FC<VoiceSettingsModalProps> = ({
                   </p>
                 </div>
                 {audioEngine === 'webspeech' && (
-                  <Check className="w-4 h-4 text-[#E50914] shrink-0 ml-2 mt-0.5" />
+                  <Check className="w-4 h-4 text-white shrink-0 ml-2 mt-0.5" />
                 )}
               </div>
             </div>
@@ -196,8 +196,8 @@ export const VoiceSettingsModal: React.FC<VoiceSettingsModalProps> = ({
           {/* Speed Control */}
           <div className="space-y-1.5 pt-1">
             <div className="flex items-center justify-between text-xs">
-              <span className="font-semibold text-zinc-300">대사 발화 속도</span>
-              <span className="font-mono text-[#E50914] font-black">{speed.toFixed(2)}x</span>
+              <span className="font-mono text-zinc-400">대사 발화 속도</span>
+              <span className="font-mono text-white font-bold">{speed.toFixed(2)}x</span>
             </div>
             <div className="grid grid-cols-4 gap-2">
               {[0.85, 0.92, 0.96, 1.0].map((rateVal) => (
@@ -205,10 +205,10 @@ export const VoiceSettingsModal: React.FC<VoiceSettingsModalProps> = ({
                   key={rateVal}
                   type="button"
                   onClick={() => handleSpeedChange(rateVal)}
-                  className={`py-1.5 rounded-lg text-xs font-bold border transition-all ${
+                  className={`py-1.5 rounded-lg text-xs font-bold border transition-all cursor-pointer ${
                     Math.abs(speed - rateVal) < 0.02
-                      ? 'bg-[#E50914] border-red-500 text-white shadow-md shadow-red-600/30'
-                      : 'bg-zinc-800 border-white/10 text-zinc-400 hover:text-white'
+                      ? 'bg-white border-white text-black shadow-md'
+                      : 'bg-zinc-900 border-white/10 text-zinc-400 hover:text-white'
                   }`}
                 >
                   {rateVal}x {rateVal === 0.92 ? '(추천)' : ''}
@@ -220,7 +220,7 @@ export const VoiceSettingsModal: React.FC<VoiceSettingsModalProps> = ({
           {/* Local Voice List (Only if local engine is chosen) */}
           {audioEngine === 'webspeech' && (
             <div className="space-y-2 pt-1">
-              <span className="text-xs font-semibold text-zinc-300 block">
+              <span className="text-xs font-mono text-zinc-400 block">
                 감지된 로컬 성우 목록
               </span>
 
@@ -229,8 +229,8 @@ export const VoiceSettingsModal: React.FC<VoiceSettingsModalProps> = ({
                   onClick={() => handleSelectVoice('')}
                   className={`p-2.5 rounded-xl border text-xs flex items-center justify-between cursor-pointer transition-all ${
                     selectedURI === ''
-                      ? 'bg-emerald-500/10 border-emerald-500/40 text-emerald-300'
-                      : 'bg-white/[0.03] border-white/10 text-zinc-300 hover:bg-white/[0.06]'
+                      ? 'bg-zinc-800 border-white/30 text-white'
+                      : 'bg-zinc-950 border-white/5 text-zinc-400 hover:bg-zinc-900 hover:text-white'
                   }`}
                 >
                   <div>
@@ -241,7 +241,7 @@ export const VoiceSettingsModal: React.FC<VoiceSettingsModalProps> = ({
                       캐릭터 성별과 성격에 맞추어 자동 매칭
                     </p>
                   </div>
-                  {selectedURI === '' && <Check className="w-4 h-4 text-emerald-400 shrink-0" />}
+                  {selectedURI === '' && <Check className="w-4 h-4 text-white shrink-0" />}
                 </div>
 
                 {voices.map((v) => {
@@ -254,20 +254,20 @@ export const VoiceSettingsModal: React.FC<VoiceSettingsModalProps> = ({
                       onClick={() => handleSelectVoice(v.voiceURI)}
                       className={`p-2.5 rounded-xl border text-xs flex items-center justify-between cursor-pointer transition-all ${
                         isSelected
-                          ? 'bg-cyan-500/15 border-cyan-500/40 text-cyan-200'
-                          : 'bg-white/[0.02] border-white/5 text-zinc-300 hover:bg-white/[0.05]'
+                          ? 'bg-zinc-800 border-white/30 text-white'
+                          : 'bg-zinc-950 border-white/5 text-zinc-400 hover:bg-zinc-900 hover:text-white'
                       }`}
                     >
                       <div className="truncate mr-2">
                         <div className="font-medium truncate flex items-center space-x-1.5">
                           <span className="truncate">{v.name}</span>
                           {isNatural && (
-                            <span className="shrink-0 text-[9px] px-1 rounded bg-emerald-500/20 text-emerald-300 font-bold">
+                            <span className="shrink-0 text-[9px] px-1 rounded bg-zinc-800 text-zinc-300 font-mono font-bold">
                               Natural
                             </span>
                           )}
                           {isGoogle && (
-                            <span className="shrink-0 text-[9px] px-1 rounded bg-blue-500/20 text-blue-300 font-bold">
+                            <span className="shrink-0 text-[9px] px-1 rounded bg-zinc-800 text-zinc-300 font-mono font-bold">
                               Google
                             </span>
                           )}
@@ -282,12 +282,12 @@ export const VoiceSettingsModal: React.FC<VoiceSettingsModalProps> = ({
                             e.stopPropagation();
                             handlePlaySample(v.voiceURI);
                           }}
-                          className="p-1 rounded text-zinc-400 hover:text-white hover:bg-white/10"
+                          className="p-1 rounded text-zinc-400 hover:text-white hover:bg-white/10 cursor-pointer"
                           title="이 음성 미리듣기"
                         >
                           <Volume2 className="w-3.5 h-3.5" />
                         </button>
-                        {isSelected && <Check className="w-4 h-4 text-cyan-400 ml-1" />}
+                        {isSelected && <Check className="w-4 h-4 text-white ml-1" />}
                       </div>
                     </div>
                   );
@@ -305,7 +305,7 @@ export const VoiceSettingsModal: React.FC<VoiceSettingsModalProps> = ({
               stopNativeSpeech();
               onClose();
             }}
-            className="w-full py-2.5 rounded-xl font-black text-xs bg-[#E50914] hover:bg-[#b80710] text-white shadow-md shadow-red-600/30 transition-all active:scale-[0.98] cursor-pointer"
+            className="w-full py-2.5 rounded-xl font-bold text-xs bg-white hover:bg-zinc-200 text-black shadow-md border border-white/20 transition-all active:scale-[0.98] cursor-pointer"
           >
             설정 완료
           </button>

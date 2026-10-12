@@ -214,12 +214,12 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
           title="대사 듣기 (클릭하여 재생)"
         >
           <div className="flex items-center space-x-2.5 px-4 py-2 sm:px-6 sm:py-2.5 rounded-full bg-white hover:bg-zinc-100 text-black shadow-2xl shadow-black/80 border border-white/90 transition-all duration-300 group-hover:scale-105 active:scale-95">
-            <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#E50914] flex items-center justify-center text-white shadow-md shadow-red-600/50 group-hover:bg-[#f40612] transition-colors">
+            <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black flex items-center justify-center text-white shadow-md group-hover:bg-zinc-800 transition-colors">
               <Play className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-white text-white ml-0.5" />
             </span>
-            <div className="flex items-center space-x-1.5 font-black text-xs sm:text-sm text-black">
+            <div className="flex items-center space-x-1.5 font-bold text-xs sm:text-sm text-black">
               <span>대사 듣기</span>
-              <span className="text-[9px] px-1.5 py-0.2 rounded font-black bg-[#E50914] text-white font-mono uppercase tracking-wider">
+              <span className="text-[9px] px-1.5 py-0.5 rounded font-mono font-bold bg-black text-white uppercase tracking-wider">
                 PLAY
               </span>
             </div>
@@ -247,12 +247,12 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
       {/* Bottom Edge Gradient for Clear Controls Contrast */}
       <div className="absolute bottom-0 inset-x-0 h-24 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none" />
 
-      {/* Viewfinder Framing Guidelines (Netflix Crimson Red Corner Brackets with Speech Glow) */}
+      {/* Viewfinder Framing Guidelines (Linear Monochrome Corner Brackets with Speech Glow) */}
       <div className="absolute inset-2 sm:inset-3 pointer-events-none border border-white/10 rounded-xl transition-all duration-500">
-        <div className={`absolute -top-0.5 -left-0.5 w-3.5 h-3.5 border-t-2 border-l-2 transition-all ${isPlayingTTS ? 'border-[#E50914] drop-shadow-[0_0_8px_rgba(229,9,20,0.9)]' : 'border-[#E50914]/80'}`} />
-        <div className={`absolute -top-0.5 -right-0.5 w-3.5 h-3.5 border-t-2 border-r-2 transition-all ${isPlayingTTS ? 'border-[#E50914] drop-shadow-[0_0_8px_rgba(229,9,20,0.9)]' : 'border-[#E50914]/80'}`} />
-        <div className={`absolute -bottom-0.5 -left-0.5 w-3.5 h-3.5 border-b-2 border-l-2 transition-all ${isPlayingTTS ? 'border-[#E50914] drop-shadow-[0_0_8px_rgba(229,9,20,0.9)]' : 'border-[#E50914]/80'}`} />
-        <div className={`absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 border-b-2 border-r-2 transition-all ${isPlayingTTS ? 'border-[#E50914] drop-shadow-[0_0_8px_rgba(229,9,20,0.9)]' : 'border-[#E50914]/80'}`} />
+        <div className={`absolute -top-0.5 -left-0.5 w-3.5 h-3.5 border-t-2 border-l-2 transition-all ${isPlayingTTS ? 'border-white drop-shadow-[0_0_8px_rgba(255,255,255,0.9)]' : 'border-white/40'}`} />
+        <div className={`absolute -top-0.5 -right-0.5 w-3.5 h-3.5 border-t-2 border-r-2 transition-all ${isPlayingTTS ? 'border-white drop-shadow-[0_0_8px_rgba(255,255,255,0.9)]' : 'border-white/40'}`} />
+        <div className={`absolute -bottom-0.5 -left-0.5 w-3.5 h-3.5 border-b-2 border-l-2 transition-all ${isPlayingTTS ? 'border-white drop-shadow-[0_0_8px_rgba(255,255,255,0.9)]' : 'border-white/40'}`} />
+        <div className={`absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 border-b-2 border-r-2 transition-all ${isPlayingTTS ? 'border-white drop-shadow-[0_0_8px_rgba(255,255,255,0.9)]' : 'border-white/40'}`} />
       </div>
 
       {/* Production Monitor Top HUD */}
@@ -260,26 +260,26 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
         {/* Left: Recording Status & Timecode */}
         <div className="flex items-center space-x-2">
           {isPlayingTTS ? (
-            <span className="flex items-center space-x-1 px-1.5 py-0.5 rounded bg-[#E50914] border border-red-500 text-white font-black backdrop-blur-md shadow-md shadow-red-600/50">
-              <span className="w-2 h-2 rounded-full bg-white animate-pulse inline-block" />
+            <span className="flex items-center space-x-1.5 px-2 py-0.5 rounded bg-zinc-900 border border-white/20 text-white font-bold backdrop-blur-md shadow-md">
+              <span className="w-2 h-2 rounded-full bg-white animate-pulse inline-block shadow-[0_0_6px_rgba(255,255,255,0.8)]" />
               <span>REC</span>
             </span>
           ) : (
-            <span className="flex items-center space-x-1 px-1.5 py-0.5 rounded bg-zinc-900/90 border border-white/20 text-zinc-300 font-bold backdrop-blur-md">
-              <span className="w-2 h-2 rounded-full bg-[#E50914] inline-block shadow-sm shadow-red-600/50" />
+            <span className="flex items-center space-x-1.5 px-2 py-0.5 rounded bg-zinc-900/90 border border-white/10 text-zinc-400 font-medium backdrop-blur-md">
+              <span className="w-1.5 h-1.5 rounded-full bg-zinc-500 inline-block" />
               <span>STBY</span>
             </span>
           )}
-          <span className="font-bold text-white drop-shadow-md">{displayTimecode}</span>
-          <span className="hidden sm:inline-block px-1.5 py-0.5 rounded bg-black/60 border border-white/15 text-zinc-300 backdrop-blur-md">
+          <span className="font-mono font-medium text-zinc-200 drop-shadow-md">{displayTimecode}</span>
+          <span className="hidden sm:inline-block px-1.5 py-0.5 rounded bg-black/60 border border-white/10 text-zinc-400 backdrop-blur-md">
             SCENE {turn.turnIndex} • TAKE {turnIndex + 1}
           </span>
         </div>
 
-        {/* Right: Netflix 4K HDR Specs & Interactive View Controls */}
+        {/* Right: 4K HDR Specs & Interactive View Controls */}
         <div className="flex items-center space-x-1.5 pointer-events-auto">
-          <span className="hidden sm:inline-block text-zinc-300 text-[10px] bg-black/60 px-2 py-0.5 rounded border border-white/15 backdrop-blur-md font-bold">
-            <span className="text-[#E50914] mr-1">4K HDR</span> • 24FPS
+          <span className="hidden sm:inline-block text-zinc-400 text-[10px] bg-black/60 px-2 py-0.5 rounded border border-white/10 backdrop-blur-md font-mono">
+            <span className="text-zinc-200 font-semibold mr-1">4K HDR</span> • 24FPS
           </span>
 
           {/* Toggle Video On / Off */}
@@ -288,7 +288,7 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
             onClick={() => setIsVideoEnabled(!isVideoEnabled)}
             className={`p-1.5 rounded-md border text-xs backdrop-blur-md transition-colors ${
               isVideoEnabled
-                ? 'bg-red-950/40 text-red-300 border-red-600/40 hover:bg-red-900/50'
+                ? 'bg-zinc-800 text-white border-white/20 hover:bg-zinc-700'
                 : 'bg-black/70 text-zinc-400 border-white/15 hover:text-white'
             }`}
             title={isVideoEnabled ? '영상 끄기 (절약 모드)' : '영상 켜기'}
@@ -304,7 +304,7 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
             title={isTheaterMode ? '기본 화면으로 축소' : '극장 와이드 모드'}
           >
             {isTheaterMode ? (
-              <Minimize2 className="w-3.5 h-3.5 text-[#E50914]" />
+              <Minimize2 className="w-3.5 h-3.5 text-white" />
             ) : (
               <Maximize2 className="w-3.5 h-3.5 text-zinc-300" />
             )}
@@ -314,8 +314,8 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
 
       {/* Location Badge (Center Top) */}
       <div className="absolute top-8 left-3.5 sm:left-4 z-10 pointer-events-none">
-        <div className="flex items-center space-x-1.5 text-[9px] sm:text-[10px] text-zinc-300 font-mono tracking-tight bg-black/70 backdrop-blur-md px-2 py-0.5 rounded-md border border-white/15 shadow-sm">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#E50914]" />
+        <div className="flex items-center space-x-1.5 text-[9px] sm:text-[10px] text-zinc-300 font-mono tracking-tight bg-black/70 backdrop-blur-md px-2 py-0.5 rounded-md border border-white/10 shadow-sm">
+          <span className="w-1.5 h-1.5 rounded-full bg-white" />
           <span className="truncate max-w-[200px] sm:max-w-none">{visualConfig.locationTag}</span>
         </div>
       </div>
@@ -323,8 +323,8 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
       {/* Speaking Active Indicator Banner (Top Right) */}
       {isPlayingTTS && (
         <div className="absolute top-8 right-3.5 sm:right-4 z-10 pointer-events-none">
-          <span className="px-2.5 py-0.5 rounded-full text-[9px] sm:text-[10px] font-black bg-[#E50914] text-white shadow-lg shadow-red-600/50 uppercase tracking-widest animate-pulse flex items-center space-x-1">
-            <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
+          <span className="px-2.5 py-0.5 rounded-full text-[9px] sm:text-[10px] font-mono font-bold bg-white text-black shadow-lg shadow-white/20 uppercase tracking-widest flex items-center space-x-1.5 border border-white/20">
+            <span className="w-1.5 h-1.5 rounded-full bg-black animate-ping" />
             <span>ACTOR SPEAKING</span>
           </span>
         </div>
@@ -337,22 +337,22 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
           <div
             className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-black/80 border flex items-center justify-center text-base sm:text-xl backdrop-blur-md shadow-lg shrink-0 transition-all ${
               isPlayingTTS
-                ? 'border-[#E50914] ring-2 ring-red-600/50 shadow-red-600/40 scale-105'
-                : 'border-white/20'
+                ? 'border-white ring-2 ring-white/30 shadow-[0_0_12px_rgba(255,255,255,0.2)] scale-105'
+                : 'border-white/15'
             }`}
           >
             <span>{turn.avatarEmoji}</span>
           </div>
           <div className="space-y-0.5 min-w-0">
             <div className="flex items-center space-x-1.5">
-              <h4 className="text-xs sm:text-sm font-black text-white tracking-wide drop-shadow-md truncate">
+              <h4 className="text-xs sm:text-sm font-bold text-white tracking-wide drop-shadow-md truncate">
                 {turn.speaker}
               </h4>
-              <span className="hidden sm:inline-block text-[9px] px-1.5 py-0.2 rounded bg-red-950/60 border border-red-600/40 text-red-300 font-mono font-bold shrink-0">
+              <span className="hidden sm:inline-block text-[9px] px-1.5 py-0.2 rounded bg-zinc-900 border border-white/10 text-zinc-400 font-mono font-medium shrink-0">
                 OPPONENT
               </span>
             </div>
-            <p className="text-[9px] sm:text-[10px] text-zinc-300 font-medium truncate drop-shadow-sm">
+            <p className="text-[9px] sm:text-[10px] text-zinc-400 font-medium truncate drop-shadow-sm">
               {visualConfig.roleDescription}
             </p>
           </div>
@@ -362,7 +362,7 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
         <div className="flex items-center space-x-1.5 sm:space-x-2 shrink-0">
           {/* Dynamic Audio Equalizer Bars (Hidden on tiny mobile, visible on sm+) */}
           <div
-            className="hidden sm:flex items-end space-x-0.5 h-6 px-2 py-1 rounded-md bg-black/80 border border-white/20 backdrop-blur-md"
+            className="hidden sm:flex items-end space-x-0.5 h-6 px-2 py-1 rounded-md bg-black/80 border border-white/15 backdrop-blur-md"
             title="대사 오디오 파형"
           >
             {[1, 2, 3, 4, 5].map((bar) => {
@@ -372,8 +372,8 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
                   key={bar}
                   className={`w-0.5 rounded-full transition-all duration-300 ${
                     isPlayingTTS
-                      ? `${heights[(bar - 1) % heights.length]} bg-[#E50914] animate-pulse`
-                      : 'h-1 bg-zinc-600'
+                      ? `${heights[(bar - 1) % heights.length]} bg-white animate-pulse shadow-[0_0_4px_rgba(255,255,255,0.6)]`
+                      : 'h-1 bg-zinc-700'
                   }`}
                   style={{
                     animationDuration: `${0.3 + bar * 0.15}s`,
@@ -387,10 +387,10 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
           <button
             type="button"
             onClick={onOpenVoiceSettings}
-            className="flex items-center space-x-1 text-[10px] sm:text-[11px] font-medium text-zinc-300 hover:text-white bg-black/75 hover:bg-black/90 p-1.5 sm:px-2.5 sm:py-1.5 rounded-md border border-white/20 backdrop-blur-md transition-colors shrink-0"
+            className="flex items-center space-x-1 text-[10px] sm:text-[11px] font-medium text-zinc-300 hover:text-white bg-zinc-900/90 hover:bg-zinc-800 p-1.5 sm:px-2.5 sm:py-1.5 rounded-md border border-white/15 backdrop-blur-md transition-colors shrink-0"
             title="성우 목소리 및 속도 조절"
           >
-            <Sliders className="w-3.5 h-3.5 text-[#E50914]" />
+            <Sliders className="w-3.5 h-3.5 text-zinc-300" />
             <span className="hidden sm:inline">음성 튜닝</span>
           </button>
 
@@ -398,10 +398,10 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
           <button
             type="button"
             onClick={onPlayTTS}
-            className={`flex items-center space-x-1 sm:space-x-1.5 text-[10px] sm:text-xs font-bold px-2.5 sm:px-3 py-1.5 rounded-md border backdrop-blur-md transition-all active:scale-95 shadow-lg whitespace-nowrap shrink-0 ${
+            className={`flex items-center space-x-1 sm:space-x-1.5 text-[10px] sm:text-xs font-semibold px-2.5 sm:px-3 py-1.5 rounded-md border backdrop-blur-md transition-all active:scale-95 shadow-lg whitespace-nowrap shrink-0 ${
               isPlayingTTS
-                ? 'bg-zinc-800 text-white border-white/30 hover:bg-zinc-700'
-                : 'bg-[#E50914] text-white border-red-500 hover:bg-[#b80710] shadow-red-600/30'
+                ? 'bg-zinc-800 text-white border-white/20 hover:bg-zinc-700'
+                : 'bg-white hover:bg-zinc-200 text-black border-white shadow-white/10'
             }`}
           >
             {isPlayingTTS ? (
@@ -411,7 +411,7 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
               </>
             ) : (
               <>
-                <Volume2 className="w-3.5 h-3.5 text-white shrink-0" />
+                <Volume2 className="w-3.5 h-3.5 text-black shrink-0" />
                 <span>대사 듣기</span>
               </>
             )}

@@ -43,10 +43,10 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#141414] text-zinc-100 flex flex-col relative selection:bg-[#E50914] selection:text-white font-sans">
-      {/* Netflix Studio Crimson Radial Ambient Lighting */}
-      <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[700px] h-[420px] bg-gradient-to-b from-red-600/18 via-rose-900/8 to-transparent rounded-full blur-3xl pointer-events-none" />
-      <div className="fixed bottom-0 right-0 w-[500px] h-[350px] bg-gradient-to-t from-red-950/25 via-zinc-950/40 to-transparent rounded-full blur-3xl pointer-events-none" />
+    <div className="min-h-screen bg-[#000000] text-zinc-100 flex flex-col relative selection:bg-white selection:text-black font-sans">
+      {/* Vercel & Linear Ultra-Subtle Monochromatic Radial Glow */}
+      <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[800px] h-[350px] bg-gradient-to-b from-white/[0.04] to-transparent rounded-full blur-3xl pointer-events-none" />
+      <div className="fixed bottom-0 right-0 w-[500px] h-[300px] bg-gradient-to-t from-white/[0.02] to-transparent rounded-full blur-3xl pointer-events-none" />
 
       {/* Main Top Header */}
       <Header
@@ -94,13 +94,13 @@ export const App: React.FC = () => {
         )}
       </main>
 
-      {/* Netflix Studio Footer */}
-      <footer className="w-full max-w-md md:max-w-4xl lg:max-w-6xl mx-auto py-4 px-4 text-center text-[11px] text-zinc-500 border-t border-white/[0.06] relative z-10 space-y-1">
-        <p className="font-semibold text-zinc-400 tracking-wide">
-          <span className="text-[#E50914] font-black mr-1">DRAMACTOR</span> ORIGINAL SERIES &bull; 매일 90초 미드 주연 스피킹
+      {/* Vercel/Linear Minimalist Footer */}
+      <footer className="w-full max-w-md md:max-w-4xl lg:max-w-6xl mx-auto py-5 px-4 text-center text-[11px] text-zinc-500 border-t border-white/[0.06] relative z-10 space-y-1">
+        <p className="font-medium text-zinc-400 tracking-wide">
+          <span className="text-white font-bold mr-1">DRAMACTOR</span> &bull; 매일 90초 미드 주연 스피킹
         </p>
-        <p className="text-[10px] text-zinc-600">
-          100% Serverless &bull; Cloudflare Pages &bull; Netflix Studio Premiere Edition
+        <p className="text-[10px] text-zinc-600 font-mono">
+          100% Serverless &bull; Cloudflare Pages &bull; Silicon Valley Minimalist Edition
         </p>
       </footer>
 

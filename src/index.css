@@ -6,9 +6,9 @@
   }
   
   body {
-    background-color: #141414;
-    color: #f3f4f6;
-    font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #000000;
+    color: #ededed;
+    font-family: -apple-system, BlinkMacSystemFont, "Geist", "Inter", "Pretendard", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     margin: 0;
     padding: 0;
     min-height: 100vh;
@@ -18,18 +18,18 @@
   }
 }
 
-/* Netflix Studio Premiere Glow & Pulse Animations */
-@keyframes netflixPulseRing {
+/* Linear & Vercel Minimalist Pulse Animations */
+@keyframes linearPulseRing {
   0% {
-    box-shadow: 0 0 0 0 rgba(229, 9, 20, 0.75);
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
     transform: scale(1);
   }
   50% {
-    box-shadow: 0 0 0 16px rgba(229, 9, 20, 0);
-    transform: scale(1.04);
+    box-shadow: 0 0 0 14px rgba(255, 255, 255, 0);
+    transform: scale(1.03);
   }
   100% {
-    box-shadow: 0 0 0 0 rgba(229, 9, 20, 0);
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
     transform: scale(1);
   }
 }
@@ -44,7 +44,7 @@
 }
 
 .animate-glow-ring {
-  animation: netflixPulseRing 1.8s infinite cubic-bezier(0.4, 0, 0.6, 1);
+  animation: linearPulseRing 1.8s infinite cubic-bezier(0.4, 0, 0.6, 1);
 }
 
 .animate-wave-1 {
@@ -63,35 +63,33 @@
   animation: waveBar 0.8s infinite ease-in-out 0.3s;
 }
 
-/* Netflix Studio Cards & Glassmorphism */
+/* Vercel & Linear Minimalist Cards & Keycaps */
 .glass-panel {
-  background: rgba(24, 24, 24, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: #0a0a0a;
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .glass-panel-interactive {
-  background: rgba(28, 28, 30, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  background: #0a0a0a;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .glass-panel-interactive:hover {
-  background: rgba(38, 38, 42, 0.95);
-  border-color: rgba(229, 9, 20, 0.6);
+  background: #121212;
+  border-color: rgba(255, 255, 255, 0.22);
   transform: translateY(-1px);
 }
 
 .glass-panel-interactive:active {
-  transform: scale(0.98);
+  transform: scale(0.99);
 }
 
-/* Netflix Premiere Red Utilities */
-.netflix-red-glow {
-  box-shadow: 0 0 25px rgba(229, 9, 20, 0.45);
+/* Linear Keycap & Monochromatic Utilities */
+.linear-keycap {
+  background: #141414;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 /* Cinematic Drama Atmosphere & Camera Motion */

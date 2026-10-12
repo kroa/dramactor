@@ -160,11 +160,11 @@ export const SpeechRecorder: React.FC<SpeechRecorderProps> = ({
   const passed = similarity >= 75;
 
   return (
-    <div className="w-full mt-4 p-5 rounded-2xl bg-[#181818] border border-white/10 backdrop-blur-xl shadow-2xl space-y-4">
+    <div className="w-full mt-4 p-5 rounded-2xl bg-[#0a0a0a] border border-white/[0.08] backdrop-blur-xl shadow-2xl space-y-4">
       {/* Target Mission Sentence */}
       <div className="space-y-1.5 text-center">
         <div className="flex items-center justify-center space-x-1.5">
-          <span className="text-[10px] font-black tracking-wider px-2.5 py-0.5 rounded-full bg-[#E50914] text-white shadow-md shadow-red-600/30 uppercase">
+          <span className="text-[10px] font-mono font-medium tracking-wider px-2.5 py-0.5 rounded bg-zinc-900 border border-white/10 text-zinc-300 uppercase">
             AUDITION MISSION (75% 이상 일치 시 통과)
           </span>
         </div>
@@ -177,9 +177,9 @@ export const SpeechRecorder: React.FC<SpeechRecorderProps> = ({
           type="button"
           onClick={handlePlayGuideTTS}
           disabled={isPlayingTTS}
-          className="inline-flex items-center space-x-1.5 text-xs font-bold px-3.5 py-1 rounded-full bg-zinc-800 hover:bg-zinc-700 text-white border border-white/15 transition-all active:scale-95 shadow-sm"
+          className="inline-flex items-center space-x-1.5 text-xs font-medium px-3.5 py-1 rounded-full bg-zinc-900 hover:bg-zinc-800 text-zinc-300 hover:text-white border border-white/10 transition-all active:scale-95 shadow-sm cursor-pointer"
         >
-          <Volume2 className={`w-3.5 h-3.5 ${isPlayingTTS ? 'animate-pulse text-[#E50914]' : 'text-zinc-300'}`} />
+          <Volume2 className={`w-3.5 h-3.5 ${isPlayingTTS ? 'animate-pulse text-white' : 'text-zinc-400'}`} />
           <span>{isPlayingTTS ? '발음 재생 중...' : '원어민 가이드 발음 듣기'}</span>
         </button>
       </div>
@@ -190,9 +190,9 @@ export const SpeechRecorder: React.FC<SpeechRecorderProps> = ({
           {/* Audio Waveform Pulse Rings */}
           {isRecording && (
             <>
-              <div className="absolute w-24 h-24 rounded-full bg-red-600/25 animate-ping" />
-              <div className="absolute w-28 h-28 rounded-full border border-red-500/50 animate-pulse" />
-              <div className="absolute w-32 h-32 rounded-full border border-red-400/30 animate-pulse delay-150" />
+              <div className="absolute w-24 h-24 rounded-full bg-white/15 animate-ping" />
+              <div className="absolute w-28 h-28 rounded-full border border-white/30 animate-pulse" />
+              <div className="absolute w-32 h-32 rounded-full border border-white/15 animate-pulse delay-150" />
             </>
           )}
 
@@ -201,19 +201,19 @@ export const SpeechRecorder: React.FC<SpeechRecorderProps> = ({
             onClick={isRecording ? handleStopRecording : handleStartRecording}
             className={`relative z-10 w-20 h-20 rounded-full flex items-center justify-center transition-all duration-300 shadow-2xl active:scale-95 ${
               isRecording
-                ? 'bg-rose-600 text-white shadow-rose-600/60 animate-pulse ring-8 ring-red-500/30'
+                ? 'bg-zinc-900 text-white border-2 border-white ring-8 ring-white/10 animate-pulse'
                 : passed
-                ? 'bg-[#E50914] text-white shadow-red-600/50 ring-4 ring-red-600/30'
-                : 'bg-[#E50914] hover:bg-[#b80710] text-white shadow-xl shadow-red-600/40 ring-4 ring-red-600/20 hover:scale-105'
+                ? 'bg-white text-black ring-4 ring-white/20'
+                : 'bg-white hover:bg-zinc-200 text-black shadow-xl ring-4 ring-white/10 hover:scale-105'
             }`}
             aria-label={isRecording ? '녹음 정지' : '마이크 녹음 시작'}
           >
             {isRecording ? (
-              <MicOff className="w-8 h-8" />
+              <MicOff className="w-8 h-8 text-white" />
             ) : passed ? (
-              <CheckCircle2 className="w-8 h-8" />
+              <CheckCircle2 className="w-8 h-8 text-black" />
             ) : (
-              <Mic className="w-8 h-8" />
+              <Mic className="w-8 h-8 text-black" />
             )}
           </button>
         </div>
@@ -233,12 +233,12 @@ export const SpeechRecorder: React.FC<SpeechRecorderProps> = ({
       {(transcript || hasEvaluated) && (
         <div className="p-3.5 rounded-xl bg-zinc-900/90 border border-white/10 space-y-2 text-left">
           <div className="flex items-center justify-between text-xs">
-            <span className="text-zinc-400 font-medium">인식된 발화:</span>
+            <span className="text-zinc-400 font-medium font-mono">인식된 발화:</span>
             <span
-              className={`font-black px-2 py-0.5 rounded text-[11px] ${
+              className={`font-mono font-medium px-2 py-0.5 rounded text-[11px] ${
                 passed
-                  ? 'bg-red-950/60 text-red-300 border border-red-600/40'
-                  : 'bg-zinc-800 text-zinc-300 border border-zinc-700'
+                  ? 'bg-white text-black font-bold'
+                  : 'bg-zinc-800 text-zinc-400 border border-zinc-700'
               }`}
             >
               일치율: {similarity}% {passed ? '통과 (PASS)' : '기준 75%'}
@@ -250,23 +250,23 @@ export const SpeechRecorder: React.FC<SpeechRecorderProps> = ({
           </p>
 
           {/* Progress bar */}
-          <div className="w-full bg-zinc-800 h-2.5 rounded-full overflow-hidden relative">
+          <div className="w-full bg-zinc-800 h-2 rounded-full overflow-hidden relative">
             <div
               className={`h-full transition-all duration-300 ${
-                passed ? 'bg-gradient-to-r from-red-600 to-rose-500' : 'bg-red-900/60'
+                passed ? 'bg-white' : 'bg-zinc-600'
               }`}
               style={{ width: `${Math.min(100, similarity)}%` }}
             />
             {/* 75% threshold indicator */}
-            <div className="absolute top-0 bottom-0 left-3/4 w-0.5 bg-white/80" title="기준선 75%" />
+            <div className="absolute top-0 bottom-0 left-3/4 w-0.5 bg-zinc-400" title="기준선 75%" />
           </div>
         </div>
       )}
 
       {/* Error alert if mic permission failed */}
       {audioError && (
-        <div className="p-2.5 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-200 text-xs flex items-start space-x-2 text-left">
-          <AlertTriangle className="w-4 h-4 shrink-0 text-rose-400 mt-0.5" />
+        <div className="p-2.5 rounded-xl bg-zinc-900 border border-white/20 text-zinc-300 text-xs flex items-start space-x-2 text-left">
+          <AlertTriangle className="w-4 h-4 shrink-0 text-amber-400 mt-0.5" />
           <span>{audioError}</span>
         </div>
       )}
@@ -276,7 +276,7 @@ export const SpeechRecorder: React.FC<SpeechRecorderProps> = ({
         <button
           type="button"
           onClick={onCancelChoice}
-          className="px-3.5 py-2.5 rounded-xl text-xs font-semibold text-zinc-300 hover:text-white bg-zinc-800 hover:bg-zinc-700 border border-white/15 flex items-center space-x-1 transition-all"
+          className="px-3.5 py-2.5 rounded-xl text-xs font-medium text-zinc-300 hover:text-white bg-zinc-900 hover:bg-zinc-800 border border-white/10 flex items-center space-x-1 transition-all cursor-pointer"
         >
           <RotateCcw className="w-3.5 h-3.5" />
           <span>선택지 변경</span>
@@ -286,7 +286,7 @@ export const SpeechRecorder: React.FC<SpeechRecorderProps> = ({
           <button
             type="button"
             onClick={handleConfirmPass}
-            className="flex-1 py-2.5 rounded-xl text-xs font-black bg-[#E50914] hover:bg-[#b80710] text-white shadow-lg shadow-red-600/30 flex items-center justify-center space-x-1.5 transition-all active:scale-[0.98]"
+            className="flex-1 py-2.5 rounded-xl text-xs font-bold bg-white hover:bg-zinc-200 text-black shadow-lg shadow-white/10 flex items-center justify-center space-x-1.5 transition-all active:scale-[0.98] cursor-pointer"
           >
             <span>합격! 다음 턴 진행</span>
             <ArrowRight className="w-4 h-4" />
@@ -295,10 +295,10 @@ export const SpeechRecorder: React.FC<SpeechRecorderProps> = ({
           <button
             type="button"
             onClick={handleTapPass}
-            className="flex-1 py-2.5 rounded-xl text-xs font-bold bg-zinc-800 hover:bg-zinc-700 text-zinc-200 border border-white/15 flex items-center justify-center space-x-1.5 transition-all active:scale-[0.98]"
+            className="flex-1 py-2.5 rounded-xl text-xs font-semibold bg-zinc-900 hover:bg-zinc-800 text-zinc-200 border border-white/10 flex items-center justify-center space-x-1.5 transition-all active:scale-[0.98] cursor-pointer"
             title="소리를 낼 수 없는 상황을 위한 탭 통과 기능"
           >
-            <Zap className="w-3.5 h-3.5 text-amber-400" />
+            <Zap className="w-3.5 h-3.5 text-zinc-400" />
             <span>지하철/무음 탭 통과</span>
           </button>
         )}
