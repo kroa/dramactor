@@ -114,12 +114,12 @@ export const ScenePlay: React.FC<ScenePlayProps> = ({
       case 'native_killer':
         return {
           label: '👑 킬러 표현 (+25)',
-          color: 'bg-white/10 text-white border-white/20',
+          color: 'bg-[#DFB15B]/15 text-[#FFF1BD] border-[#DFB15B]/40 shadow-sm shadow-[#DFB15B]/10',
         };
       case 'mediocre':
         return {
           label: '무난한 표현 (+10)',
-          color: 'bg-zinc-900 text-zinc-300 border-zinc-800',
+          color: 'bg-[#18140d] text-[#C5A059] border-[#DFB15B]/20',
         };
       case 'wrong_konglish':
         return {
@@ -132,12 +132,12 @@ export const ScenePlay: React.FC<ScenePlayProps> = ({
   return (
     <div className="w-full max-w-md md:max-w-4xl lg:max-w-6xl mx-auto space-y-4 px-2 sm:px-4 py-2 text-left">
       {/* Top Episode Header Info & Turn Navigation */}
-      <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-zinc-400 border-b border-white/[0.08] pb-2">
+      <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-zinc-400 border-b border-[#DFB15B]/15 pb-2">
         <div className="flex items-center space-x-2 truncate">
-          <span className="font-bold text-white truncate max-w-[200px] sm:max-w-md font-mono">
+          <span className="font-bold text-white truncate max-w-[200px] sm:max-w-md font-serif text-sm">
             EP #{episode.episodeNumber.toString().padStart(2, '0')} : {episode.title}
           </span>
-          <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-zinc-900 border border-zinc-800 text-zinc-400 uppercase tracking-wider">
+          <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-[#18140d] border border-[#DFB15B]/30 text-[#F3E5AB] uppercase tracking-wider font-bold">
             {episode.genre}
           </span>
         </div>
@@ -148,7 +148,7 @@ export const ScenePlay: React.FC<ScenePlayProps> = ({
             <button
               type="button"
               onClick={() => onGoToTurn(turnIndex - 1)}
-              className="flex items-center space-x-1 px-2.5 py-1 rounded-lg bg-zinc-900 hover:bg-zinc-800 border border-white/10 text-xs font-medium text-zinc-300 hover:text-white transition-all active:scale-95 shadow-sm cursor-pointer"
+              className="flex items-center space-x-1 px-2.5 py-1 rounded-lg bg-[#16130d] hover:bg-[#221c12] border border-[#DFB15B]/25 text-xs font-medium text-[#C5A059] hover:text-[#FFF1BD] transition-all active:scale-95 shadow-sm cursor-pointer"
               title={`Turn ${turnIndex}으로 돌아가기`}
             >
               <span>◀</span>
@@ -160,7 +160,7 @@ export const ScenePlay: React.FC<ScenePlayProps> = ({
             <button
               type="button"
               onClick={() => onGoToTurn(turnIndex + 1)}
-              className="flex items-center space-x-1 px-2.5 py-1 rounded-lg bg-white hover:bg-zinc-200 border border-white/20 text-xs font-semibold text-black transition-all active:scale-95 shadow-sm cursor-pointer"
+              className="flex items-center space-x-1 px-2.5 py-1 rounded-lg bg-gradient-to-r from-[#DFB15B] via-[#F3E5AB] to-[#C5A059] hover:brightness-105 border border-[#FFF2C6]/50 text-xs font-black text-[#140e03] transition-all active:scale-95 shadow-md shadow-[#DFB15B]/20 cursor-pointer"
               title={`다음 턴 (Turn ${turnIndex + 2})으로 이동`}
             >
               <span>다음 턴 (Turn {turnIndex + 2})</span>
@@ -168,7 +168,7 @@ export const ScenePlay: React.FC<ScenePlayProps> = ({
             </button>
           )}
 
-          <span className="hidden sm:inline-flex px-2 py-1 rounded text-[10px] font-mono font-medium bg-zinc-900 text-zinc-400 border border-zinc-800">
+          <span className="hidden sm:inline-flex px-2 py-1 rounded text-[10px] font-mono font-bold bg-[#18140d] text-[#F3E5AB] border border-[#DFB15B]/30">
             TURN {turnIndex + 1} / 3
           </span>
         </div>
@@ -189,51 +189,51 @@ export const ScenePlay: React.FC<ScenePlayProps> = ({
           />
 
           {/* Cinematic Subtitle & Situation Card */}
-          <div className="p-3.5 sm:p-4 rounded-2xl bg-[#0a0a0a] border border-white/[0.08] backdrop-blur-xl shadow-xl space-y-2.5">
+          <div className="p-3.5 sm:p-4 rounded-2xl bg-[#0e0c10]/95 border border-[#DFB15B]/25 backdrop-blur-xl shadow-2xl space-y-2.5">
             {/* Subtitle Dialogue Line */}
             <div className="space-y-1.5">
               <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-1.5 text-xs text-zinc-300 font-mono font-medium">
-                  <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                <div className="flex items-center space-x-1.5 text-xs text-[#F3E5AB] font-mono font-bold">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#DFB15B] animate-pulse shadow-[0_0_6px_rgba(223,177,91,0.8)]" />
                   <span>{turn.speaker} 대사 (Line)</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <button
                     type="button"
                     onClick={(e) => toggleTranslation('main_dialogue', e)}
-                    className={`px-2 py-0.5 rounded text-[11px] font-medium border flex items-center space-x-1 transition-all ${
+                    className={`px-2 py-0.5 rounded text-[11px] font-medium border flex items-center space-x-1 transition-all cursor-pointer ${
                       showAllTranslations || Boolean(revealedTranslations['main_dialogue'])
-                        ? 'bg-white text-black font-semibold border-white/30'
-                        : 'bg-zinc-900/80 text-zinc-400 border-white/10 hover:text-white hover:bg-zinc-850'
+                        ? 'bg-gradient-to-r from-[#DFB15B] to-[#F3E5AB] text-[#140e03] font-bold border-[#FFF2C6]/50 shadow-sm'
+                        : 'bg-[#18140d] text-[#C5A059] border-[#DFB15B]/20 hover:text-[#FFF1BD] hover:bg-[#241e14]'
                     }`}
                     title="메인 대사 한국어 번역 토글"
                   >
-                    <Languages className="w-3 h-3 text-zinc-400" />
+                    <Languages className="w-3 h-3 text-[#DFB15B]" />
                     <span>
                       {showAllTranslations || Boolean(revealedTranslations['main_dialogue'])
                         ? '번역 닫기'
                         : '번역 보기'}
                     </span>
                   </button>
-                  <span className="text-[10px] text-zinc-500 font-mono hidden sm:inline-block">SCENARIO SCRIPT</span>
+                  <span className="text-[10px] text-[#C5A059] font-mono hidden sm:inline-block">PRESTIGE SCRIPT</span>
                 </div>
               </div>
-              <p className="text-sm sm:text-base lg:text-lg font-bold text-white leading-relaxed tracking-tight">
+              <p className="text-sm sm:text-base lg:text-lg font-bold text-white leading-relaxed tracking-tight font-serif">
                 &ldquo;{turn.dialogue}&rdquo;
               </p>
               {(showAllTranslations || Boolean(revealedTranslations['main_dialogue'])) && turn.dialogueKorean && (
-                <div className="pt-1 text-xs sm:text-sm text-zinc-300 font-medium leading-relaxed bg-zinc-900/80 px-3 py-2 rounded-xl border border-white/10 animate-fade-in shadow-inner">
-                  <span className="text-white font-bold mr-1">🇰🇷 한국어 번역:</span>
+                <div className="pt-1 text-xs sm:text-sm text-[#F3E5AB] font-medium leading-relaxed bg-[#18140d]/95 px-3 py-2 rounded-xl border border-[#DFB15B]/30 animate-fade-in shadow-inner">
+                  <span className="text-[#DFB15B] font-bold mr-1">🇰🇷 한국어 번역:</span>
                   <span>{turn.dialogueKorean}</span>
                 </div>
               )}
             </div>
 
             {/* Situation Context */}
-            <div className="pt-2 border-t border-white/[0.08] flex items-start space-x-2 text-xs text-zinc-300">
-              <MessageSquare className="w-3.5 h-3.5 text-zinc-400 shrink-0 mt-0.5" />
+            <div className="pt-2 border-t border-[#DFB15B]/15 flex items-start space-x-2 text-xs text-zinc-300">
+              <MessageSquare className="w-3.5 h-3.5 text-[#DFB15B] shrink-0 mt-0.5" />
               <p className="leading-relaxed">
-                <span className="font-semibold text-zinc-200">씬 상황:</span> {turn.situationHint}
+                <span className="font-bold text-[#F3E5AB]">씬 상황:</span> {turn.situationHint}
               </p>
             </div>
           </div>
@@ -257,9 +257,9 @@ export const ScenePlay: React.FC<ScenePlayProps> = ({
                   onClick={() => isClickable && onGoToTurn?.(idx)}
                   className={`flex-1 flex flex-col space-y-1 text-left transition-all p-1.5 rounded-lg border ${
                     isCurrent
-                      ? 'border-white/20 bg-zinc-900/90 shadow-sm'
+                      ? 'border-[#DFB15B]/50 bg-[#18140d]/90 shadow-sm shadow-[#DFB15B]/10'
                       : isClickable
-                      ? 'border-transparent hover:border-white/10 hover:bg-white/[0.04] cursor-pointer'
+                      ? 'border-transparent hover:border-[#DFB15B]/20 hover:bg-[#18140d]/40 cursor-pointer'
                       : 'border-transparent opacity-50 cursor-default'
                   }`}
                   title={
@@ -273,9 +273,9 @@ export const ScenePlay: React.FC<ScenePlayProps> = ({
                   <div
                     className={`h-1.5 rounded-full transition-all duration-500 ${
                       isCurrent
-                        ? 'bg-white shadow-[0_0_8px_rgba(255,255,255,0.5)]'
+                        ? 'bg-gradient-to-r from-[#DFB15B] via-[#F3E5AB] to-[#C5A059] shadow-[0_0_10px_rgba(223,177,91,0.6)]'
                         : isDone
-                        ? 'bg-zinc-600'
+                        ? 'bg-[#7A5B1E]'
                         : 'bg-zinc-800'
                     }`}
                   />
@@ -283,19 +283,19 @@ export const ScenePlay: React.FC<ScenePlayProps> = ({
                     <span
                       className={
                         isCurrent
-                          ? 'text-white font-bold'
+                          ? 'text-[#F3E5AB] font-bold'
                           : isDone
-                          ? 'text-zinc-400'
+                          ? 'text-[#C5A059]'
                           : 'text-zinc-600'
                       }
                     >
                       TURN {idx + 1}
                     </span>
                     {isDone && !isCurrent && (
-                      <span className="text-[9px] text-zinc-400 font-mono">완료</span>
+                      <span className="text-[9px] text-[#DFB15B] font-mono">완료</span>
                     )}
                     {isCurrent && (
-                      <span className="text-[9px] text-white animate-pulse font-mono font-bold">LIVE</span>
+                      <span className="text-[9px] text-[#DFB15B] animate-pulse font-mono font-bold">LIVE</span>
                     )}
                   </div>
                 </button>
@@ -305,15 +305,15 @@ export const ScenePlay: React.FC<ScenePlayProps> = ({
 
           {/* Completed Turn Notice Banner when revisiting */}
           {turnResults && turnIndex < turnResults.length && onGoToTurn && (
-            <div className="flex items-center justify-between px-3 py-2 rounded-xl bg-zinc-900 border border-white/10 text-xs text-zinc-300">
+            <div className="flex items-center justify-between px-3 py-2 rounded-xl bg-[#16130d] border border-[#DFB15B]/30 text-xs text-[#F3E5AB]">
               <span className="flex items-center space-x-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-zinc-400" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#DFB15B]" />
                 <span>이전 완료 턴입니다.</span>
               </span>
               <button
                 type="button"
                 onClick={() => onGoToTurn(turnIndex + 1)}
-                className="shrink-0 ml-2 px-2.5 py-1 rounded-md bg-white hover:bg-zinc-200 text-black font-semibold text-[11px] transition-colors cursor-pointer"
+                className="shrink-0 ml-2 px-2.5 py-1 rounded-md bg-gradient-to-r from-[#DFB15B] via-[#F3E5AB] to-[#C5A059] hover:brightness-105 text-[#140e03] font-black text-[11px] transition-colors cursor-pointer border border-[#FFF2C6]/50 shadow-sm"
               >
                 다음 턴 (Turn {turnIndex + 2}) ▶
               </button>
@@ -324,16 +324,16 @@ export const ScenePlay: React.FC<ScenePlayProps> = ({
           {!selectedChoice ? (
             <div className="space-y-2.5 pt-1">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-mono font-medium text-zinc-400 tracking-wider">
+                <span className="text-xs font-mono font-bold text-[#C5A059] tracking-wider">
                   당신의 대사를 선택하세요 (3 CHANCES)
                 </span>
                 <button
                   type="button"
                   onClick={toggleAllTranslations}
-                  className="flex items-center space-x-1 text-[11px] text-zinc-400 hover:text-white bg-zinc-900 hover:bg-zinc-800 px-2 py-0.5 rounded-md border border-white/10 transition-colors cursor-pointer"
+                  className="flex items-center space-x-1 text-[11px] text-[#C5A059] hover:text-[#FFF1BD] bg-[#16130d] hover:bg-[#201b12] px-2 py-0.5 rounded-md border border-[#DFB15B]/25 transition-colors cursor-pointer"
                   title="전체 대사 한글 번역 토글"
                 >
-                  <Languages className="w-3 h-3 text-zinc-400" />
+                  <Languages className="w-3 h-3 text-[#DFB15B]" />
                   <span>{showAllTranslations ? '전체 번역 숨기기' : '전체 번역 보기'}</span>
                 </button>
               </div>
@@ -346,22 +346,22 @@ export const ScenePlay: React.FC<ScenePlayProps> = ({
                       key={choice.id}
                       type="button"
                       onClick={() => onSelectChoice(choice)}
-                      className="w-full text-left p-3 sm:p-3.5 rounded-xl glass-panel-interactive border border-white/[0.08] relative group active:scale-[0.98] transition-all hover:border-white/30"
+                      className="w-full text-left p-3 sm:p-3.5 rounded-xl glass-panel-interactive border border-[#DFB15B]/20 relative group active:scale-[0.98] transition-all hover:border-[#DFB15B]/60 cursor-pointer"
                     >
                       <div className="flex items-start space-x-3">
-                        <span className="w-6 h-6 rounded-md bg-zinc-900 border border-white/10 flex items-center justify-center font-mono font-bold text-xs text-zinc-300 group-hover:bg-white group-hover:text-black transition-colors shrink-0">
+                        <span className="w-6 h-6 rounded-md bg-[#18140d] border border-[#DFB15B]/30 flex items-center justify-center font-mono font-bold text-xs text-[#F3E5AB] group-hover:bg-gradient-to-br group-hover:from-[#F3E5AB] group-hover:to-[#DFB15B] group-hover:text-[#140e03] transition-all shrink-0">
                           {choice.id}
                         </span>
                         <div className="flex-1 space-y-1.5">
-                          <p className="text-sm font-medium text-zinc-100 leading-snug group-hover:text-white transition-colors">
+                          <p className="text-sm font-semibold text-white leading-snug group-hover:text-[#FFF1BD] transition-colors">
                             {choice.text}
                           </p>
 
                           {/* Korean Translation: Only displayed when clicking translation */}
                           {isRevealed ? (
                             <div className="pt-0.5">
-                              <div className="flex items-center justify-between bg-zinc-900/90 border border-white/10 rounded-lg px-2.5 py-1">
-                                <p className="text-xs text-zinc-300 leading-snug">
+                              <div className="flex items-center justify-between bg-[#18140d]/95 border border-[#DFB15B]/30 rounded-lg px-2.5 py-1">
+                                <p className="text-xs text-[#F3E5AB] leading-snug">
                                   {choice.koreanMeaning}
                                 </p>
                                 <span
@@ -373,7 +373,7 @@ export const ScenePlay: React.FC<ScenePlayProps> = ({
                                       toggleTranslation(choice.id, e);
                                     }
                                   }}
-                                  className="text-[10px] text-zinc-400 hover:text-white ml-2 shrink-0 underline cursor-pointer"
+                                  className="text-[10px] text-[#C5A059] hover:text-[#FFF1BD] ml-2 shrink-0 underline cursor-pointer"
                                   title="한글 번역 숨기기"
                                 >
                                   숨기기
@@ -391,10 +391,10 @@ export const ScenePlay: React.FC<ScenePlayProps> = ({
                                       toggleTranslation(choice.id, e);
                                     }
                                   }}
-                                className="inline-flex items-center space-x-1 text-[11px] text-zinc-400 hover:text-white bg-zinc-900/80 hover:bg-zinc-800 px-2 py-0.5 rounded-md border border-white/10 transition-colors cursor-pointer"
+                                className="inline-flex items-center space-x-1 text-[11px] text-[#C5A059] hover:text-[#FFF1BD] bg-[#16130d] hover:bg-[#201b12] px-2 py-0.5 rounded-md border border-[#DFB15B]/20 transition-colors cursor-pointer"
                                 title="한글 번역 보기"
                               >
-                                <Languages className="w-3 h-3 text-zinc-400" />
+                                <Languages className="w-3 h-3 text-[#DFB15B]" />
                                 <span>번역</span>
                               </span>
                             </div>
@@ -410,9 +410,9 @@ export const ScenePlay: React.FC<ScenePlayProps> = ({
             /* Selected Choice Feedback + Speech Mission Phase */
             <div className="space-y-3">
               {/* Feedback Card */}
-              <div className="p-3.5 rounded-xl bg-zinc-950 border border-white/15 space-y-2 text-left shadow-xl">
+              <div className="p-3.5 rounded-xl bg-[#0e0c10] border border-[#DFB15B]/30 space-y-2 text-left shadow-xl shadow-black/80">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-mono font-medium text-zinc-400">
+                  <span className="text-xs font-mono font-medium text-[#C5A059]">
                     선택한 대사 [Option {selectedChoice.id}]
                   </span>
                   <span
@@ -424,21 +424,21 @@ export const ScenePlay: React.FC<ScenePlayProps> = ({
                   </span>
                 </div>
 
-                <p className="text-sm font-semibold text-white">
+                <p className="text-sm font-semibold text-white font-serif">
                   &ldquo;{selectedChoice.text}&rdquo;
                 </p>
 
                 {/* Selected choice Korean translation in feedback card */}
-                <div className="flex items-center space-x-1.5 text-xs text-zinc-300 bg-zinc-900/90 px-2 py-1 rounded-md border border-white/10">
-                  <Languages className="w-3 h-3 text-zinc-400 shrink-0" />
+                <div className="flex items-center space-x-1.5 text-xs text-[#F3E5AB] bg-[#18140d] px-2 py-1 rounded-md border border-[#DFB15B]/25">
+                  <Languages className="w-3 h-3 text-[#DFB15B] shrink-0" />
                   <span>{selectedChoice.koreanMeaning}</span>
                 </div>
 
                 {/* Native Speaker Rationale Feedback */}
-                <div className="pt-1 border-t border-white/[0.06] flex items-start space-x-2 text-xs text-zinc-300">
-                  <Sparkles className="w-3.5 h-3.5 text-zinc-400 shrink-0 mt-0.5" />
+                <div className="pt-1 border-t border-[#DFB15B]/15 flex items-start space-x-2 text-xs text-zinc-300">
+                  <Sparkles className="w-3.5 h-3.5 text-[#DFB15B] shrink-0 mt-0.5" />
                   <p className="leading-relaxed">
-                    <span className="font-semibold text-zinc-200">원어민 코멘트:</span>{' '}
+                    <span className="font-bold text-[#F3E5AB]">원어민 코멘트:</span>{' '}
                     {selectedChoice.feedback}
                   </p>
                 </div>
