@@ -9,9 +9,10 @@ export interface SceneVisualConfig {
 }
 
 export const getSceneVisualConfig = (episodeNumber: number, turnIndex?: number): SceneVisualConfig => {
-  const turnVideo = turnIndex ? `/videos/ep${episodeNumber}_turn${turnIndex}.mp4` : null;
+  const cycleEp = Math.max(1, ((Math.abs(episodeNumber) - 1) % 7) + 1);
+  const turnVideo = turnIndex ? `/videos/ep${cycleEp}_turn${turnIndex}.mp4` : null;
 
-  switch (episodeNumber) {
+  switch (cycleEp) {
     case 1:
       return {
         locationTag: 'MANHATTAN PEARSON HARDMAN • 50F CORNER SUITE',
@@ -44,12 +45,12 @@ export const getSceneVisualConfig = (episodeNumber: number, turnIndex?: number):
       };
     case 4:
       return {
-        locationTag: 'SEATTLE GRACE HOSPITAL • TRAUMA OR BAY 1',
+        locationTag: 'SEATTLE GRACE HOSPITAL • CHIEF SURGEON SUITE',
         cameraRig: 'SONY VENICE 2 • COOKE ANAMORPHIC /i',
         videoSrc: turnVideo || '/videos/ep4.mp4',
         themeColor: 'from-teal-900/40 via-cyan-950/60 to-zinc-950',
         accentGlow: 'text-teal-400 border-teal-500/40',
-        roleDescription: 'Chief Trauma Surgeon • Emergency OR',
+        roleDescription: 'Chief of Surgery • Trauma Unit',
         atmosphereBadge: '🚨 03:12 PST • EMERGENCY TRAUMA',
       };
     case 5:
@@ -73,6 +74,7 @@ export const getSceneVisualConfig = (episodeNumber: number, turnIndex?: number):
         atmosphereBadge: '⚡ 02:45 EST • MIDNIGHT TAKEOVER',
       };
     case 7:
+    default:
       return {
         locationTag: 'MOSCONE WEST KEYNOTE STAGE • YC DEMO DAY',
         cameraRig: 'RED MONSTRO 8K • ANAMORPHIC ZOOM',
@@ -81,16 +83,6 @@ export const getSceneVisualConfig = (episodeNumber: number, turnIndex?: number):
         accentGlow: 'text-violet-400 border-violet-500/40',
         roleDescription: 'Managing Director • Y Combinator',
         atmosphereBadge: '🚀 11:00 PST • KEYNOTE STAGE',
-      };
-    default:
-      return {
-        locationTag: 'CINEMATIC SOUNDSTAGE • STUDIO A',
-        cameraRig: 'ARRI ALEXA 35 • 4K DCI',
-        videoSrc: turnVideo || '/videos/ep1.mp4',
-        themeColor: 'from-zinc-900 via-zinc-950 to-black',
-        accentGlow: 'text-cyan-400 border-cyan-500/40',
-        roleDescription: 'Lead Cast • American Drama',
-        atmosphereBadge: '🎬 SCENE PRODUCTION',
       };
   }
 };

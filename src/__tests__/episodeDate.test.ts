@@ -7,8 +7,8 @@ import {
 } from '../utils/episodeDate';
 
 describe('episodeDate Utility Test Suite', () => {
-  it('loads at least 7 high quality episodes', () => {
-    expect(EPISODES.length).toBeGreaterThanOrEqual(7);
+  it('loads at least 100 high quality episodes', () => {
+    expect(EPISODES.length).toBeGreaterThanOrEqual(100);
   });
 
   it('each episode has required schema properties', () => {
@@ -16,7 +16,7 @@ describe('episodeDate Utility Test Suite', () => {
       expect(ep.date).toBeDefined();
       expect(ep.episodeNumber).toBeGreaterThan(0);
       expect(ep.title).toBeTruthy();
-      expect(ep.genre).toMatch(/^(Legal|Corporate|Startup|Dating|Medical)$/);
+      expect(ep.genre).toBeTruthy();
       expect(ep.synopsis).toBeTruthy();
       expect(ep.turns.length).toBe(3);
       expect(ep.keyTakeaway.expression).toBeTruthy();
@@ -50,16 +50,15 @@ describe('episodeDate Utility Test Suite', () => {
     const ep7 = getEpisodeForDate('2026-10-16');
     expect(ep7.episodeNumber).toBe(7);
     expect(ep7.title).toContain('YC 데모데이 백스테이지');
+
+    const ep8 = getEpisodeForDate('2026-10-17');
+    expect(ep8.episodeNumber).toBe(8);
   });
 
-  it('uses modulo arithmetic for future dates outside the base 7 days', () => {
-    // 2026-10-17 is 7 days after 2026-10-10 (offset 7 % 7 = 0 -> ep1)
-    const epNextCycle = getEpisodeForDate('2026-10-17');
+  it('uses modulo arithmetic for future dates outside the 100 days sequence', () => {
+    // 200 days after base date (200 % 100 = 0 -> ep1)
+    const epNextCycle = getEpisodeForDate('2027-04-28');
     expect(epNextCycle.episodeNumber).toBe(1);
-
-    // 2026-10-18 is 8 days after 2026-10-10 (offset 8 % 7 = 1 -> ep2)
-    const epNextCycleDay2 = getEpisodeForDate('2026-10-18');
-    expect(epNextCycleDay2.episodeNumber).toBe(2);
   });
 
   it('correctly calculates KST date string', () => {

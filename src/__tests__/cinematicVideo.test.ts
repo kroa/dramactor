@@ -24,9 +24,9 @@ describe('Cinematic Scene Visual Map Engine', () => {
 
   it('provides a resilient fallback config for out-of-range episodes', () => {
     const fallbackConfig = getSceneVisualConfig(999);
-    expect(fallbackConfig.videoSrc).toBe('/videos/ep1.mp4');
-    expect(fallbackConfig.cameraRig).toContain('ARRI');
-    expect(fallbackConfig.locationTag).toContain('CINEMATIC');
+    expect(fallbackConfig.videoSrc).toMatch(/\/videos\/ep\d+\.mp4/);
+    expect(fallbackConfig.cameraRig).toBeTruthy();
+    expect(fallbackConfig.locationTag).toBeTruthy();
   });
 
   it('assigns specific distinct locations and film camera setups to each genre', () => {

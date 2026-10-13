@@ -78,7 +78,7 @@ describe('SceneIntroScreen Component', () => {
     expect(handleStart).toHaveBeenCalledTimes(1);
 
     // Archive button triggers callback
-    const archiveBtn = screen.getByText('시즌 1 아카이브 둘러보기');
+    const archiveBtn = screen.getByText('전체 100개 씬 아카이브 둘러보기');
     fireEvent.click(archiveBtn);
     expect(handleArchive).toHaveBeenCalledTimes(1);
   });

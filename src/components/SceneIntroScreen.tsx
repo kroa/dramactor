@@ -164,10 +164,11 @@ export const SceneIntroScreen: React.FC<SceneIntroScreenProps> = ({
             className="w-full sm:w-auto px-5 py-3.5 sm:py-4 rounded-2xl font-semibold text-xs sm:text-sm bg-[#16130d] hover:bg-[#221c12] text-[#F3E5AB] hover:text-white border border-[#DFB15B]/30 flex items-center justify-center space-x-2 transition-all cursor-pointer"
           >
             <FolderArchive className="w-4 h-4 text-[#DFB15B]" />
-            <span>시즌 1 아카이브 둘러보기</span>
+            <span>전체 100개 씬 아카이브 둘러보기</span>
           </button>
         </div>
       </div>
     </div>
   );
 };
+
