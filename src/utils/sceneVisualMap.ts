@@ -60,7 +60,7 @@ export const getSceneVisualConfig = (episodeNumber: number, turnIndex?: number):
         videoSrc: turnVideo || '/videos/ep5.mp4',
         themeColor: 'from-fuchsia-900/40 via-purple-950/60 to-zinc-950',
         accentGlow: 'text-fuchsia-400 border-fuchsia-500/40',
-        roleDescription: 'Fintech Founder • First Date',
+        roleDescription: 'Julian Vance • Lead Art Curator',
         atmosphereBadge: '🍸 22:30 EST • SOHO TWILIGHT',
       };
     case 6:

@@ -498,7 +498,7 @@
             "targetScript": "Just enjoying the view. It is very beautiful tonight."
           }
         ],
-        "dialogueKorean": "당신 프로필 봤을 때부터 궁금했어요. 핀테크 스타트업 창업가라니 정말 바쁘실 텐데, 일 말고 당신을 진짜 심장 뛰게 만드는 건 뭔가요?"
+        "dialogueKorean": "다운타운 스카이라인을 바라보면서 그 메즈칼 네그로니를 20분째 홀짝이고 계시네요. 깊은 생각에 잠기신 건가요, 아니면 그냥 사람들 북적이는 걸 피하시는 중인가요?"
       },
       {
         "turnIndex": 2,
@@ -532,7 +532,7 @@
             "targetScript": "Yes, I also dislike talking about work at bars."
           }
         ],
-        "dialogueKorean": "이 칵테일 진짜 매력적이네요. 근데 솔직히 말해봐요, 첫 데이트에서 항상 이렇게 침착하고 여유로우신 편인가요?"
+        "dialogueKorean": "정곡을 찔렸네요. 여기 대부분의 사람들은 시드 투자 유치나 암호화폐 포트폴리오 얘기만 끝없이 늘어놓거든요. 진짜 주변을 유심히 관찰하는 분을 만나니 정말 신선하네요."
       },
       {
         "turnIndex": 3,
@@ -566,7 +566,7 @@
             "targetScript": "Sure, that sounds fun. What time does it start?"
           }
         ],
-        "dialogueKorean": "내일 아침 일찍 중요한 미팅이 있긴 한데요... 솔직히 여기서 대화 끝내기 아쉬워요. 다른 곳으로 2차 갈까요, 아니면 루프탑 야경 조금 더 볼래요?"
+        "dialogueKorean": "이제 제 호기심을 완전히 자극하셨군요. 내일 저녁 첼시에서 프라이빗 전시 오프닝을 주최하는데요. 제 파트너(Plus-one)로 함께 가주시겠어요?"
       }
     ],
     "keyTakeaway": {
