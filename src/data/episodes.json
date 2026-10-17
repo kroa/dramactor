@@ -807,116 +807,116 @@
   {
     "date": "2026-10-17",
     "episodeNumber": 8,
-    "title": "증인 보호 프로그램: 연방수사국 범죄 심문의 결단",
+    "title": "FBI 심문실: 묵비권을 깨뜨리는 30초",
     "genre": "FBI Crime",
-    "synopsis": "FBI Crime 업계 최고의 무대. 예상치 못한 돌발 변수와 극심한 압박 속에서 상대방의 도발에 맞서 주도권을 쥐고 승리를 쟁취해야 한다.",
+    "synopsis": "퀸즈 비밀 안가 심문실. 금융 사기 주범이 묵비권을 행사하려는 순간, 연방 검찰과의 형량 거래 카드를 던지며 자백을 유도하고 주도권을 쥐어야 한다.",
     "turns": [
       {
         "turnIndex": 1,
-        "speaker": "Director Vance (FBI Crime)",
+        "speaker": "Agent Miller (FBI Lead Investigator)",
         "avatarEmoji": "🔍",
-        "dialogue": "The regulator just issued a formal subpoena. Everything in these archives is now subject to scrutiny.",
-        "dialogueKorean": "규제 당국이 정식 소환장을 발부했어. 이제 이 아카이브 안의 모든 자료가 전수 조사 대상이야.",
-        "situationHint": "소환장이 발부된 비상 상황에서 어떻게 대응할지 자문을 구한다.",
+        "dialogue": "You have thirty seconds before I walk out this door and recommend twenty years in federal penitentiary. Do you want to cut a deal, or do you want to rot in a cell?",
+        "dialogueKorean": "내가 이 문을 열고 나가서 연방 교도소 20년형을 구형하기까지 자네에겐 딱 30초 남았어. 거래를 할 텐가, 아니면 감방에서 썩을 텐가?",
+        "situationHint": "요원이 20년형을 경고하며 지금 거래를 할지 감방에서 썩을지 선택을 압박한다.",
         "choices": [
           {
             "id": "A",
-            "text": "Should we delete the files before they arrive?",
-            "koreanMeaning": "그들이 오기 전에 파일들을 지워야 할까요?",
-            "type": "wrong_konglish",
-            "feedback": "직접 번역 투의 표현이나 긴장감 없는 회피성 멘트는 프로페셔널한 신뢰를 떨어뜨립니다.",
-            "targetScript": "Should we delete the files before they arrive?"
+            "text": "I am not speaking without my lawyer here.",
+            "koreanMeaning": "변호사 없이는 말하지 않겠습니다.",
+            "type": "mediocre",
+            "feedback": "기본적인 묵비권 표현이지만 협상의 주도권을 완전히 넘겨줍니다.",
+            "targetScript": "I am not speaking without my lawyer here."
           },
           {
             "id": "B",
-            "text": "Preserve all relevant logs, retain outside white-collar counsel, and maintain complete compliance.",
-            "koreanMeaning": "모든 관련 로그를 철저히 보존하고 외부 특수통 변호인을 선임해 완전한 규정 준수로 방어벽을 세우십시오.",
+            "text": "Give me full immunity on record, and I'll hand you their offshore shell accounts by midnight.",
+            "koreanMeaning": "조서에 완전 면책을 명시해 주시죠. 자정까지 해외 페이퍼컴퍼니 계좌를 전부 넘기겠습니다.",
             "type": "native_killer",
-            "feedback": "'Subject to scrutiny / Retain outside counsel'을(를) 활용한 확신에 찬 네이티브 시그니처 킬러 표현입니다.",
-            "targetScript": "Preserve all relevant logs, retain outside white-collar counsel, and maintain complete compliance."
+            "feedback": "'Give me full immunity on record'는 미드 범죄수사물에서 최고의 카운터 협상 킬러 표현입니다.",
+            "targetScript": "Give me full immunity on record, and I'll hand you their offshore shell accounts by midnight."
           },
           {
             "id": "C",
-            "text": "I will talk to the government officer personally.",
-            "koreanMeaning": "제가 정부 담당자에게 개인적으로 이야기해보겠습니다.",
-            "type": "mediocre",
-            "feedback": "문법적으로는 맞으나 미드 주연 특유의 당당함과 전략적 깊이가 부족합니다.",
-            "targetScript": "I will talk to the government officer personally."
+            "text": "I will think about this deal tomorrow.",
+            "koreanMeaning": "내일 이 딜에 대해 생각해보겠습니다.",
+            "type": "wrong_konglish",
+            "feedback": "심문실에서 시간을 미루면 요원이 즉시 자리를 털고 일어나 영장을 청구합니다.",
+            "targetScript": "I will think about this deal tomorrow."
           }
         ]
       },
       {
         "turnIndex": 2,
-        "speaker": "Director Vance (FBI Crime)",
+        "speaker": "Agent Miller (FBI Lead Investigator)",
         "avatarEmoji": "🔍",
-        "dialogue": "We're burning sixty grand a week and our primary runway expires in November. What's the pivot plan?",
-        "dialogueKorean": "매주 6만 달러가 타들어가고 있고 런웨이는 11월이면 바닥나. 피봇 플랜은 대체 뭔가?",
-        "situationHint": "현금이 고갈되는 절체절명의 위기에서 피봇 전략을 요구한다.",
+        "dialogue": "Immunity is off the table for grand larceny. Best I can do is a sealed letter to the presiding judge. Take it or leave it.",
+        "dialogueKorean": "중도절도 혐의에 완전 면책은 어림없어. 내가 해줄 수 있는 건 담당 판사에게 비공개 감형 건의서를 써주는 게 다야. 받든가 말든가.",
+        "situationHint": "요원이 완전 면책은 거절하고 판사 앞 비공개 건의서가 최선이라며 양자택일을 요구한다.",
         "choices": [
           {
             "id": "A",
-            "text": "Slash non-core burn, double down on enterprise recurring revenue, and achieve cash-flow neutrality by Q3.",
-            "koreanMeaning": "비핵심 지출을 칼같이 도려내고 기업용 반복 매출(B2B ARR)에 집중해 3분기까지 손익분기점을 맞추겠습니다.",
+            "text": "Throw in witness protection for my family, and you have yourself a deal.",
+            "koreanMeaning": "내 가족에 대한 증인 보호 프로그램을 얹어 주신다면, 그 거래 수락하죠.",
             "type": "native_killer",
-            "feedback": "'Double down on / Cash-flow neutrality'을(를) 활용해 불리한 국면을 단숨에 역전시키는 최고의 한 수입니다.",
-            "targetScript": "Slash non-core burn, double down on enterprise recurring revenue, and achieve cash-flow neutrality by Q3."
+            "feedback": "'Throw in witness protection'과 'you have yourself a deal'은 범죄물 특유의 노련한 타협 표현입니다.",
+            "targetScript": "Throw in witness protection for my family, and you have yourself a deal."
           },
           {
             "id": "B",
-            "text": "We can borrow money from my parents.",
-            "koreanMeaning": "부모님께 돈을 좀 빌릴 수 있습니다.",
-            "type": "wrong_konglish",
-            "feedback": "감정적인 부인이나 회피는 상대에게 약점을 노출하는 치명적 감점입니다.",
-            "targetScript": "We can borrow money from my parents."
+            "text": "Okay, that is fine with me.",
+            "koreanMeaning": "네, 그 정도면 괜찮습니다.",
+            "type": "mediocre",
+            "feedback": "너무 쉽게 양보하여 상대에게 패를 다 읽히게 됩니다.",
+            "targetScript": "Okay, that is fine with me."
           },
           {
             "id": "C",
-            "text": "Let us hope that next month sales will be better.",
-            "koreanMeaning": "부모님께 돈을 좀 빌릴 수 있습니다.",
-            "type": "mediocre",
-            "feedback": "수동적으로 타이밍을 넘겨주어 주도권을 잃게 됩니다.",
-            "targetScript": "Let us hope that next month sales will be better."
+            "text": "Don't lie to me, I know the law very well.",
+            "koreanMeaning": "거짓말 마세요, 저 법 잘 압니다.",
+            "type": "wrong_konglish",
+            "feedback": "취조관을 도발하여 구속 수사로 직행하는 역효과를 냅니다.",
+            "targetScript": "Don't lie to me, I know the law very well."
           }
         ]
       },
       {
         "turnIndex": 3,
-        "speaker": "Director Vance (FBI Crime)",
+        "speaker": "Agent Miller (FBI Lead Investigator)",
         "avatarEmoji": "🔍",
-        "dialogue": "The client is threatening to pull their forty-million-dollar account unless we deliver overnight results.",
-        "dialogueKorean": "하룻밤 사이에 결과를 내놓지 않으면 4천만 달러짜리 계좌를 빼버리겠다고 클라이언트가 으름장을 놓고 있어.",
-        "situationHint": "거대 고객사의 이탈 위협 앞에서 어떻게 수습할지 묻는다.",
+        "dialogue": "Done. Sign the plea allocution, and don't make a single phone call without my express permission.",
+        "dialogueKorean": "좋아, 성사됐어. 유죄 인정 조서에 서명하고, 내 명시적 허가 없이는 전화 한 통도 걸지 마.",
+        "situationHint": "거래가 성사되었으니 서명하고 허가 없이 외부 연락을 금지하라고 명령한다.",
         "choices": [
           {
             "id": "A",
-            "text": "Tell them to go away if they are unhappy.",
-            "koreanMeaning": "마음에 안 들면 떠나라고 전하십시오.",
-            "type": "mediocre",
-            "feedback": "안전하지만 상대의 무리한 요구를 그대로 수용하는 밋밋한 반응입니다.",
-            "targetScript": "Tell them to go away if they are unhappy."
+            "text": "Consider me your most cooperative asset from this second forward.",
+            "koreanMeaning": "이 시간부로 저를 요원님의 가장 협조적인 정보 자산으로 보셔도 좋습니다.",
+            "type": "native_killer",
+            "feedback": "'cooperative asset'은 첩보/수사 드라마에서 정보원의 신뢰를 극대화하는 프로페셔널한 어휘입니다.",
+            "targetScript": "Consider me your most cooperative asset from this second forward."
           },
           {
             "id": "B",
-            "text": "I can send them a polite apology email.",
-            "koreanMeaning": "정중한 사과 이메일을 보낼 수 있습니다.",
-            "type": "wrong_konglish",
-            "feedback": "비즈니스 협상에서 감정에 호소하는 것은 절대 금물입니다.",
-            "targetScript": "I can send them a polite apology email."
+            "text": "I will not call anyone.",
+            "koreanMeaning": "아무에게도 전화하지 않겠습니다.",
+            "type": "mediocre",
+            "feedback": "단순한 약속이지만 전문적인 정보원 뉘앙스가 부족합니다.",
+            "targetScript": "I will not call anyone."
           },
           {
             "id": "C",
-            "text": "Fly out to their headquarters at dawn and personally present a tailored mitigation roadmap.",
-            "koreanMeaning": "새벽 비행기로 본사로 날아가 맞춤형 리스크 해소 로드맵을 직접 프레젠테이션하겠습니다.",
-            "type": "native_killer",
-            "feedback": "'Tailored mitigation roadmap / Fly out'을(를) 명확히 짚어내며 최종 결정권을 거머쥐는 압도적인 승리 턴입니다.",
-            "targetScript": "Fly out to their headquarters at dawn and personally present a tailored mitigation roadmap."
+            "text": "Can I call my mom just one time?",
+            "koreanMeaning": "우리 엄마한테 딱 한 번만 전화해도 될까요?",
+            "type": "wrong_konglish",
+            "feedback": "심각한 연방 범죄 수사 상황에 맞지 않는 미숙한 반응입니다.",
+            "targetScript": "Can I call my mom just one time?"
           }
         ]
       }
     ],
     "keyTakeaway": {
-      "expression": "Subject to scrutiny / Retain outside counsel",
-      "usageNote": "'Subject to scrutiny / Retain outside counsel'은(는) 미국 드라마와 현업 비즈니스에서 상대를 압도하는 가장 강력한 네이티브 표현 중 하나입니다."
+      "expression": "Cut a deal / On record",
+      "usageNote": "'Cut a deal'은 타협/거래를 성사시키다, 'On record'는 공식 기록에 남기다를 뜻하는 필수 법률/수사물 관용구입니다."
     }
   },
   {

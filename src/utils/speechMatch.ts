@@ -202,6 +202,7 @@ export function prepareDramaTextForTTS(rawText: string): string {
   if (!rawText) return '';
   return rawText
     .replace(/\bOpenAI\b/gi, 'Open A.I.')
+    .replace(/\bFBI\b/g, 'F.B.I.')
     .replace(/\bFTC\b/g, 'F.T.C.')
     .replace(/\bVC\b/g, 'V.C.')
     .replace(/\bVCs\b/g, 'V.C.s')
@@ -332,6 +333,9 @@ export function getBestVoiceForCharacter(speakerName = '', customVoiceURI?: stri
   } else if (lowerSpeaker.includes('victoria')) {
     recommendedPitch = 0.98;
     recommendedRate = 0.92;
+  } else if (lowerSpeaker.includes('miller') || lowerSpeaker.includes('agent')) {
+    recommendedPitch = 0.90;
+    recommendedRate = 0.94;
   }
 
   const voiceLabel = selectedVoice

@@ -9,7 +9,8 @@ export interface SceneVisualConfig {
 }
 
 export const getSceneVisualConfig = (episodeNumber: number, turnIndex?: number): SceneVisualConfig => {
-  const cycleEp = Math.max(1, ((Math.abs(episodeNumber) - 1) % 7) + 1);
+  const TOTAL_PRODUCED = 8;
+  const cycleEp = Math.max(1, ((Math.abs(episodeNumber) - 1) % TOTAL_PRODUCED) + 1);
   const turnVideo = turnIndex ? `/videos/ep${cycleEp}_turn${turnIndex}.mp4` : null;
 
   switch (cycleEp) {
@@ -74,7 +75,6 @@ export const getSceneVisualConfig = (episodeNumber: number, turnIndex?: number):
         atmosphereBadge: '⚡ 02:45 EST • MIDNIGHT TAKEOVER',
       };
     case 7:
-    default:
       return {
         locationTag: 'MOSCONE WEST KEYNOTE STAGE • YC DEMO DAY',
         cameraRig: 'RED MONSTRO 8K • ANAMORPHIC ZOOM',
@@ -83,6 +83,17 @@ export const getSceneVisualConfig = (episodeNumber: number, turnIndex?: number):
         accentGlow: 'text-violet-400 border-violet-500/40',
         roleDescription: 'Managing Director • Y Combinator',
         atmosphereBadge: '🚀 11:00 PST • KEYNOTE STAGE',
+      };
+    case 8:
+    default:
+      return {
+        locationTag: 'QUEENS SAFE HOUSE • INTERROGATION CELL B',
+        cameraRig: 'ARRI ALEXA MINI • ZEISS MASTER PRIME 35MM',
+        videoSrc: turnVideo || '/videos/ep8.mp4',
+        themeColor: 'from-blue-950/60 via-slate-950/80 to-zinc-950',
+        accentGlow: 'text-sky-400 border-sky-500/40',
+        roleDescription: 'Agent Miller • FBI Lead Investigator',
+        atmosphereBadge: '🚨 01:30 EST • LATE NIGHT INTERROGATION',
       };
   }
 };
