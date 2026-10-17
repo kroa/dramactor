@@ -55,9 +55,9 @@ describe('episodeDate Utility Test Suite', () => {
     expect(ep8.episodeNumber).toBe(8);
   });
 
-  it('uses modulo arithmetic for future dates outside the 100 days sequence', () => {
-    // 200 days after base date (200 % 100 = 0 -> ep1)
-    const epNextCycle = getEpisodeForDate('2027-04-28');
+  it('uses modulo arithmetic for future dates outside the 300 days sequence', () => {
+    // 300 days after base date (300 % 300 = 0 -> ep1)
+    const epNextCycle = getEpisodeForDate('2027-08-06');
     expect(epNextCycle.episodeNumber).toBe(1);
   });
 

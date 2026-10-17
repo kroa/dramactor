@@ -8,3 +8,4 @@ with open('episodes_summary.txt', 'w', encoding='utf-8') as f:
         f.write(f"EP {ep['episodeNumber']:03d}: {ep['title']} | Current Genre: {ep['genre']}\n")
 
 print(f"Exported {len(data)} episodes to episodes_summary.txt")
+

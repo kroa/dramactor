@@ -141,3 +141,4 @@ print(f"Total unique genres in episodes.json: {len(counts)}")
 for g, c in sorted(counts.items()):
     assert c == 2, f"Genre {g} has {c} episodes, expected 2"
 print("VERIFIED: Every single one of the 50 genres has exactly 2 dedicated episodes!")
+

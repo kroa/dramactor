@@ -27,8 +27,8 @@ describe('Dramactor 50 Genres Master Catalog Suite', () => {
     });
   });
 
-  it('covers all 100 episodes with exactly 2 episodes per genre', () => {
-    expect(EPISODES.length).toBe(100);
+  it('covers all 300 episodes with exactly 6 episodes per genre', () => {
+    expect(EPISODES.length).toBe(300);
 
     const genreCounts: Record<string, number> = {};
     EPISODES.forEach((ep) => {
@@ -39,9 +39,10 @@ describe('Dramactor 50 Genres Master Catalog Suite', () => {
     const genresInEpisodes = Object.keys(genreCounts);
     expect(genresInEpisodes.length).toBe(50);
 
-    // Each genre has exactly 2 episodes
+    // Each genre has exactly 6 episodes
     genresInEpisodes.forEach((genre) => {
-      expect(genreCounts[genre]).toBe(2);
+      expect(genreCounts[genre]).toBe(6);
     });
   });
 });
+

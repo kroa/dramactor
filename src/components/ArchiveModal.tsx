@@ -68,7 +68,7 @@ export const ArchiveModal: React.FC<ArchiveModalProps> = ({
           <div className="flex items-center space-x-2">
             <Film className="w-5 h-5 text-[#DFB15B]" />
             <h3 className="text-base font-bold text-[#F3E5AB] tracking-tight flex items-center space-x-1.5">
-              <span>미드 50개 장르 & 100화 아카이브</span>
+              <span>미드 50개 장르 & {EPISODES.length}화 아카이브</span>
               <Sparkles className="w-3.5 h-3.5 text-[#DFB15B]" />
             </h3>
             <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-[#18140d] border border-[#DFB15B]/40 text-[#DFB15B] font-bold">
@@ -109,7 +109,7 @@ export const ArchiveModal: React.FC<ArchiveModalProps> = ({
                   : 'bg-[#14110b] text-zinc-400 border-white/10 hover:text-white'
               }`}
             >
-              <span>🎬 전체 (100)</span>
+              <span>🎬 전체 ({EPISODES.length})</span>
             </button>
             {DRAMACTOR_50_GENRES.map((g) => (
               <button
