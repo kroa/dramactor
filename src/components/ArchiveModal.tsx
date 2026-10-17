@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
-import { X, Play, Calendar, Film, CheckCircle, Search } from 'lucide-react';
+import { X, Play, Calendar, Film, CheckCircle, Search, Sparkles } from 'lucide-react';
 import { EPISODES } from '../utils/episodeDate';
+import { DRAMACTOR_50_GENRES, type GenreMeta } from '../data/genres';
 
 interface ArchiveModalProps {
   isOpen: boolean;
@@ -8,6 +9,23 @@ interface ArchiveModalProps {
   selectedDate: string;
   onSelectEpisode: (date: string) => void;
 }
+
+// Fast static genre metadata lookup map
+const GENRE_META_MAP = new Map<string, GenreMeta>();
+DRAMACTOR_50_GENRES.forEach((g) => {
+  GENRE_META_MAP.set(g.nameEn.toLowerCase(), g);
+  GENRE_META_MAP.set(g.id.toLowerCase(), g);
+  GENRE_META_MAP.set(g.nameKo.toLowerCase(), g);
+});
+
+const getGenreMeta = (genre: string): GenreMeta | undefined => {
+  return GENRE_META_MAP.get(genre.toLowerCase());
+};
+
+const getGenreBadgeColor = (genre: string) => {
+  const meta = getGenreMeta(genre);
+  return meta?.badgeClass || 'bg-zinc-500/15 text-zinc-300 border-zinc-500/30';
+};
 
 export const ArchiveModal: React.FC<ArchiveModalProps> = ({
   isOpen,
@@ -18,54 +36,29 @@ export const ArchiveModal: React.FC<ArchiveModalProps> = ({
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedGenre, setSelectedGenre] = useState<string>('ALL');
 
-  const genres = useMemo(() => {
-    const set = new Set<string>();
-    EPISODES.forEach((ep) => set.add(ep.genre));
-    return ['ALL', ...Array.from(set)];
-  }, []);
-
   const filteredEpisodes = useMemo(() => {
     const q = searchQuery.toLowerCase().trim();
     return EPISODES.filter((ep) => {
+      const meta = getGenreMeta(ep.genre);
       const matchGenre = selectedGenre === 'ALL' || ep.genre === selectedGenre;
       const matchSearch =
         !q ||
         ep.title.toLowerCase().includes(q) ||
         ep.synopsis.toLowerCase().includes(q) ||
         ep.genre.toLowerCase().includes(q) ||
-        `ep ${ep.episodeNumber}`.includes(q);
+        (meta && (
+          meta.nameKo.toLowerCase().includes(q) ||
+          meta.nameEn.toLowerCase().includes(q) ||
+          meta.classicReference.toLowerCase().includes(q) ||
+          meta.description.toLowerCase().includes(q)
+        )) ||
+        `ep ${ep.episodeNumber}`.includes(q) ||
+        `#${ep.episodeNumber}`.includes(q);
       return matchGenre && matchSearch;
     });
   }, [searchQuery, selectedGenre]);
 
   if (!isOpen) return null;
-
-  const genreBadgeColor = (genre: string) => {
-    switch (genre) {
-      case 'Legal':
-        return 'bg-blue-500/15 text-blue-300 border-blue-500/30';
-      case 'Startup':
-        return 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30';
-      case 'Corporate':
-        return 'bg-violet-500/15 text-violet-300 border-violet-500/30';
-      case 'Medical':
-        return 'bg-cyan-500/15 text-cyan-300 border-cyan-500/30';
-      case 'Dating':
-        return 'bg-rose-500/15 text-rose-300 border-rose-500/30';
-      case 'Wall Street':
-        return 'bg-amber-500/15 text-amber-300 border-amber-500/30';
-      case 'FBI Crime':
-        return 'bg-red-500/15 text-red-300 border-red-500/30';
-      case 'Politics':
-        return 'bg-indigo-500/15 text-indigo-300 border-indigo-500/30';
-      case 'Tech':
-        return 'bg-teal-500/15 text-teal-300 border-teal-500/30';
-      case 'Culinary':
-        return 'bg-orange-500/15 text-orange-300 border-orange-500/30';
-      default:
-        return 'bg-zinc-500/15 text-zinc-300 border-zinc-500/30';
-    }
-  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/90 backdrop-blur-md animate-fade-in">
@@ -74,8 +67,9 @@ export const ArchiveModal: React.FC<ArchiveModalProps> = ({
         <div className="flex items-center justify-between pb-3 border-b border-[#DFB15B]/15 shrink-0">
           <div className="flex items-center space-x-2">
             <Film className="w-5 h-5 text-[#DFB15B]" />
-            <h3 className="text-base font-bold text-[#F3E5AB] tracking-tight">
-              전체 에피소드 아카이브 (100 SCENES)
+            <h3 className="text-base font-bold text-[#F3E5AB] tracking-tight flex items-center space-x-1.5">
+              <span>미드 50개 장르 & 100화 아카이브</span>
+              <Sparkles className="w-3.5 h-3.5 text-[#DFB15B]" />
             </h3>
             <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-[#18140d] border border-[#DFB15B]/40 text-[#DFB15B] font-bold">
               {filteredEpisodes.length} / {EPISODES.length}
@@ -99,25 +93,37 @@ export const ArchiveModal: React.FC<ArchiveModalProps> = ({
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="에피소드 제목, 장르, 상황 검색..."
+              placeholder="장르, 미드 레퍼런스(Suits, Yellowstone...), 상황 검색..."
               className="w-full bg-[#16130d] border border-[#DFB15B]/25 rounded-xl pl-9 pr-3 py-1.5 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-[#DFB15B]/60 transition-colors"
             />
           </div>
 
-          {/* Quick Genre Pills */}
-          <div className="flex items-center space-x-1.5 overflow-x-auto pb-1 text-[11px] no-scrollbar">
-            {genres.slice(0, 10).map((g) => (
+          {/* Quick Genre Pills (All 50 Genres) */}
+          <div className="flex items-center space-x-1.5 overflow-x-auto pb-1 text-[11px] no-scrollbar scroll-smooth">
+            <button
+              type="button"
+              onClick={() => setSelectedGenre('ALL')}
+              className={`px-2.5 py-1 rounded-full border whitespace-nowrap transition-all cursor-pointer font-mono shrink-0 flex items-center space-x-1 ${
+                selectedGenre === 'ALL'
+                  ? 'bg-gradient-to-r from-[#DFB15B] to-[#F3E5AB] text-[#140e03] font-bold border-[#FFF2C6]/60 shadow-sm'
+                  : 'bg-[#14110b] text-zinc-400 border-white/10 hover:text-white'
+              }`}
+            >
+              <span>🎬 전체 (100)</span>
+            </button>
+            {DRAMACTOR_50_GENRES.map((g) => (
               <button
-                key={g}
+                key={g.id}
                 type="button"
-                onClick={() => setSelectedGenre(g)}
-                className={`px-2.5 py-0.5 rounded-full border whitespace-nowrap transition-all cursor-pointer font-mono ${
-                  selectedGenre === g
+                onClick={() => setSelectedGenre(g.nameEn)}
+                className={`px-2.5 py-1 rounded-full border whitespace-nowrap transition-all cursor-pointer font-mono shrink-0 flex items-center space-x-1 ${
+                  selectedGenre === g.nameEn
                     ? 'bg-gradient-to-r from-[#DFB15B] to-[#F3E5AB] text-[#140e03] font-bold border-[#FFF2C6]/60 shadow-sm'
                     : 'bg-[#14110b] text-zinc-400 border-white/10 hover:text-white'
                 }`}
               >
-                {g}
+                <span>{g.emoji}</span>
+                <span>{g.nameKo}</span>
               </button>
             ))}
           </div>
@@ -132,6 +138,7 @@ export const ArchiveModal: React.FC<ArchiveModalProps> = ({
           ) : (
             filteredEpisodes.map((ep) => {
               const isSelected = ep.date === selectedDate;
+              const meta = getGenreMeta(ep.genre);
               return (
                 <div
                   key={ep.date}
@@ -146,21 +153,27 @@ export const ArchiveModal: React.FC<ArchiveModalProps> = ({
                   }}
                 >
                   <div className="space-y-1 flex-1 pr-2 min-w-0">
-                    <div className="flex items-center space-x-2">
+                    <div className="flex items-center space-x-2 flex-wrap gap-y-1">
                       <span className="text-[11px] font-mono text-zinc-400 flex items-center space-x-1 shrink-0">
                         <Calendar className="w-3 h-3 mr-0.5 inline text-[#DFB15B]/80" />
                         {ep.date}
                       </span>
                       <span
-                        className={`text-[10px] px-1.5 py-0.2 rounded border font-mono font-medium uppercase shrink-0 ${genreBadgeColor(
+                        className={`text-[10px] px-2 py-0.5 rounded-full border font-mono font-medium shrink-0 flex items-center space-x-1 ${getGenreBadgeColor(
                           ep.genre
                         )}`}
                       >
-                        {ep.genre}
+                        <span>{meta?.emoji || '🎬'}</span>
+                        <span>{meta ? meta.nameKo : ep.genre}</span>
                       </span>
                       <span className="text-[11px] font-mono font-bold text-[#DFB15B] shrink-0">
                         EP #{ep.episodeNumber.toString().padStart(2, '0')}
                       </span>
+                      {meta?.classicReference && (
+                        <span className="text-[10px] text-zinc-400 font-mono truncate max-w-[150px] hidden sm:inline">
+                          ({meta.classicReference})
+                        </span>
+                      )}
                     </div>
                     <h4 className="text-xs sm:text-sm font-semibold text-white leading-snug truncate">
                       {ep.title}

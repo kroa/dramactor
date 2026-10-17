@@ -104,7 +104,9 @@ export const SceneIntroScreen: React.FC<SceneIntroScreenProps> = ({
             </div>
             <div className="flex items-center space-x-2">
               <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#201a12] border border-[#DFB15B]/30 text-[#DFB15B] font-bold uppercase">
-                {episode.genre} DRAMA
+                {episode.genre.toUpperCase().includes('DRAMA')
+                  ? episode.genre
+                  : `${episode.genre} DRAMA`}
               </span>
               <span className="text-xs font-mono font-bold text-white">
                 EP #{episode.episodeNumber.toString().padStart(2, '0')}

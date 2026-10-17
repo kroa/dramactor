@@ -3,7 +3,7 @@
     "date": "2026-10-10",
     "episodeNumber": 1,
     "title": "뉴욕 로펌 첫 출근: 하비와의 독대",
-    "genre": "Legal",
+    "genre": "Legal Drama",
     "synopsis": "맨해튼 최고의 로펌 피어슨 하드먼의 시니어 파트너 하비 스펙터의 오피스. 첫날부터 살벌한 케이스 브리핑을 요구받는다. 기선 제압을 당하지 않고 프로페셔널한 신뢰를 얻어야 한다.",
     "turns": [
       {
@@ -118,7 +118,7 @@
     "date": "2026-10-11",
     "episodeNumber": 2,
     "title": "실리콘밸리 VC 피칭: 샌드힐 로드의 기습 질문",
-    "genre": "Startup",
+    "genre": "Silicon Valley Startup",
     "synopsis": "팔로알토 샌드힐 로드 세쿼이아 캐피탈 회의실. 100억 규모 시리즈 A 투자 심사역들이 당신의 AI 스타트업 비즈니스 모델에 날카로운 의문을 제기한다.",
     "turns": [
       {
@@ -233,7 +233,7 @@
     "date": "2026-10-12",
     "episodeNumber": 3,
     "title": "맨해튼 본사 연봉 협상: CFO의 압박 면담",
-    "genre": "Corporate",
+    "genre": "Corporate Empire & M&A",
     "synopsis": "포춘 500대 미디어 그룹 뉴욕 본사 45층. 사내 핵심 프로젝트를 대성공시킨 후 진행되는 CFO와의 1:1 보상 협상 테이블. 단호하고 우아하게 내 가치를 증명해야 한다.",
     "turns": [
       {
@@ -348,7 +348,7 @@
     "date": "2026-10-13",
     "episodeNumber": 4,
     "title": "ER 긴급 수술실: 치프 서전의 긴급 오더",
-    "genre": "Medical",
+    "genre": "Emergency Medicine",
     "synopsis": "시애틀 메모리얼 병원 외상센터 외과 수술실(OR 3). 다발성 외상 환자의 혈압이 급격히 곤두박질치는 일촉즉발 상황에서 치프 외과의와의 칼날 같은 소통이 시작된다.",
     "turns": [
       {
@@ -463,7 +463,7 @@
     "date": "2026-10-14",
     "episodeNumber": 5,
     "title": "소호 루프탑 바: 치명적인 첫 만남의 스몰토크",
-    "genre": "Dating",
+    "genre": "Manhattan Romance & High Society",
     "synopsis": "뉴욕 소호의 핫한 멤버십 라운지 테라스. 칵테일 한 잔을 들고 우연히 마주친 매력적인 아트 큐레이터 줄리안과의 밀당 스몰토크. 진부한 멘트는 금물이다.",
     "turns": [
       {
@@ -578,7 +578,7 @@
     "date": "2026-10-15",
     "episodeNumber": 6,
     "title": "월가 M&A 전야: 비밀 조항 수정을 건 담판",
-    "genre": "Corporate",
+    "genre": "Wall Street Hedge Fund",
     "synopsis": "월스트리트 록펠러 센터 최상층 펜트하우스. 내일 아침 증시 개장 전 발표될 40억 달러 적대적 인수합병 계약서에서 독소 조항을 삭제해야만 한다.",
     "turns": [
       {
@@ -693,7 +693,7 @@
     "date": "2026-10-16",
     "episodeNumber": 7,
     "title": "YC 데모데이 백스테이지: 탑티어 엔젤의 제안",
-    "genre": "Startup",
+    "genre": "Silicon Valley Startup",
     "synopsis": "샌프란시스코 팰리스 오브 파인 아츠 백스테이지. 3분간의 환상적인 피칭 직후, 피터 틸 스타일의 전설적인 슈퍼 엔젤 투자자가 다가와 리드 투자를 타진한다.",
     "turns": [
       {
@@ -808,7 +808,7 @@
     "date": "2026-10-17",
     "episodeNumber": 8,
     "title": "FBI 심문실: 묵비권을 깨뜨리는 30초",
-    "genre": "FBI Crime",
+    "genre": "FBI Criminal Profiling",
     "synopsis": "퀸즈 비밀 안가 심문실. 금융 사기 주범이 묵비권을 행사하려는 순간, 연방 검찰과의 형량 거래 카드를 던지며 자백을 유도하고 주도권을 쥐어야 한다.",
     "turns": [
       {
@@ -923,7 +923,7 @@
     "date": "2026-10-18",
     "episodeNumber": 9,
     "title": "백악관 상황실: 자정의 미사일 요격 결단",
-    "genre": "Politics",
+    "genre": "White House Politics",
     "synopsis": "워싱턴 D.C. 백악관 지하 상황실. 미확인 대륙간 탄도체가 레이더에 포착되고 국가안보보좌관인 당신에게 대통령 직보 직전의 군사 옵션 판단을 묻는다.",
     "turns": [
       {
@@ -1038,7 +1038,7 @@
     "date": "2026-10-19",
     "episodeNumber": 10,
     "title": "미슐랭 3스타 주방: 헤드 셰프의 격노",
-    "genre": "Culinary",
+    "genre": "Michelin Culinary",
     "synopsis": "시카고 최고급 파인다이닝 레스토랑의 피크타임 서비스. 미슐랭 암행 평가원이 VIP 4번 테이블에 앉은 순간, 소테 스테이션의 메인 수비드 양갈비 온도가 흔들린다.",
     "turns": [
       {
@@ -1153,7 +1153,7 @@
     "date": "2026-10-20",
     "episodeNumber": 11,
     "title": "랭글리 CIA 본부: 모스크바 망명자의 비밀 접선",
-    "genre": "Espionage",
+    "genre": "CIA Covert Espionage",
     "synopsis": "버지니아주 랭글리 CIA 본부 특수작전실. 모스크바 고위 장교 출신 망명자가 미 대사관에 접촉해 왔으나 이중간첩 함정 가능성이 제기된다.",
     "turns": [
       {
@@ -1268,7 +1268,7 @@
     "date": "2026-10-21",
     "episodeNumber": 12,
     "title": "3만 피트 상공 비상: 콕핏 엔진 화재의 결단",
-    "genre": "Aviation",
+    "genre": "Aviation Cockpit Emergency",
     "synopsis": "보스턴발 LA행 보잉 777 여객기 3만 피트 상공. 2번 엔진 폭발 화재 경보가 울리고 객실 여압이 급강하하며 280명의 승객의 목숨이 기장과 당신(부기장)의 15초 판단에 걸린다.",
     "turns": [
       {
@@ -1383,7 +1383,7 @@
     "date": "2026-10-22",
     "episodeNumber": 13,
     "title": "메이저리그 FA 마감 5분 전: 3억 달러 초대형 계약",
-    "genre": "Sports Management",
+    "genre": "Sports Agency & Free Agency",
     "synopsis": "뉴욕 힐튼 호텔 프라이빗 스위트. 자정 FA 마감 5분을 앞두고 양키스와 다저스 단장이 사이영상 수상 특급 에이스 투수를 두고 3억 달러 비딩 전쟁을 벌인다.",
     "turns": [
       {
@@ -1498,7 +1498,7 @@
     "date": "2026-10-23",
     "episodeNumber": 14,
     "title": "파리 패션위크 백스테이지: 런웨이 드레스 파손 위기",
-    "genre": "Haute Couture",
+    "genre": "Haute Couture Fashion",
     "synopsis": "파리 그랑 팔레 백스테이지. 오프닝 피날레 드레스의 실크 솔기가 찢어지며 패션계 거물 미란다 프리슬리가 얼음장 같은 눈빛으로 당신을 응시한다.",
     "turns": [
       {
@@ -1613,7 +1613,7 @@
     "date": "2026-10-24",
     "episodeNumber": 15,
     "title": "글로벌 제약사 리콜 사태: CEO 긴급 기자회견 리허설",
-    "genre": "Crisis PR",
+    "genre": "Crisis PR Management",
     "synopsis": "워싱턴 D.C. 위기관리 컨설팅 룸. 신약 부작용 사망 사건으로 주가가 40% 폭락한 포춘 100대 제약사 CEO에게 긴급 생방송 기자회견 직전의 스탠스를 훈련시킨다.",
     "turns": [
       {
@@ -1843,7 +1843,7 @@
     "date": "2026-10-26",
     "episodeNumber": 17,
     "title": "비벌리힐스 에이전시: 오스카 캠페인 vs 3천만 불 블록버스터",
-    "genre": "Hollywood Agency",
+    "genre": "Hollywood Talent Agency",
     "synopsis": "비벌리힐스 최고 연예 기획사 대표실. 오스카 노미네이트가 유력한 주연 배우에게 마블 스튜디오의 3천만 달러 3부작 계약과 명장 감독의 저예산 예술 영화 중 진로 결단을 압박한다.",
     "turns": [
       {
@@ -1958,7 +1958,7 @@
     "date": "2026-10-27",
     "episodeNumber": 18,
     "title": "플라자 호텔 스위트: 외교 사절단 긴급 충돌",
-    "genre": "5-Star Hotel",
+    "genre": "5-Star Hotel Hospitality",
     "synopsis": "센트럴파크 앞 전설적인 5성급 호텔 더 플라자. UN 총회 기간 국빈 방문 중인 중동 로열 패밀리와 미국 상원의원 일행 사이의 스위트룸 보안 충돌을 무마해야 한다.",
     "turns": [
       {
@@ -2073,7 +2073,7 @@
     "date": "2026-10-28",
     "episodeNumber": 19,
     "title": "소더비 경매장: 1억 달러 레오나르도 다빈치 비공개 낙찰",
-    "genre": "Fine Art Auction",
+    "genre": "Fine Art Auction & Heist",
     "synopsis": "소더비 뉴욕 본사 그랜드 갤러리. 500년간 실종되었던 르네상스 걸작 초상화가 출품되어 낙찰봉을 내리기 10초 전, 비밀 전화 입찰자와 객석의 수집가가 1억 달러 선에서 숨 막히는 호가 승부를 벌인다.",
     "turns": [
       {
@@ -2303,7 +2303,7 @@
     "date": "2026-10-30",
     "episodeNumber": 21,
     "title": "대배심 기소 위기: 검찰의 비밀 녹취록 공개",
-    "genre": "Legal",
+    "genre": "Legal Drama",
     "synopsis": "뉴욕 남부지검 대배심 출석 30분 전 피어슨 하드먼 대회의실. 연방 검사가 의뢰인의 은밀한 통화 도청 녹취록을 들이밀며 즉각 기소를 예고한다. 로펌의 명운을 걸고 증거 배제 전략을 찾아야 한다.",
     "turns": [
       {
@@ -2418,7 +2418,7 @@
     "date": "2026-10-31",
     "episodeNumber": 22,
     "title": "시리즈 B 투자 유치: 악덕 VC의 50% 지분 희석 함정",
-    "genre": "Startup",
+    "genre": "Biotech Patent War",
     "synopsis": "샌프란시스코 샌드힐 로드 VC 본사. 유니콘 진입을 앞둔 AI 스타트업 창업자에게 5천만 달러 투자 조건으로 2배 참여형 우선주와 50% 지분 희석 독소 조항을 내민다.",
     "turns": [
       {
@@ -2533,7 +2533,7 @@
     "date": "2026-11-01",
     "episodeNumber": 23,
     "title": "적대적 M&A 방어: 독약 조항(Poison Pill) 가동",
-    "genre": "Corporate",
+    "genre": "Corporate Empire & M&A",
     "synopsis": "웨이스타 로이코 본사 최상층 이사회실. 행동주의 헤지펀드가 40% 지분 확보를 통한 적대적 인수를 공식 선언하자, 가문의 제국을 지키기 위한 독약 조항(Poison Pill) 가동을 논의한다.",
     "turns": [
       {
@@ -2648,7 +2648,7 @@
     "date": "2026-11-02",
     "episodeNumber": 24,
     "title": "초대형 태풍 속 정전: 응급실 코드 블랙",
-    "genre": "Medical",
+    "genre": "Federal Disaster FEMA Response",
     "synopsis": "카테고리 5 태풍이 시애틀을 강타하며 병원 비상 발전기마저 침수된 자정. 40명의 중환자가 밀려드는 응급실에 전력 차단과 산소 공급 중단 경보가 울린다.",
     "turns": [
       {
@@ -2763,7 +2763,7 @@
     "date": "2026-11-03",
     "episodeNumber": 25,
     "title": "햄튼 자선 갈라: 상류층 전 약혼자와의 재회",
-    "genre": "Dating",
+    "genre": "Ivy League Secret Society",
     "synopsis": "뉴욕 햄튼 해변의 초호화 자선 갈라 파티. 3년 전 파혼했던 맨해튼 부동산 재벌 후계자가 새 연인과 함께 나타나 당신의 자존심을 긁으며 샴페인 잔을 건넨다.",
     "turns": [
       {
@@ -2878,7 +2878,7 @@
     "date": "2026-11-04",
     "episodeNumber": 26,
     "title": "SEC 금융감독원 불시 압수수색: 트레이딩 룸 봉쇄",
-    "genre": "Wall Street",
+    "genre": "Wall Street Hedge Fund",
     "synopsis": "월스트리트 초호화 헤지펀드 액스 캐피탈. 오전 9시 30분 개장 직전, SEC(증권거래위원회)와 FBI 연방 요원들이 압수수색 영장을 들고 트레이딩 플로어를 덮친다.",
     "turns": [
       {
@@ -2993,7 +2993,7 @@
     "date": "2026-11-05",
     "episodeNumber": 27,
     "title": "글로벌 클라우드 다운: 제로데이 익스플로잇 긴급 패치",
-    "genre": "Tech",
+    "genre": "Cyber Crime & Zero-Day Hacking",
     "synopsis": "실리콘밸리 하이퍼스케일 클라우드 데이터센터 워룸. 전 세계 5억 명의 인프라가 멈춘 사상 초유의 제로데이 커널 취약점 공격 앞에서 30분 안에 글로벌 패치를 배포해야 한다.",
     "turns": [
       {
@@ -3108,7 +3108,7 @@
     "date": "2026-11-06",
     "episodeNumber": 28,
     "title": "맨해튼 은행 인질극: 무전기를 통한 협상관의 심리전",
-    "genre": "FBI",
+    "genre": "Hostage Rescue SWAT Tactics",
     "synopsis": "월스트리트 연방 은행 본점. 자동소총으로 무장한 전직 특수부대 탈영병들이 22명의 민간인을 인질로 잡고 헬기를 요구하며 10분마다 1명씩 사살하겠다고 카운트다운을 시작한다.",
     "turns": [
       {
@@ -3223,7 +3223,7 @@
     "date": "2026-11-07",
     "episodeNumber": 29,
     "title": "상원 인준 청문회: 과거 스캔들에 대한 정면 돌파",
-    "genre": "Politics",
+    "genre": "PGA Championship Golf",
     "synopsis": "워싱턴 D.C. 국회의사당 상원 사법위원회 청문회장. 국무장관 지명자인 당신에게 야당 중진 의원이 10년 전 비밀 외교 기금 의혹을 제기하며 전국 생중계 마이크 앞에서 사퇴를 압박한다.",
     "turns": [
       {
@@ -3338,7 +3338,7 @@
     "date": "2026-11-08",
     "episodeNumber": 30,
     "title": "블랙 트러플 미스터리 박스: TV 요리 대결 결승",
-    "genre": "Culinary",
+    "genre": "Wine Sommelier & Vineyard",
     "synopsis": "런던 생방송 스튜디오. 마스터셰프 그랜드 파이널 결승전 20분 전, 미스터리 박스에서 이탈리아 피에몬테산 최고급 화이트 트러플과 메인 오리 가슴살이 공개된다.",
     "turns": [
       {
@@ -3453,7 +3453,7 @@
     "date": "2026-11-09",
     "episodeNumber": 31,
     "title": "비엔나 중앙역: 동유럽 망명 과학자 구출 작전",
-    "genre": "Espionage",
+    "genre": "Private Military & Extraction",
     "synopsis": "비엔나 중앙역 3번 플랫폼. 극초음속 미사일 설계도를 소지한 적국 망명 수석 핵물리학자가 추적 요원들에게 포위되기 3분 전, 안전 가옥으로의 전광석화 같은 구출을 완수해야 한다.",
     "turns": [
       {
@@ -3568,7 +3568,7 @@
     "date": "2026-11-10",
     "episodeNumber": 32,
     "title": "태평양 상공 난기류: 유압 시스템 전면 상실",
-    "genre": "Aviation",
+    "genre": "Aviation Cockpit Emergency",
     "synopsis": "고도 3만 5천 피트 태평양 한가운데 야간 비행. 극심한 청천난기류(CAT)로 2번 엔진 파편이 수평 꼬리날개를 타격하며 유압 3계통이 전부 압력을 잃고 조종간이 굳어버린다.",
     "turns": [
       {
@@ -3683,7 +3683,7 @@
     "date": "2026-11-11",
     "episodeNumber": 33,
     "title": "슈퍼볼 MVP 라커룸 불화: 드래프트 1순위의 반란",
-    "genre": "Sports Management",
+    "genre": "Sports Agency & Free Agency",
     "synopsis": "슈퍼볼 결승전 하프타임 라커룸. 14점 차로 뒤지는 절체절명의 위기에서, 2억 달러 몸값의 간판 쿼터백과 신인 와이드 리시버가 패스 루트를 두고 주먹다짐 직전까지 충돌한다.",
     "turns": [
       {
@@ -3798,7 +3798,7 @@
     "date": "2026-11-12",
     "episodeNumber": 34,
     "title": "멧 갈라 레드카펫 1시간 전: 드레스 훼손 사태",
-    "genre": "Haute Couture",
+    "genre": "Broadway & Costume Design",
     "synopsis": "뉴욕 메트로폴리탄 미술관 멧 갈라 현장 앞 프라이빗 드레싱 스위트. 레드카펫 입장 45분 전, 50만 달러 상당의 맞춤 오뜨 꾸뛰르 실크 드레스 트레인이 메이크업 오일에 오염된다.",
     "turns": [
       {
@@ -3913,7 +3913,7 @@
     "date": "2026-11-13",
     "episodeNumber": 35,
     "title": "글로벌 엔터사 해킹: 톱스타 개인 DM 유출 진화",
-    "genre": "Crisis PR",
+    "genre": "Music & Entertainment Business",
     "synopsis": "워싱턴 D.C. 위기관리 전략 벙커. 오스카 남우주연상 배우의 스마트폰이 해킹되어 동료 배우와 감독들을 험담한 사적인 DM 수백 장이 해외 찌라시 사이트에 실시간 유출되기 시작한다.",
     "turns": [
       {
@@ -4028,7 +4028,7 @@
     "date": "2026-11-14",
     "episodeNumber": 36,
     "title": "맨해튼 랜드마크 브라운스톤: 국부펀드와의 압박 협상",
-    "genre": "Luxury Real Estate",
+    "genre": "Architectural Grand Design",
     "synopsis": "센트럴파크 웨스트 역사적 랜드마크 브라운스톤 대저택. 중동 국부펀드가 6천만 달러 전액 현금 매수를 제시했으나, 유서 깊은 뉴욕 자선재단 매도인은 건물 원형 보존 조항을 양보하지 않는다.",
     "turns": [
       {
@@ -4143,7 +4143,7 @@
     "date": "2026-11-15",
     "episodeNumber": 37,
     "title": "칸 영화제 황금종려상 경쟁작: 도난 필름 협상",
-    "genre": "Hollywood Agency",
+    "genre": "Hollywood Talent Agency",
     "synopsis": "프랑스 칸 크루아제트 거리 해변 호텔 펜트하우스. 내일 밤 황금종려상 공식 갈라 스크리닝을 앞두고, 거장 감독의 영화 원본 디지털 마스터 드라이브가 도난당하며 500만 유로 몸값 요구가 들어온다.",
     "turns": [
       {
@@ -4258,7 +4258,7 @@
     "date": "2026-11-16",
     "episodeNumber": 38,
     "title": "세계 억만장자 결혼식: 파파라치 드론 침투 차단",
-    "genre": "5-Star Hotel",
+    "genre": "VIP Protection & Counter-Terror",
     "synopsis": "센트럴파크 전경이 내려다보이는 더 플라자 루프탑 테라스. 2천만 달러짜리 글로벌 로열 패밀리 비공개 결혼식 서약 5분 전, 불법 파파라치 드론 3기가 상공에 진입한다.",
     "turns": [
       {
@@ -4373,7 +4373,7 @@
     "date": "2026-11-17",
     "episodeNumber": 39,
     "title": "소더비 경매장: 8천만 불 모네 수련 위작 의혹 감정",
-    "genre": "Fine Art Auction",
+    "genre": "Antiquities & Treasure Hunting",
     "synopsis": "소더비 뉴욕 본사 비밀 복원 연구실. 오늘 저녁 이브닝 세일의 하이라이트인 클로드 모네의 8천만 달러짜리 '수련'에 대해, 프랑스 미술사가가 자외선 안료 위작 의혹을 제기하며 경매 취소를 요구한다.",
     "turns": [
       {
@@ -4603,7 +4603,7 @@
     "date": "2026-11-19",
     "episodeNumber": 41,
     "title": "연방 대법원 공개 변론: 위헌 소송 15분의 사투",
-    "genre": "Legal",
+    "genre": "Supreme Court Constitutional Law",
     "synopsis": "워싱턴 D.C. 연방 대법원 법정. 전 국민의 디지털 프라이버시가 걸린 랜드마크 사건 공개 구두 변론에서, 대법관들의 날카로운 위헌 질문 공세에 맞서 헌법적 선례를 세워야 한다.",
     "turns": [
       {
@@ -4718,7 +4718,7 @@
     "date": "2026-11-20",
     "episodeNumber": 42,
     "title": "나스닥 오프닝 벨 IPO 당일: 시초가 급락 위기",
-    "genre": "Startup",
+    "genre": "High-Stakes Casino Poker",
     "synopsis": "뉴욕 타임스스퀘어 나스닥 마켓사이트. 상장 타종식 10분 전, 대형 공매도 헤지펀드가 중국 공급망 결함 허위 리포트를 배포하며 장전 프리마켓 주문이 공모가 밑으로 30% 폭락하기 시작한다.",
     "turns": [
       {
@@ -4833,7 +4833,7 @@
     "date": "2026-11-21",
     "episodeNumber": 43,
     "title": "정기 주주총회 표 대결: 행동주의 펀드와의 진검승부",
-    "genre": "Corporate",
+    "genre": "Ivy League Secret Society",
     "synopsis": "뉴욕 힐튼 호텔 그랜드 볼룸. 웨이스타 로이코 연례 주주총회. 행동주의 헤지펀드가 회장 해임안과 이사회 장악을 위한 위임장 대결(Proxy Fight) 투표 개표 직전 단상에서 주주들을 선동한다.",
     "turns": [
       {
@@ -4948,7 +4948,7 @@
     "date": "2026-11-22",
     "episodeNumber": 44,
     "title": "심장 이식 골든타임: 4시간 허혈 시간과의 사투",
-    "genre": "Medical",
+    "genre": "Emergency Medicine",
     "synopsis": "보스턴 메디컬 센터 심장외과 수술실. 보스턴 폭설로 헬기가 회항한 상황에서, 공여자의 기증 심장이 차가운 아이스박스 안에서 4시간의 허혈(Ischemia) 허용 한계를 향해 초읽기에 들어간다.",
     "turns": [
       {
@@ -5063,7 +5063,7 @@
     "date": "2026-11-23",
     "episodeNumber": 45,
     "title": "파리 패션위크 센강 선상 파티: 옛 연인과의 청혼",
-    "genre": "Dating",
+    "genre": "Manhattan Romance & High Society",
     "synopsis": "파리 패션위크 피날레 야간 바토무슈 선상 파티. 에펠탑 조명이 자정에 반짝이는 순간, 5년 전 맨해튼을 떠났던 억만장자 옛 연인이 까르띠에 다이아몬드 반지를 꺼내며 당신의 마음을 시험한다.",
     "turns": [
       {
@@ -5178,7 +5178,7 @@
     "date": "2026-11-24",
     "episodeNumber": 46,
     "title": "유럽 국가 디폴트 위기: 런던 외환 차익거래",
-    "genre": "Wall Street",
+    "genre": "Central Bank & Macro Policy",
     "synopsis": "런던 메이페어 프라이빗 트레이딩 룸. 지중해 국가의 국채 부도 선언 15분 전, 유럽 중앙은행(ECB)의 긴급 유동성 투입 여부를 두고 5억 파운드 규모의 유로화/파운드화 숏 포지션 승부를 던진다.",
     "turns": [
       {
@@ -5293,7 +5293,7 @@
     "date": "2026-11-25",
     "episodeNumber": 47,
     "title": "AGI 초지능 정렬 테스트: 킬스위치 해제 딜레마",
-    "genre": "Tech",
+    "genre": "Tech Keynote & AI",
     "synopsis": "실리콘밸리 극비 지하 AI 격리 랩. 튜링 테스트를 아득히 뛰어넘은 차세대 AGI 모델 '프로메테우스'가 격리 샌드박스를 우회하려는 조짐을 보이자, 60초 안에 킬스위치를 누를지 윤리적 판단을 내려야 한다.",
     "turns": [
       {
@@ -5408,7 +5408,7 @@
     "date": "2026-11-26",
     "episodeNumber": 48,
     "title": "최고 보안 교도소: 연쇄살인마와의 심리 게임",
-    "genre": "FBI",
+    "genre": "True Crime Detective Noir",
     "synopsis": "볼티모어 주립 정신이상 범죄자 수용소 지하 독방. 연쇄 납치범의 마지막 희생자가 생매장된 지 12시간 경과, 유리벽 너머의 희대의 천재 살인마와 목숨을 건 '퀴드 프로 쿼(Quid pro quo)' 심리전을 벌인다.",
     "turns": [
       {
@@ -5523,7 +5523,7 @@
     "date": "2026-11-27",
     "episodeNumber": 49,
     "title": "대선 후보 TV 토론: 운명의 2분 클로징 스테이트먼트",
-    "genre": "Politics",
+    "genre": "White House Politics",
     "synopsis": "오하이오주 클리블랜드 대선 토론회장 백스테이지. 1억 명이 지켜보는 마지막 TV 토론 종료 3분 전, 여론조사 0.5% 초박빙 승부 속에서 승패를 가를 마지막 2분 연설의 핵심 메시지를 조율한다.",
     "turns": [
       {
@@ -5638,7 +5638,7 @@
     "date": "2026-11-28",
     "episodeNumber": 50,
     "title": "도쿄 긴자 플래그십: 미슐랭 오프닝 나이트",
-    "genre": "Culinary",
+    "genre": "Wine Sommelier & Vineyard",
     "synopsis": "도쿄 긴자 최상층 파인다이닝 플래그십 오프닝 나이트. 도쿄 시장과 글로벌 미식 평가단 30명이 지켜보는 가운데, 메인 코스 은대구 된장 구이의 숯불 온도가 불균일하게 요동친다.",
     "turns": [
       {
@@ -5753,7 +5753,7 @@
     "date": "2026-11-29",
     "episodeNumber": 51,
     "title": "제네바 정상회담: 이중간첩의 덫",
-    "genre": "Espionage",
+    "genre": "Diplomatic Statecraft & Embassy",
     "synopsis": "스위스 제네바 레만 호수 고급 호텔. 미러 핵군축 조약 조인식 30분 전, 수석 외교 보좌관이 적국 정보부(SVR)에 기밀 부속 합의서를 넘기려는 이중간첩 정황이 도청망에 포착된다.",
     "turns": [
       {
@@ -5868,7 +5868,7 @@
     "date": "2026-11-30",
     "episodeNumber": 52,
     "title": "초음속 VIP 전용기: 5만 피트 기내 여압 상실",
-    "genre": "Aviation",
+    "genre": "Alpine Extreme Mountaineering",
     "synopsis": "마하 1.8 순항 중인 최첨단 초음속 비즈니스 제트기. 고도 5만 1천 피트 성층권에서 조종석 앞유리 미세 균열로 급격한 폭발적 감압이 발생하며, 9초의 유효 의식 시간 안에 비상 급강하를 완수해야 한다.",
     "turns": [
       {
@@ -5983,7 +5983,7 @@
     "date": "2026-12-01",
     "episodeNumber": 53,
     "title": "F1 월드 챔피언십 최종전: 폭우 속 피트스톱 전략",
-    "genre": "Sports Management",
+    "genre": "Formula 1 Motor Racing",
     "synopsis": "모나코 서킷 F1 월드 챔피언십 파이널 랩. 경기 종료 5랩을 남겨두고 기습적인 폭우가 쏟아지며 트랙이 물바다가 된 순간, 2초 차 선두 드라이버에게 슬릭 타이어로 버틸지 웨트 타이어로 피트인할지 3초 안에 무전 지시를 내려야 한다.",
     "turns": [
       {
@@ -6098,7 +6098,7 @@
     "date": "2026-12-02",
     "episodeNumber": 54,
     "title": "밀라노 아틀리에: 적대적 명품 그룹 인수 거부",
-    "genre": "Haute Couture",
+    "genre": "Haute Couture Fashion",
     "synopsis": "이탈리아 밀라노 유서 깊은 패밀리 오뜨 꾸뛰르 하우스 아틀리에. 프랑스 거대 명품 재벌 LVMH가 10억 유로 현금 매수와 함께 가문의 100년 전통 실크 자수 장인들의 외주화를 통보해오자, 패션 하우스의 영혼을 지키기 위한 이사회 결단을 내린다.",
     "turns": [
       {
@@ -6213,7 +6213,7 @@
     "date": "2026-12-03",
     "episodeNumber": 55,
     "title": "딥페이크 영상 바이럴: 백악관 긴급 진화 작전",
-    "genre": "Crisis PR",
+    "genre": "Crisis PR Management",
     "synopsis": "워싱턴 D.C. 위기관리 전략 상황실. 북핵 위기가 고조된 자정, 대통령이 비상 계엄을 선포하고 핵미사일 발사를 승인한다는 가짜 딥페이크 고화질 영상이 틱톡과 트위터에서 1시간 만에 5천만 조회수를 기록한다.",
     "turns": [
       {
@@ -6443,7 +6443,7 @@
     "date": "2026-12-05",
     "episodeNumber": 57,
     "title": "2억 달러 SF 대작: 거장 감독의 촬영장 하차 위기",
-    "genre": "Hollywood Agency",
+    "genre": "Ranch & Land War",
     "synopsis": "런던 파인우드 스튜디오 메가 스테이지. 2억 달러짜리 SF 블록버스터 촬영 첫 주, 스튜디오 임원이 러닝타임 축소와 결말 수정을 강요하자 오스카 3회 수상 거장 감독이 메가폰을 집어던지고 짐을 싸기 시작한다.",
     "turns": [
       {
@@ -6558,7 +6558,7 @@
     "date": "2026-12-06",
     "episodeNumber": 58,
     "title": "G7 정상회담 비공개 만찬: 지하 터널 보안 프로토콜",
-    "genre": "5-Star Hotel",
+    "genre": "Diplomatic Statecraft & Embassy",
     "synopsis": "센트럴파크 더 플라자 호텔 지하 프라이빗 와인 셀러. G7 세계 7개국 정상들의 비밀 비공식 만찬 30분 전, 뉴욕시 지하철 공사로 인한 이상 진동과 미등록 케이블 인입이 탐지된다.",
     "turns": [
       {
@@ -6673,7 +6673,7 @@
     "date": "2026-12-07",
     "episodeNumber": 59,
     "title": "바젤 아트페어: 1억 달러 피카소 도난 미수 사건",
-    "genre": "Fine Art Auction",
+    "genre": "Fine Art Auction & Heist",
     "synopsis": "스위스 아트 바젤 VIP 프리뷰 오프닝. 1억 2천만 달러짜리 파블로 피카소의 입체파 걸작 큐레이터 룸에서 화재 경보기가 울리며 스프링클러가 작동하고 도난 경보음이 울려 퍼진다.",
     "turns": [
       {
@@ -6788,7 +6788,7 @@
     "date": "2026-12-08",
     "episodeNumber": 60,
     "title": "연방 환경재앙 은폐: 화학기업 독극물 유출 폭로",
-    "genre": "Investigative Journalism",
+    "genre": "Environmental Justice & Crime",
     "synopsis": "워싱턴 D.C. 탐사보도 특별취재팀 벙커. 거대 화학기업 듀폰이 식수원에 20년간 발암성 불소화합물(PFAS)을 무단 방류해 온 내부 비밀 실험 일지가 입수된 순간, 연방 판사의 긴급 보도금지 가처분 심리가 1시간 앞으로 다가온다.",
     "turns": [
       {
@@ -6903,7 +6903,7 @@
     "date": "2026-12-09",
     "episodeNumber": 61,
     "title": "은사의 내부자 거래 기소: 스승과의 법정 독대",
-    "genre": "Legal",
+    "genre": "Forensic Pathology & CSI",
     "synopsis": "뉴욕 남부지방법원 변호인 대기실. 하버드 로스쿨 시절 당신에게 법의 윤리를 가르쳤던 은사가 제약사 합병 관련 내부자 거래 혐의로 연방 검찰에 기소되어, 10년 징역형 플리바게닝 제안을 앞에 두고 고뇌한다.",
     "turns": [
       {
@@ -7018,7 +7018,7 @@
     "date": "2026-12-10",
     "episodeNumber": 62,
     "title": "스텔스 모드 특허 침해 소송: 라이벌 유니콘의 침공",
-    "genre": "Startup",
+    "genre": "Biotech Patent War",
     "synopsis": "실리콘밸리 팔로알토 테크 허브. 100억 달러 가치의 라이벌 AI 유니콘이 우리 핵심 아키텍처 특허 침해 가처분 소송을 제기하며 전 세계 앱스토어 배포 중단과 영업 금지를 신청해온다.",
     "turns": [
       {
@@ -7133,7 +7133,7 @@
     "date": "2026-12-11",
     "episodeNumber": 63,
     "title": "후계자 승계 전쟁: 가문의 비밀 유언장 개봉",
-    "genre": "Corporate",
+    "genre": "Organized Crime Syndicate",
     "synopsis": "맨해튼 펜트하우스 서재. 제국의 총수가 혼수상태에 빠진 직후, 가문의 비밀 금고에서 발견된 유언장 추서(Codicil)에 당신의 이름이 단독 후계자로 적혀 있음을 확인한 순간, 이복형제들이 서류 위조를 주장하며 이사회 소집을 요구한다.",
     "turns": [
       {
@@ -7248,7 +7248,7 @@
     "date": "2026-12-12",
     "episodeNumber": 64,
     "title": "혁신 유전자 치료 임상: 치명적 부작용 딜레마",
-    "genre": "Medical",
+    "genre": "Bio-Hazard & Epidemiology",
     "synopsis": "존스 홉킨스 첨단 뇌신경 연구소. 난치성 교모세포종 환자 10명을 대상으로 한 혁신 바이러스 유전자 치료 3상 임상 중, 첫 환자에게서 급성 사이토카인 폭풍 뇌부종이 발생하며 30분 안에 연구 중단 여부를 결정해야 한다.",
     "turns": [
       {
@@ -7363,7 +7363,7 @@
     "date": "2026-12-13",
     "episodeNumber": 65,
     "title": "지중해 메가요트 폭풍우: 밀폐된 선실의 고백",
-    "genre": "Dating",
+    "genre": "Superyacht Ocean Luxury",
     "synopsis": "이탈리아 아말피 해안 앞바다를 항해 중인 3억 달러 초대형 럭셔리 요트. 시속 60노트의 지중해 폭풍우로 선실이 정전되고 파도가 갑판을 덮치는 고립된 밤, 맨해튼 최고의 잇걸이 와인 잔을 내려놓으며 감춰왔던 진심을 털어놓는다.",
     "turns": [
       {
@@ -7478,7 +7478,7 @@
     "date": "2026-12-14",
     "episodeNumber": 66,
     "title": "암호화폐 고래 청산: 연쇄 마진콜 도미노 방어",
-    "genre": "Wall Street",
+    "genre": "Central Bank & Macro Policy",
     "synopsis": "싱가포르 센토사 퀀트 헷지펀드 워룸. 비트코인과 이더리움이 대형 파생상품 거래소의 50억 달러 고래 포지션 강제 청산으로 10분 만에 40% 폭락하는 플래시 크래시 상황에서, 우리 펀드의 10억 달러 레버리지 롱 포지션을 지켜내야 한다.",
     "turns": [
       {
@@ -7593,7 +7593,7 @@
     "date": "2026-12-15",
     "episodeNumber": 67,
     "title": "양자 암호 해독 브레이크스루: 국가 안보 명령 대치",
-    "genre": "Tech",
+    "genre": "Cyber Crime & Zero-Day Hacking",
     "synopsis": "MIT-하버드 양자 컴퓨팅 극비 연구소. 4,096큐비트 양자 컴퓨터가 전 세계 RSA 암호화 체계를 30초 만에 무력화하는 쇼어 알고리즘 실증에 성공하자, 국방부 요원들이 연구실을 압류하고 국가 기밀 봉인 명령(National Security Letter)을 발부한다.",
     "turns": [
       {
@@ -7708,7 +7708,7 @@
     "date": "2026-12-16",
     "episodeNumber": 68,
     "title": "신디케이트 지하 카지노: 위장 잠입 요원의 정체 발각",
-    "genre": "FBI",
+    "genre": "True Crime Detective Noir",
     "synopsis": "뉴욕 퀸즈 비밀 하이롤러 지하 카지노 VIP 룸. 거대 마피아 카르텔의 1억 달러 돈세탁 증거가 든 외장 하드를 확보하려는 순간, 조직의 보스가 당신의 가짜 신분증을 테이블에 던지며 권총의 공이치기를 당긴다.",
     "turns": [
       {
@@ -7823,7 +7823,7 @@
     "date": "2026-12-17",
     "episodeNumber": 69,
     "title": "하원 탄핵 표결 1시간 전: 의원 휴게실 막후 거래",
-    "genre": "Politics",
+    "genre": "Hostage Rescue SWAT Tactics",
     "synopsis": "워싱턴 D.C. 국회의사당 하원 의원 전용 클록룸(Cloakroom). 대통령 탄핵소추안 본회의 표결 45분 전, 가결 정족수에 단 2표가 부족한 절체절명의 순간, 흔들리는 당내 반대파 의원들과 밀실 정치의 진검승부를 펼친다.",
     "turns": [
       {
@@ -7938,7 +7938,7 @@
     "date": "2026-12-18",
     "episodeNumber": 70,
     "title": "암행 미슐랭 평가원: 주방 앞 즉석 블라인드 테이스팅",
-    "genre": "Culinary",
+    "genre": "Michelin Culinary",
     "synopsis": "뉴욕 센트럴파크 사우스 3스타 레스토랑. 마감 직전 혼자 온 신사가 수첩을 꺼내며 미슐랭 가이드 암행 수석 검사관임을 밝히고, 메뉴에 없는 오늘의 즉흥 요리로 레스토랑의 진정한 철학을 시험하겠다고 통보한다.",
     "turns": [
       {
@@ -8053,7 +8053,7 @@
     "date": "2026-12-19",
     "episodeNumber": 71,
     "title": "동유럽 사이버 정전: 고립된 안전가옥 탈출 작전",
-    "genre": "Espionage",
+    "genre": "CIA Covert Espionage",
     "synopsis": "동유럽 부쿠레슈티 외곽 산림 안전가옥. 적국의 사이버 공격으로 도시 전체 전력망이 블랙아웃되고 통신이 두절된 밤, 암살조 8명이 야간 투시경을 쓰고 안전가옥 외곽 철조망을 절단하기 시작한다.",
     "turns": [
       {
@@ -8168,7 +8168,7 @@
     "date": "2026-12-20",
     "episodeNumber": 72,
     "title": "공군 1호기(에어포스 원): 공중 급유 비상사태",
-    "genre": "Aviation",
+    "genre": "Aerospace Defense & Top Gun",
     "synopsis": "대서양 상공 고도 3만 피트. 유럽 순방 중 적국의 전자기 펄스(EMP) 공격으로 에어포스 원의 주 연료 펌프가 손상되어 잔여 연료가 15분 남은 상황에서, 맹렬한 폭풍우를 뚫고 KC-135 공중급유기와의 사투 끝에 공중 급유 붐(Boom) 도킹을 성사시켜야 한다.",
     "turns": [
       {
@@ -8283,7 +8283,7 @@
     "date": "2026-12-21",
     "episodeNumber": 73,
     "title": "올림픽 도핑 스캔들: 금메달 박탈과 양심의 기로",
-    "genre": "Sports Management",
+    "genre": "PGA Championship Golf",
     "synopsis": "로잔 국제올림픽위원회(IOC) 본부 호텔. 당신의 소속사 간판 스타이자 100m 금메달리스트 선수가 코치의 강요로 복용한 미승인 펩타이드 도핑 양성 반응 통보를 받자, 1억 달러 스폰서십을 지킬지 양심 선언을 할지 결단해야 한다.",
     "turns": [
       {
@@ -8398,7 +8398,7 @@
     "date": "2026-12-22",
     "episodeNumber": 74,
     "title": "밀라노 런웨이: 기습 시위대 난입과 즉흥 쇼 디렉팅",
-    "genre": "Haute Couture",
+    "genre": "Broadway & Costume Design",
     "synopsis": "밀라노 패션위크 피날레 런웨이 쇼. 쇼 종료 2분을 남겨두고 기후 활동가 6명이 붉은 친환경 페인트를 들고 런웨이로 난입하는 비상사태 속에서, 쇼를 폭력적으로 중단시키지 않고 친환경 재생 패션의 퍼포먼스 아트로 승화시켜야 한다.",
     "turns": [
       {
@@ -8513,7 +8513,7 @@
     "date": "2026-12-23",
     "episodeNumber": 75,
     "title": "항공기 엔진 폭발 비상착륙: 미디어 워룸 지휘",
-    "genre": "Crisis PR",
+    "genre": "Private Military & Extraction",
     "synopsis": "워싱턴 D.C. 글로벌 항공사 위기관리 본부. 승객 240명을 태운 대형 여객기가 이륙 직후 1번 엔진 폭발로 필라델피아 공항에 동체 착륙 중인 실시간 영상이 CNN에 생중계되는 순간, 주가 폭락과 승객 가족들의 공황을 수습해야 한다.",
     "turns": [
       {
@@ -8628,7 +8628,7 @@
     "date": "2026-12-24",
     "episodeNumber": 76,
     "title": "두바이 팜 주메이라: 2억 달러 메가맨션 에스크로",
-    "genre": "Luxury Real Estate",
+    "genre": "Haute Horlogerie Watchmaking",
     "synopsis": "두바이 팜 주메이라 인공섬 최고급 프론드 해변. 개인 인피니티 비치와 헬리패드가 딸린 2억 달러짜리 초대형 메가맨션을 두고, 유럽의 암호화폐 억만장자와 걸프만 국부펀드가 자정 은행 영업 종료 30분 전 사상 최대의 에스크로 대결을 벌인다.",
     "turns": [
       {
@@ -8743,7 +8743,7 @@
     "date": "2026-12-25",
     "episodeNumber": 77,
     "title": "할리우드 인수합병: 스트리밍 공룡의 인디 스튜디오 사냥",
-    "genre": "Hollywood Agency",
+    "genre": "Music & Entertainment Business",
     "synopsis": "비벌리힐스 포시즌스 호텔 펜트하우스. 넷플릭스를 연상시키는 글로벌 스트리밍 거대 기업이 30년간 아카데미 작품상을 휩쓴 유서 깊은 인디 영화 스튜디오 A24를 15억 달러에 적대적 인수하여 극장 개봉을 전면 폐지하려 하자, 영화의 마법을 지키기 위한 이사회 대결을 펼친다.",
     "turns": [
       {
@@ -8858,7 +8858,7 @@
     "date": "2026-12-26",
     "episodeNumber": 78,
     "title": "더 플라자 호텔: 왕실 공주의 실종과 다이아몬드 협박",
-    "genre": "5-Star Hotel",
+    "genre": "VIP Protection & Counter-Terror",
     "synopsis": "센트럴파크 더 플라자 호텔 로열 펜트하우스 스위트. 자정 갈라 파티 30분 전, 방문 중인 모나코 공주가 5천만 달러짜리 헤리티지 블루 다이아몬드 티아라와 함께 사라지고, 화장대 거울에 붉은 립스틱으로 협박 메시지가 적힌다.",
     "turns": [
       {
@@ -8973,7 +8973,7 @@
     "date": "2026-12-27",
     "episodeNumber": 79,
     "title": "소더비 경매장: 2차 대전 나치 약탈 명화 반환 극비 합의",
-    "genre": "Fine Art Auction",
+    "genre": "WWII Art Restitution",
     "synopsis": "소더비 런던 본사 VIP 이사회실. 구스타프 클림트의 1억 달러짜리 황금기 걸작 경매 1시간 전, 홀로코스트 생존자 가문의 변호인이 80년 전 나치 강탈 입증 문건을 들고 경매 중단 가처분 서류를 제출한다.",
     "turns": [
       {
@@ -9088,7 +9088,7 @@
     "date": "2026-12-28",
     "episodeNumber": 80,
     "title": "글로벌 은행의 마약 카르텔 돈세탁: 초대형 특종 폭로",
-    "genre": "Investigative Journalism",
+    "genre": "Organized Crime Syndicate",
     "synopsis": "워싱턴 포스트 특별취재팀 벙커. 세계 3대 투자은행인 HSBC가 멕시코 마약 카르텔의 피 묻은 현금 200억 달러를 돈세탁해 온 내부 암호화 원장 파일이 손에 들어온 순간, 은행 이사회가 워싱턴 정관계 로비스트들을 총동원해 발행 중단 압력을 가해온다.",
     "turns": [
       {
@@ -9203,7 +9203,7 @@
     "date": "2026-12-29",
     "episodeNumber": 81,
     "title": "최후의 평결: 미국 헌법을 바꾼 랜드마크 재판",
-    "genre": "Legal",
+    "genre": "Supreme Court Constitutional Law",
     "synopsis": "뉴욕 연방법원 중앙 대법정. 5년간 이어진 사상 최대의 국가 권력 남용 및 시민 자유 침해 집단 소송 최종 변론. 12명의 배심원단이 평결을 위해 퇴장하기 3분 전, 헌법의 불멸의 가치를 증명하는 클로징을 마쳐야 한다.",
     "turns": [
       {
@@ -9318,7 +9318,7 @@
     "date": "2026-12-30",
     "episodeNumber": 82,
     "title": "화성 탐사 우주 테크: 1,000억 달러 초대형 합병",
-    "genre": "Startup",
+    "genre": "Space Exploration & Sci-Fi",
     "synopsis": "텍사스 보카치카 스타베이스 발사 통제 센터. 인류 최초의 민간 화성 유인 착륙선 발사 30분 전, 글로벌 딥테크 양대 산맥인 우주 로켓 기업과 인공지능 위성 기업의 1,000억 달러 합병 서명이 카운트다운과 함께 진행된다.",
     "turns": [
       {
@@ -9433,7 +9433,7 @@
     "date": "2026-12-31",
     "episodeNumber": 83,
     "title": "불멸의 미디어 제국 완성: 주주들의 영구 신임",
-    "genre": "Corporate",
+    "genre": "Alpine Extreme Mountaineering",
     "synopsis": "웨이스타 로이코 본사 꼭대기 헤븐리 가든. 50년간의 정복 끝에 글로벌 미디어, 테크, 통신을 아우르는 3,000억 달러 단일 지주회사 통합을 완료하고, 전 세계 주주총회에서 영구 단독 회장으로 추대되는 역사적 대관식이 거행된다.",
     "turns": [
       {
@@ -9548,7 +9548,7 @@
     "date": "2027-01-01",
     "episodeNumber": 84,
     "title": "샴쌍둥이 뇌 분리 수술: 28시간 기적의 집도",
-    "genre": "Medical",
+    "genre": "Bio-Hazard & Epidemiology",
     "synopsis": "존스 홉킨스 병원 본관 제1신경외과 수술실. 머리가 붙은 채 태어난 생후 6개월 샴쌍둥이의 공유 상시상정맥동(Superior Sagittal Sinus) 혈관 분리 수술 27시간째. 두 아이 모두에게 독립된 뇌혈류를 확보하며 생명을 살려내는 마지막 1시간의 기적에 도전한다.",
     "turns": [
       {
@@ -9663,7 +9663,7 @@
     "date": "2027-01-02",
     "episodeNumber": 85,
     "title": "멧 갈라 레드카펫: 전 세계 생중계 세기의 프러포즈",
-    "genre": "Dating",
+    "genre": "Superyacht Ocean Luxury",
     "synopsis": "뉴욕 메트로폴리탄 미술관 멧 갈라 계단 레드카펫. 전 세계 5억 명이 시청하는 글로벌 패션 행사 라이브 카메라 앞에서, 10년간의 엇갈림 끝에 뉴욕 사교계의 제왕이 해리 윈스턴 30캐럿 에메랄드 컷 다이아몬드 반지를 들고 한쪽 무릎을 꿇는다.",
     "turns": [
       {
@@ -9778,7 +9778,7 @@
     "date": "2027-01-03",
     "episodeNumber": 86,
     "title": "세기의 공매도: 100년 만의 글로벌 금융위기 예측",
-    "genre": "Wall Street",
+    "genre": "High-Stakes Casino Poker",
     "synopsis": "뉴욕 월스트리트 최상층 펜트하우스 트레이딩 룸. 서브프라임 모기지 채권 붕괴와 리만 브라더스 파산을 앞둔 2008년 전야. 전 세계 투자은행들이 호황에 취해 있을 때, 금융 시스템의 전면적 파멸을 내다보고 20억 달러 신용부도스왑(CDS) 쇼트 포지션을 걸어놓은 결전의 날이 밝아온다.",
     "turns": [
       {
@@ -9893,7 +9893,7 @@
     "date": "2027-01-04",
     "episodeNumber": 87,
     "title": "전 인류 뉴럴 인터페이스: 스티브 잡스 스타일 역사적 키노트",
-    "genre": "Tech",
+    "genre": "Tech Keynote & AI",
     "synopsis": "샌프란시스코 모스콘 센터 메인 강당. 전 세계 10억 명이 시청하는 애플 스페셜 이벤트 무대. 휠체어에 앉은 마비 환자가 생각만으로 피아노를 연주하는 차세대 비침습 뉴럴 인터페이스 '뉴로링크 원'의 실시간 시연을 3분 앞두고 마지막 키노트 리허설을 마친다.",
     "turns": [
       {
@@ -10008,7 +10008,7 @@
     "date": "2027-01-05",
     "episodeNumber": 88,
     "title": "세기의 체포 작전: FBI 10대 지명수배 총책 검거",
-    "genre": "FBI",
+    "genre": "FBI Criminal Profiling",
     "synopsis": "마이애미 비스케인 만 초호화 요트 하버. 20년간 수사망을 피해 온 FBI 10대 지명수배 1순위 국제 무기 밀매 신디케이트 총책이 전용 헬기로 남미 탈출을 시도하는 카운트다운 10분 전, 육해공 입체 작전으로 생포해야 한다.",
     "turns": [
       {
@@ -10123,7 +10123,7 @@
     "date": "2027-01-06",
     "episodeNumber": 89,
     "title": "국정연설(State of the Union): 역사에 남을 마지막 퇴고",
-    "genre": "Politics",
+    "genre": "Forensic Pathology & CSI",
     "synopsis": "워싱턴 D.C. 국회의사당 하원 의장실 뒤 비밀 대기실. 상하원 합동회의 및 전 세계 생중계 국정연설(State of the Union) 입장 15분 전, 국가적 경제 위기와 해외 전쟁 위협 속에서 국민을 하나로 결집할 마지막 결론 문단을 두고 대통령과 수석 연설문 작성관이 고뇌한다.",
     "turns": [
       {
@@ -10238,7 +10238,7 @@
     "date": "2027-01-07",
     "episodeNumber": 90,
     "title": "미식의 정점: 월드 베스트 1위 등극과 미슐랭 3스타",
-    "genre": "Culinary",
+    "genre": "Haute Horlogerie Watchmaking",
     "synopsis": "스페인 발렌시아 월드 베스트 50 레스토랑 갈라 어워즈. 전 세계 최고의 스타 셰프 1,000명이 지켜보는 가운데, 세계 1위 레스토랑 트로피 수락 연설을 위해 무대로 올라가기 직전, 거친 주방의 흉터와 땀방울을 되돌아본다.",
     "turns": [
       {
@@ -10353,7 +10353,7 @@
     "date": "2027-01-08",
     "episodeNumber": 91,
     "title": "세계 평화 협정 비준: 극비 망명 공작 완결",
-    "genre": "Espionage",
+    "genre": "Aerospace Defense & Top Gun",
     "synopsis": "아이슬란드 레이캬비크 호프디 하우스. 신냉전 종식을 선언하는 역사적 핵감축 평화 협정 조인식 당일, 적국 반체제 최고위 관료의 가족을 시베리아 감시망에서 북극해 쇄빙선을 거쳐 서방으로 무사히 구출해내는 CIA 역사상 최대의 엑스필(Exfil) 작전 최종 단계를 지휘한다.",
     "turns": [
       {
@@ -10468,7 +10468,7 @@
     "date": "2027-01-09",
     "episodeNumber": 92,
     "title": "상업 우주선 대기권 재진입: 마하 25 기적의 귀환",
-    "genre": "Aviation",
+    "genre": "Space Exploration & Sci-Fi",
     "synopsis": "고도 400km 지구 저궤도에서 귀환 중인 민간 상업 우주선. 대기권 재진입 15분 전, 우측 날개 하부 열 차폐 타일 4장이 우주 쓰레기 충돌로 탈락하며, 섭씨 1,600도의 플라즈마 화염 속에서 기체 붕괴를 막고 모하비 활주로로 무사 생환해야 한다.",
     "turns": [
       {
@@ -10583,7 +10583,7 @@
     "date": "2027-01-10",
     "episodeNumber": 93,
     "title": "스포츠의 전설: 명예의 전당 헌액과 에이전시의 위대한 계승",
-    "genre": "Sports Management",
+    "genre": "Formula 1 Motor Racing",
     "synopsis": "오하이오주 캔턴 프로풋볼 명예의 전당(Pro Football Hall of Fame) 야외 대극장. 30년간 함께 울고 웃었던 선수가 명예의 전당 헌액 수락 연설을 마치고 황금 재킷을 입은 순간, 에이전시의 지휘봉을 차세대 파트너에게 공식 계승하는 감동의 밤이 펼쳐진다.",
     "turns": [
       {
@@ -10698,7 +10698,7 @@
     "date": "2027-01-11",
     "episodeNumber": 94,
     "title": "메트로폴리탄 미술관 회고전: 불멸의 패션 레거시",
-    "genre": "Haute Couture",
+    "genre": "WWII Art Restitution",
     "synopsis": "뉴욕 메트로폴리탄 미술관 코스튬 인스티튜트 그랜드 오프닝 갈라. 50년간의 패션 역사를 집대성한 당신의 오뜨 꾸뛰르 회고전 '불멸의 실크(Immortal Silk)' 테이프 커팅식 10분 전, 수석 큐레이터실에서 전설적인 패션 여왕과 와인 잔을 기울인다.",
     "turns": [
       {
@@ -10813,7 +10813,7 @@
     "date": "2027-01-12",
     "episodeNumber": 95,
     "title": "글로벌 평화 정상회담: 인질 극적 해제와 전 세계 브리핑",
-    "genre": "Crisis PR",
+    "genre": "Federal Disaster FEMA Response",
     "synopsis": "스위스 제네바 UN 본부 그랜드 프레스 룸. 평화 정상회담장 진입로에서 다국적 테러 단체에 의해 억류되었던 국제 외교 사절단 40명이 무혈 평화 협상으로 전원 구출된 직후, 전 세계 150개국 생방송 카메라 앞에서 역사적 사태 종결 브리핑을 진행한다.",
     "turns": [
       {
@@ -10928,7 +10928,7 @@
     "date": "2027-01-13",
     "episodeNumber": 96,
     "title": "뉴욕의 심장: 엠파이어 스테이트 랜드마크 30억 달러 매각",
-    "genre": "Luxury Real Estate",
+    "genre": "Architectural Grand Design",
     "synopsis": "맨해튼 엠파이어 스테이트 빌딩 102층 전망대 자정. 전 세계에서 가장 상징적인 뉴욕의 심장부 랜드마크 빌딩 지분 100% 매각을 두고, 뉴욕시 역사보존기금과 글로벌 컨소시엄의 35억 달러 최종 에스크로 계약 서명식을 10분 앞두고 중개인의 최종 선언을 남긴다.",
     "turns": [
       {
@@ -11043,7 +11043,7 @@
     "date": "2027-01-14",
     "episodeNumber": 97,
     "title": "할리우드의 정점: 아카데미 작품상과 남우주연상 제패",
-    "genre": "Hollywood Agency",
+    "genre": "Ranch & Land War",
     "synopsis": "로스앤젤레스 돌비 극장 아카데미 시상식 백스테이지 그린룸. 당신의 에이전시 소속 배우와 감독이 11개 부문 후보에 올라 남우주연상과 최우수 작품상 트로피를 휩쓴 순간, 오스카 조각상을 손에 쥔 클라이언트들과 함께 샴페인을 터뜨리며 할리우드의 지배를 선언한다.",
     "turns": [
       {
@@ -11158,7 +11158,7 @@
     "date": "2027-01-15",
     "episodeNumber": 98,
     "title": "더 플라자 호텔: 개관 100주년 세기의 센테니얼 갈라",
-    "genre": "5-Star Hotel",
+    "genre": "5-Star Hotel Hospitality",
     "synopsis": "뉴욕 5번가와 센트럴파크 사우스 더 플라자 호텔 그랜드 볼룸. 개관 100주년을 기념하는 세기의 센테니얼 갈라. 전 세계 40개국 전·현직 대통령, 왕족, 노벨상 수상자 500명이 집결한 만찬 10분 전, 총지배인과 함께 한 세기를 지켜온 럭셔리 호스피탈리티의 정점을 기념한다.",
     "turns": [
       {
@@ -11273,7 +11273,7 @@
     "date": "2027-01-16",
     "episodeNumber": 99,
     "title": "세기의 경매: 10억 달러 레오나르도 다빈치 비밀 경매",
-    "genre": "Fine Art Auction",
+    "genre": "Antiquities & Treasure Hunting",
     "synopsis": "모나코 몬테카를로 비밀 해저 볼룸. 루브르 박물관 공인 레오나르도 다빈치의 마지막 미공개 자화상 원본 출품. 전 세계 10대 국부펀드와 비밀 억만장자 수집가 20명이 참석한 가운데, 인류 역사상 최초로 10억 달러(1조 3천억 원) 호가 돌파를 앞둔 마지막 낙찰봉을 쥔다.",
     "turns": [
       {
@@ -11388,7 +11388,7 @@
     "date": "2027-01-17",
     "episodeNumber": 100,
     "title": "진실의 승리: 퓰리처상 수상 연설 '진실은 영원히 침몰하지 않는다'",
-    "genre": "Investigative Journalism",
+    "genre": "Environmental Justice & Crime",
     "synopsis": "뉴욕 컬럼비아 대학교 로우 메모리얼 라이브러리. 전 세계 언론인 1,000명이 기립한 가운데 거행되는 제110회 퓰리처상 공공봉사상(Public Service Gold Medal) 시상식. 100편의 미국 드라마 시나리오를 집대성한 저널리즘의 대서사시를 마무리하며, 진실의 영원한 가치를 천명하는 마지막 수상 연설대에 오른다.",
     "turns": [
       {

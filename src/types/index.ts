@@ -21,7 +21,7 @@ export interface Episode {
   date: string; // YYYY-MM-DD (2026-10-10부터 7일간)
   episodeNumber: number;
   title: string; // 예: "뉴욕 로펌 첫 출근: 하비와의 독대"
-  genre: "Legal" | "Corporate" | "Startup" | "Dating" | "Medical";
+  genre: string;
   synopsis: string;
   turns: SceneTurn[]; // 정확히 3개의 티키타카 턴
   keyTakeaway: {
