@@ -51,3 +51,4 @@ CUSTOM_SCENARIOS.update(get_remaining_38_scenarios())    # Genre 12
 CUSTOM_SCENARIOS.update(get_pack_a())                    # Genres 13-14
 
 print(f"Pre-crafted bespoke genres: {len(CUSTOM_SCENARIOS)} genres.")
+

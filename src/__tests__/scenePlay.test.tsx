@@ -100,5 +100,30 @@ describe('ScenePlay Component - Translation Click-to-Reveal', () => {
     expect(screen.getByText('최선을 다하겠습니다.')).toBeInTheDocument();
     expect(screen.getByText('이미 끝난 일로 보시죠.')).toBeInTheDocument();
   });
+
+  it('toggles dialogue repeat loop mode when repeat button is clicked', () => {
+    render(
+      <ScenePlay
+        episode={mockEpisode}
+        turnIndex={0}
+        turn={mockEpisode.turns[0]}
+        isMuted={true}
+        selectedChoice={null}
+        onSelectChoice={() => {}}
+        onSubmitTurn={() => {}}
+      />
+    );
+
+    const repeatBtn = screen.getByTitle('대사 무한 반복 듣기 (쉐도잉 훈련)');
+    expect(repeatBtn).toBeInTheDocument();
+    expect(screen.getByText('반복 듣기')).toBeInTheDocument();
+
+    fireEvent.click(repeatBtn);
+    expect(screen.getByText('반복 켜짐')).toBeInTheDocument();
+
+    const repeatOffBtn = screen.getByTitle('대사 반복 재생 끄기');
+    fireEvent.click(repeatOffBtn);
+    expect(screen.getByText('반복 듣기')).toBeInTheDocument();
+  });
 });
 

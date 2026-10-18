@@ -26,3 +26,4 @@ from group_c import get_group_c_scenarios
 from blueprints_36_part1 import get_blueprints_part1
 
 print("Synthesizer imported existing 15 genres successfully.")
+

@@ -48,3 +48,4 @@ CUSTOM_SCENARIOS.update(get_genres_batch2())             # Genres 7-11 (FBI, Pol
 CUSTOM_SCENARIOS.update(get_remaining_38_scenarios())    # Genre 12 (Sports Agency)
 
 print(f"Pre-crafted bespoke genres: {len(CUSTOM_SCENARIOS)} genres.")
+

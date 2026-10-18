@@ -9,3 +9,4 @@ import sys
 import os
 
 print("Starting generation of packs 20 to 49...")
+

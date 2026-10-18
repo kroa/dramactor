@@ -29,3 +29,4 @@ def get_remaining_genres_scenarios():
 
 if __name__ == "__main__":
     generate_script()
+

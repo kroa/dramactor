@@ -175,3 +175,4 @@ def get_part_a_scenarios():
     ]
 
     return data
+

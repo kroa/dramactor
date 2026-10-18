@@ -144,3 +144,4 @@ def get_blueprints_part1():
     )
 
     return data
+

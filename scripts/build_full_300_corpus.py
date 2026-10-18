@@ -33,3 +33,4 @@ genre_emojis = re.findall(r"emoji:\s*'([^']+)'", genres_text)
 assert len(genre_names) == 50, f"Expected 50 genres, got {len(genre_names)}"
 
 print(f"Master Genres: {len(genre_names)} genres verified.")
+

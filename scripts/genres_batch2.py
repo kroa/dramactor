@@ -154,3 +154,4 @@ def get_genres_batch2():
 
     # Helper function to fill remaining 8 genres (Sports, Fashion, PR, Real Estate, Hollywood, Hotel, Art Auction, Journalism)
     return data
+

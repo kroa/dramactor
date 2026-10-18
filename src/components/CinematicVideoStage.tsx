@@ -9,6 +9,7 @@ import {
   Sliders,
   Play,
   Focus,
+  Repeat,
 } from 'lucide-react';
 import type { Choice, Episode, SceneTurn } from '../types';
 import { getSceneVisualConfig } from '../utils/sceneVisualMap';
@@ -23,6 +24,8 @@ interface CinematicVideoStageProps {
   onOpenVoiceSettings: () => void;
   selectedChoice?: Choice | null;
   isDeliveringRetort?: boolean;
+  isRepeatTTS?: boolean;
+  onToggleRepeatTTS?: () => void;
 }
 
 export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
@@ -34,6 +37,8 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
   onOpenVoiceSettings,
   selectedChoice,
   isDeliveringRetort,
+  isRepeatTTS,
+  onToggleRepeatTTS,
 }) => {
   const [isVideoEnabled, setIsVideoEnabled] = useState<boolean>(true);
   const [isTheaterMode, setIsTheaterMode] = useState<boolean>(false);
@@ -378,13 +383,14 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
           )}
           <span className="font-mono font-bold text-[#F3E5AB] drop-shadow-md">{displayTimecode}</span>
           <span className="hidden sm:inline-block px-1.5 py-0.5 rounded bg-black/60 border border-[#DFB15B]/20 text-[#C5A059] backdrop-blur-md">
-            {selectedChoice ? 'CAM B &bull; 85MM T1.5' : `SCENE ${turn.turnIndex} &bull; TAKE ${turnIndex + 1}`}
+            {selectedChoice ? 'CAM B • 85MM T1.5' : `SCENE ${turn.turnIndex} • TAKE ${turnIndex + 1}`}
           </span>
         </div>
 
         {/* Right: 4K HDR Specs & Interactive View Controls */}
         <div className="flex items-center space-x-1.5 pointer-events-auto">
           <span className="hidden sm:inline-block text-[#C5A059] text-[10px] bg-black/60 px-2 py-0.5 rounded border border-[#DFB15B]/20 backdrop-blur-md font-mono">
+            <span className="text-[#F3E5AB] font-bold mr-1">4K HDR</span> • 24FPS
             <span className="text-[#F3E5AB] font-bold mr-1">4K HDR</span> &bull; 24FPS
           </span>
 
@@ -483,7 +489,7 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
               </span>
             </div>
             <p className="text-[9px] sm:text-[10px] text-[#C5A059] font-medium truncate drop-shadow-sm">
-              {selectedChoice ? 'Lead Protagonist &bull; 반격 발화' : visualConfig.roleDescription}
+              {selectedChoice ? 'Lead Protagonist • 반격 발화' : visualConfig.roleDescription}
             </p>
           </div>
         </div>
@@ -523,6 +529,25 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
             <Sliders className="w-3.5 h-3.5 text-[#DFB15B]" />
             <span className="hidden sm:inline">음성 튜닝</span>
           </button>
+
+          {/* Repeat / Loop Audio Toggle Button */}
+          {onToggleRepeatTTS && (
+            <button
+              type="button"
+              onClick={onToggleRepeatTTS}
+              className={`flex items-center space-x-1 text-[10px] sm:text-[11px] font-bold p-1.5 sm:px-2.5 sm:py-1.5 rounded-md border backdrop-blur-md transition-all active:scale-95 shrink-0 cursor-pointer ${
+                isRepeatTTS
+                  ? 'bg-gradient-to-r from-[#DFB15B] via-[#F3E5AB] to-[#C5A059] text-[#140e03] border-[#FFF2C6]/60 shadow-md shadow-[#DFB15B]/30 ring-1 ring-[#DFB15B]/50'
+                  : 'bg-[#16130d] hover:bg-[#221c12] text-[#C5A059] hover:text-[#F3E5AB] border-[#DFB15B]/25'
+              }`}
+              title={isRepeatTTS ? '영상 대사 반복 재생 끄기' : '영상 대사 반복 재생 켜기 (쉐도잉)'}
+            >
+              <Repeat className={`w-3.5 h-3.5 ${isRepeatTTS ? 'text-[#140e03]' : 'text-[#DFB15B]'}`} />
+              <span className="hidden sm:inline">
+                {isRepeatTTS ? '반복 ON' : '반복 재생'}
+              </span>
+            </button>
+          )}
 
           {/* Listen / Stop Audio Button */}
           <button

@@ -50,3 +50,4 @@ for k, v in all_genres.items():
             assert len(turn['choices']) == 3, f"Turn in {ep['title']} does not have 3 choices"
 
 print('ALL 50 GENRES AND 200 EPISODES PASS STRUCTURAL VALIDATION!')
+

@@ -38,3 +38,4 @@ KNOWN_SCENARIOS.update(get_group1_scenarios())
 KNOWN_SCENARIOS.update(get_remaining_scenarios())
 
 print(f"Known pre-built genres: {list(KNOWN_SCENARIOS.keys())}")
+

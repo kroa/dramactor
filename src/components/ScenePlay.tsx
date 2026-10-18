@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Sparkles, MessageSquare, Languages } from 'lucide-react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { Sparkles, MessageSquare, Languages, Repeat } from 'lucide-react';
 import type { Choice, Episode, SceneTurn, TurnResult } from '../types';
 import { playStudioClip, stopNativeSpeech, playCinematicSound } from '../utils/speechMatch';
 import { SpeechRecorder } from './SpeechRecorder';
@@ -102,38 +102,90 @@ export const ScenePlay: React.FC<ScenePlayProps> = ({
     });
   };
 
-  // Auto-play dialogue studio audio when turn changes, unless muted
-  useEffect(() => {
-    if (lastTurnIndexRef.current !== turnIndex) {
-      lastTurnIndexRef.current = turnIndex;
-      if (!isMuted) {
-        const clipUrl = `/audio/dialogues/ep${episode.episodeNumber}_turn${turn.turnIndex}.mp3`;
-        playStudioClip(clipUrl, {
-          speaker: turn.speaker,
-          fallbackText: turn.dialogue,
-          onStart: () => setIsPlayingTTS(true),
-          onEnd: () => setIsPlayingTTS(false),
-        });
-      }
-    }
-    return () => {
-      stopNativeSpeech();
-    };
-  }, [turnIndex, turn.dialogue, turn.speaker, episode.episodeNumber, turn.turnIndex, isMuted]);
+  const [isRepeatTTS, setIsRepeatTTS] = useState<boolean>(false);
+  const isRepeatTTSRef = useRef<boolean>(false);
+  const repeatTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const handleManualPlayTTS = () => {
-    if (isPlayingTTS) {
-      stopNativeSpeech();
-      setIsPlayingTTS(false);
-      return;
+  useEffect(() => {
+    isRepeatTTSRef.current = isRepeatTTS;
+  }, [isRepeatTTS]);
+
+  const clearRepeatTimer = useCallback(() => {
+    if (repeatTimerRef.current) {
+      clearTimeout(repeatTimerRef.current);
+      repeatTimerRef.current = null;
     }
+  }, []);
+
+  const playDialogueAudioRef = useRef<() => void>(() => {});
+
+  const playDialogueAudio = useCallback(() => {
+    clearRepeatTimer();
     const clipUrl = `/audio/dialogues/ep${episode.episodeNumber}_turn${turn.turnIndex}.mp3`;
     playStudioClip(clipUrl, {
       speaker: turn.speaker,
       fallbackText: turn.dialogue,
       onStart: () => setIsPlayingTTS(true),
-      onEnd: () => setIsPlayingTTS(false),
+      onEnd: () => {
+        if (isRepeatTTSRef.current) {
+          clearRepeatTimer();
+          repeatTimerRef.current = setTimeout(() => {
+            if (isRepeatTTSRef.current) {
+              playDialogueAudioRef.current();
+            } else {
+              setIsPlayingTTS(false);
+            }
+          }, 850);
+        } else {
+          setIsPlayingTTS(false);
+        }
+      },
     });
+  }, [clearRepeatTimer, episode.episodeNumber, turn.turnIndex, turn.speaker, turn.dialogue]);
+
+  useEffect(() => {
+    playDialogueAudioRef.current = playDialogueAudio;
+  }, [playDialogueAudio]);
+
+  // Auto-play dialogue studio audio when turn changes, unless muted
+  useEffect(() => {
+    if (lastTurnIndexRef.current !== turnIndex) {
+      lastTurnIndexRef.current = turnIndex;
+      clearRepeatTimer();
+      if (!isMuted) {
+        playDialogueAudio();
+      }
+    }
+    return () => {
+      clearRepeatTimer();
+      stopNativeSpeech();
+    };
+  }, [turnIndex, isMuted, playDialogueAudio, clearRepeatTimer]);
+
+  const handleManualPlayTTS = () => {
+    if (isPlayingTTS) {
+      clearRepeatTimer();
+      setIsRepeatTTS(false);
+      isRepeatTTSRef.current = false;
+      stopNativeSpeech();
+      setIsPlayingTTS(false);
+      return;
+    }
+    playDialogueAudio();
+  };
+
+  const handleToggleRepeatTTS = () => {
+    const nextRepeat = !isRepeatTTS;
+    setIsRepeatTTS(nextRepeat);
+    isRepeatTTSRef.current = nextRepeat;
+
+    if (nextRepeat) {
+      if (!isPlayingTTS) {
+        playDialogueAudio();
+      }
+    } else {
+      clearRepeatTimer();
+    }
   };
 
   const choiceTypeBadge = (type: Choice['type']) => {
@@ -215,6 +267,8 @@ export const ScenePlay: React.FC<ScenePlayProps> = ({
             onOpenVoiceSettings={() => setIsVoiceModalOpen(true)}
             selectedChoice={selectedChoice}
             isDeliveringRetort={isDeliveringRetort}
+            isRepeatTTS={isRepeatTTS}
+            onToggleRepeatTTS={handleToggleRepeatTTS}
           />
 
           {/* Cinematic Subtitle & Situation Card */}
@@ -226,7 +280,22 @@ export const ScenePlay: React.FC<ScenePlayProps> = ({
                   <span className="w-1.5 h-1.5 rounded-full bg-[#DFB15B] animate-pulse shadow-[0_0_6px_rgba(223,177,91,0.8)]" />
                   <span>{turn.speaker} 대사 (Line)</span>
                 </div>
-                <div className="flex items-center space-x-2">
+                <div className="flex items-center space-x-1.5 sm:space-x-2">
+                  {/* Dialogue Repeat / Loop Button */}
+                  <button
+                    type="button"
+                    onClick={handleToggleRepeatTTS}
+                    className={`px-2 py-0.5 rounded text-[11px] font-medium border flex items-center space-x-1 transition-all cursor-pointer ${
+                      isRepeatTTS
+                        ? 'bg-gradient-to-r from-[#DFB15B] via-[#F3E5AB] to-[#C5A059] text-[#140e03] font-black border-[#FFF2C6]/60 shadow-sm'
+                        : 'bg-[#18140d] text-[#C5A059] border-[#DFB15B]/20 hover:text-[#FFF1BD] hover:bg-[#241e14]'
+                    }`}
+                    title={isRepeatTTS ? '대사 반복 재생 끄기' : '대사 무한 반복 듣기 (쉐도잉 훈련)'}
+                  >
+                    <Repeat className={`w-3 h-3 ${isRepeatTTS ? 'text-[#140e03]' : 'text-[#DFB15B]'}`} />
+                    <span>{isRepeatTTS ? '반복 켜짐' : '반복 듣기'}</span>
+                  </button>
+
                   <button
                     type="button"
                     onClick={(e) => toggleTranslation('main_dialogue', e)}

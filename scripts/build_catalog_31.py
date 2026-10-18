@@ -7,3 +7,4 @@ import sys
 import os
 
 print("Starting generation of catalog_31_genres.py...")
+

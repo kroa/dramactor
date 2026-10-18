@@ -11,3 +11,4 @@ import os
 import sys
 
 print("Ready to construct catalog batches.")
+

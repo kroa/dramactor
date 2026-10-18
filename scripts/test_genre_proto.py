@@ -11,3 +11,4 @@ with open('src/data/genres.ts', 'r', encoding='utf-8') as f:
 genre_names = re.findall(r"nameEn:\s*'([^']+)'", text)
 print(f"Total genres: {len(genre_names)}")
 assert len(genre_names) == 50
+

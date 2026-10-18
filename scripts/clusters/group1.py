@@ -703,3 +703,4 @@ def get_group1_scenarios():
     ]
 
     return data
+

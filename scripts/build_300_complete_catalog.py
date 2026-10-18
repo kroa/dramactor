@@ -50,3 +50,4 @@ MASTER_GENRE_SCENARIOS.update(get_templates_part1())        # Genre 6 (1 genre)
 MASTER_GENRE_SCENARIOS.update(get_genres_batch2())          # Genres 7 to 11 (5 genres)
 
 print(f"Already defined {len(MASTER_GENRE_SCENARIOS)} genres with custom handcrafted scenarios.")
+

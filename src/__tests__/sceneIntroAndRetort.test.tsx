@@ -127,4 +127,27 @@ describe('CinematicVideoStage Component - Retort Delivery & Counter-Shot', () =>
     expect(screen.getByText('YOU (주연 배우)')).toBeInTheDocument();
     expect(screen.getByText('LEAD ACTOR')).toBeInTheDocument();
   });
+
+  it('renders repeat audio button in CinematicVideoStage when onToggleRepeatTTS is provided', () => {
+    let toggled = false;
+    render(
+      <CinematicVideoStage
+        episode={mockEpisode}
+        turn={mockEpisode.turns[0]}
+        turnIndex={0}
+        isPlayingTTS={false}
+        onPlayTTS={() => {}}
+        onOpenVoiceSettings={() => {}}
+        selectedChoice={null}
+        isDeliveringRetort={false}
+        isRepeatTTS={false}
+        onToggleRepeatTTS={() => { toggled = true; }}
+      />
+    );
+
+    const repeatBtn = screen.getByTitle('영상 대사 반복 재생 켜기 (쉐도잉)');
+    expect(repeatBtn).toBeInTheDocument();
+    fireEvent.click(repeatBtn);
+    expect(toggled).toBe(true);
+  });
 });

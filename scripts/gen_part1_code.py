@@ -264,3 +264,4 @@ with open("scripts/clusters/remaining_part1.py", "w", encoding="utf-8") as f:
     f.write(part1_code)
 
 print("Created scripts/clusters/remaining_part1.py successfully.")
+

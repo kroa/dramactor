@@ -30,3 +30,4 @@ genre_emojis = re.findall(r"emoji:\s*'([^']+)'", genres_text)
 assert len(genre_names) == 50
 
 print(f"50 Master Genres loaded. Generating 200 new episodes (EP 101 to 300)...")
+

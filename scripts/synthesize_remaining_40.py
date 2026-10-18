@@ -19,3 +19,4 @@ def get_remaining_40_scenarios():
 
     # We will build rich, tailored setups for all 40 genres
     return data
+

@@ -14,3 +14,4 @@ def get_cluster_definitions():
     """
     clusters = {}
     return clusters
+

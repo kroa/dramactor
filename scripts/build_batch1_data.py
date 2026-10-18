@@ -6,3 +6,4 @@ import os
 import sys
 
 print("Ready to construct catalog_batch1.py...")
+

@@ -47,3 +47,4 @@ import sys
 # 49: Supreme Court Constitutional Law
 
 print("Generator script template ready.")
+

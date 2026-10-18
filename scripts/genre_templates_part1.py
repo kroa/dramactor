@@ -128,3 +128,4 @@ def get_templates_part1():
 
     # Helper function for procedural expansion
     return d
+

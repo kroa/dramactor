@@ -232,3 +232,4 @@ with open("scripts/clusters/group_c.py", "w", encoding="utf-8") as f:
     f.write(content)
 
 print("Created group_c.py successfully.")
+

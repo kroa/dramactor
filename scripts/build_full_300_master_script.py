@@ -53,3 +53,4 @@ ALL_GENRE_SCENARIOS.update(get_pack_a())                    # Genres 13-14
 ALL_GENRE_SCENARIOS.update(get_definitions_35())            # Genre 15
 
 print(f"Handcrafted genres loaded: {len(ALL_GENRE_SCENARIOS)}")
+

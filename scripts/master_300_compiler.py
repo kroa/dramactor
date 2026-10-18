@@ -50,3 +50,4 @@ def build_38_blueprints():
 
 if __name__ == "__main__":
     print("Pre-checks ready.")
+
