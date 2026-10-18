@@ -43,5 +43,40 @@ describe('Cinematic Scene Visual Map Engine', () => {
     expect(ep4.locationTag).toContain('SEATTLE GRACE');
     expect(ep4.cameraRig).toContain('VENICE');
   });
+
+  it('maps Episode 9 White House Politics to situation room and tactical command video archetype', () => {
+    const ep9Config = getSceneVisualConfig(
+      9,
+      1,
+      { genre: 'White House Politics', title: '백악관 상황실: 자정의 미사일 요격 결단' },
+      { speaker: 'General Hayes (Chairman of Joint Chiefs)' }
+    );
+
+    expect(ep9Config.locationTag).toContain('WHITE HOUSE SITUATION ROOM');
+    expect(ep9Config.videoSrc).toBe('/videos/ep8_turn1.mp4');
+    expect(ep9Config.roleDescription).toBe('General Hayes • Chairman of Joint Chiefs');
+    expect(ep9Config.atmosphereBadge).toContain('DEFCON');
+  });
+
+  it('correctly maps diverse drama genres to dedicated visual presets and speakers', () => {
+    const culinary = getSceneVisualConfig(
+      10,
+      1,
+      { genre: 'Michelin Culinary' },
+      { speaker: 'Chef Ramsay' }
+    );
+    expect(culinary.videoSrc).toBe('/videos/ep5_turn1.mp4');
+    expect(culinary.locationTag).toContain('KITCHEN');
+    expect(culinary.roleDescription).toBe('Head Chef • Executive Culinary Director');
+
+    const cia = getSceneVisualConfig(
+      11,
+      2,
+      { genre: 'CIA Covert Espionage' },
+      { speaker: 'Director Vance' }
+    );
+    expect(cia.videoSrc).toBe('/videos/ep8_turn2.mp4');
+    expect(cia.locationTag).toContain('LANGLEY');
+  });
 });
 

@@ -401,11 +401,13 @@ export function playGoogleHDDialogue(text: string, options?: DialoguePlayOptions
 
   let currentSentenceIndex = 0;
   let hasStarted = false;
+  let accumulatedTime = 0;
 
   const playNextSentence = () => {
     if (currentToken !== activePlaybackToken) return;
 
     if (currentSentenceIndex >= sentences.length) {
+      notifyAudioTime(0, 0);
       options?.onEnd?.();
       return;
     }
@@ -420,19 +422,20 @@ export function playGoogleHDDialogue(text: string, options?: DialoguePlayOptions
 
       audio.ontimeupdate = () => {
         if (currentToken !== activePlaybackToken) return;
-        notifyAudioTime(audio.currentTime, audio.duration || 0);
+        notifyAudioTime(accumulatedTime + audio.currentTime, accumulatedTime + (audio.duration || 0));
       };
 
       const triggerStart = () => {
         if (!hasStarted && currentToken === activePlaybackToken) {
           hasStarted = true;
-          notifyAudioTime(audio.currentTime, audio.duration || 0);
+          notifyAudioTime(accumulatedTime + audio.currentTime, accumulatedTime + (audio.duration || 0));
           options?.onStart?.();
         }
       };
 
       audio.onended = () => {
         if (currentToken !== activePlaybackToken) return;
+        accumulatedTime += (audio.duration && !isNaN(audio.duration) ? audio.duration : audio.currentTime);
         currentSentenceIndex++;
         if (currentSentenceIndex < sentences.length) {
           setTimeout(() => {
@@ -441,6 +444,7 @@ export function playGoogleHDDialogue(text: string, options?: DialoguePlayOptions
             }
           }, 140);
         } else {
+          notifyAudioTime(0, 0);
           options?.onEnd?.();
         }
       };

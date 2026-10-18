@@ -8,6 +8,7 @@ import {
   Minimize2,
   Sliders,
   Play,
+  Focus,
 } from 'lucide-react';
 import type { Choice, Episode, SceneTurn } from '../types';
 import { getSceneVisualConfig } from '../utils/sceneVisualMap';
@@ -36,13 +37,33 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
 }) => {
   const [isVideoEnabled, setIsVideoEnabled] = useState<boolean>(true);
   const [isTheaterMode, setIsTheaterMode] = useState<boolean>(false);
+  const [framingMode, setFramingMode] = useState<'medium' | 'closeup'>(() => {
+    try {
+      const saved = localStorage.getItem('dramactor_video_framing');
+      if (saved === 'medium' || saved === 'closeup') return saved;
+    } catch {
+      // Fallback
+    }
+    return 'medium'; // Default to medium shot as requested: "영상 캐릭터가 좀 작아야 할 듯"
+  });
+
+  const toggleFramingMode = () => {
+    const nextMode = framingMode === 'medium' ? 'closeup' : 'medium';
+    setFramingMode(nextMode);
+    try {
+      localStorage.setItem('dramactor_video_framing', nextMode);
+    } catch {
+      // Ignore
+    }
+  };
+
   const [isVideoLoaded, setIsVideoLoaded] = useState<boolean>(false);
   const [videoError, setVideoError] = useState<boolean>(false);
   const [playTimecode, setPlayTimecode] = useState<string>('00:00:00:00');
   const displayTimecode = isPlayingTTS ? playTimecode : '00:00:00:00';
 
   const videoRef = useRef<HTMLVideoElement>(null);
-  const visualConfig = getSceneVisualConfig(episode.episodeNumber, turn.turnIndex);
+  const visualConfig = getSceneVisualConfig(episode.episodeNumber, turn.turnIndex, episode, turn);
   const [prevVisualSrc, setPrevVisualSrc] = useState<string>(visualConfig.videoSrc);
   const [useFallbackVideo, setUseFallbackVideo] = useState<boolean>(false);
 
@@ -106,6 +127,7 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
       try {
         // Clean start at 0s for each speech playback
         video.currentTime = 0;
+        video.playbackRate = 1.0;
         const playPromise = video.play();
         if (playPromise && typeof playPromise.catch === 'function') {
           playPromise.catch(() => {
@@ -119,13 +141,14 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
       try {
         // Naturally pause at the dialogue completion pose without jarring snap-back to 0
         video.pause();
+        video.playbackRate = 1.0;
       } catch {
         // Safe fallback
       }
     }
   }, [isPlayingTTS, isVideoEnabled, activeVideoSrc, videoError]);
 
-  // Sub-frame level audio-to-video synchronization with smooth drift-correction
+  // Sub-frame level audio-to-video synchronization with smooth tempo-locking (no backwards jumps)
   useEffect(() => {
     if (!isPlayingTTS || !isVideoEnabled || videoError) return;
 
@@ -133,22 +156,17 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
       const video = videoRef.current;
       if (!video || !video.duration || video.paused) return;
 
-      const targetTime = video.duration > 0 ? Math.min(audioCurrentTime, Math.max(0, video.duration - 0.05)) : audioCurrentTime;
-      const drift = targetTime - video.currentTime;
+      const drift = audioCurrentTime - video.currentTime;
 
       if (audioCurrentTime > 0) {
-        if (Math.abs(drift) > 0.5) {
-          // Major drift: snap directly to audio time
-          video.currentTime = targetTime;
-          video.playbackRate = 1.0;
-        } else if (drift > 0.12) {
+        // Only gently adapt playbackRate to maintain smooth sync without visual freezing
+        if (drift > 0.18) {
           // Video slightly behind audio: gently accelerate to catch up
           video.playbackRate = 1.05;
-        } else if (drift < -0.12) {
+        } else if (drift < -0.18) {
           // Video slightly ahead of audio: gently decelerate to lock in
           video.playbackRate = 0.95;
         } else if (video.playbackRate !== 1.0) {
-          // Within tight deadband: lock at exact 1.0x smooth natural tempo
           video.playbackRate = 1.0;
         }
       }
@@ -165,38 +183,62 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
           : 'min-h-[210px] sm:min-h-[250px] md:min-h-[300px] lg:min-h-[340px]'
       }`}
     >
-      {/* Background Layer: Real HTML5 Video (No abrupt loop, holds natural pose on speech end) */}
+      {/* Background Ambient Glow & Depth Layer */}
+      <div className={`absolute inset-0 bg-gradient-to-br ${visualConfig.themeColor} pointer-events-none transition-all duration-700`} />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(20,24,32,0.85)_0%,rgba(9,9,11,0.98)_85%)] pointer-events-none" />
+
+      {/* Real HTML5 Video Stage: Medium Shot (Framed Studio Monitor) vs Full-Bleed Close-Up */}
       {isVideoEnabled && !videoError ? (
-        <video
-          ref={videoRef}
-          src={activeVideoSrc}
-          muted
-          playsInline
-          onEnded={() => {
-            if (videoRef.current) {
-              try {
-                videoRef.current.pause();
-              } catch {
-                // Safe fallback
-              }
-            }
-          }}
-          onLoadedData={() => {
-            setIsVideoLoaded(true);
-            if (videoRef.current && !isPlayingTTS) {
-              try {
-                videoRef.current.pause();
-                videoRef.current.currentTime = 0;
-              } catch {
-                // Safe fallback
-              }
-            }
-          }}
-          onError={handleVideoError}
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
-            isVideoLoaded ? 'opacity-100' : 'opacity-0'
-          } ${isPlayingTTS ? 'animate-cinematic-float' : ''}`}
-        />
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <div
+            className={`relative transition-all duration-500 ease-out flex items-center justify-center ${
+              framingMode === 'medium'
+                ? 'w-[82%] h-[82%] sm:w-[72%] sm:h-[84%] rounded-2xl overflow-hidden shadow-2xl shadow-black/95 ring-1 ring-[#DFB15B]/40 bg-black/90'
+                : 'w-full h-full rounded-none'
+            }`}
+          >
+            <video
+              ref={videoRef}
+              src={activeVideoSrc}
+              muted
+              playsInline
+              onEnded={() => {
+                if (videoRef.current) {
+                  try {
+                    videoRef.current.pause();
+                  } catch {
+                    // Safe fallback
+                  }
+                }
+              }}
+              onLoadedData={() => {
+                setIsVideoLoaded(true);
+                if (videoRef.current && !isPlayingTTS) {
+                  try {
+                    videoRef.current.pause();
+                    videoRef.current.currentTime = 0;
+                  } catch {
+                    // Safe fallback
+                  }
+                }
+              }}
+              onError={handleVideoError}
+              className={`w-full h-full object-cover transition-opacity duration-500 ${
+                isVideoLoaded ? 'opacity-100' : 'opacity-0'
+              } ${isPlayingTTS && framingMode === 'closeup' ? 'animate-cinematic-float' : ''}`}
+            />
+
+            {/* Inner Lens Vignette for the video card */}
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_55%,rgba(0,0,0,0.45)_100%)] pointer-events-none" />
+
+            {/* In Medium Mode: subtle broadcast monitor feed label */}
+            {framingMode === 'medium' && (
+              <div className="absolute top-2 left-2.5 px-1.5 py-0.5 rounded bg-black/70 border border-[#DFB15B]/25 text-[8px] font-mono text-[#F3E5AB]/80 tracking-wider pointer-events-none">
+                CAM FEED &bull; MEDIUM SHOT
+              </div>
+            )}
+          </div>
+        </div>
       ) : null}
 
       {/* Cinematic Lens Vignette & Depth Falloff */}
@@ -345,6 +387,21 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
           <span className="hidden sm:inline-block text-[#C5A059] text-[10px] bg-black/60 px-2 py-0.5 rounded border border-[#DFB15B]/20 backdrop-blur-md font-mono">
             <span className="text-[#F3E5AB] font-bold mr-1">4K HDR</span> &bull; 24FPS
           </span>
+
+          {/* Framing Mode Toggle (Medium Shot / Close-up) */}
+          <button
+            type="button"
+            onClick={toggleFramingMode}
+            className={`px-2 py-1 rounded-md border text-[10px] sm:text-[11px] font-mono backdrop-blur-md transition-all flex items-center space-x-1 cursor-pointer ${
+              framingMode === 'medium'
+                ? 'bg-[#1e1910] text-[#F3E5AB] border-[#DFB15B]/50 hover:bg-[#282114] shadow-sm shadow-[#DFB15B]/20'
+                : 'bg-black/70 text-[#C5A059] border-white/15 hover:text-white'
+            }`}
+            title={framingMode === 'medium' ? '클로즈업(전체 화면)으로 전환' : '미디엄 샷(안정적인 인물 프레임)으로 전환'}
+          >
+            <Focus className="w-3 h-3 text-[#DFB15B]" />
+            <span>{framingMode === 'medium' ? '미디엄 샷' : '클로즈업'}</span>
+          </button>
 
           {/* Toggle Video On / Off */}
           <button
