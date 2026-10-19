@@ -10,6 +10,7 @@ import {
   Play,
   Focus,
   Repeat,
+  Radio,
 } from 'lucide-react';
 import type { Choice, Episode, SceneTurn } from '../types';
 import { getSceneVisualConfig } from '../utils/sceneVisualMap';
@@ -28,6 +29,8 @@ interface CinematicVideoStageProps {
   onToggleRepeatTTS?: () => void;
 }
 
+export type FramingMode = 'compact' | 'medium' | 'closeup';
+
 export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
   episode,
   turn,
@@ -42,18 +45,26 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
 }) => {
   const [isVideoEnabled, setIsVideoEnabled] = useState<boolean>(true);
   const [isTheaterMode, setIsTheaterMode] = useState<boolean>(false);
-  const [framingMode, setFramingMode] = useState<'medium' | 'closeup'>(() => {
+
+  // Framing scale: Default to 'compact' (~46% monitor) as requested by user ("영상 캐릭터가 좀 작아야 할 듯")
+  const [framingMode, setFramingMode] = useState<FramingMode>(() => {
     try {
       const saved = localStorage.getItem('dramactor_video_framing');
-      if (saved === 'medium' || saved === 'closeup') return saved;
+      if (saved === 'compact' || saved === 'medium' || saved === 'closeup') {
+        return saved;
+      }
     } catch {
       // Fallback
     }
-    return 'medium'; // Default to medium shot as requested: "영상 캐릭터가 좀 작아야 할 듯"
+    return 'compact';
   });
 
-  const toggleFramingMode = () => {
-    const nextMode = framingMode === 'medium' ? 'closeup' : 'medium';
+  const cycleFramingMode = () => {
+    let nextMode: FramingMode = 'compact';
+    if (framingMode === 'compact') nextMode = 'medium';
+    else if (framingMode === 'medium') nextMode = 'closeup';
+    else nextMode = 'compact';
+
     setFramingMode(nextMode);
     try {
       localStorage.setItem('dramactor_video_framing', nextMode);
@@ -71,6 +82,10 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
   const visualConfig = getSceneVisualConfig(episode.episodeNumber, turn.turnIndex, episode, turn);
   const [prevVisualSrc, setPrevVisualSrc] = useState<string>(visualConfig.videoSrc);
   const [useFallbackVideo, setUseFallbackVideo] = useState<boolean>(false);
+
+  // EP 9~300 default to studio audio comms stage to eliminate mismatched lip sync,
+  // but user can toggle to force video archetype if desired.
+  const [forceVideoFeed, setForceVideoFeed] = useState<boolean>(false);
 
   if (visualConfig.videoSrc !== prevVisualSrc) {
     setPrevVisualSrc(visualConfig.videoSrc);
@@ -123,14 +138,13 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
     }
   }, [turnIndex, episode.episodeNumber, activeVideoSrc]);
 
-  // Synchronize video playback with speech audio state without end-of-line snap-back
+  // Synchronize video playback with speech audio state
   useEffect(() => {
     const video = videoRef.current;
     if (!video || !isVideoEnabled || videoError) return;
 
     if (isPlayingTTS) {
       try {
-        // Clean start at 0s for each speech playback
         video.currentTime = 0;
         video.playbackRate = 1.0;
         const playPromise = video.play();
@@ -144,7 +158,6 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
       }
     } else {
       try {
-        // Naturally pause at the dialogue completion pose without jarring snap-back to 0
         video.pause();
         video.playbackRate = 1.0;
       } catch {
@@ -153,7 +166,7 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
     }
   }, [isPlayingTTS, isVideoEnabled, activeVideoSrc, videoError]);
 
-  // Sub-frame level audio-to-video synchronization with smooth tempo-locking (no backwards jumps)
+  // Sub-frame level audio-to-video synchronization
   useEffect(() => {
     if (!isPlayingTTS || !isVideoEnabled || videoError) return;
 
@@ -162,14 +175,10 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
       if (!video || !video.duration || video.paused) return;
 
       const drift = audioCurrentTime - video.currentTime;
-
       if (audioCurrentTime > 0) {
-        // Only gently adapt playbackRate to maintain smooth sync without visual freezing
         if (drift > 0.18) {
-          // Video slightly behind audio: gently accelerate to catch up
           video.playbackRate = 1.05;
         } else if (drift < -0.18) {
-          // Video slightly ahead of audio: gently decelerate to lock in
           video.playbackRate = 0.95;
         } else if (video.playbackRate !== 1.0) {
           video.playbackRate = 1.0;
@@ -180,6 +189,25 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
     return () => unsubscribe();
   }, [isPlayingTTS, isVideoEnabled, videoError]);
 
+  // Should we show HTML5 video or the Audio-Reactive Comms Feed?
+  // Episodes 1-8 have authentic shot video. Episodes 9-300 default to audio comms feed
+  // to prevent uncanny valley mouth mismatch unless the user explicitly forces video feed.
+  const shouldRenderVideo =
+    isVideoEnabled && !videoError && (visualConfig.hasAuthenticVideo || forceVideoFeed);
+
+  // Monitor sizing according to user-selected framing mode
+  const getFramingContainerClasses = () => {
+    switch (framingMode) {
+      case 'compact':
+        return 'w-[64%] h-[72%] sm:w-[48%] sm:h-[76%] rounded-2xl shadow-2xl shadow-black/95 ring-1 ring-[#DFB15B]/40 bg-black/95';
+      case 'medium':
+        return 'w-[84%] h-[84%] sm:w-[72%] sm:h-[86%] rounded-2xl shadow-2xl shadow-black/95 ring-1 ring-[#DFB15B]/30 bg-black/90';
+      case 'closeup':
+      default:
+        return 'w-full h-full rounded-none';
+    }
+  };
+
   return (
     <div
       className={`relative w-full rounded-2xl overflow-hidden border border-white/15 shadow-2xl transition-all duration-500 bg-zinc-950 aspect-video ${
@@ -189,62 +217,152 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
       }`}
     >
       {/* Background Ambient Glow & Depth Layer */}
-      <div className={`absolute inset-0 bg-gradient-to-br ${visualConfig.themeColor} pointer-events-none transition-all duration-700`} />
+      <div
+        className={`absolute inset-0 bg-gradient-to-br ${visualConfig.themeColor} pointer-events-none transition-all duration-700`}
+      />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(20,24,32,0.85)_0%,rgba(9,9,11,0.98)_85%)] pointer-events-none" />
 
-      {/* Real HTML5 Video Stage: Medium Shot (Framed Studio Monitor) vs Full-Bleed Close-Up */}
-      {isVideoEnabled && !videoError ? (
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <div
-            className={`relative transition-all duration-500 ease-out flex items-center justify-center ${
-              framingMode === 'medium'
-                ? 'w-[82%] h-[82%] sm:w-[72%] sm:h-[84%] rounded-2xl overflow-hidden shadow-2xl shadow-black/95 ring-1 ring-[#DFB15B]/40 bg-black/90'
-                : 'w-full h-full rounded-none'
-            }`}
-          >
-            <video
-              ref={videoRef}
-              src={activeVideoSrc}
-              muted
-              playsInline
-              onEnded={() => {
-                if (videoRef.current) {
-                  try {
-                    videoRef.current.pause();
-                  } catch {
-                    // Safe fallback
+      {/* Center Stage Presentation Area */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <div
+          className={`relative transition-all duration-500 ease-out flex items-center justify-center overflow-hidden ${getFramingContainerClasses()}`}
+        >
+          {shouldRenderVideo ? (
+            /* Mode 1: Authentic Video Feed (EP 1-8 or User-forced Video) */
+            <>
+              <video
+                ref={videoRef}
+                src={activeVideoSrc}
+                muted
+                playsInline
+                onEnded={() => {
+                  if (videoRef.current) {
+                    try {
+                      videoRef.current.pause();
+                    } catch {
+                      // Safe fallback
+                    }
                   }
-                }
-              }}
-              onLoadedData={() => {
-                setIsVideoLoaded(true);
-                if (videoRef.current && !isPlayingTTS) {
-                  try {
-                    videoRef.current.pause();
-                    videoRef.current.currentTime = 0;
-                  } catch {
-                    // Safe fallback
+                }}
+                onLoadedData={() => {
+                  setIsVideoLoaded(true);
+                  if (videoRef.current && !isPlayingTTS) {
+                    try {
+                      videoRef.current.pause();
+                      videoRef.current.currentTime = 0;
+                    } catch {
+                      // Safe fallback
+                    }
                   }
-                }
-              }}
-              onError={handleVideoError}
-              className={`w-full h-full object-cover transition-opacity duration-500 ${
-                isVideoLoaded ? 'opacity-100' : 'opacity-0'
-              } ${isPlayingTTS && framingMode === 'closeup' ? 'animate-cinematic-float' : ''}`}
-            />
+                }}
+                onError={handleVideoError}
+                className={`w-full h-full object-cover transition-opacity duration-500 ${
+                  isVideoLoaded ? 'opacity-100' : 'opacity-0'
+                } ${isPlayingTTS && framingMode === 'closeup' ? 'animate-cinematic-float' : ''}`}
+              />
 
-            {/* Inner Lens Vignette for the video card */}
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_55%,rgba(0,0,0,0.45)_100%)] pointer-events-none" />
+              {/* Inner Lens Vignette for the video card */}
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_55%,rgba(0,0,0,0.45)_100%)] pointer-events-none" />
 
-            {/* In Medium Mode: subtle broadcast monitor feed label */}
-            {framingMode === 'medium' && (
-              <div className="absolute top-2 left-2.5 px-1.5 py-0.5 rounded bg-black/70 border border-[#DFB15B]/25 text-[8px] font-mono text-[#F3E5AB]/80 tracking-wider pointer-events-none">
-                CAM FEED &bull; MEDIUM SHOT
+              {/* Monitor feed label when in compact or medium mode */}
+              {framingMode !== 'closeup' && (
+                <div className="absolute top-2 left-2.5 px-1.5 py-0.5 rounded bg-black/75 border border-[#DFB15B]/25 text-[8px] font-mono text-[#F3E5AB]/90 tracking-wider pointer-events-none flex items-center space-x-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#DFB15B]" />
+                  <span>
+                    CAM FEED &bull; {framingMode === 'compact' ? 'COMPACT' : 'MEDIUM'}
+                  </span>
+                </div>
+              )}
+            </>
+          ) : (
+            /* Mode 2: Cinematic Audio-Reactive Comms Monitor (EP 9-300: 100% Lip-Sync Flawless) */
+            <div className="relative w-full h-full p-4 flex flex-col items-center justify-between text-center select-none bg-gradient-to-b from-[#141018]/90 via-[#0a080d]/95 to-[#050406]">
+              {/* Scanline and Grid Texture */}
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(223,177,91,0.08)_0%,transparent_75%)] pointer-events-none" />
+              <div className="absolute inset-0 opacity-10 bg-[linear-gradient(rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.06)_1px,transparent_1px)] bg-[size:16px_16px] pointer-events-none" />
+
+              {/* Monitor Top Status */}
+              <div className="w-full flex items-center justify-between z-10 border-b border-[#DFB15B]/20 pb-1 px-1">
+                <div className="flex items-center space-x-1.5">
+                  <span
+                    className={`w-2 h-2 rounded-full ${
+                      isPlayingTTS ? 'bg-[#DFB15B] animate-ping' : 'bg-[#7A5B1E]'
+                    }`}
+                  />
+                  <span className="text-[9px] font-mono font-bold text-[#F3E5AB] tracking-widest uppercase">
+                    {isPlayingTTS ? 'LIVE AUDIO COMMS' : 'COMMS STANDBY'}
+                  </span>
+                </div>
+                <span className="text-[8px] font-mono text-[#C5A059] uppercase tracking-wider">
+                  48 kHz &bull; STUDIO LINK
+                </span>
               </div>
-            )}
-          </div>
+
+              {/* Center Character Avatar & Waveform Visualizer */}
+              <div className="my-auto flex flex-col items-center justify-center space-y-2.5 z-10">
+                {/* Avatar with Audio Pulse Ring */}
+                <div className="relative">
+                  <div
+                    className={`w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center text-3xl sm:text-4xl shadow-xl transition-all duration-300 ${
+                      isPlayingTTS
+                        ? 'bg-gradient-to-br from-[#2a2012] to-[#120e08] ring-2 ring-[#DFB15B] shadow-[0_0_20px_rgba(223,177,91,0.5)] scale-105'
+                        : 'bg-[#151219] ring-1 ring-white/10'
+                    }`}
+                  >
+                    {turn.avatarEmoji || visualConfig.genreEmoji}
+                  </div>
+                  {isPlayingTTS && (
+                    <div className="absolute -inset-1.5 rounded-full border border-[#DFB15B]/40 animate-ping pointer-events-none" />
+                  )}
+                </div>
+
+                {/* Speaker Info in Comms Monitor */}
+                <div className="space-y-0.5">
+                  <span className="text-[8px] font-mono uppercase tracking-wider text-[#DFB15B]/80">
+                    TRANSMISSION FEED
+                  </span>
+                  <p className="text-[10px] sm:text-[11px] text-[#F3E5AB] font-bold font-mono truncate max-w-[200px] sm:max-w-[260px]">
+                    {visualConfig.roleDescription}
+                  </p>
+                </div>
+
+                {/* 16-Bar Real-Time Audio Equalizer Waveform */}
+                <div className="flex items-center justify-center space-x-1 sm:space-x-1.5 h-6 pt-1">
+                  {[
+                    'h-1.5', 'h-3', 'h-4', 'h-5', 'h-4', 'h-3', 'h-5', 'h-6',
+                    'h-5', 'h-4', 'h-5', 'h-3', 'h-4', 'h-3', 'h-2', 'h-1.5',
+                  ].map((heightClass, idx) => (
+                    <span
+                      key={idx}
+                      className={`w-1 rounded-full transition-all duration-150 ${
+                        isPlayingTTS
+                          ? `bg-gradient-to-t from-[#C5A059] via-[#DFB15B] to-[#FFF2C6] ${heightClass} ${
+                              idx % 4 === 0
+                                ? 'animate-wave-1'
+                                : idx % 4 === 1
+                                ? 'animate-wave-2'
+                                : idx % 4 === 2
+                                ? 'animate-wave-3'
+                                : 'animate-wave-4'
+                            }`
+                          : 'h-1 bg-[#3a3020]'
+                      }`}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              {/* Monitor Bottom Telemetry */}
+              <div className="w-full flex items-center justify-between z-10 border-t border-[#DFB15B]/15 pt-1 px-1 text-[8px] font-mono text-[#F3E5AB]/75">
+                <span className="truncate max-w-[140px] sm:max-w-none">
+                  {visualConfig.locationTag}
+                </span>
+                <span className="text-[#C5A059]">SYNC: 100% NATIVE</span>
+              </div>
+            </div>
+          )}
         </div>
-      ) : null}
+      </div>
 
       {/* Cinematic Lens Vignette & Depth Falloff */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_50%,rgba(0,0,0,0.55)_100%)] pointer-events-none" />
@@ -258,7 +376,7 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
       )}
 
       {/* Center Stage: Interactive Center Play Overlay when dialogue is idle and no choice selected */}
-      {isVideoEnabled && !videoError && isVideoLoaded && !isPlayingTTS && !selectedChoice && (
+      {!isPlayingTTS && !selectedChoice && (
         <div
           onClick={onPlayTTS}
           className="absolute inset-0 flex items-center justify-center cursor-pointer group z-20"
@@ -333,32 +451,42 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
         </div>
       )}
 
-      {/* Atmospheric Fallback Backdrop (Rendered only when video is disabled or buffering) */}
-      {(!isVideoEnabled || videoError || !isVideoLoaded) && (
-        <div
-          className={`absolute inset-0 bg-gradient-to-br ${visualConfig.themeColor} flex items-center justify-center`}
-        >
-          <div className="text-center space-y-2">
-            <span className="text-5xl">{selectedChoice ? '🎭' : turn.avatarEmoji}</span>
-            <p className="text-xs text-[#DFB15B] font-mono tracking-widest uppercase">
-              {visualConfig.locationTag}
-            </p>
-          </div>
-        </div>
-      )}
-
-      {/* Top Edge Gradient for Clear HUD Contrast (Middle 75% of video stays 100% clear) */}
-      <div className="absolute top-0 inset-x-0 h-16 bg-gradient-to-b from-black/80 via-black/30 to-transparent pointer-events-none" />
+      {/* Top Edge Gradient for Clear HUD Contrast */}
+      <div className="absolute top-0 inset-x-0 h-16 bg-gradient-to-b from-black/85 via-black/40 to-transparent pointer-events-none" />
 
       {/* Bottom Edge Gradient for Clear Controls Contrast */}
       <div className="absolute bottom-0 inset-x-0 h-24 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none" />
 
-      {/* Viewfinder Framing Guidelines (HBO Prestige Gold Corner Brackets with Speech Glow) */}
+      {/* Viewfinder Framing Guidelines (HBO Prestige Gold Corner Brackets) */}
       <div className="absolute inset-2 sm:inset-3 pointer-events-none border border-[#DFB15B]/20 rounded-xl transition-all duration-500">
-        <div className={`absolute -top-0.5 -left-0.5 w-3.5 h-3.5 border-t-2 border-l-2 transition-all ${isPlayingTTS || selectedChoice ? 'border-[#FFF1BD] drop-shadow-[0_0_10px_rgba(255,241,189,0.9)]' : 'border-[#DFB15B]/70'}`} />
-        <div className={`absolute -top-0.5 -right-0.5 w-3.5 h-3.5 border-t-2 border-r-2 transition-all ${isPlayingTTS || selectedChoice ? 'border-[#FFF1BD] drop-shadow-[0_0_10px_rgba(255,241,189,0.9)]' : 'border-[#DFB15B]/70'}`} />
-        <div className={`absolute -bottom-0.5 -left-0.5 w-3.5 h-3.5 border-b-2 border-l-2 transition-all ${isPlayingTTS || selectedChoice ? 'border-[#FFF1BD] drop-shadow-[0_0_10px_rgba(255,241,189,0.9)]' : 'border-[#DFB15B]/70'}`} />
-        <div className={`absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 border-b-2 border-r-2 transition-all ${isPlayingTTS || selectedChoice ? 'border-[#FFF1BD] drop-shadow-[0_0_10px_rgba(255,241,189,0.9)]' : 'border-[#DFB15B]/70'}`} />
+        <div
+          className={`absolute -top-0.5 -left-0.5 w-3.5 h-3.5 border-t-2 border-l-2 transition-all ${
+            isPlayingTTS || selectedChoice
+              ? 'border-[#FFF1BD] drop-shadow-[0_0_10px_rgba(255,241,189,0.9)]'
+              : 'border-[#DFB15B]/70'
+          }`}
+        />
+        <div
+          className={`absolute -top-0.5 -right-0.5 w-3.5 h-3.5 border-t-2 border-r-2 transition-all ${
+            isPlayingTTS || selectedChoice
+              ? 'border-[#FFF1BD] drop-shadow-[0_0_10px_rgba(255,241,189,0.9)]'
+              : 'border-[#DFB15B]/70'
+          }`}
+        />
+        <div
+          className={`absolute -bottom-0.5 -left-0.5 w-3.5 h-3.5 border-b-2 border-l-2 transition-all ${
+            isPlayingTTS || selectedChoice
+              ? 'border-[#FFF1BD] drop-shadow-[0_0_10px_rgba(255,241,189,0.9)]'
+              : 'border-[#DFB15B]/70'
+          }`}
+        />
+        <div
+          className={`absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 border-b-2 border-r-2 transition-all ${
+            isPlayingTTS || selectedChoice
+              ? 'border-[#FFF1BD] drop-shadow-[0_0_10px_rgba(255,241,189,0.9)]'
+              : 'border-[#DFB15B]/70'
+          }`}
+        />
       </div>
 
       {/* Production Monitor Top HUD */}
@@ -381,7 +509,9 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
               <span>STBY</span>
             </span>
           )}
-          <span className="font-mono font-bold text-[#F3E5AB] drop-shadow-md">{displayTimecode}</span>
+          <span className="font-mono font-bold text-[#F3E5AB] drop-shadow-md">
+            {displayTimecode}
+          </span>
           <span className="hidden sm:inline-block px-1.5 py-0.5 rounded bg-black/60 border border-[#DFB15B]/20 text-[#C5A059] backdrop-blur-md">
             {selectedChoice ? 'CAM B • 85MM T1.5' : `SCENE ${turn.turnIndex} • TAKE ${turnIndex + 1}`}
           </span>
@@ -390,38 +520,75 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
         {/* Right: 4K HDR Specs & Interactive View Controls */}
         <div className="flex items-center space-x-1.5 pointer-events-auto">
           <span className="hidden sm:inline-block text-[#C5A059] text-[10px] bg-black/60 px-2 py-0.5 rounded border border-[#DFB15B]/20 backdrop-blur-md font-mono">
-            <span className="text-[#F3E5AB] font-bold mr-1">4K HDR</span> • 24FPS
             <span className="text-[#F3E5AB] font-bold mr-1">4K HDR</span> &bull; 24FPS
           </span>
 
-          {/* Framing Mode Toggle (Medium Shot / Close-up) */}
+          {/* Framing Mode Toggle Button: compact (User recommended) -> medium -> closeup */}
           <button
             type="button"
-            onClick={toggleFramingMode}
-            className={`px-2 py-1 rounded-md border text-[10px] sm:text-[11px] font-mono backdrop-blur-md transition-all flex items-center space-x-1 cursor-pointer ${
-              framingMode === 'medium'
-                ? 'bg-[#1e1910] text-[#F3E5AB] border-[#DFB15B]/50 hover:bg-[#282114] shadow-sm shadow-[#DFB15B]/20'
-                : 'bg-black/70 text-[#C5A059] border-white/15 hover:text-white'
-            }`}
-            title={framingMode === 'medium' ? '클로즈업(전체 화면)으로 전환' : '미디엄 샷(안정적인 인물 프레임)으로 전환'}
+            onClick={cycleFramingMode}
+            className="px-2 py-1 rounded-md border text-[10px] sm:text-[11px] font-mono backdrop-blur-md transition-all flex items-center space-x-1 cursor-pointer bg-[#1e1910] text-[#F3E5AB] border-[#DFB15B]/50 hover:bg-[#282114] shadow-sm shadow-[#DFB15B]/20"
+            title={
+              framingMode === 'compact'
+                ? '콤팩트 피드 (안정적인 인물 프레임 & 립싱크 최적화)'
+                : framingMode === 'medium'
+                ? '미디엄 샷 (스튜디오 모니터)'
+                : '클로즈업 (전체 화면)'
+            }
           >
             <Focus className="w-3 h-3 text-[#DFB15B]" />
-            <span>{framingMode === 'medium' ? '미디엄 샷' : '클로즈업'}</span>
+            <span>
+              {framingMode === 'compact'
+                ? '🎯 콤팩트'
+                : framingMode === 'medium'
+                ? '🎬 미디엄'
+                : '⛶ 클로즈업'}
+            </span>
           </button>
 
-          {/* Toggle Video On / Off */}
-          <button
-            type="button"
-            onClick={() => setIsVideoEnabled(!isVideoEnabled)}
-            className={`p-1.5 rounded-md border text-xs backdrop-blur-md transition-colors cursor-pointer ${
-              isVideoEnabled
-                ? 'bg-[#1e1910] text-[#F3E5AB] border-[#DFB15B]/40 hover:bg-[#282114]'
-                : 'bg-black/70 text-zinc-400 border-white/15 hover:text-white'
-            }`}
-            title={isVideoEnabled ? '영상 끄기 (절약 모드)' : '영상 켜기'}
-          >
-            {isVideoEnabled ? <Video className="w-3.5 h-3.5 text-[#DFB15B]" /> : <VideoOff className="w-3.5 h-3.5" />}
-          </button>
+          {/* Comms vs Video Feed Switcher for non-canon episodes (EP > 8) */}
+          {!visualConfig.hasAuthenticVideo && (
+            <button
+              type="button"
+              onClick={() => setForceVideoFeed(!forceVideoFeed)}
+              className={`p-1.5 rounded-md border text-xs backdrop-blur-md transition-colors cursor-pointer ${
+                forceVideoFeed
+                  ? 'bg-[#2a1a12] text-[#F3E5AB] border-[#DFB15B]/50 hover:bg-[#342217]'
+                  : 'bg-black/70 text-[#C5A059] border-[#DFB15B]/25 hover:text-white'
+              }`}
+              title={
+                forceVideoFeed
+                  ? '스튜디오 비디오 피드 활성화 중 (오디오 콤스 모드로 전환하려면 클릭)'
+                  : '오디오 콤스 모드 활성화 중 (배경 비디오 피드를 켜려면 클릭)'
+              }
+            >
+              {forceVideoFeed ? (
+                <Video className="w-3.5 h-3.5 text-[#DFB15B]" />
+              ) : (
+                <Radio className="w-3.5 h-3.5 text-[#DFB15B]" />
+              )}
+            </button>
+          )}
+
+          {/* Toggle Video On / Off for EP 1-8 */}
+          {visualConfig.hasAuthenticVideo && (
+            <button
+              type="button"
+              onClick={() => setIsVideoEnabled(!isVideoEnabled)}
+              className={`p-1.5 rounded-md border text-xs backdrop-blur-md transition-colors cursor-pointer ${
+                isVideoEnabled
+                  ? 'bg-[#1e1910] text-[#F3E5AB] border-[#DFB15B]/40 hover:bg-[#282114]'
+                  : 'bg-black/70 text-zinc-400 border-white/15 hover:text-white'
+              }`}
+              title={isVideoEnabled ? '영상 끄기 (오디오 모드)' : '영상 켜기'}
+            >
+              {isVideoEnabled ? (
+                <Video className="w-3.5 h-3.5 text-[#DFB15B]" />
+              ) : (
+                <VideoOff className="w-3.5 h-3.5" />
+              )}
+            </button>
+          )}
 
           {/* Toggle Theater View */}
           <button
@@ -443,88 +610,54 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
       <div className="absolute top-8 left-3.5 sm:left-4 z-10 pointer-events-none">
         <div className="flex items-center space-x-1.5 text-[9px] sm:text-[10px] text-[#F3E5AB] font-mono tracking-tight bg-black/75 backdrop-blur-md px-2 py-0.5 rounded-md border border-[#DFB15B]/25 shadow-sm">
           <span className="w-1.5 h-1.5 rounded-full bg-[#DFB15B]" />
-          <span className="truncate max-w-[200px] sm:max-w-none">{visualConfig.locationTag}</span>
+          <span className="truncate max-w-[200px] sm:max-w-none">
+            {visualConfig.locationTag}
+          </span>
         </div>
       </div>
 
       {/* Speaking Active Indicator Banner (Top Right) */}
-      {selectedChoice ? (
-        <div className="absolute top-8 right-3.5 sm:right-4 z-10 pointer-events-none">
-          <span className="px-2.5 py-0.5 rounded-full text-[9px] sm:text-[10px] font-mono font-bold bg-gradient-to-r from-[#DFB15B] via-[#F3E5AB] to-[#C5A059] text-[#140e03] shadow-lg shadow-[#DFB15B]/30 uppercase tracking-widest flex items-center space-x-1.5 border border-[#FFF2C6]/50">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#140e03] animate-ping" />
-            <span>LEAD ACTOR READY</span>
-          </span>
-        </div>
-      ) : isPlayingTTS ? (
-        <div className="absolute top-8 right-3.5 sm:right-4 z-10 pointer-events-none">
-          <span className="px-2.5 py-0.5 rounded-full text-[9px] sm:text-[10px] font-mono font-bold bg-gradient-to-r from-[#DFB15B] via-[#F3E5AB] to-[#C5A059] text-[#140e03] shadow-lg shadow-[#DFB15B]/30 uppercase tracking-widest flex items-center space-x-1.5 border border-[#FFF2C6]/50">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#140e03] animate-ping" />
-            <span>ACTOR SPEAKING</span>
-          </span>
-        </div>
-      ) : null}
-
-      {/* Bottom Cinematic HUD & Character Lower-Third */}
-      <div className="absolute bottom-2 inset-x-2.5 sm:bottom-2.5 sm:inset-x-4 flex items-end justify-between z-10 gap-2">
-        {/* Left: Character Info Banner with Avatar Badge */}
-        <div className="flex items-center space-x-2 sm:space-x-2.5 min-w-0 max-w-[170px] sm:max-w-xs">
-          <div
-            className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-black/80 border flex items-center justify-center text-base sm:text-xl backdrop-blur-md shadow-lg shrink-0 transition-all ${
-              selectedChoice
-                ? 'border-[#DFB15B] ring-2 ring-[#DFB15B]/60 shadow-[0_0_18px_rgba(223,177,91,0.5)] scale-105'
-                : isPlayingTTS
-                ? 'border-[#DFB15B] ring-2 ring-[#DFB15B]/40 shadow-[0_0_15px_rgba(223,177,91,0.3)] scale-105'
-                : 'border-[#DFB15B]/25'
-            }`}
-          >
-            <span>{selectedChoice ? '🎭' : turn.avatarEmoji}</span>
+      {isPlayingTTS && (
+        <div className="absolute top-8 right-3.5 sm:right-4 z-10 pointer-events-none animate-pulse">
+          <div className="flex items-center space-x-1.5 text-[9px] sm:text-[10px] font-mono tracking-tight bg-[#1c1409]/90 backdrop-blur-md px-2 py-0.5 rounded-md border border-[#DFB15B]/50 shadow-sm text-[#FFF2C6]">
+            <Volume2 className="w-3 h-3 text-[#DFB15B]" />
+            <span className="font-bold">SPEAKING</span>
           </div>
-          <div className="space-y-0.5 min-w-0">
+        </div>
+      )}
+
+      {/* Bottom Production Slate Bar */}
+      <div className="absolute bottom-2 inset-x-3 sm:inset-x-4 flex items-center justify-between z-10 pointer-events-auto">
+        {/* Character Title & Camera Rig Info */}
+        <div className="flex items-center space-x-2 sm:space-x-3 min-w-0 pr-2">
+          <span className="text-xl sm:text-2xl drop-shadow-md shrink-0">
+            {selectedChoice ? '🎭' : turn.avatarEmoji || visualConfig.genreEmoji}
+          </span>
+          <div className="min-w-0">
             <div className="flex items-center space-x-1.5">
-              <h4 className="text-xs sm:text-sm font-bold text-white tracking-wide drop-shadow-md truncate font-serif">
+              <span className="text-xs sm:text-sm font-bold text-white tracking-tight truncate drop-shadow-md">
                 {selectedChoice ? 'YOU (주연 배우)' : turn.speaker}
-              </h4>
-              <span className="hidden sm:inline-block text-[9px] px-1.5 py-0.2 rounded bg-[#1c1810] border border-[#DFB15B]/30 text-[#F3E5AB] font-mono font-bold shrink-0">
+              </span>
+              <span className="hidden sm:inline-block px-1.5 py-0.5 rounded bg-[#1c1810] border border-[#DFB15B]/30 text-[9px] font-mono font-bold text-[#F3E5AB]">
                 {selectedChoice ? 'LEAD ACTOR' : 'OPPONENT'}
               </span>
             </div>
             <p className="text-[9px] sm:text-[10px] text-[#C5A059] font-medium truncate drop-shadow-sm">
-              {selectedChoice ? 'Lead Protagonist • 반격 발화' : visualConfig.roleDescription}
+              {selectedChoice
+                ? 'Lead Protagonist • 반격 발화'
+                : visualConfig.roleDescription}
             </p>
           </div>
         </div>
 
-        {/* Right: Audio Wave Equalizer + Quick Audio Playback Controls */}
-        <div className="flex items-center space-x-1.5 sm:space-x-2 shrink-0">
-          {/* Dynamic Audio Equalizer Bars (Hidden on tiny mobile, visible on sm+) */}
-          <div
-            className="hidden sm:flex items-end space-x-0.5 h-6 px-2 py-1 rounded-md bg-black/80 border border-[#DFB15B]/20 backdrop-blur-md"
-            title="대사 오디오 파형"
-          >
-            {[1, 2, 3, 4, 5].map((bar) => {
-              const heights = ['h-2', 'h-4', 'h-3', 'h-5', 'h-2'];
-              return (
-                <span
-                  key={bar}
-                  className={`w-0.5 rounded-full transition-all duration-300 ${
-                    isPlayingTTS
-                      ? `${heights[(bar - 1) % heights.length]} bg-gradient-to-t from-[#DFB15B] to-[#FFF1BD] animate-pulse shadow-[0_0_6px_rgba(223,177,91,0.7)]`
-                      : 'h-1 bg-zinc-700'
-                  }`}
-                  style={{
-                    animationDuration: `${0.3 + bar * 0.15}s`,
-                  }}
-                />
-              );
-            })}
-          </div>
-
-          {/* Voice Tuning Modal Button */}
+        {/* Action Buttons: Voice Tuning, Repeat Loop, Listen/Stop */}
+        <div className="flex items-center space-x-1.5 shrink-0">
+          {/* Voice Tuning Button */}
           <button
             type="button"
             onClick={onOpenVoiceSettings}
-            className="flex items-center space-x-1 text-[10px] sm:text-[11px] font-medium text-[#F3E5AB] hover:text-white bg-[#16130d] hover:bg-[#221c12] p-1.5 sm:px-2.5 sm:py-1.5 rounded-md border border-[#DFB15B]/25 backdrop-blur-md transition-colors shrink-0 cursor-pointer"
-            title="성우 목소리 및 속도 조절"
+            className="flex items-center space-x-1 text-[10px] sm:text-[11px] font-bold p-1.5 sm:px-2.5 sm:py-1.5 rounded-md bg-[#16130d] hover:bg-[#221c12] text-[#C5A059] hover:text-[#F3E5AB] border border-[#DFB15B]/25 backdrop-blur-md transition-all active:scale-95 shrink-0 cursor-pointer"
+            title="원어민 음성 설정 및 볼륨 조절"
           >
             <Sliders className="w-3.5 h-3.5 text-[#DFB15B]" />
             <span className="hidden sm:inline">음성 튜닝</span>
@@ -540,9 +673,17 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
                   ? 'bg-gradient-to-r from-[#DFB15B] via-[#F3E5AB] to-[#C5A059] text-[#140e03] border-[#FFF2C6]/60 shadow-md shadow-[#DFB15B]/30 ring-1 ring-[#DFB15B]/50'
                   : 'bg-[#16130d] hover:bg-[#221c12] text-[#C5A059] hover:text-[#F3E5AB] border-[#DFB15B]/25'
               }`}
-              title={isRepeatTTS ? '영상 대사 반복 재생 끄기' : '영상 대사 반복 재생 켜기 (쉐도잉)'}
+              title={
+                isRepeatTTS
+                  ? '영상 대사 반복 재생 끄기'
+                  : '영상 대사 반복 재생 켜기 (쉐도잉)'
+              }
             >
-              <Repeat className={`w-3.5 h-3.5 ${isRepeatTTS ? 'text-[#140e03]' : 'text-[#DFB15B]'}`} />
+              <Repeat
+                className={`w-3.5 h-3.5 ${
+                  isRepeatTTS ? 'text-[#140e03]' : 'text-[#DFB15B]'
+                }`}
+              />
               <span className="hidden sm:inline">
                 {isRepeatTTS ? '반복 ON' : '반복 재생'}
               </span>
@@ -553,20 +694,17 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
           <button
             type="button"
             onClick={onPlayTTS}
-            className={`flex items-center space-x-1 sm:space-x-1.5 text-[10px] sm:text-xs font-bold px-2.5 sm:px-3 py-1.5 rounded-md border backdrop-blur-md transition-all active:scale-95 shadow-lg whitespace-nowrap shrink-0 cursor-pointer ${
-              isPlayingTTS
-                ? 'bg-[#1e1910] text-[#F3E5AB] border-[#DFB15B]/40 hover:bg-[#282114]'
-                : 'bg-gradient-to-r from-[#DFB15B] via-[#F3E5AB] to-[#C5A059] hover:brightness-105 text-[#140e03] border border-[#FFF2C6]/50 shadow-[#DFB15B]/25'
-            }`}
+            className="flex items-center space-x-1.5 text-xs font-bold px-3 py-1.5 sm:px-3.5 sm:py-1.5 rounded-md bg-gradient-to-r from-[#DFB15B] via-[#F3E5AB] to-[#C5A059] hover:brightness-105 text-[#140e03] border border-[#FFF2C6]/60 shadow-md shadow-[#DFB15B]/25 transition-all active:scale-95 shrink-0 cursor-pointer"
+            title={isPlayingTTS ? '대사 정지' : '대사 듣기'}
           >
             {isPlayingTTS ? (
               <>
-                <VolumeX className="w-3.5 h-3.5 text-[#F3E5AB] shrink-0" />
+                <VolumeX className="w-3.5 h-3.5 fill-[#140e03]" />
                 <span>정지</span>
               </>
             ) : (
               <>
-                <Volume2 className="w-3.5 h-3.5 text-[#140e03] shrink-0" />
+                <Volume2 className="w-3.5 h-3.5 fill-[#140e03]" />
                 <span>대사 듣기</span>
               </>
             )}
