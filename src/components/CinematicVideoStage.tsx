@@ -10,7 +10,6 @@ import {
   Play,
   Focus,
   Repeat,
-  Radio,
 } from 'lucide-react';
 import type { Choice, Episode, SceneTurn } from '../types';
 import { getSceneVisualConfig } from '../utils/sceneVisualMap';
@@ -29,7 +28,7 @@ interface CinematicVideoStageProps {
   onToggleRepeatTTS?: () => void;
 }
 
-export type FramingMode = 'compact' | 'medium' | 'closeup';
+export type FramingMode = 'widescreen' | 'cinemascope' | 'closeup';
 
 export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
   episode,
@@ -46,24 +45,24 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
   const [isVideoEnabled, setIsVideoEnabled] = useState<boolean>(true);
   const [isTheaterMode, setIsTheaterMode] = useState<boolean>(false);
 
-  // Framing scale: Default to 'compact' (~46% monitor) as requested by user ("영상 캐릭터가 좀 작아야 할 듯")
+  // Framing: Default to 'widescreen' (Full-size 16:9 cinema stage filling the container)
   const [framingMode, setFramingMode] = useState<FramingMode>(() => {
     try {
       const saved = localStorage.getItem('dramactor_video_framing');
-      if (saved === 'compact' || saved === 'medium' || saved === 'closeup') {
+      if (saved === 'widescreen' || saved === 'cinemascope' || saved === 'closeup') {
         return saved;
       }
     } catch {
       // Fallback
     }
-    return 'compact';
+    return 'widescreen';
   });
 
   const cycleFramingMode = () => {
-    let nextMode: FramingMode = 'compact';
-    if (framingMode === 'compact') nextMode = 'medium';
-    else if (framingMode === 'medium') nextMode = 'closeup';
-    else nextMode = 'compact';
+    let nextMode: FramingMode = 'widescreen';
+    if (framingMode === 'widescreen') nextMode = 'cinemascope';
+    else if (framingMode === 'cinemascope') nextMode = 'closeup';
+    else nextMode = 'widescreen';
 
     setFramingMode(nextMode);
     try {
@@ -82,10 +81,6 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
   const visualConfig = getSceneVisualConfig(episode.episodeNumber, turn.turnIndex, episode, turn);
   const [prevVisualSrc, setPrevVisualSrc] = useState<string>(visualConfig.videoSrc);
   const [useFallbackVideo, setUseFallbackVideo] = useState<boolean>(false);
-
-  // EP 9~300 default to studio audio comms stage to eliminate mismatched lip sync,
-  // but user can toggle to force video archetype if desired.
-  const [forceVideoFeed, setForceVideoFeed] = useState<boolean>(false);
 
   if (visualConfig.videoSrc !== prevVisualSrc) {
     setPrevVisualSrc(visualConfig.videoSrc);
@@ -215,20 +210,6 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
   // Video renders whenever video is enabled and no error
   const shouldRenderVideo = isVideoEnabled && !videoError;
 
-  // Monitor sizing according to user-selected framing mode
-  // Default 'compact' fulfills user request: "영상 캐릭터가 좀 작아야 할 듯"
-  const getFramingContainerClasses = () => {
-    switch (framingMode) {
-      case 'compact':
-        return 'w-[64%] h-[72%] sm:w-[48%] sm:h-[76%] rounded-2xl shadow-2xl shadow-black/95 ring-1 ring-[#DFB15B]/40 bg-black/95';
-      case 'medium':
-        return 'w-[84%] h-[84%] sm:w-[72%] sm:h-[86%] rounded-2xl shadow-2xl shadow-black/95 ring-1 ring-[#DFB15B]/30 bg-black/90';
-      case 'closeup':
-      default:
-        return 'w-full h-full rounded-none';
-    }
-  };
-
   return (
     <div
       className={`relative w-full rounded-2xl overflow-hidden border border-white/15 shadow-2xl transition-all duration-500 bg-zinc-950 aspect-video ${
@@ -243,146 +224,107 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
       />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(20,24,32,0.85)_0%,rgba(9,9,11,0.98)_85%)] pointer-events-none" />
 
-      {/* Center Stage Presentation Area */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div
-          className={`relative transition-all duration-500 ease-out flex items-center justify-center overflow-hidden ${getFramingContainerClasses()}`}
-        >
-          {shouldRenderVideo ? (
-            /* Mode 1: Authentic Video Feed (EP 1-8 or User-forced Video) */
-            <>
-              <video
-                ref={videoRef}
-                src={activeVideoSrc}
-                muted
-                playsInline
-                onEnded={() => {
-                  if (videoRef.current) {
-                    try {
-                      videoRef.current.pause();
-                    } catch {
-                      // Safe fallback
-                    }
+      {/* Center Stage Presentation Area: 100% Full-Size 16:9 Cinematic Video Stage */}
+      <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
+        {shouldRenderVideo ? (
+          <>
+            <video
+              ref={videoRef}
+              src={activeVideoSrc}
+              muted
+              playsInline
+              onEnded={() => {
+                if (videoRef.current) {
+                  try {
+                    videoRef.current.pause();
+                  } catch {
+                    // Safe fallback
                   }
-                }}
-                onLoadedData={() => {
-                  setIsVideoLoaded(true);
-                  if (videoRef.current && !isPlayingTTS) {
-                    try {
-                      videoRef.current.pause();
-                      videoRef.current.currentTime = 0;
-                    } catch {
-                      // Safe fallback
-                    }
+                }
+              }}
+              onLoadedData={() => {
+                setIsVideoLoaded(true);
+                if (videoRef.current && !isPlayingTTS) {
+                  try {
+                    videoRef.current.pause();
+                    videoRef.current.currentTime = 0;
+                  } catch {
+                    // Safe fallback
                   }
-                }}
-                onError={handleVideoError}
-                className={`w-full h-full object-cover transition-opacity duration-500 ${
-                  isVideoLoaded ? 'opacity-100' : 'opacity-0'
-                } ${isPlayingTTS && framingMode === 'closeup' ? 'animate-cinematic-float' : ''}`}
-              />
+                }
+              }}
+              onError={handleVideoError}
+              className={`w-full h-full object-cover transition-all duration-500 ${
+                isVideoLoaded ? 'opacity-100' : 'opacity-0'
+              } ${framingMode === 'closeup' ? 'scale-105' : 'scale-100'}`}
+            />
 
-              {/* Inner Lens Vignette for the video card */}
-              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_55%,rgba(0,0,0,0.45)_100%)] pointer-events-none" />
+            {/* Inner Lens Vignette for authentic film atmosphere */}
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_55%,rgba(0,0,0,0.45)_100%)] pointer-events-none" />
 
-              {/* Monitor feed label when in compact or medium mode */}
-              {framingMode !== 'closeup' && (
-                <div className="absolute top-2 left-2.5 px-1.5 py-0.5 rounded bg-black/75 border border-[#DFB15B]/25 text-[8px] font-mono text-[#F3E5AB]/90 tracking-wider pointer-events-none flex items-center space-x-1">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#DFB15B]" />
-                  <span>
-                    CAM FEED &bull; {framingMode === 'compact' ? 'COMPACT' : 'MEDIUM'}
-                  </span>
-                </div>
-              )}
-            </>
-          ) : (
-            /* Mode 2: Cinematic Audio-Reactive Comms Monitor (EP 9-300: 100% Lip-Sync Flawless) */
-            <div className="relative w-full h-full p-4 flex flex-col items-center justify-between text-center select-none bg-gradient-to-b from-[#141018]/90 via-[#0a080d]/95 to-[#050406]">
-              {/* Scanline and Grid Texture */}
-              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(223,177,91,0.08)_0%,transparent_75%)] pointer-events-none" />
-              <div className="absolute inset-0 opacity-10 bg-[linear-gradient(rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.06)_1px,transparent_1px)] bg-[size:16px_16px] pointer-events-none" />
+            {/* 2.39:1 Cinemascope Anamorphic Matte Bars */}
+            {framingMode === 'cinemascope' && (
+              <>
+                <div className="absolute top-0 inset-x-0 h-[8%] bg-black/95 z-10 pointer-events-none transition-all duration-300" />
+                <div className="absolute bottom-0 inset-x-0 h-[8%] bg-black/95 z-10 pointer-events-none transition-all duration-300" />
+              </>
+            )}
 
-              {/* Monitor Top Status */}
-              <div className="w-full flex items-center justify-between z-10 border-b border-[#DFB15B]/20 pb-1 px-1">
-                <div className="flex items-center space-x-1.5">
-                  <span
-                    className={`w-2 h-2 rounded-full ${
-                      isPlayingTTS ? 'bg-[#DFB15B] animate-ping' : 'bg-[#7A5B1E]'
-                    }`}
-                  />
-                  <span className="text-[9px] font-mono font-bold text-[#F3E5AB] tracking-widest uppercase">
-                    {isPlayingTTS ? 'LIVE AUDIO COMMS' : 'COMMS STANDBY'}
-                  </span>
-                </div>
-                <span className="text-[8px] font-mono text-[#C5A059] uppercase tracking-wider">
-                  48 kHz &bull; STUDIO LINK
-                </span>
-              </div>
-
-              {/* Center Character Avatar & Waveform Visualizer */}
-              <div className="my-auto flex flex-col items-center justify-center space-y-2.5 z-10">
-                {/* Avatar with Audio Pulse Ring */}
-                <div className="relative">
-                  <div
-                    className={`w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center text-3xl sm:text-4xl shadow-xl transition-all duration-300 ${
-                      isPlayingTTS
-                        ? 'bg-gradient-to-br from-[#2a2012] to-[#120e08] ring-2 ring-[#DFB15B] shadow-[0_0_20px_rgba(223,177,91,0.5)] scale-105'
-                        : 'bg-[#151219] ring-1 ring-white/10'
-                    }`}
-                  >
-                    {turn.avatarEmoji || visualConfig.genreEmoji}
+            {/* Lower-Third Live Vocal Waveform & Speaker Transmission HUD */}
+            {isPlayingTTS && !selectedChoice && (
+              <div className="absolute bottom-11 sm:bottom-12 inset-x-3 sm:inset-x-6 flex items-center justify-between p-2 sm:p-2.5 rounded-xl bg-black/85 backdrop-blur-md border border-[#DFB15B]/40 shadow-2xl z-20 pointer-events-none animate-fade-in">
+                <div className="flex items-center space-x-2 sm:space-x-2.5 min-w-0">
+                  <div className="w-8 h-8 rounded-full bg-[#1c1408] border border-[#DFB15B]/60 flex items-center justify-center shrink-0 shadow-md">
+                    <span className="text-base">{turn.avatarEmoji || visualConfig.genreEmoji}</span>
                   </div>
-                  {isPlayingTTS && (
-                    <div className="absolute -inset-1.5 rounded-full border border-[#DFB15B]/40 animate-ping pointer-events-none" />
-                  )}
-                </div>
-
-                {/* Speaker Info in Comms Monitor */}
-                <div className="space-y-0.5">
-                  <span className="text-[8px] font-mono uppercase tracking-wider text-[#DFB15B]/80">
-                    TRANSMISSION FEED
-                  </span>
-                  <p className="text-[10px] sm:text-[11px] text-[#F3E5AB] font-bold font-mono truncate max-w-[200px] sm:max-w-[260px]">
-                    {visualConfig.roleDescription}
-                  </p>
+                  <div className="min-w-0">
+                    <div className="flex items-center space-x-1.5">
+                      <span className="w-2 h-2 rounded-full bg-[#DFB15B] animate-ping" />
+                      <span className="text-[9px] font-mono font-bold text-[#F3E5AB] uppercase tracking-wider">
+                        LIVE AUDIO TRANSMISSION
+                      </span>
+                    </div>
+                    <p className="text-[11px] sm:text-xs font-bold text-white truncate font-sans">
+                      {turn.speaker}
+                    </p>
+                  </div>
                 </div>
 
                 {/* 16-Bar Real-Time Audio Equalizer Waveform */}
-                <div className="flex items-center justify-center space-x-1 sm:space-x-1.5 h-6 pt-1">
+                <div className="flex items-center space-x-1 sm:space-x-1.5 h-5 shrink-0 pl-2">
                   {[
                     'h-1.5', 'h-3', 'h-4', 'h-5', 'h-4', 'h-3', 'h-5', 'h-6',
                     'h-5', 'h-4', 'h-5', 'h-3', 'h-4', 'h-3', 'h-2', 'h-1.5',
                   ].map((heightClass, idx) => (
                     <span
                       key={idx}
-                      className={`w-1 rounded-full transition-all duration-150 ${
-                        isPlayingTTS
-                          ? `bg-gradient-to-t from-[#C5A059] via-[#DFB15B] to-[#FFF2C6] ${heightClass} ${
-                              idx % 4 === 0
-                                ? 'animate-wave-1'
-                                : idx % 4 === 1
-                                ? 'animate-wave-2'
-                                : idx % 4 === 2
-                                ? 'animate-wave-3'
-                                : 'animate-wave-4'
-                            }`
-                          : 'h-1 bg-[#3a3020]'
+                      className={`w-1 rounded-full bg-gradient-to-t from-[#C5A059] via-[#DFB15B] to-[#FFF2C6] ${heightClass} ${
+                        idx % 4 === 0
+                          ? 'animate-wave-1'
+                          : idx % 4 === 1
+                          ? 'animate-wave-2'
+                          : idx % 4 === 2
+                          ? 'animate-wave-3'
+                          : 'animate-wave-4'
                       }`}
                     />
                   ))}
                 </div>
               </div>
-
-              {/* Monitor Bottom Telemetry */}
-              <div className="w-full flex items-center justify-between z-10 border-t border-[#DFB15B]/15 pt-1 px-1 text-[8px] font-mono text-[#F3E5AB]/75">
-                <span className="truncate max-w-[140px] sm:max-w-none">
-                  {visualConfig.locationTag}
-                </span>
-                <span className="text-[#C5A059]">SYNC: 100% NATIVE</span>
-              </div>
+            )}
+          </>
+        ) : (
+          /* Resilient Fallback Audio Stage */
+          <div className="relative w-full h-full p-4 flex flex-col items-center justify-center text-center select-none bg-gradient-to-b from-[#141018]/90 via-[#0a080d]/95 to-[#050406]">
+            {/* Scanline and Grid Texture */}
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(223,177,91,0.08)_0%,transparent_75%)] pointer-events-none" />
+            <div className="w-16 h-16 rounded-full bg-[#151219] ring-1 ring-white/10 flex items-center justify-center text-4xl shadow-xl mb-3">
+              {turn.avatarEmoji || visualConfig.genreEmoji}
             </div>
-          )}
-        </div>
+            <p className="text-sm font-bold text-white font-mono">{turn.speaker}</p>
+            <p className="text-xs text-[#C5A059] font-mono mt-1">{visualConfig.roleDescription}</p>
+          </div>
+        )}
       </div>
 
       {/* Cinematic Lens Vignette & Depth Falloff */}
@@ -550,66 +492,40 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
             onClick={cycleFramingMode}
             className="px-2 py-1 rounded-md border text-[10px] sm:text-[11px] font-mono backdrop-blur-md transition-all flex items-center space-x-1 cursor-pointer bg-[#1e1910] text-[#F3E5AB] border-[#DFB15B]/50 hover:bg-[#282114] shadow-sm shadow-[#DFB15B]/20"
             title={
-              framingMode === 'compact'
-                ? '콤팩트 피드 (안정적인 인물 프레임 & 립싱크 최적화)'
-                : framingMode === 'medium'
-                ? '미디엄 샷 (스튜디오 모니터)'
-                : '클로즈업 (전체 화면)'
+              framingMode === 'widescreen'
+                ? '와이드스크린 16:9 (풀스크린 시네마)'
+                : framingMode === 'cinemascope'
+                ? '시네마스코프 2.39:1 (애너모픽 레터박스)'
+                : '클로즈업 줌 (배우 포커스)'
             }
           >
             <Focus className="w-3 h-3 text-[#DFB15B]" />
             <span>
-              {framingMode === 'compact'
-                ? '🎯 콤팩트'
-                : framingMode === 'medium'
-                ? '🎬 미디엄'
-                : '⛶ 클로즈업'}
+              {framingMode === 'widescreen'
+                ? '🎬 16:9 와이드'
+                : framingMode === 'cinemascope'
+                ? '📽️ 2.39:1'
+                : '🎯 클로즈업'}
             </span>
           </button>
 
-          {/* Comms vs Video Feed Switcher for non-canon episodes (EP > 8) */}
-          {!visualConfig.hasAuthenticVideo && (
-            <button
-              type="button"
-              onClick={() => setForceVideoFeed(!forceVideoFeed)}
-              className={`p-1.5 rounded-md border text-xs backdrop-blur-md transition-colors cursor-pointer ${
-                forceVideoFeed
-                  ? 'bg-[#2a1a12] text-[#F3E5AB] border-[#DFB15B]/50 hover:bg-[#342217]'
-                  : 'bg-black/70 text-[#C5A059] border-[#DFB15B]/25 hover:text-white'
-              }`}
-              title={
-                forceVideoFeed
-                  ? '스튜디오 비디오 피드 활성화 중 (오디오 콤스 모드로 전환하려면 클릭)'
-                  : '오디오 콤스 모드 활성화 중 (배경 비디오 피드를 켜려면 클릭)'
-              }
-            >
-              {forceVideoFeed ? (
-                <Video className="w-3.5 h-3.5 text-[#DFB15B]" />
-              ) : (
-                <Radio className="w-3.5 h-3.5 text-[#DFB15B]" />
-              )}
-            </button>
-          )}
-
-          {/* Toggle Video On / Off for EP 1-8 */}
-          {visualConfig.hasAuthenticVideo && (
-            <button
-              type="button"
-              onClick={() => setIsVideoEnabled(!isVideoEnabled)}
-              className={`p-1.5 rounded-md border text-xs backdrop-blur-md transition-colors cursor-pointer ${
-                isVideoEnabled
-                  ? 'bg-[#1e1910] text-[#F3E5AB] border-[#DFB15B]/40 hover:bg-[#282114]'
-                  : 'bg-black/70 text-zinc-400 border-white/15 hover:text-white'
-              }`}
-              title={isVideoEnabled ? '영상 끄기 (오디오 모드)' : '영상 켜기'}
-            >
-              {isVideoEnabled ? (
-                <Video className="w-3.5 h-3.5 text-[#DFB15B]" />
-              ) : (
-                <VideoOff className="w-3.5 h-3.5" />
-              )}
-            </button>
-          )}
+          {/* Toggle Video On / Off */}
+          <button
+            type="button"
+            onClick={() => setIsVideoEnabled(!isVideoEnabled)}
+            className={`p-1.5 rounded-md border text-xs backdrop-blur-md transition-colors cursor-pointer ${
+              isVideoEnabled
+                ? 'bg-[#1e1910] text-[#F3E5AB] border-[#DFB15B]/40 hover:bg-[#282114]'
+                : 'bg-black/70 text-zinc-400 border-white/15 hover:text-white'
+            }`}
+            title={isVideoEnabled ? '영상 끄기 (오디오 모드)' : '영상 켜기'}
+          >
+            {isVideoEnabled ? (
+              <Video className="w-3.5 h-3.5 text-[#DFB15B]" />
+            ) : (
+              <VideoOff className="w-3.5 h-3.5" />
+            )}
+          </button>
 
           {/* Toggle Theater View */}
           <button

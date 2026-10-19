@@ -53,7 +53,7 @@ describe('Cinematic Scene Visual Map Engine', () => {
     );
 
     expect(ep9Config.locationTag).toContain('WHITE HOUSE SITUATION ROOM');
-    expect(ep9Config.videoSrc).toBe('/videos/ep8_turn1.mp4');
+    expect(ep9Config.videoSrc).toBe('/videos/ep9_turn1.mp4');
     expect(ep9Config.roleDescription).toBe('General Hayes • Chairman of Joint Chiefs');
     expect(ep9Config.atmosphereBadge).toContain('DEFCON');
   });
@@ -65,7 +65,7 @@ describe('Cinematic Scene Visual Map Engine', () => {
       { genre: 'Michelin Culinary' },
       { speaker: 'Chef Ramsay' }
     );
-    expect(culinary.videoSrc).toBe('/videos/ep5_turn1.mp4');
+    expect(culinary.videoSrc).toBe('/videos/ep10_turn1.mp4');
     expect(culinary.locationTag).toContain('KITCHEN');
     expect(culinary.roleDescription).toBe('Head Chef • Executive Culinary Director');
 

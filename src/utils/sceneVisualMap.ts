@@ -112,7 +112,7 @@ export const GENRE_VISUAL_PRESETS: Record<string, GenreVisualPreset> = {
   },
   // 9. White House Politics
   'White House Politics': {
-    videoEp: 8,
+    videoEp: 9,
     locationTag: 'THE WHITE HOUSE SITUATION ROOM • LEVEL -2 BUNKER',
     cameraRig: 'ARRI ALEXA MINI • ZEISS MASTER PRIME 35MM T1.3',
     themeColor: 'from-slate-950 via-zinc-950 to-red-950/40',
@@ -123,7 +123,7 @@ export const GENRE_VISUAL_PRESETS: Record<string, GenreVisualPreset> = {
   },
   // 10. Michelin Culinary
   'Michelin Culinary': {
-    videoEp: 5,
+    videoEp: 10,
     locationTag: 'MANHATTAN LE BERNARDIN • 3-STAR SERVICE KITCHEN',
     cameraRig: 'ARRI MINI LF • LEICA SUMMILUX 35MM',
     themeColor: 'from-amber-950/60 via-orange-950/40 to-zinc-950',
@@ -682,7 +682,7 @@ export const getSceneVisualConfig = (
   episode?: { genre?: string; title?: string },
   _turn?: { speaker?: string; avatarEmoji?: string }
 ): SceneVisualConfig => {
-  const TOTAL_PRODUCED = 8;
+  const TOTAL_PRODUCED = 10;
   const hasAuthenticVideo = episodeNumber <= TOTAL_PRODUCED;
 
   // 1. If explicit genre preset exists, use high-fidelity scenario mapping
@@ -793,7 +793,6 @@ export const getSceneVisualConfig = (
         genreEmoji: '💻',
       };
     case 8:
-    default:
       return {
         locationTag: 'QUEENS SAFE HOUSE • INTERROGATION CELL B',
         cameraRig: 'ARRI ALEXA MINI • ZEISS MASTER PRIME 35MM',
@@ -804,6 +803,31 @@ export const getSceneVisualConfig = (
         roleDescription: 'Agent Miller • FBI Lead Investigator',
         atmosphereBadge: '🚨 01:30 EST • LATE NIGHT INTERROGATION',
         genreEmoji: '🔍',
+      };
+    case 9:
+      return {
+        locationTag: 'THE WHITE HOUSE SITUATION ROOM • LEVEL -2 BUNKER',
+        cameraRig: 'ARRI ALEXA MINI • ZEISS MASTER PRIME 35MM T1.3',
+        videoSrc: turnVideo || '/videos/ep9.mp4',
+        hasAuthenticVideo,
+        themeColor: 'from-slate-950 via-zinc-950 to-red-950/40',
+        accentGlow: 'text-red-400 border-red-500/40',
+        roleDescription: 'General Hayes • Chairman of Joint Chiefs',
+        atmosphereBadge: '🚨 00:04 EST • DEFCON 2 ALERT',
+        genreEmoji: '🏛️',
+      };
+    case 10:
+    default:
+      return {
+        locationTag: 'MANHATTAN LE BERNARDIN • 3-STAR SERVICE KITCHEN',
+        cameraRig: 'ARRI MINI LF • LEICA SUMMILUX 35MM',
+        videoSrc: turnVideo || '/videos/ep10.mp4',
+        hasAuthenticVideo,
+        themeColor: 'from-amber-950/60 via-orange-950/40 to-zinc-950',
+        accentGlow: 'text-amber-400 border-amber-500/40',
+        roleDescription: 'Head Chef • Executive Culinary Director',
+        atmosphereBadge: '🔥 19:45 EST • DINNER SERVICE RUSH',
+        genreEmoji: '🔪',
       };
   }
 };
