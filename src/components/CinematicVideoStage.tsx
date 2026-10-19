@@ -189,13 +189,34 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
     return () => unsubscribe();
   }, [isPlayingTTS, isVideoEnabled, videoError]);
 
-  // Should we show HTML5 video or the Audio-Reactive Comms Feed?
-  // Episodes 1-8 have authentic shot video. Episodes 9-300 default to audio comms feed
-  // to prevent uncanny valley mouth mismatch unless the user explicitly forces video feed.
-  const shouldRenderVideo =
-    isVideoEnabled && !videoError && (visualConfig.hasAuthenticVideo || forceVideoFeed);
+  // Handle dialogue play: triggers both audio and synchronized video playback immediately
+  const handlePlayDialogue = () => {
+    const video = videoRef.current;
+    if (video && isVideoEnabled && !videoError) {
+      try {
+        if (!isPlayingTTS) {
+          video.currentTime = 0;
+          const playPromise = video.play();
+          if (playPromise && typeof playPromise.catch === 'function') {
+            playPromise.catch(() => {
+              // Safe fallback
+            });
+          }
+        } else {
+          video.pause();
+        }
+      } catch {
+        // Safe fallback
+      }
+    }
+    onPlayTTS();
+  };
+
+  // Video renders whenever video is enabled and no error
+  const shouldRenderVideo = isVideoEnabled && !videoError;
 
   // Monitor sizing according to user-selected framing mode
+  // Default 'compact' fulfills user request: "영상 캐릭터가 좀 작아야 할 듯"
   const getFramingContainerClasses = () => {
     switch (framingMode) {
       case 'compact':
@@ -378,12 +399,12 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
       {/* Center Stage: Interactive Center Play Overlay when dialogue is idle and no choice selected */}
       {!isPlayingTTS && !selectedChoice && (
         <div
-          onClick={onPlayTTS}
+          onClick={handlePlayDialogue}
           className="absolute inset-0 flex items-center justify-center cursor-pointer group z-20"
           role="button"
           tabIndex={0}
           onKeyDown={(e) => {
-            if (e.key === 'Enter' || e.key === ' ') onPlayTTS();
+            if (e.key === 'Enter' || e.key === ' ') handlePlayDialogue();
           }}
           title="대사 듣기 (클릭하여 재생)"
         >
@@ -693,7 +714,7 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
           {/* Listen / Stop Audio Button */}
           <button
             type="button"
-            onClick={onPlayTTS}
+            onClick={handlePlayDialogue}
             className="flex items-center space-x-1.5 text-xs font-bold px-3 py-1.5 sm:px-3.5 sm:py-1.5 rounded-md bg-gradient-to-r from-[#DFB15B] via-[#F3E5AB] to-[#C5A059] hover:brightness-105 text-[#140e03] border border-[#FFF2C6]/60 shadow-md shadow-[#DFB15B]/25 transition-all active:scale-95 shrink-0 cursor-pointer"
             title={isPlayingTTS ? '대사 정지' : '대사 듣기'}
           >
