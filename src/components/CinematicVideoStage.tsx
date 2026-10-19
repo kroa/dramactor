@@ -269,49 +269,6 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
                 <div className="absolute bottom-0 inset-x-0 h-[8%] bg-black/95 z-10 pointer-events-none transition-all duration-300" />
               </>
             )}
-
-            {/* Lower-Third Live Vocal Waveform & Speaker Transmission HUD */}
-            {isPlayingTTS && !selectedChoice && (
-              <div className="absolute bottom-11 sm:bottom-12 inset-x-3 sm:inset-x-6 flex items-center justify-between p-2 sm:p-2.5 rounded-xl bg-black/85 backdrop-blur-md border border-[#DFB15B]/40 shadow-2xl z-20 pointer-events-none animate-fade-in">
-                <div className="flex items-center space-x-2 sm:space-x-2.5 min-w-0">
-                  <div className="w-8 h-8 rounded-full bg-[#1c1408] border border-[#DFB15B]/60 flex items-center justify-center shrink-0 shadow-md">
-                    <span className="text-base">{turn.avatarEmoji || visualConfig.genreEmoji}</span>
-                  </div>
-                  <div className="min-w-0">
-                    <div className="flex items-center space-x-1.5">
-                      <span className="w-2 h-2 rounded-full bg-[#DFB15B] animate-ping" />
-                      <span className="text-[9px] font-mono font-bold text-[#F3E5AB] uppercase tracking-wider">
-                        LIVE AUDIO TRANSMISSION
-                      </span>
-                    </div>
-                    <p className="text-[11px] sm:text-xs font-bold text-white truncate font-sans">
-                      {turn.speaker}
-                    </p>
-                  </div>
-                </div>
-
-                {/* 16-Bar Real-Time Audio Equalizer Waveform */}
-                <div className="flex items-center space-x-1 sm:space-x-1.5 h-5 shrink-0 pl-2">
-                  {[
-                    'h-1.5', 'h-3', 'h-4', 'h-5', 'h-4', 'h-3', 'h-5', 'h-6',
-                    'h-5', 'h-4', 'h-5', 'h-3', 'h-4', 'h-3', 'h-2', 'h-1.5',
-                  ].map((heightClass, idx) => (
-                    <span
-                      key={idx}
-                      className={`w-1 rounded-full bg-gradient-to-t from-[#C5A059] via-[#DFB15B] to-[#FFF2C6] ${heightClass} ${
-                        idx % 4 === 0
-                          ? 'animate-wave-1'
-                          : idx % 4 === 1
-                          ? 'animate-wave-2'
-                          : idx % 4 === 2
-                          ? 'animate-wave-3'
-                          : 'animate-wave-4'
-                      }`}
-                    />
-                  ))}
-                </div>
-              </div>
-            )}
           </>
         ) : (
           /* Resilient Fallback Audio Stage */
