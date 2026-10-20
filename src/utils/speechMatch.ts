@@ -288,7 +288,29 @@ export function getBestVoiceForCharacter(speakerName = '', customVoiceURI?: stri
     lowerSpeaker.includes('victoria') ||
     lowerSpeaker.includes('woman') ||
     lowerSpeaker.includes('rachel') ||
-    lowerSpeaker.includes('donna');
+    lowerSpeaker.includes('donna') ||
+    lowerSpeaker.includes('carrie') ||
+    lowerSpeaker.includes('miranda') ||
+    lowerSpeaker.includes('olivia') ||
+    lowerSpeaker.includes('jessica') ||
+    lowerSpeaker.includes('bailey') ||
+    lowerSpeaker.includes('claire') ||
+    lowerSpeaker.includes('sarah') ||
+    lowerSpeaker.includes('evelyn') ||
+    lowerSpeaker.includes('diana') ||
+    lowerSpeaker.includes('katherine') ||
+    lowerSpeaker.includes('miriam') ||
+    lowerSpeaker.includes('natalie') ||
+    lowerSpeaker.includes('rebecca') ||
+    lowerSpeaker.includes('emma') ||
+    lowerSpeaker.includes('chloe') ||
+    lowerSpeaker.includes('sophia') ||
+    lowerSpeaker.includes('anna') ||
+    lowerSpeaker.includes('lisa') ||
+    lowerSpeaker.includes('maria') ||
+    lowerSpeaker.includes('dr. grey') ||
+    lowerSpeaker.includes('dr. yang') ||
+    lowerSpeaker.includes('agent scully');
 
   const enVoices = voices.filter((v) => v.lang.startsWith('en'));
 
@@ -296,18 +318,18 @@ export function getBestVoiceForCharacter(speakerName = '', customVoiceURI?: stri
 
   if (isFemale) {
     selectedVoice =
-      enVoices.find((v) => v.name.includes('Natural') && (v.name.includes('Jenny') || v.name.includes('Aria') || v.name.includes('Ava') || v.name.includes('Sara'))) ||
-      enVoices.find((v) => v.name.includes('Google') && (v.name.includes('Female') || v.name.includes('en-US'))) ||
-      enVoices.find((v) => v.name.includes('Samantha') || v.name.includes('Victoria') || v.name.includes('Karen') || v.name.includes('Zira')) ||
+      enVoices.find((v) => v.name.includes('Natural') && (v.name.includes('Jenny') || v.name.includes('Aria') || v.name.includes('Ava') || v.name.includes('Sara') || v.name.includes('Ana') || v.name.includes('Michelle'))) ||
+      enVoices.find((v) => v.name.includes('Samantha') || v.name.includes('Victoria') || v.name.includes('Karen') || v.name.includes('Zira') || v.name.includes('Susan') || v.name.includes('Catherine') || v.name.includes('Linda') || v.name.includes('Hazel')) ||
       enVoices.find((v) => v.name.toLowerCase().includes('female')) ||
+      enVoices.find((v) => !/(David|Guy|Mark|George|Daniel|Alex|Christopher|Davis|Steffan|Fred|James|Richard|Male)/i.test(v.name)) ||
       enVoices[0] ||
       null;
   } else {
     selectedVoice =
-      enVoices.find((v) => v.name.includes('Natural') && (v.name.includes('Guy') || v.name.includes('Christopher') || v.name.includes('Davis') || v.name.includes('Steffan'))) ||
-      enVoices.find((v) => v.name.includes('Google') && (v.name.includes('Male') || v.name.includes('US English'))) ||
-      enVoices.find((v) => v.name.includes('Daniel') || v.name.includes('Alex') || v.name.includes('David') || v.name.includes('Fred')) ||
+      enVoices.find((v) => v.name.includes('Natural') && (v.name.includes('Guy') || v.name.includes('Christopher') || v.name.includes('Davis') || v.name.includes('Steffan') || v.name.includes('Brian') || v.name.includes('Ryan'))) ||
+      enVoices.find((v) => v.name.includes('Daniel') || v.name.includes('Alex') || v.name.includes('David') || v.name.includes('Fred') || v.name.includes('George') || v.name.includes('Mark') || v.name.includes('James')) ||
       enVoices.find((v) => v.name.toLowerCase().includes('male')) ||
+      enVoices.find((v) => !/(Zira|Jenny|Aria|Ava|Sara|Samantha|Victoria|Karen|Susan|Catherine|Linda|Hazel|Female)/i.test(v.name)) ||
       enVoices[0] ||
       null;
   }
@@ -333,6 +355,9 @@ export function getBestVoiceForCharacter(speakerName = '', customVoiceURI?: stri
   } else if (lowerSpeaker.includes('victoria')) {
     recommendedPitch = 0.98;
     recommendedRate = 0.92;
+  } else if (lowerSpeaker.includes('carrie')) {
+    recommendedPitch = 1.02;
+    recommendedRate = 0.95;
   } else if (lowerSpeaker.includes('miller') || lowerSpeaker.includes('agent')) {
     recommendedPitch = 0.90;
     recommendedRate = 0.94;

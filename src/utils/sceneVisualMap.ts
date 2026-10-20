@@ -167,12 +167,12 @@ export const GENRE_VISUAL_PRESETS: Record<string, GenreVisualPreset> = {
   },
   // 14. Crisis PR Management
   'Crisis PR Management': {
-    videoEp: 7,
+    videoEp: 3,
     locationTag: 'ROCKEFELLER CENTER • STRATEGIC CRISIS SUITE',
     cameraRig: 'RED MONSTRO 8K • ANAMORPHIC ZOOM',
     themeColor: 'from-violet-950/50 via-blue-950/40 to-zinc-950',
     accentGlow: 'text-violet-400 border-violet-500/40',
-    defaultRole: 'Principal Crisis Strategist • Media War',
+    defaultRole: 'Olivia Pope • Managing Crisis Director',
     atmosphereBadge: '📣 07:15 EST • BREAKING NEWS SPIN',
     genreEmoji: '📣',
   },
@@ -233,7 +233,7 @@ export const GENRE_VISUAL_PRESETS: Record<string, GenreVisualPreset> = {
   },
   // 20. Cybercrime & Dark Web Intelligence
   'Cybercrime & Dark Web Intelligence': {
-    videoEp: 8,
+    videoEp: 11,
     locationTag: 'FORT MEADE NSA CYBER COMMAND • AIR-GAPPED VAULT',
     cameraRig: 'ARRI ALEXA MINI • ANAMORPHIC 35MM',
     themeColor: 'from-emerald-950/60 via-zinc-950 to-zinc-950',
@@ -655,12 +655,12 @@ export const GENRE_VISUAL_PRESETS: Record<string, GenreVisualPreset> = {
     genreEmoji: '📊',
   },
   'CIA Covert Espionage': {
-    videoEp: 8,
+    videoEp: 11,
     locationTag: 'LANGLEY CIA HEADQUARTERS • SECURE OPERATIONS VAULT',
     cameraRig: 'ARRI ALEXA MINI • ZEISS MASTER PRIME 35MM',
     themeColor: 'from-slate-950 via-sky-950/40 to-zinc-950',
     accentGlow: 'text-sky-400 border-sky-500/40',
-    defaultRole: 'Director of Clandestine Operations • CIA',
+    defaultRole: 'Station Chief Carrie • CIA Langley',
     atmosphereBadge: '🛰️ 03:40 EST • BLACK OPS COMS',
     genreEmoji: '🕵️',
   },
@@ -682,7 +682,7 @@ export const getSceneVisualConfig = (
   episode?: { genre?: string; title?: string },
   _turn?: { speaker?: string; avatarEmoji?: string }
 ): SceneVisualConfig => {
-  const TOTAL_PRODUCED = 10;
+  const TOTAL_PRODUCED = 11;
   const hasAuthenticVideo = episodeNumber <= TOTAL_PRODUCED;
 
   // 1. If explicit genre preset exists, use high-fidelity scenario mapping
@@ -817,7 +817,6 @@ export const getSceneVisualConfig = (
         genreEmoji: '🏛️',
       };
     case 10:
-    default:
       return {
         locationTag: 'MANHATTAN LE BERNARDIN • 3-STAR SERVICE KITCHEN',
         cameraRig: 'ARRI MINI LF • LEICA SUMMILUX 35MM',
@@ -828,6 +827,19 @@ export const getSceneVisualConfig = (
         roleDescription: 'Head Chef • Executive Culinary Director',
         atmosphereBadge: '🔥 19:45 EST • DINNER SERVICE RUSH',
         genreEmoji: '🔪',
+      };
+    case 11:
+    default:
+      return {
+        locationTag: 'LANGLEY CIA HEADQUARTERS • SECURE OPERATIONS VAULT',
+        cameraRig: 'ARRI ALEXA MINI • ZEISS MASTER PRIME 35MM',
+        videoSrc: turnVideo || '/videos/ep11.mp4',
+        hasAuthenticVideo,
+        themeColor: 'from-slate-950 via-sky-950/40 to-zinc-950',
+        accentGlow: 'text-sky-400 border-sky-500/40',
+        roleDescription: 'Station Chief Carrie • CIA Langley',
+        atmosphereBadge: '🛰️ 03:40 EST • BLACK OPS COMS',
+        genreEmoji: '🕵️',
       };
   }
 };

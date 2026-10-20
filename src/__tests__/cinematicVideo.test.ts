@@ -73,10 +73,11 @@ describe('Cinematic Scene Visual Map Engine', () => {
       11,
       2,
       { genre: 'CIA Covert Espionage' },
-      { speaker: 'Director Vance' }
+      { speaker: 'Station Chief Carrie (CIA Langley)' }
     );
-    expect(cia.videoSrc).toBe('/videos/ep8_turn2.mp4');
+    expect(cia.videoSrc).toBe('/videos/ep11_turn2.mp4');
     expect(cia.locationTag).toContain('LANGLEY');
+    expect(cia.roleDescription).toContain('Carrie');
   });
 });
 
