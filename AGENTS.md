@@ -46,14 +46,15 @@
 
 ## 4. Zero-Mismatch Audio-Visual & Sensory Testing Directives (절대 무결점 감청각 테스트 원칙)
 
-### A. The "Zero Visible Speaking Mouth" Law (무결점 시네마틱 컷어웨이 원칙)
-1. **The Fundamental Law**: Static, serverless client-side web apps cannot perform real-time GPU neural lipsync (e.g. Wav2Lip) on stock footage for dynamic Web Speech API TTS.
-2. **Absolute Prohibition**: NEVER use stock video footage where an actor's mouth/lips are visible and facing the camera during dialogue playback. A closed or independently moving mouth during TTS will instantly break user immersion and trigger "입모양 불일치 / 입을 안 벌림" failure reports.
-3. **Mandatory Cinematic Framing**: All dialogue turn videos MUST strictly use:
-   - **Action & Object Cutaways**: Direct physical action reflecting the dialogue (e.g. flaming sauté pans, bubbling sauces, ICU cardiac monitors with live vital signs, hands typing encrypted commands, documents, cocktail glasses).
-   - **Over-the-Shoulder & Back-of-Head**: Character viewed from behind looking toward screens, whiteboard, or stage where mouth/lips are 100% out of frame.
-   - **Wide Room & Environment**: Full wide-angle establishing shots (e.g. whole boardroom, safehouse, corridor) where individual mouth movements cannot be discerned.
-   - **Facially Covered Characters**: Surgeons in sterile masks and scrub caps.
+### A. The Golden Ratio: Human Actor Presence & Natural Medium Framing (인물 프레즌스 & 중거리 시네마틱 앵글 원칙)
+1. **The Fundamental Balance**: Static, serverless client-side web apps cannot perform real-time GPU neural lipsync (e.g. Wav2Lip) on stock footage for dynamic Web Speech API TTS.
+   - Extreme macro zoom on an actor's mouth/lips magnifies motionless lips and triggers uncanny-valley mismatch complaints.
+   - Conversely, stripping away all human faces and displaying only inanimate b-roll (frying pans, satellite maps, cardiac monitors) destroys drama role-playing immersion ("너무 사람이 안 나오니까 이상해").
+2. **Mandatory Cinematic Framing Directives**:
+   - **Hollywood Medium Shots & Conversational Distance (MS / MCU)**: Real human actors MUST appear prominently on screen. Characters are framed at natural conversational distance (waist-up, sitting across a desk/table, standing in a kitchen/vault/boardroom). Face, eyes, emotion, hairstyle, wardrobe, and presence are 100% visible, while mouth movements blend naturally into the overall performance.
+   - **Ensemble & Active Professional Environments**: Multi-actor interactions (kitchen brigades in toques expediting, legal partners consulting across desks, intelligence analysts at multi-screen consoles, medical teams reviewing clinical charts).
+   - **Facially Covered Characters**: Surgeons in sterile surgical masks and scrub caps during trauma/OR calls.
+   - **Opponent Co-Star HUD**: Prominent actor identity badge, dynamic audio speech visualizer aura, and role title in `CinematicVideoStage.tsx` ensuring strong emotional connection with the co-star.
 
 ### B. Strict Gender & Persona Congruence (화자-음성-영상 성별 100% 일치 원칙)
 1. **Zero Tolerance for Gender Incongruence**:

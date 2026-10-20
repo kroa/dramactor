@@ -232,16 +232,8 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
               ref={videoRef}
               src={activeVideoSrc}
               muted
+              loop
               playsInline
-              onEnded={() => {
-                if (videoRef.current) {
-                  try {
-                    videoRef.current.pause();
-                  } catch {
-                    // Safe fallback
-                  }
-                }
-              }}
               onLoadedData={() => {
                 setIsVideoLoaded(true);
                 if (videoRef.current && !isPlayingTTS) {
@@ -510,12 +502,17 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
         </div>
       </div>
 
-      {/* Speaking Active Indicator Banner (Top Right) */}
+      {/* Live Speaking Dynamic HUD (Top Right) */}
       {isPlayingTTS && (
-        <div className="absolute top-8 right-3.5 sm:right-4 z-10 pointer-events-none animate-pulse">
-          <div className="flex items-center space-x-1.5 text-[9px] sm:text-[10px] font-mono tracking-tight bg-[#1c1409]/90 backdrop-blur-md px-2 py-0.5 rounded-md border border-[#DFB15B]/50 shadow-sm text-[#FFF2C6]">
-            <Volume2 className="w-3 h-3 text-[#DFB15B]" />
-            <span className="font-bold">SPEAKING</span>
+        <div className="absolute top-8 right-3.5 sm:right-4 z-10 pointer-events-none">
+          <div className="flex items-center space-x-2 text-[9px] sm:text-[10px] font-mono tracking-tight bg-[#1c1409]/90 backdrop-blur-md px-2.5 py-1 rounded-full border border-[#DFB15B]/60 shadow-lg shadow-[#DFB15B]/20 text-[#FFF2C6]">
+            <span className="w-2 h-2 rounded-full bg-[#DFB15B] animate-ping" />
+            <span className="font-bold tracking-wider">LIVE DIALOGUE</span>
+            <div className="flex items-end space-x-0.5 h-3">
+              <span className="w-0.5 bg-[#DFB15B] rounded-full animate-pulse h-2.5" />
+              <span className="w-0.5 bg-[#F3E5AB] rounded-full animate-pulse h-3" />
+              <span className="w-0.5 bg-[#DFB15B] rounded-full animate-pulse h-1.5" />
+            </div>
           </div>
         </div>
       )}
@@ -524,9 +521,14 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
       <div className="absolute bottom-2 inset-x-3 sm:inset-x-4 flex items-center justify-between z-10 pointer-events-auto">
         {/* Character Title & Camera Rig Info */}
         <div className="flex items-center space-x-2 sm:space-x-3 min-w-0 pr-2">
-          <span className="text-xl sm:text-2xl drop-shadow-md shrink-0">
-            {selectedChoice ? '🎭' : turn.avatarEmoji || visualConfig.genreEmoji}
-          </span>
+          <div className="relative">
+            <span className="text-xl sm:text-2xl drop-shadow-md shrink-0 block">
+              {selectedChoice ? '🎭' : turn.avatarEmoji || visualConfig.genreEmoji}
+            </span>
+            {isPlayingTTS && !selectedChoice && (
+              <span className="absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-full bg-[#DFB15B] ring-2 ring-black animate-ping" />
+            )}
+          </div>
           <div className="min-w-0">
             <div className="flex items-center space-x-1.5">
               <span className="text-xs sm:text-sm font-bold text-white tracking-tight truncate drop-shadow-md">
