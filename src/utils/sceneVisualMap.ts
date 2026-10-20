@@ -1,3 +1,5 @@
+import { isSpeakerFemale } from './speechMatch';
+
 export interface SceneVisualConfig {
   locationTag: string;
   cameraRig: string;
@@ -680,20 +682,31 @@ export const getSceneVisualConfig = (
   episodeNumber: number,
   turnIndex?: number,
   episode?: { genre?: string; title?: string },
-  _turn?: { speaker?: string; avatarEmoji?: string }
+  turn?: { speaker?: string; avatarEmoji?: string }
 ): SceneVisualConfig => {
   const TOTAL_PRODUCED = 11;
   const hasAuthenticVideo = episodeNumber <= TOTAL_PRODUCED;
+  const isFemale = isSpeakerFemale(turn?.speaker || '');
 
   // 1. If explicit genre preset exists, use high-fidelity scenario mapping
   if (episode?.genre && GENRE_VISUAL_PRESETS[episode.genre]) {
     const preset = GENRE_VISUAL_PRESETS[episode.genre];
-    const turnVideo = turnIndex ? `/videos/ep${preset.videoEp}_turn${turnIndex}.mp4` : null;
+    let effectiveVideoEp = preset.videoEp;
+
+    // Strict Gender-Video Congruence Gatekeeper:
+    // If the speaker is female, ensure they NEVER receive an exclusively male video
+    if (isFemale && (effectiveVideoEp === 8 || effectiveVideoEp === 7 || effectiveVideoEp === 6)) {
+      effectiveVideoEp = 11; // Route to CIA Langley / Cyber Ops / Tactical female officer archetype
+    } else if (!isFemale && turn?.speaker && (effectiveVideoEp === 11 || effectiveVideoEp === 2)) {
+      effectiveVideoEp = 7; // Route to tech keynote stage or boardroom
+    }
+
+    const turnVideo = turnIndex ? `/videos/ep${effectiveVideoEp}_turn${turnIndex}.mp4` : null;
 
     return {
       locationTag: preset.locationTag,
       cameraRig: preset.cameraRig,
-      videoSrc: turnVideo || `/videos/ep${preset.videoEp}.mp4`,
+      videoSrc: turnVideo || `/videos/ep${effectiveVideoEp}.mp4`,
       hasAuthenticVideo,
       themeColor: preset.themeColor,
       accentGlow: preset.accentGlow,
@@ -703,8 +716,14 @@ export const getSceneVisualConfig = (
     };
   }
 
-  // 2. Fallback to resilient cyclic baseline (ensures 100% backward compatibility)
-  const cycleEp = Math.max(1, ((Math.abs(episodeNumber) - 1) % TOTAL_PRODUCED) + 1);
+  // 2. Fallback to resilient cyclic baseline (ensures 100% backward compatibility & gender safety)
+  let cycleEp = Math.max(1, ((Math.abs(episodeNumber) - 1) % TOTAL_PRODUCED) + 1);
+  if (isFemale && (cycleEp === 8 || cycleEp === 7 || cycleEp === 6 || cycleEp === 10)) {
+    cycleEp = 11; // Ensure female fallback routes to female archetype
+  } else if (!isFemale && turn?.speaker && (cycleEp === 11 || cycleEp === 2)) {
+    cycleEp = 1; // Ensure male fallback routes to male boardroom archetype
+  }
+
   const turnVideo = turnIndex ? `/videos/ep${cycleEp}_turn${turnIndex}.mp4` : null;
 
   switch (cycleEp) {

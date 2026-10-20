@@ -241,6 +241,22 @@ export function splitIntoSentences(text: string): string[] {
 }
 
 /**
+ * Determines whether a drama character speaker is female based on persona taxonomy
+ */
+export function isSpeakerFemale(speakerName = ''): boolean {
+  const lower = speakerName.toLowerCase();
+  const femaleKeywords = [
+    'elena', 'victoria', 'carrie', 'miranda', 'olivia', 'jessica', 'rachel', 'donna',
+    'bailey', 'evelyn', 'claire', 'sarah', 'diana', 'katherine', 'miriam', 'natalie',
+    'rebecca', 'emma', 'chloe', 'sophia', 'anna', 'lisa', 'maria', 'meredith',
+    'temperance', 'erin', 'zaha', 'helen', 'blair', 'serena', 'adena', 'gerri',
+    'dr. grey', 'dr. yang', 'agent scully', 'woman', 'mrs.', 'ms.', 'queen', 'princess',
+    'priestly', 'pope', 'rostova'
+  ];
+  return femaleKeywords.some((k) => lower.includes(k));
+}
+
+/**
  * Selects the highest quality natural/neural voice based on character persona and gender
  */
 export function getBestVoiceForCharacter(speakerName = '', customVoiceURI?: string): {
@@ -283,34 +299,7 @@ export function getBestVoiceForCharacter(speakerName = '', customVoiceURI?: stri
     }
   }
 
-  const isFemale =
-    lowerSpeaker.includes('elena') ||
-    lowerSpeaker.includes('victoria') ||
-    lowerSpeaker.includes('woman') ||
-    lowerSpeaker.includes('rachel') ||
-    lowerSpeaker.includes('donna') ||
-    lowerSpeaker.includes('carrie') ||
-    lowerSpeaker.includes('miranda') ||
-    lowerSpeaker.includes('olivia') ||
-    lowerSpeaker.includes('jessica') ||
-    lowerSpeaker.includes('bailey') ||
-    lowerSpeaker.includes('claire') ||
-    lowerSpeaker.includes('sarah') ||
-    lowerSpeaker.includes('evelyn') ||
-    lowerSpeaker.includes('diana') ||
-    lowerSpeaker.includes('katherine') ||
-    lowerSpeaker.includes('miriam') ||
-    lowerSpeaker.includes('natalie') ||
-    lowerSpeaker.includes('rebecca') ||
-    lowerSpeaker.includes('emma') ||
-    lowerSpeaker.includes('chloe') ||
-    lowerSpeaker.includes('sophia') ||
-    lowerSpeaker.includes('anna') ||
-    lowerSpeaker.includes('lisa') ||
-    lowerSpeaker.includes('maria') ||
-    lowerSpeaker.includes('dr. grey') ||
-    lowerSpeaker.includes('dr. yang') ||
-    lowerSpeaker.includes('agent scully');
+  const isFemale = isSpeakerFemale(speakerName);
 
   const enVoices = voices.filter((v) => v.lang.startsWith('en'));
 
@@ -334,7 +323,7 @@ export function getBestVoiceForCharacter(speakerName = '', customVoiceURI?: stri
       null;
   }
 
-  let recommendedPitch = 1.0;
+  let recommendedPitch = isFemale ? 1.02 : 0.94;
   let recommendedRate = 0.93;
 
   if (lowerSpeaker.includes('harvey')) {
