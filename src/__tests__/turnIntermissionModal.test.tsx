@@ -84,3 +84,4 @@ describe('TurnIntermissionModal Component', () => {
     expect(screen.getByRole('button', { name: /마지막 턴 \(Turn 3\) 도전하기/ })).toBeInTheDocument();
   });
 });
+

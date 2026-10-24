@@ -229,12 +229,8 @@ async function searchAndDeepLinkViaAPI(keyword, accessKey, secretKey) {
       affiliateUrl: shortenUrl || product.productUrl,
       title: product.productName,
       priceInfo: product.productPrice ? `${product.productPrice.toLocaleString()}원` : '특가 확인',
-    };
-
-    return {
-      affiliateUrl: shortenUrl || product.productUrl,
-      title: product.productName,
-      priceInfo: product.productPrice ? `${product.productPrice.toLocaleString()}원` : '특가 확인',
+      imageUrl: product.productImage || '',
+      isRocket: Boolean(product.isRocket),
     };
   } catch (err) {
     console.warn(`[Open API] "${keyword}" 요청 실패:`, err.message);
@@ -287,6 +283,8 @@ async function runSync() {
         console.log(`  ✅ [${item.title}] => ${apiResult.affiliateUrl}`);
         item.affiliateUrl = apiResult.affiliateUrl;
         if (apiResult.priceInfo) item.priceInfo = apiResult.priceInfo;
+        if (apiResult.imageUrl) item.imageUrl = apiResult.imageUrl;
+        if (typeof apiResult.isRocket === 'boolean') item.isRocket = apiResult.isRocket;
         updatedCount++;
       } else {
         console.log(`  ℹ️ [${item.title}] 기존 링크 유지: ${item.affiliateUrl}`);

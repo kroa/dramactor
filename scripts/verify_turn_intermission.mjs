@@ -1,7 +1,5 @@
 import { chromium } from 'playwright';
 import path from 'path';
-import http from 'http';
-import fs from 'fs';
 
 async function main() {
   const browser = await chromium.launch({ channel: 'msedge', headless: true });
@@ -65,3 +63,4 @@ main().catch(err => {
   console.error(err);
   process.exit(1);
 });
+
