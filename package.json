@@ -10,7 +10,10 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "preview": "vite preview",
-    "deploy": "npm run build && npx wrangler pages deploy dist --project-name=dramactor --branch=main"
+    "deploy": "npm run build && npx wrangler pages deploy dist --project-name=dramactor --branch=main",
+    "coupang:login": "node scripts/coupang_partners.mjs login",
+    "coupang:sync": "node scripts/coupang_partners.mjs sync",
+    "coupang:list": "node scripts/coupang_partners.mjs list"
   },
   "dependencies": {
     "canvas-confetti": "^1.9.4",

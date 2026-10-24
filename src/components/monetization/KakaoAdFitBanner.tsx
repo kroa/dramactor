@@ -6,12 +6,14 @@ interface KakaoAdFitBannerProps {
   unitId?: string;
   width?: number;
   height?: number;
+  onAdFail?: () => void;
 }
 
 export const KakaoAdFitBanner: React.FC<KakaoAdFitBannerProps> = ({
   unitId = MONETIZATION_CONFIG.adfit.unitId,
   width = MONETIZATION_CONFIG.adfit.width,
   height = MONETIZATION_CONFIG.adfit.height,
+  onAdFail,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -22,18 +24,31 @@ export const KakaoAdFitBanner: React.FC<KakaoAdFitBannerProps> = ({
     const container = containerRef.current;
     container.innerHTML = '';
 
-    // Create Kakao AdFit ins element
+    // Register unique NO-AD callback
+    const callbackName = `adfit_onfail_${Math.random().toString(36).substring(2, 9)}`;
+    if (typeof window !== 'undefined') {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (window as any)[callbackName] = (insEl: HTMLElement) => {
+        console.warn('[Kakao AdFit] NO-AD callback triggered for unit:', unitId, insEl);
+        onAdFail?.();
+      };
+    }
+
+    // Create Kakao AdFit ins element per official SDK
     const ins = document.createElement('ins');
     ins.className = 'kakao_ad_area';
     ins.style.display = 'none';
+    ins.style.width = '100%';
     ins.setAttribute('data-ad-unit', unitId);
     ins.setAttribute('data-ad-width', String(width));
     ins.setAttribute('data-ad-height', String(height));
+    ins.setAttribute('data-ad-onfail', callbackName);
 
-    // Create script element
+    // Create script element per official Web SDK
     const script = document.createElement('script');
     script.type = 'text/javascript';
-    script.src = '//t1.daumcdn.net/kas/static/ba.min.js';
+    script.charset = 'utf-8';
+    script.src = 'https://t1.kakaocdn.net/kas/static/ba.min.js';
     script.async = true;
 
     container.appendChild(ins);
@@ -41,8 +56,12 @@ export const KakaoAdFitBanner: React.FC<KakaoAdFitBannerProps> = ({
 
     return () => {
       container.innerHTML = '';
+      if (typeof window !== 'undefined') {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        delete (window as any)[callbackName];
+      }
     };
-  }, [unitId, width, height]);
+  }, [unitId, width, height, onAdFail]);
 
   // If unitId is not configured yet, show elegant ready-to-connect placeholder
   if (!unitId) {
@@ -96,3 +115,4 @@ export const KakaoAdFitBanner: React.FC<KakaoAdFitBannerProps> = ({
     />
   );
 };
+

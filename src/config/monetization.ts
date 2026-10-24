@@ -19,9 +19,11 @@ export interface KakaoAdFitConfig {
 }
 
 export const MONETIZATION_CONFIG = {
-  // Track 1: Kakao AdFit (환경변수 VITE_KAKAO_ADFIT_UNIT_ID 설정 시 자동 연동)
+  // Track 1: Kakao AdFit (발급받은 공식 광고 단위 ID: DAN-U0tDZietva9MFnic)
   adfit: {
-    unitId: (typeof import.meta !== 'undefined' && import.meta.env?.VITE_KAKAO_ADFIT_UNIT_ID) || '',
+    unitId:
+      (typeof import.meta !== 'undefined' && import.meta.env?.VITE_KAKAO_ADFIT_UNIT_ID) ||
+      'DAN-U0tDZietva9MFnic',
     width: 300,
     height: 250,
     enabled: true,
@@ -82,3 +84,4 @@ export const MONETIZATION_CONFIG = {
   disclosureText:
     '※ 본 추천은 쿠팡 파트너스 및 제휴 마케팅 활동의 일환으로 일정액의 수수료를 제공받을 수 있으며, 서비스 운영에 큰 도움이 됩니다.',
 };
+

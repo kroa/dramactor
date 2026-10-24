@@ -56,8 +56,10 @@ describe('2-Track Hybrid Monetization System', () => {
     const adfitTab = screen.getByRole('button', { name: /애드핏/ });
     fireEvent.click(adfitTab);
 
-    // Shows AdFit ready placeholder
-    expect(screen.getByText('카카오 애드핏 배너 대기 중')).toBeInTheDocument();
+    // Active AdFit ins tag is rendered with user's official unit ID
+    const ins = document.querySelector('ins.kakao_ad_area');
+    expect(ins).toBeInTheDocument();
+    expect(ins?.getAttribute('data-ad-unit')).toBe('DAN-U0tDZietva9MFnic');
 
     // Switch back to Curated track
     const curatedTab = screen.getByRole('button', { name: /추천 잇템/ });

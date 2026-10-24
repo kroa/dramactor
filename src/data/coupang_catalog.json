@@ -1,0 +1,54 @@
+[
+  {
+    "id": "headset-sony",
+    "keyword": "소니 WH-1000XM5 노이즈캔슬링 헤드폰",
+    "title": "소니 WH-1000XM5 노이즈 캔슬링",
+    "badge": "🎧 주연의 청취 잇템",
+    "tagline": "미드 원어민 미세 호흡 & 연음 완벽 캐치",
+    "description": "배우들의 작은 숨소리와 속삭임, 억양까지 잡아내는 프리미엄 무선 헤드폰",
+    "rating": "4.9 ★★★★★",
+    "priceInfo": "쿠팡 로켓배송 특가",
+    "ctaText": "최저가 & 로켓배송 확인",
+    "affiliateUrl": "https://link.coupang.com/a/bXxXxX",
+    "iconName": "Headphones"
+  },
+  {
+    "id": "mic-shure",
+    "keyword": "슈어 MV7 마이크",
+    "title": "슈어(Shure) MV7 팟캐스트 마이크",
+    "badge": "🎙️ 보컬 쉐도잉 필수템",
+    "tagline": "스튜디오 녹음실급 보컬 레코딩",
+    "description": "드라맥터 발화 인식률 99% 달성을 위한 크리스탈 클리어 보컬 마이크",
+    "rating": "4.8 ★★★★★",
+    "priceInfo": "원어민 쉐도잉 특가",
+    "ctaText": "상품 상세 정보 보기",
+    "affiliateUrl": "https://link.coupang.com/a/bYyYyY",
+    "iconName": "Mic"
+  },
+  {
+    "id": "script-book",
+    "keyword": "미드 영어회화 핵심패턴 233",
+    "title": "미드 오리지널 스크립트 마스터북",
+    "badge": "📖 미드 쉐도잉 원서",
+    "tagline": "한글 자막 없이 끝내는 100일 챌린지",
+    "description": "실제 헐리우드 대본과 필수 관용구 500개가 수록된 스피킹 훈련서",
+    "rating": "5.0 ★★★★★",
+    "priceInfo": "베스트셀러 1위",
+    "ctaText": "책 상세 보기 및 구매",
+    "affiliateUrl": "https://link.coupang.com/a/bZzZzZ",
+    "iconName": "BookOpen"
+  },
+  {
+    "id": "actor-tumbler",
+    "keyword": "스탠리 퀜처 텀블러",
+    "title": "헐리우드 세트장 웜업 텀블러",
+    "badge": "☕ 세트장 필수 잇템",
+    "tagline": "발화 트레이닝 전 성대 보온",
+    "description": "드라마 촬영장에서 배우들이 항상 휴대하는 대용량 보온 보냉 텀블러",
+    "rating": "4.9 ★★★★★",
+    "priceInfo": "로켓배송 무료배송",
+    "ctaText": "색상 및 최저가 보기",
+    "affiliateUrl": "https://link.coupang.com/a/bWwWwW",
+    "iconName": "Sparkles"
+  }
+]

@@ -129,3 +129,4 @@ export const CuratedSponsorCard: React.FC<CuratedSponsorCardProps> = ({
     </div>
   );
 };
+
