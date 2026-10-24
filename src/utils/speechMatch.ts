@@ -588,7 +588,7 @@ export function playNativeDialogue(text: string, options?: DialoguePlayOptions):
 
   stopNativeSpeech();
 
-  let engine = 'google_hd';
+  let engine = 'webspeech';
   try {
     const savedEngine = localStorage.getItem('dramactor_audio_engine');
     if (savedEngine) {
@@ -630,6 +630,10 @@ export function playStudioClip(
   try {
     const audio = new Audio(url);
     activeAudioElement = audio;
+    if (typeof window !== 'undefined') {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (window as any).__dramactor_active_audio = audio;
+    }
 
     audio.ontimeupdate = () => {
       if (currentToken !== activePlaybackToken) return;

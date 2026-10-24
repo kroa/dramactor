@@ -13,7 +13,7 @@ import {
 } from 'lucide-react';
 import type { Choice, Episode, SceneTurn } from '../types';
 import { getSceneVisualConfig } from '../utils/sceneVisualMap';
-import { playNativeDialogue, subscribeAudioTime } from '../utils/speechMatch';
+import { playStudioClip, subscribeAudioTime } from '../utils/speechMatch';
 
 interface CinematicVideoStageProps {
   episode: Episode;
@@ -75,6 +75,7 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
   const [isVideoLoaded, setIsVideoLoaded] = useState<boolean>(false);
   const [videoError, setVideoError] = useState<boolean>(false);
   const [playTimecode, setPlayTimecode] = useState<string>('00:00:00:00');
+  const [isPlayingGuide, setIsPlayingGuide] = useState<boolean>(false);
   const displayTimecode = isPlayingTTS ? playTimecode : '00:00:00:00';
 
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -205,6 +206,18 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
       }
     }
     onPlayTTS();
+  };
+
+  const handlePlayChoiceGuide = () => {
+    if (!selectedChoice) return;
+    const guideAudioUrl = `/audio/guides/ep${episode.episodeNumber}_turn${turn.turnIndex}_${selectedChoice.id}.mp3`;
+    setIsPlayingGuide(true);
+    playStudioClip(guideAudioUrl, {
+      fallbackText: selectedChoice.text,
+      speaker: 'Jenny',
+      onStart: () => setIsPlayingGuide(true),
+      onEnd: () => setIsPlayingGuide(false),
+    });
   };
 
   // Video renders whenever video is enabled and no error
@@ -348,12 +361,12 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
             <div className="flex items-center justify-center pt-1.5 border-t border-[#DFB15B]/15 gap-2">
               <button
                 type="button"
-                onClick={() => playNativeDialogue(selectedChoice.text)}
+                onClick={handlePlayChoiceGuide}
                 className="px-3 py-1 rounded-full bg-gradient-to-r from-[#DFB15B] via-[#F3E5AB] to-[#C5A059] hover:brightness-105 text-[#140e03] font-bold text-[11px] sm:text-xs flex items-center space-x-1.5 shadow-md shadow-[#DFB15B]/20 cursor-pointer transition-all active:scale-95"
                 title="내 대사 원어민 발음 듣기"
               >
                 <Volume2 className="w-3 h-3 fill-[#140e03]" />
-                <span>내 대사 원어민 발음 듣기</span>
+                <span>{isPlayingGuide ? '원어민 발음 듣는 중...' : '내 대사 원어민 발음 듣기'}</span>
               </button>
               <span className="text-[10px] text-[#C5A059] font-mono hidden sm:inline">
                 하단 마이크를 켜고 발화하세요
