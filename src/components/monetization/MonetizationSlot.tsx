@@ -8,10 +8,12 @@ type ActiveTrack = 'curated' | 'adfit';
 
 interface MonetizationSlotProps {
   initialTrack?: ActiveTrack;
+  slotId?: string;
 }
 
 export const MonetizationSlot: React.FC<MonetizationSlotProps> = ({
   initialTrack = 'curated',
+  slotId = 'ad-slot-native',
 }) => {
   const [activeTrack, setActiveTrack] = useState<ActiveTrack>(initialTrack);
 
@@ -55,7 +57,7 @@ export const MonetizationSlot: React.FC<MonetizationSlotProps> = ({
       </div>
 
       {/* Primary Ad Slot Container (#ad-slot-native for 100% test compatibility) */}
-      <div id="ad-slot-native" className="w-[300px] h-[250px] mx-auto relative">
+      <div id={slotId} className="w-[300px] h-[250px] mx-auto relative">
         {activeTrack === 'curated' ? (
           <CuratedSponsorCard items={MONETIZATION_CONFIG.curatedItems} />
         ) : (

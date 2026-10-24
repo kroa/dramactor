@@ -6,7 +6,9 @@ import { LockScreen } from './components/LockScreen';
 import { UnlockModal } from './components/UnlockModal';
 import { ArchiveModal } from './components/ArchiveModal';
 import { SceneIntroScreen } from './components/SceneIntroScreen';
+import { TurnIntermissionModal } from './components/TurnIntermissionModal';
 import { useDramactorGame } from './hooks/useDramactorGame';
+import type { TurnResult } from './types';
 
 export const App: React.FC = () => {
   const {
@@ -34,6 +36,7 @@ export const App: React.FC = () => {
   const [isUnlockModalOpen, setIsUnlockModalOpen] = useState<boolean>(false);
   const [isArchiveModalOpen, setIsArchiveModalOpen] = useState<boolean>(false);
   const [isPracticeMode, setIsPracticeMode] = useState<boolean>(false);
+  const [intermissionResult, setIntermissionResult] = useState<TurnResult | null>(null);
   const [hasStartedSession, setHasStartedSession] = useState<boolean>(() => {
     try {
       return sessionStorage.getItem('dramactor_has_started_session') === 'true';
@@ -55,9 +58,47 @@ export const App: React.FC = () => {
   const showLockScreen = isAlreadyPlayedToday && !isUnlocked && !isPracticeMode && !isCompleted;
 
   const handleStartPractice = () => {
+    setIntermissionResult(null);
     setIsPracticeMode(true);
     handleStartScene();
     resetGame();
+  };
+
+  const handleReplayGame = () => {
+    setIntermissionResult(null);
+    resetGame();
+  };
+
+  const handleSubmitTurn = (transcript: string, similarity: number, passed: boolean) => {
+    const isLastTurn = currentTurnIndex >= currentEpisode.turns.length - 1;
+    const choice = selectedChoice;
+    const turnNum = currentTurnIndex + 1;
+
+    submitTurn(transcript, similarity, passed);
+
+    // If Turn 1 or Turn 2 just finished, present turn intermission modal with ad
+    if (!isLastTurn && choice) {
+      let choiceDelta = 0;
+      if (choice.type === 'native_killer') choiceDelta = 25;
+      else if (choice.type === 'mediocre') choiceDelta = 10;
+      else if (choice.type === 'wrong_konglish') choiceDelta = -10;
+
+      const speechBonus = isMuted
+        ? 8.33
+        : passed
+        ? 8.33
+        : (similarity / 100) * 8.33;
+
+      const result: TurnResult = {
+        turnIndex: turnNum,
+        selectedChoice: choice,
+        recognizedTranscript: transcript,
+        similarityScore: similarity,
+        passedSpeech: isMuted ? true : passed,
+        scoreEarned: choiceDelta + speechBonus,
+      };
+      setIntermissionResult(result);
+    }
   };
 
   return (
@@ -90,7 +131,7 @@ export const App: React.FC = () => {
             score={totalScore}
             streak={streak}
             turnResults={turnResults}
-            onReplay={resetGame}
+            onReplay={handleReplayGame}
             onOpenArchive={() => setIsArchiveModalOpen(true)}
           />
         ) : !hasStartedSession ? (
@@ -109,7 +150,7 @@ export const App: React.FC = () => {
             selectedChoice={selectedChoice}
             turnResults={turnResults}
             onSelectChoice={selectChoice}
-            onSubmitTurn={submitTurn}
+            onSubmitTurn={handleSubmitTurn}
             onGoToTurn={goToTurn}
           />
         )}
@@ -125,6 +166,15 @@ export const App: React.FC = () => {
         </p>
       </footer>
 
+      {/* Turn Intermission Modal (Displayed between Turn 1 -> Turn 2, and Turn 2 -> Turn 3) */}
+      <TurnIntermissionModal
+        isOpen={Boolean(intermissionResult)}
+        turnResult={intermissionResult}
+        nextTurnIndex={intermissionResult ? intermissionResult.turnIndex + 1 : 2}
+        totalTurns={currentEpisode.turns.length}
+        onContinue={() => setIntermissionResult(null)}
+      />
+
       {/* Modals */}
       <UnlockModal
         isOpen={isUnlockModalOpen}
@@ -138,6 +188,7 @@ export const App: React.FC = () => {
         onClose={() => setIsArchiveModalOpen(false)}
         selectedDate={selectedDate}
         onSelectEpisode={(date) => {
+          setIntermissionResult(null);
           setIsPracticeMode(true);
           handleStartScene();
           selectArchiveEpisode(date);
