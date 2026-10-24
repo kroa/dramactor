@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import fs from 'fs';
 import path from 'path';
-import readline from 'readline';
+import crypto from 'crypto';
 import { fileURLToPath } from 'url';
 import { chromium } from 'playwright';
 
@@ -11,19 +11,6 @@ const ROOT_DIR = path.resolve(__dirname, '..');
 const SESSION_DIR = path.join(ROOT_DIR, '.coupang_session');
 const CATALOG_PATH = path.join(ROOT_DIR, 'src', 'data', 'coupang_catalog.json');
 const CONFIG_PATH = path.join(ROOT_DIR, 'src', 'config', 'monetization.ts');
-
-function askQuestion(query) {
-  const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-  });
-  return new Promise((resolve) =>
-    rl.question(query, (ans) => {
-      rl.close();
-      resolve(ans);
-    })
-  );
-}
 
 /**
  * 1. LOGIN COMMAND
@@ -36,7 +23,7 @@ async function runLogin() {
   console.log('   🎬 DRAMACTOR - 쿠팡 파트너스 세션 로그인 매니저');
   console.log('======================================================\n');
   console.log(`📁 세션 보관 경로: ${SESSION_DIR}`);
-  console.log('🌐 브라우저를 실행합니다. 화면에 쿠팡 파트너스 로그인 창이 뜹니다...');
+  console.log('🌐 브라우저를 실행합니다. 화면에 쿠팡 파트너스 창이 뜹니다...');
 
   if (!fs.existsSync(SESSION_DIR)) {
     fs.mkdirSync(SESSION_DIR, { recursive: true });
@@ -50,22 +37,74 @@ async function runLogin() {
   });
 
   const page = context.pages()[0] || (await context.newPage());
-  await page.goto('https://partners.coupang.com', { waitUntil: 'domcontentloaded' });
+  console.log('🔗 쿠팡 로그인 페이지로 직접 이동합니다...');
+  await page.goto('https://login.coupang.com/login/login.pang?returnUrl=https%3A%2F%2Fpartners.coupang.com%2F', {
+    waitUntil: 'domcontentloaded',
+  });
 
-  console.log('\n👉 브라우저 창에서 쿠팡 파트너스 로그인을 완료해 주세요.');
-  console.log('👉 2단계 인증(문자/앱 인증)이 필요하다면 완료해 주신 후,');
-  console.log('   대시보드가 표시되면 아래에서 [Enter] 키를 누르세요.\n');
+  console.log('\n👉 화면에 열린 브라우저에서 쿠팡 계정(아이디/비밀번호)으로 로그인해 주세요.');
+  console.log('👉 2단계 인증(문자/앱 인증)이 있다면 완료해 주세요.');
+  console.log('💡 로그인이 완료되면 자동으로 감지하여 세션을 저장합니다 (최대 10분 대기)...\n');
 
-  await askQuestion('로그인을 완료하셨습니까? [Enter]를 누르면 세션을 저장하고 닫습니다: ');
+  // Polling loop to auto-detect successful login
+  const startTime = Date.now();
+  const maxWaitMs = 10 * 60 * 1000; // 10 minutes
+  let isLoggedIn = false;
+
+  while (Date.now() - startTime < maxWaitMs) {
+    await page.waitForTimeout(2000);
+
+    const currentUrl = page.url();
+    // Check URL or cookies/DOM
+    if (
+      currentUrl.includes('#affiliate') ||
+      currentUrl.includes('/affiliate/') ||
+      currentUrl.includes('partners.coupang.com/#') ||
+      (currentUrl.includes('partners.coupang.com') && !currentUrl.includes('login'))
+    ) {
+      // Confirm if really logged in
+      const hasMemberInfo = await page.evaluate(() => {
+        const text = document.body ? document.body.innerText : '';
+        return (
+          text.includes('로그아웃') ||
+          text.includes('마이페이지') ||
+          text.includes('내 정보 관리') ||
+          text.includes('실적 리포트') ||
+          text.includes('간편 링크')
+        );
+      });
+
+      if (hasMemberInfo || currentUrl.includes('#affiliate')) {
+        isLoggedIn = true;
+        break;
+      }
+    }
+  }
+
+  if (!isLoggedIn) {
+    console.log('⏱️ 5분 대기 시간이 초과되었거나 사용자가 창을 닫았습니다.');
+  } else {
+    console.log('🎉 쿠팡 파트너스 로그인 성공이 자동으로 감지되었습니다!');
+    await page.waitForTimeout(2000); // let cookies persist
+  }
 
   // Capture screenshot of current logged in state for verification
   const screenshotPath = path.join(SESSION_DIR, 'login_verified.png');
-  await page.screenshot({ path: screenshotPath });
-  console.log(`\n📸 로그인 상태 스크린샷 저장 완료: ${screenshotPath}`);
+  try {
+    await page.screenshot({ path: screenshotPath });
+    console.log(`📸 로그인 상태 스크린샷 저장 완료: ${screenshotPath}`);
+  } catch {
+    // Ignore if window was closed
+  }
 
   await context.close();
-  console.log('\n✅ 쿠팡 파트너스 로그인 세션이 .coupang_session/ 에 안전하게 보관되었습니다!');
-  console.log('이제 "npm run coupang:sync" 명령어로 링크 발급 및 상품 관리를 자동 수행할 수 있습니다.\n');
+
+  if (isLoggedIn) {
+    console.log('\n✅ 쿠팡 파트너스 로그인 세션이 .coupang_session/ 에 영구 저장되었습니다!');
+    console.log('이제 "npm run coupang:sync" 명령어로 링크 발급 및 상품 관리를 자동 수행할 수 있습니다.\n');
+  } else {
+    console.log('\n⚠️ 로그인이 완료되지 않았습니다. 필요할 때 다시 "npm run coupang:login"을 실행해 주세요.\n');
+  }
 }
 
 /**
@@ -129,18 +168,73 @@ async function generateLinkForKeyword(page, keyword) {
 }
 
 /**
+ * Coupang Partners Official Open API HMAC Authorization Generator
+ */
+function generateCoupangHMAC(method, urlPath, query, accessKey, secretKey) {
+  const now = new Date();
+  const yy = String(now.getUTCFullYear()).slice(2);
+  const MM = String(now.getUTCMonth() + 1).padStart(2, '0');
+  const dd = String(now.getUTCDate()).padStart(2, '0');
+  const HH = String(now.getUTCHours()).padStart(2, '0');
+  const mm = String(now.getUTCMinutes()).padStart(2, '0');
+  const ss = String(now.getUTCSeconds()).padStart(2, '0');
+  const datetime = `${yy}${MM}${dd}T${HH}${mm}${ss}Z`;
+
+  const message = datetime + method + urlPath + (query ? `?${query}` : '');
+  const signature = crypto.createHmac('sha256', secretKey).update(message).digest('hex');
+  return `CEA algorithm=HmacSHA256, access-key=${accessKey}, signed-date=${datetime}, signature=${signature}`;
+}
+
+async function searchAndDeepLinkViaAPI(keyword, accessKey, secretKey) {
+  try {
+    const searchPath = '/v2/providers/affiliate_open_api/apis/openapi/v1/products/search';
+    const query = `keyword=${encodeURIComponent(keyword)}&limit=1`;
+    const authHeader = generateCoupangHMAC('GET', searchPath, query, accessKey, secretKey);
+
+    const res = await fetch(`https://api-gateway.coupang.com${searchPath}?${query}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json;charset=UTF-8',
+        Authorization: authHeader,
+      },
+    });
+    const data = await res.json();
+    const product = data?.data?.productData?.[0];
+    if (!product || !product.productUrl) return null;
+
+    // Generate deep link
+    const deepLinkPath = '/v2/providers/affiliate_open_api/apis/openapi/v1/deeplink';
+    const deepAuthHeader = generateCoupangHMAC('POST', deepLinkPath, '', accessKey, secretKey);
+
+    const deepRes = await fetch(`https://api-gateway.coupang.com${deepLinkPath}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=UTF-8',
+        Authorization: deepAuthHeader,
+      },
+      body: JSON.stringify({ coupangUrls: [product.productUrl] }),
+    });
+    const deepData = await deepRes.json();
+    const shortenUrl = deepData?.data?.[0]?.shortenUrl;
+
+    return {
+      affiliateUrl: shortenUrl || product.productUrl,
+      title: product.productName,
+      priceInfo: product.productPrice ? `${product.productPrice.toLocaleString()}원` : '특가 확인',
+    };
+  } catch (err) {
+    console.warn(`[Open API] "${keyword}" 요청 실패:`, err.message);
+    return null;
+  }
+}
+
+/**
  * 3. SYNC CATALOG & UPDATE MONETIZATION CONFIG
  */
 async function runSync() {
   console.log('\n======================================================');
   console.log('   🔄 DRAMACTOR - 쿠팡 파트너스 상품 & 링크 동기화');
   console.log('======================================================\n');
-
-  if (!fs.existsSync(SESSION_DIR)) {
-    console.error('❌ 저장된 세션이 없습니다! 먼저 아래 명령어로 로그인하세요:');
-    console.error('   npm run coupang:login\n');
-    process.exit(1);
-  }
 
   let catalog = [];
   try {
@@ -152,31 +246,69 @@ async function runSync() {
 
   console.log(`📦 동기화할 카탈로그 상품: ${catalog.length}개`);
 
-  const context = await chromium.launchPersistentContext(SESSION_DIR, {
-    headless: false,
-    channel: 'msedge',
-    viewport: { width: 1280, height: 900 },
-  });
+  // Check if Open API keys are present (via env or .env file)
+  let accessKey = process.env.COUPANG_ACCESS_KEY;
+  let secretKey = process.env.COUPANG_SECRET_KEY;
 
-  const page = context.pages()[0] || (await context.newPage());
+  if (fs.existsSync(path.join(ROOT_DIR, '.env'))) {
+    const envContent = fs.readFileSync(path.join(ROOT_DIR, '.env'), 'utf-8');
+    const matchAccess = envContent.match(/COUPANG_ACCESS_KEY=(.+)/);
+    const matchSecret = envContent.match(/COUPANG_SECRET_KEY=(.+)/);
+    if (matchAccess) accessKey = matchAccess[1].trim();
+    if (matchSecret) secretKey = matchSecret[1].trim();
+  }
 
   let updatedCount = 0;
-  for (const item of catalog) {
-    try {
-      const generatedLink = await generateLinkForKeyword(page, item.keyword || item.title);
-      if (generatedLink) {
-        console.log(`  ✅ [${item.title}] => ${generatedLink}`);
-        item.affiliateUrl = generatedLink;
+
+  if (accessKey && secretKey) {
+    console.log('⚡ [Open API 모드] 공식 쿠팡 파트너스 API 키를 사용하여 초고속 무인 동기화를 진행합니다!\n');
+    for (const item of catalog) {
+      console.log(`🔍 [API] "${item.keyword || item.title}" 검색 및 링크 발급 중...`);
+      const apiResult = await searchAndDeepLinkViaAPI(item.keyword || item.title, accessKey, secretKey);
+      if (apiResult && apiResult.affiliateUrl) {
+        console.log(`  ✅ [${item.title}] => ${apiResult.affiliateUrl}`);
+        item.affiliateUrl = apiResult.affiliateUrl;
+        if (apiResult.priceInfo) item.priceInfo = apiResult.priceInfo;
         updatedCount++;
       } else {
         console.log(`  ℹ️ [${item.title}] 기존 링크 유지: ${item.affiliateUrl}`);
       }
-    } catch (err) {
-      console.warn(`  ⚠️ [${item.title}] 처리 중 오류:`, err.message);
     }
-  }
+  } else {
+    // Browser Playwright Session Mode
+    if (!fs.existsSync(SESSION_DIR)) {
+      console.error('❌ 저장된 세션 또는 API 키가 없습니다!');
+      console.error('   1) 브라우저 로그인: VS Code 터미널에서 "npm run coupang:login" 실행');
+      console.error('   2) 또는 .env 파일에 COUPANG_ACCESS_KEY / COUPANG_SECRET_KEY 입력\n');
+      process.exit(1);
+    }
 
-  await context.close();
+    console.log('🌐 [Playwright 브라우저 모드] 저장된 로그인 세션으로 자동 발급을 시작합니다...\n');
+    const context = await chromium.launchPersistentContext(SESSION_DIR, {
+      headless: true,
+      channel: 'msedge',
+      viewport: { width: 1280, height: 900 },
+    });
+
+    const page = context.pages()[0] || (await context.newPage());
+
+    for (const item of catalog) {
+      try {
+        const generatedLink = await generateLinkForKeyword(page, item.keyword || item.title);
+        if (generatedLink) {
+          console.log(`  ✅ [${item.title}] => ${generatedLink}`);
+          item.affiliateUrl = generatedLink;
+          updatedCount++;
+        } else {
+          console.log(`  ℹ️ [${item.title}] 기존 링크 유지: ${item.affiliateUrl}`);
+        }
+      } catch (err) {
+        console.warn(`  ⚠️ [${item.title}] 처리 중 오류:`, err.message);
+      }
+    }
+
+    await context.close();
+  }
 
   // Save updated catalog
   fs.writeFileSync(CATALOG_PATH, JSON.stringify(catalog, null, 2), 'utf-8');
@@ -253,3 +385,4 @@ switch (command) {
     console.log('  node scripts/coupang_partners.mjs list   # 등록된 상품 및 링크 목록 보기');
     break;
 }
+
