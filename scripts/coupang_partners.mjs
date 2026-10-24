@@ -209,8 +209,22 @@ async function searchAndDeepLinkViaAPI(keyword, accessKey, secretKey) {
       return null;
     }
 
-    // Generate deep link using clean product URL
-    const cleanUrl = `https://www.coupang.com/vp/products/${product.productId}`;
+    // Generate deep link using exact itemId and vendorItemId so price/option matches 100%
+    let cleanUrl = `https://www.coupang.com/vp/products/${product.productId}`;
+    if (product.productUrl) {
+      try {
+        const parsed = new URL(product.productUrl);
+        const itemId = parsed.searchParams.get('itemId');
+        const vendorItemId = parsed.searchParams.get('vendorItemId');
+        const pageKey = parsed.searchParams.get('pageKey') || product.productId;
+        if (itemId && vendorItemId) {
+          cleanUrl = `https://www.coupang.com/vp/products/${pageKey}?itemId=${itemId}&vendorItemId=${vendorItemId}`;
+        }
+      } catch {
+        // fallback
+      }
+    }
+
     const deepLinkPath = '/v2/providers/affiliate_open_api/apis/openapi/v1/deeplink';
     const deepAuthHeader = generateCoupangHMAC('POST', deepLinkPath, '', accessKey, secretKey);
 

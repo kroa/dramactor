@@ -138,8 +138,8 @@ export const CuratedSponsorCard: React.FC<CuratedSponsorCardProps> = ({
                 {currentItem.priceInfo}
               </span>
             </div>
-            <p className="text-[9px] text-zinc-400 font-mono truncate pt-0.5">
-              쿠팡 최저가 &amp; 빠른 배송
+            <p className="text-[9px] text-[#C5A059] font-mono truncate pt-0.5">
+              와우특가 &bull; 실시간 변동 가능
             </p>
           </div>
         </div>

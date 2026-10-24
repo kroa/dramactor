@@ -46,12 +46,12 @@ export const MONETIZATION_CONFIG = {
       isRocket: true,
       imageUrl: '/images/products/headset-sony.jpg',
       ctaText: '최저가 & 로켓배송 확인',
-      affiliateUrl: 'https://link.coupang.com/a/h6MBweuE1s',
+      affiliateUrl: 'https://link.coupang.com/a/h6NJfChgSy',
       iconName: 'Headphones',
     },
     {
       id: 'mic-shure',
-      keyword: '슈어 팟캐스트 마이크',
+      keyword: '슈어 MV6 USB 마이크',
       title: '슈어(Shure) MV7 팟캐스트 녹음 마이크',
       badge: '🎙️ 보컬 쉐도잉 필수템',
       tagline: '스튜디오 녹음실급 보컬 레코딩',
@@ -61,7 +61,7 @@ export const MONETIZATION_CONFIG = {
       isRocket: false,
       imageUrl: '/images/products/mic-shure.jpg',
       ctaText: '상품 상세 정보 보기',
-      affiliateUrl: 'https://link.coupang.com/a/h6MBx5wUFg',
+      affiliateUrl: 'https://link.coupang.com/a/h6NJgZcRc4',
       iconName: 'Mic',
     },
     {
@@ -76,7 +76,7 @@ export const MONETIZATION_CONFIG = {
       isRocket: true,
       imageUrl: '/images/products/script-book.jpg',
       ctaText: '책 상세 보기 및 구매',
-      affiliateUrl: 'https://link.coupang.com/a/h6MBzsGzGC',
+      affiliateUrl: 'https://link.coupang.com/a/h6NJhEALLg',
       iconName: 'BookOpen',
     },
     {
@@ -91,11 +91,11 @@ export const MONETIZATION_CONFIG = {
       isRocket: true,
       imageUrl: '/images/products/actor-tumbler.jpg',
       ctaText: '색상 및 최저가 보기',
-      affiliateUrl: 'https://link.coupang.com/a/h6MBAo1H40',
+      affiliateUrl: 'https://link.coupang.com/a/h6NJisRsc0',
       iconName: 'Sparkles',
     },
   ] as CuratedSponsorItem[],
 
   disclosureText:
-    '※ 본 추천은 쿠팡 파트너스 및 제휴 마케팅 활동의 일환으로 일정액의 수수료를 제공받을 수 있으며, 서비스 운영에 큰 도움이 됩니다.',
+    '※ 본 추천은 쿠팡 파트너스 활동의 일환으로 수수료를 제공받을 수 있으며, 실시간 가격/프로모션에 따라 결제 금액이 다를 수 있습니다.',
 };
