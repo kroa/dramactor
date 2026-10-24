@@ -147,20 +147,19 @@ export const ScenePlay: React.FC<ScenePlayProps> = ({
     playDialogueAudioRef.current = playDialogueAudio;
   }, [playDialogueAudio]);
 
-  // Auto-play dialogue studio audio when turn changes, unless muted
+  // Clean up any active speech/timers when turn changes (No unexpected autoplay on page entry)
   useEffect(() => {
     if (lastTurnIndexRef.current !== turnIndex) {
       lastTurnIndexRef.current = turnIndex;
       clearRepeatTimer();
-      if (!isMuted) {
-        playDialogueAudio();
-      }
+      setIsPlayingTTS(false);
+      stopNativeSpeech();
     }
     return () => {
       clearRepeatTimer();
       stopNativeSpeech();
     };
-  }, [turnIndex, isMuted, playDialogueAudio, clearRepeatTimer]);
+  }, [turnIndex, clearRepeatTimer]);
 
   const handleManualPlayTTS = () => {
     if (isPlayingTTS) {
