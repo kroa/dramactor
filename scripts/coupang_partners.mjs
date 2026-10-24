@@ -252,10 +252,14 @@ async function runSync() {
 
   if (fs.existsSync(path.join(ROOT_DIR, '.env'))) {
     const envContent = fs.readFileSync(path.join(ROOT_DIR, '.env'), 'utf-8');
-    const matchAccess = envContent.match(/COUPANG_ACCESS_KEY=(.+)/);
-    const matchSecret = envContent.match(/COUPANG_SECRET_KEY=(.+)/);
-    if (matchAccess) accessKey = matchAccess[1].trim();
-    if (matchSecret) secretKey = matchSecret[1].trim();
+    const matchAccess = envContent.match(/COUPANG_ACCESS_KEY=([^\r\n]+)/);
+    const matchSecret = envContent.match(/COUPANG_SECRET_KEY=([^\r\n]+)/);
+    if (matchAccess && matchAccess[1].trim()) {
+      accessKey = matchAccess[1].trim().replace(/^["']|["']$/g, '');
+    }
+    if (matchSecret && matchSecret[1].trim()) {
+      secretKey = matchSecret[1].trim().replace(/^["']|["']$/g, '');
+    }
   }
 
   let updatedCount = 0;
