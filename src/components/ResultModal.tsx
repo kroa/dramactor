@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Share2, Check, RotateCcw, Sparkles, FolderArchive, Award, ExternalLink } from 'lucide-react';
+import { Share2, Check, RotateCcw, Sparkles, FolderArchive, Award } from 'lucide-react';
 import type { Episode, TurnResult } from '../types';
 import { formatViralShareText, copyToClipboard, getEndingTier } from '../utils/shareFormatter';
+import { MonetizationSlot } from './monetization/MonetizationSlot';
 
 interface ResultModalProps {
   episode: Episode;
@@ -165,30 +166,8 @@ export const ResultModal: React.FC<ResultModalProps> = ({
             </button>
           </div>
 
-          {/* Monetization Ad Slot Container (300x250) */}
-          <div className="pt-1">
-            <div className="text-[10px] font-mono text-[#C5A059] text-center uppercase tracking-wider mb-1 flex items-center justify-center space-x-1">
-              <span>SPONSORED PARTNER</span>
-              <ExternalLink className="w-2.5 h-2.5" />
-            </div>
-            <div
-              id="ad-slot-native"
-              className="w-[300px] h-[250px] mx-auto rounded-2xl bg-[#0e0c10] border border-[#DFB15B]/20 flex flex-col items-center justify-center p-4 text-center shadow-2xl relative overflow-hidden group transition-all hover:border-[#DFB15B]/40"
-            >
-              <div className="w-10 h-10 rounded-full bg-[#18140d] border border-[#DFB15B]/30 flex items-center justify-center mb-2 text-[#DFB15B] group-hover:scale-110 transition-transform">
-                🎬
-              </div>
-              <span className="text-xs font-bold text-white mb-1 font-serif">
-                Dramactor Native Sponsor Space
-              </span>
-              <p className="text-[11px] text-[#C5A059] max-w-[220px] leading-relaxed mb-2">
-                글로벌 브랜드 및 스폰서 제휴 광고가 송출되는 반응형 300x250 슬롯입니다.
-              </p>
-              <span className="text-[9px] font-mono text-zinc-500 px-2 py-0.5 rounded bg-black/60 border border-white/5">
-                Slot: #ad-slot-native &bull; 300x250
-              </span>
-            </div>
-          </div>
+          {/* 2-Track Hybrid Monetization Ad Slot (#ad-slot-native 300x250) */}
+          <MonetizationSlot />
         </div>
 
         {/* Right Column (Desktop 7 cols): Key Takeaway & Turn-by-Turn Scene Review */}
