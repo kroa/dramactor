@@ -74,4 +74,24 @@
    - 100% Gender-voice pitch profile check across all characters.
 2. **Zero Manual Assumption**: Never declare a video or audio issue "fixed" without passing both automated 300-episode Vitest checks and Playwright headless browser screenshot inspection.
 
+---
+
+## 5. Automated Monetization & Coupang Partners Pipeline Directives (수익화 및 상품 자동 동기화 원칙)
+
+### A. 2-Track Hybrid Monetization Architecture
+1. **Track 1: Curated Native Sponsor Cards**:
+   - Curated high-converting drama immersion products (`src/data/coupang_catalog.json`) rendered via `CuratedSponsorCard.tsx` inside `#ad-slot-native` (300x250).
+   - Real-time Coupang Partners short affiliate links (`https://link.coupang.com/a/...`) and live prices are synchronized via official Open API.
+2. **Track 2: Kakao AdFit Display Ad**:
+   - Official Unit ID `DAN-U0tDZietva9MFnic` configured via `KakaoAdFitBanner.tsx`.
+   - AdFit NO-AD callback (`data-ad-onfail`) MUST automatically fallback to Track 1 to guarantee 100% fill rate and zero broken empty boxes.
+
+### B. Continuous Automated Sync Operations
+1. **Zero-Touch Synchronization**:
+   - Automated via `npm run coupang:sync` (`scripts/coupang_partners.mjs sync`).
+   - Official Coupang HMAC-SHA256 authorization: `message = datetime + method + path + query` (no `?` in signature).
+   - Scheduled via Antigravity Daemon Cron and GitHub Actions (`.github/workflows/coupang-sync.yml` daily at 06:00 KST).
+   - Any pricing or link changes automatically update `src/config/monetization.ts` and deploy to Cloudflare Pages.
+
+
 
