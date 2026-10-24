@@ -70,9 +70,7 @@ export const App: React.FC = () => {
       <Header
         streak={streak}
         isMuted={isMuted}
-        isUnlocked={isUnlocked}
         onToggleMute={toggleMute}
-        onOpenUnlockModal={() => setIsUnlockModalOpen(true)}
         onOpenArchiveModal={() => setIsArchiveModalOpen(true)}
         onOpenIntro={() => setHasStartedSession(false)}
       />
@@ -83,7 +81,6 @@ export const App: React.FC = () => {
           <LockScreen
             episode={currentEpisode}
             streak={streak}
-            onOpenUnlockModal={() => setIsUnlockModalOpen(true)}
             onOpenArchiveModal={() => setIsArchiveModalOpen(true)}
             onReplayPractice={handleStartPractice}
           />
@@ -95,8 +92,6 @@ export const App: React.FC = () => {
             turnResults={turnResults}
             onReplay={resetGame}
             onOpenArchive={() => setIsArchiveModalOpen(true)}
-            onOpenUnlockModal={() => setIsUnlockModalOpen(true)}
-            isUnlocked={isUnlocked}
           />
         ) : !hasStartedSession ? (
           <SceneIntroScreen

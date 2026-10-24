@@ -43,3 +43,4 @@ jobs:
           git add src/config/monetization.ts src/data/coupang_catalog.json
           git commit -m "chore(coupang): auto-sync latest product pricing and affiliate links"
           git push origin main
+

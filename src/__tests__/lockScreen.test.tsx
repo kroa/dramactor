@@ -35,10 +35,8 @@ describe('LockScreen Component', () => {
     expect(screen.getByText('오늘의 주연 촬영이 종료되었습니다')).toBeInTheDocument();
     expect(screen.getByText(/3일 연속 주연 생존 달성 중!/)).toBeInTheDocument();
 
-    // Unlock CTA
-    const unlockBtn = screen.getByRole('button', { name: /PRO 패스로 이전 에피소드 무제한 언락하기/ });
-    fireEvent.click(unlockBtn);
-    expect(handleOpenUnlock).toHaveBeenCalledTimes(1);
+    // PRO unlock button should not be displayed
+    expect(screen.queryByRole('button', { name: /PRO 패스/ })).toBeNull();
 
     // Replay
     const replayBtn = screen.getByRole('button', { name: /오늘 씬 다시 연습/ });

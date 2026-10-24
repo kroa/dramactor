@@ -22,8 +22,6 @@ export const ResultModal: React.FC<ResultModalProps> = ({
   turnResults,
   onReplay,
   onOpenArchive,
-  onOpenUnlockModal,
-  isUnlocked,
 }) => {
   const [copied, setCopied] = useState<boolean>(false);
   const tier = getEndingTier(score);
@@ -112,38 +110,7 @@ export const ResultModal: React.FC<ResultModalProps> = ({
               )}
             </button>
 
-            {/* PRO Upgrade Hook: Displayed after 3 turns are completed */}
-            {!isUnlocked && onOpenUnlockModal && (
-              <div className="mt-4 p-4 rounded-2xl bg-[#16130d] border border-[#DFB15B]/35 backdrop-blur-md shadow-xl text-left space-y-2.5 relative overflow-hidden">
-                <div className="flex items-start space-x-2.5">
-                  <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#DFB15B] to-[#996515] border border-[#FFF2C6]/40 flex items-center justify-center shrink-0 text-[#140e03] font-bold shadow-inner">
-                    ✨
-                  </div>
-                  <div>
-                    <div className="flex items-center space-x-1.5">
-                      <span className="text-xs font-bold text-white font-serif">
-                        오늘의 3개 턴 완주! 내일 씬이 기다려지시나요?
-                      </span>
-                      <span className="text-[9px] px-1.5 py-0.5 rounded bg-gradient-to-r from-[#DFB15B] to-[#F3E5AB] text-[#140e03] font-mono font-black uppercase tracking-wider">
-                        PRO
-                      </span>
-                    </div>
-                    <p className="text-[11px] text-[#C5A059] leading-relaxed mt-0.5">
-                      자정까지 기다리지 않고, 7편 전체 미드 풀코스와 무제한 다시듣기를 영구 언락하세요!
-                    </p>
-                  </div>
-                </div>
-
-                <button
-                  type="button"
-                  onClick={onOpenUnlockModal}
-                  className="w-full py-2.5 rounded-xl font-black text-xs bg-gradient-to-r from-[#DFB15B] via-[#F3E5AB] to-[#C5A059] hover:brightness-105 text-[#140e03] shadow-lg shadow-[#DFB15B]/20 border border-[#FFF2C6]/50 flex items-center justify-center space-x-1.5 transition-all active:scale-[0.98] cursor-pointer"
-                >
-                  <Sparkles className="w-3.5 h-3.5 fill-[#140e03] text-[#140e03]" />
-                  <span>PRO 패스로 7일 전편 즉시 언락하기 (Lemon Squeezy)</span>
-                </button>
-              </div>
-            )}
+            {/* PRO Upgrade Hook removed per request */}
           </div>
 
           {/* Navigation Buttons */}

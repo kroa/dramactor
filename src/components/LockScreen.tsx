@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Clock, Sparkles, FolderArchive, RotateCcw, Lock } from 'lucide-react';
+import { Clock, FolderArchive, RotateCcw, Lock } from 'lucide-react';
 import type { Episode } from '../types';
 import { getSecondsUntilNextKSTMidnight } from '../utils/episodeDate';
 
 interface LockScreenProps {
   episode: Episode;
   streak: number;
-  onOpenUnlockModal: () => void;
+  onOpenUnlockModal?: () => void;
   onOpenArchiveModal: () => void;
   onReplayPractice: () => void;
 }
@@ -14,7 +14,6 @@ interface LockScreenProps {
 export const LockScreen: React.FC<LockScreenProps> = ({
   episode,
   streak,
-  onOpenUnlockModal,
   onOpenArchiveModal,
   onReplayPractice,
 }) => {
@@ -76,17 +75,8 @@ export const LockScreen: React.FC<LockScreenProps> = ({
         <span>🔥 {streak}일 연속 주연 생존 달성 중!</span>
       </div>
 
-      {/* Unlock CTA Button */}
+      {/* Action Buttons */}
       <div className="space-y-2 pt-2">
-        <button
-          type="button"
-          onClick={onOpenUnlockModal}
-          className="w-full py-3.5 rounded-xl font-black text-sm bg-gradient-to-r from-[#DFB15B] via-[#F3E5AB] to-[#C5A059] hover:brightness-105 text-[#140e03] shadow-xl shadow-[#DFB15B]/25 border border-[#FFF2C6]/50 flex items-center justify-center space-x-2 transition-all active:scale-[0.98] cursor-pointer"
-        >
-          <Sparkles className="w-4 h-4 fill-[#140e03] text-[#140e03]" />
-          <span>PRO 패스로 이전 에피소드 무제한 언락하기</span>
-        </button>
-
         <div className="flex items-center space-x-2">
           <button
             type="button"

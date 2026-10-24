@@ -1,12 +1,12 @@
 import React from 'react';
-import { Flame, Volume2, VolumeX, Sparkles, FolderArchive, HelpCircle } from 'lucide-react';
+import { Flame, Volume2, VolumeX, FolderArchive, HelpCircle } from 'lucide-react';
 
 interface HeaderProps {
   streak: number;
   isMuted: boolean;
-  isUnlocked: boolean;
+  isUnlocked?: boolean;
   onToggleMute: () => void;
-  onOpenUnlockModal: () => void;
+  onOpenUnlockModal?: () => void;
   onOpenArchiveModal: () => void;
   onOpenIntro?: () => void;
 }
@@ -14,9 +14,7 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({
   streak,
   isMuted,
-  isUnlocked,
   onToggleMute,
-  onOpenUnlockModal,
   onOpenArchiveModal,
   onOpenIntro,
 }) => {
@@ -82,28 +80,16 @@ export const Header: React.FC<HeaderProps> = ({
             {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
           </button>
 
-          {/* Archive / Pro Pass Unlock Button */}
-          {isUnlocked ? (
-            <button
-              onClick={onOpenArchiveModal}
-              type="button"
-              className="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-[#16130d] hover:bg-[#221c10] border border-[#DFB15B]/30 text-[#F3E5AB] hover:text-white text-xs font-semibold transition-all active:scale-95 shadow-sm cursor-pointer"
-              title="전체 에피소드 아카이브 탐색"
-            >
-              <FolderArchive className="w-3.5 h-3.5 text-[#DFB15B]" />
-              <span>아카이브</span>
-            </button>
-          ) : (
-            <button
-              onClick={onOpenUnlockModal}
-              type="button"
-              className="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-gradient-to-r from-[#DFB15B] via-[#F3E5AB] to-[#C5A059] hover:brightness-105 text-[#140e03] text-xs font-black shadow-lg shadow-[#DFB15B]/25 border border-[#FFF2C6]/50 transition-all active:scale-95 cursor-pointer"
-              title="무제한 아카이브 패스 언락"
-            >
-              <Sparkles className="w-3.5 h-3.5 fill-[#140e03] text-[#140e03]" />
-              <span>PRO 언락</span>
-            </button>
-          )}
+          {/* Archive Exploration Button */}
+          <button
+            onClick={onOpenArchiveModal}
+            type="button"
+            className="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-[#16130d] hover:bg-[#221c10] border border-[#DFB15B]/30 text-[#F3E5AB] hover:text-white text-xs font-semibold transition-all active:scale-95 shadow-sm cursor-pointer"
+            title="전체 에피소드 아카이브 탐색"
+          >
+            <FolderArchive className="w-3.5 h-3.5 text-[#DFB15B]" />
+            <span>아카이브</span>
+          </button>
         </div>
       </div>
     </header>
