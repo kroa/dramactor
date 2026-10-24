@@ -97,9 +97,10 @@ export const CuratedSponsorCard: React.FC<CuratedSponsorCardProps> = ({
               <img
                 src={currentItem.imageUrl}
                 alt={currentItem.title}
+                referrerPolicy="no-referrer"
                 onError={() => setImgErrors((prev) => ({ ...prev, [currentItem.id]: true }))}
                 className="w-full h-full object-contain"
-                loading="lazy"
+                loading="eager"
               />
             ) : (
               <div className="w-full h-full flex items-center justify-center bg-[#1a150e] rounded-lg text-[#DFB15B]">
