@@ -180,9 +180,10 @@ function generateCoupangHMAC(method, urlPath, query, accessKey, secretKey) {
   const ss = String(now.getUTCSeconds()).padStart(2, '0');
   const datetime = `${yy}${MM}${dd}T${HH}${mm}${ss}Z`;
 
-  const message = datetime + method + urlPath + (query ? `?${query}` : '');
-  const signature = crypto.createHmac('sha256', secretKey).update(message).digest('hex');
-  return `CEA algorithm=HmacSHA256, access-key=${accessKey}, signed-date=${datetime}, signature=${signature}`;
+  // Coupang HMAC specification: message = datetime + method + path + query (without '?')
+  const message = datetime + method + urlPath + (query || '');
+  const signature = crypto.createHmac('sha256', secretKey.trim()).update(message).digest('hex');
+  return `CEA algorithm=HmacSHA256, access-key=${accessKey.trim()}, signed-date=${datetime}, signature=${signature}`;
 }
 
 async function searchAndDeepLinkViaAPI(keyword, accessKey, secretKey) {
@@ -199,10 +200,17 @@ async function searchAndDeepLinkViaAPI(keyword, accessKey, secretKey) {
       },
     });
     const data = await res.json();
+    if (data?.rCode && data.rCode !== '0') {
+      console.warn(`[Open API] 검색 응답: [${data.rCode}] ${data.rMessage}`);
+    }
     const product = data?.data?.productData?.[0];
-    if (!product || !product.productUrl) return null;
+    if (!product) {
+      console.warn(`[Open API] "${keyword}" 검색 결과 없음`);
+      return null;
+    }
 
-    // Generate deep link
+    // Generate deep link using clean product URL
+    const cleanUrl = `https://www.coupang.com/vp/products/${product.productId}`;
     const deepLinkPath = '/v2/providers/affiliate_open_api/apis/openapi/v1/deeplink';
     const deepAuthHeader = generateCoupangHMAC('POST', deepLinkPath, '', accessKey, secretKey);
 
@@ -212,10 +220,16 @@ async function searchAndDeepLinkViaAPI(keyword, accessKey, secretKey) {
         'Content-Type': 'application/json;charset=UTF-8',
         Authorization: deepAuthHeader,
       },
-      body: JSON.stringify({ coupangUrls: [product.productUrl] }),
+      body: JSON.stringify({ coupangUrls: [cleanUrl] }),
     });
     const deepData = await deepRes.json();
     const shortenUrl = deepData?.data?.[0]?.shortenUrl;
+
+    return {
+      affiliateUrl: shortenUrl || product.productUrl,
+      title: product.productName,
+      priceInfo: product.productPrice ? `${product.productPrice.toLocaleString()}원` : '특가 확인',
+    };
 
     return {
       affiliateUrl: shortenUrl || product.productUrl,
