@@ -134,7 +134,7 @@ export const ResultModal: React.FC<ResultModalProps> = ({
           </div>
 
           {/* 2-Track Hybrid Monetization Ad Slot (#ad-slot-native 300x250) */}
-          <MonetizationSlot />
+          <MonetizationSlot slotId="ad-slot-native" initialItemIndex={2} />
         </div>
 
         {/* Right Column (Desktop 7 cols): Key Takeaway & Turn-by-Turn Scene Review */}

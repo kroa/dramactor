@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Headphones,
   Mic,
@@ -19,21 +19,48 @@ const ICON_MAP = {
   Sparkles,
 };
 
-interface CuratedSponsorCardProps {
+export interface CuratedSponsorCardProps {
   items?: CuratedSponsorItem[];
+  initialIndex?: number;
+  autoRotateIntervalMs?: number;
 }
 
 export const CuratedSponsorCard: React.FC<CuratedSponsorCardProps> = ({
   items = MONETIZATION_CONFIG.curatedItems,
+  initialIndex = 0,
+  autoRotateIntervalMs = 5000,
 }) => {
-  const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const [imgErrors, setImgErrors] = useState<Record<string, boolean>>({});
+  const [currentIndex, setCurrentIndex] = useState<number>(() => {
+    if (typeof initialIndex === 'number' && initialIndex >= 0 && items && items.length > 0) {
+      return initialIndex % items.length;
+    }
+    return 0;
+  });
+  const [prevInitialIndex, setPrevInitialIndex] = useState(initialIndex);
+  const [isHovered, setIsHovered] = useState<boolean>(false);
+  const [failedImages, setFailedImages] = useState<Record<string, boolean>>({});
+
+  // Sync state during render when initialIndex prop changes dynamically (React recommended pattern)
+  if (initialIndex !== prevInitialIndex) {
+    setPrevInitialIndex(initialIndex);
+    if (typeof initialIndex === 'number' && initialIndex >= 0 && items && items.length > 0) {
+      setCurrentIndex(initialIndex % items.length);
+    }
+  }
+
+  // Auto-rotation timer: advances every autoRotateIntervalMs (pauses on hover)
+  useEffect(() => {
+    if (autoRotateIntervalMs <= 0 || !items || items.length <= 1 || isHovered) return;
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % items.length);
+    }, autoRotateIntervalMs);
+    return () => clearInterval(timer);
+  }, [autoRotateIntervalMs, items, isHovered]);
 
   if (!items || items.length === 0) return null;
 
   const currentItem = items[currentIndex];
   const IconComponent = (currentItem.iconName && ICON_MAP[currentItem.iconName]) || Sparkles;
-  const hasImage = Boolean(currentItem.imageUrl) && !imgErrors[currentItem.id];
 
   const handlePrev = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -45,8 +72,19 @@ export const CuratedSponsorCard: React.FC<CuratedSponsorCardProps> = ({
     setCurrentIndex((prev) => (prev === items.length - 1 ? 0 : prev + 1));
   };
 
+  // Prioritize local static asset, then remote CDN URL
+  const localImageSrc = `/images/products/${currentItem.id}.jpg`;
+  const imageSource = currentItem.imageUrl || localImageSrc;
+  const hasImage = Boolean(imageSource) && !failedImages[currentItem.id];
+
   return (
-    <div className="w-[300px] h-[250px] mx-auto rounded-2xl bg-gradient-to-b from-[#18131e] via-[#110e16] to-[#0a080e] border border-[#DFB15B]/35 p-3 flex flex-col justify-between text-left shadow-2xl relative overflow-hidden group hover:border-[#DFB15B]/70 transition-all">
+    <div
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onTouchStart={() => setIsHovered(true)}
+      onTouchEnd={() => setIsHovered(false)}
+      className="w-[300px] h-[250px] mx-auto rounded-2xl bg-gradient-to-b from-[#18131e] via-[#110e16] to-[#0a080e] border border-[#DFB15B]/35 p-3 flex flex-col justify-between text-left shadow-2xl relative overflow-hidden group hover:border-[#DFB15B]/70 transition-all select-none"
+    >
       {/* Background ambient warm gold glow */}
       <div className="absolute -top-10 -right-10 w-28 h-28 bg-[#DFB15B]/15 rounded-full blur-2xl pointer-events-none" />
 
@@ -56,7 +94,7 @@ export const CuratedSponsorCard: React.FC<CuratedSponsorCardProps> = ({
           <span className="text-[9px] font-mono font-black text-[#140e03] bg-gradient-to-r from-[#DFB15B] to-[#F3E5AB] px-1.5 py-0.5 rounded shadow-xs shrink-0">
             AD
           </span>
-          <span className="text-[10px] font-mono font-bold text-[#F3E5AB] bg-[#1d170e] px-2 py-0.5 rounded-full border border-[#DFB15B]/30 truncate max-w-[130px]">
+          <span className="text-[10px] font-mono font-bold text-[#F3E5AB] bg-[#1d170e] px-2 py-0.5 rounded-full border border-[#DFB15B]/30 truncate max-w-[125px]">
             {currentItem.badge}
           </span>
           <span className="text-[9px] font-mono text-[#DFB15B] shrink-0 hidden sm:inline">
@@ -74,7 +112,7 @@ export const CuratedSponsorCard: React.FC<CuratedSponsorCardProps> = ({
           >
             <ChevronLeft className="w-3 h-3" />
           </button>
-          <span className="text-[9px] font-mono text-zinc-400">
+          <span className="text-[9px] font-mono text-zinc-400 min-w-[24px] text-center">
             {currentIndex + 1}/{items.length}
           </span>
           <button
@@ -88,6 +126,26 @@ export const CuratedSponsorCard: React.FC<CuratedSponsorCardProps> = ({
         </div>
       </div>
 
+      {/* Mini Carousel Pagination Dots */}
+      <div className="flex items-center justify-center space-x-1 py-0.5 z-10 shrink-0">
+        {items.map((it, idx) => (
+          <button
+            key={it.id || idx}
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              setCurrentIndex(idx);
+            }}
+            className={`h-1 rounded-full transition-all cursor-pointer ${
+              idx === currentIndex
+                ? 'w-4 bg-gradient-to-r from-[#DFB15B] to-[#F3E5AB]'
+                : 'w-1.5 bg-zinc-700/60 hover:bg-zinc-500'
+            }`}
+            aria-label={`${idx + 1}번째 상품: ${it.title}`}
+          />
+        ))}
+      </div>
+
       {/* Middle Product Showcase (2-Column: Left Image 100px, Right Details) */}
       <div className="grid grid-cols-12 gap-2.5 items-center my-auto z-10 py-1">
         {/* Left: Product Thumbnail Container with Rocket Delivery Badge */}
@@ -95,10 +153,10 @@ export const CuratedSponsorCard: React.FC<CuratedSponsorCardProps> = ({
           <div className="w-[102px] h-[102px] rounded-xl bg-white p-1.5 flex items-center justify-center overflow-hidden border border-[#DFB15B]/40 shadow-lg group-hover:scale-[1.02] transition-transform">
             {hasImage ? (
               <img
-                src={currentItem.imageUrl}
+                src={imageSource}
                 alt={currentItem.title}
                 referrerPolicy="no-referrer"
-                onError={() => setImgErrors((prev) => ({ ...prev, [currentItem.id]: true }))}
+                onError={() => setFailedImages((prev) => ({ ...prev, [currentItem.id]: true }))}
                 className="w-full h-full object-contain"
                 loading="eager"
               />

@@ -9,11 +9,15 @@ type ActiveTrack = 'curated' | 'adfit';
 interface MonetizationSlotProps {
   initialTrack?: ActiveTrack;
   slotId?: string;
+  initialItemIndex?: number;
+  autoRotateIntervalMs?: number;
 }
 
 export const MonetizationSlot: React.FC<MonetizationSlotProps> = ({
   initialTrack = 'curated',
   slotId = 'ad-slot-native',
+  initialItemIndex,
+  autoRotateIntervalMs,
 }) => {
   const [activeTrack, setActiveTrack] = useState<ActiveTrack>(initialTrack);
 
@@ -59,7 +63,11 @@ export const MonetizationSlot: React.FC<MonetizationSlotProps> = ({
       {/* Primary Ad Slot Container (#ad-slot-native for 100% test compatibility) */}
       <div id={slotId} className="w-[300px] h-[250px] mx-auto relative">
         {activeTrack === 'curated' ? (
-          <CuratedSponsorCard items={MONETIZATION_CONFIG.curatedItems} />
+          <CuratedSponsorCard
+            items={MONETIZATION_CONFIG.curatedItems}
+            initialIndex={initialItemIndex}
+            autoRotateIntervalMs={autoRotateIntervalMs}
+          />
         ) : (
           <KakaoAdFitBanner
             unitId={MONETIZATION_CONFIG.adfit.unitId}
@@ -71,4 +79,3 @@ export const MonetizationSlot: React.FC<MonetizationSlotProps> = ({
     </div>
   );
 };
-

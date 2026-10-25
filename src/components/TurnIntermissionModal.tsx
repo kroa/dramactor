@@ -103,7 +103,11 @@ export const TurnIntermissionModal: React.FC<TurnIntermissionModalProps> = ({
 
         {/* 2-Track Hybrid Monetization Slot (#ad-slot-intermission 300x250) */}
         <div className="py-1 shrink-0">
-          <MonetizationSlot slotId="ad-slot-intermission" initialTrack="curated" />
+          <MonetizationSlot
+            slotId="ad-slot-intermission"
+            initialTrack="curated"
+            initialItemIndex={turnResult.turnIndex - 1}
+          />
         </div>
 
         {/* Next Turn Action Button */}

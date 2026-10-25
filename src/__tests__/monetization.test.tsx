@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, act } from '@testing-library/react';
 import { MonetizationSlot } from '../components/monetization/MonetizationSlot';
 import { CuratedSponsorCard } from '../components/monetization/CuratedSponsorCard';
 import { KakaoAdFitBanner } from '../components/monetization/KakaoAdFitBanner';
@@ -44,6 +44,51 @@ describe('2-Track Hybrid Monetization System', () => {
     const prevBtn = screen.getByLabelText('이전 추천 상품');
     fireEvent.click(prevBtn);
     expect(screen.getByText(/소니 WH-1000XM5/)).toBeInTheDocument();
+  });
+
+  it('renders turn-specific item via initialIndex to guarantee Turn 1 != Turn 2 != ResultModal', () => {
+    // Turn 1 Intermission (index 0): Sony WH-1000XM5
+    const { unmount: unmount1 } = render(
+      <MonetizationSlot initialTrack="curated" initialItemIndex={0} slotId="slot-turn-1" />
+    );
+    expect(screen.getByText(/소니 WH-1000XM5/)).toBeInTheDocument();
+    unmount1();
+
+    // Turn 2 Intermission (index 1): Shure MV7
+    const { unmount: unmount2 } = render(
+      <MonetizationSlot initialTrack="curated" initialItemIndex={1} slotId="slot-turn-2" />
+    );
+    expect(screen.getByText(/슈어\(Shure\) MV7/)).toBeInTheDocument();
+    unmount2();
+
+    // Result Modal (index 2): Apple AirPods Pro 2
+    const { unmount: unmount3 } = render(
+      <MonetizationSlot initialTrack="curated" initialItemIndex={2} slotId="slot-result" />
+    );
+    expect(screen.getByText(/에어팟 프로 2세대/)).toBeInTheDocument();
+    unmount3();
+  });
+
+  it('auto-rotates to the next product after interval elapsed and pauses on hover', () => {
+    vi.useFakeTimers();
+    render(<CuratedSponsorCard items={MONETIZATION_CONFIG.curatedItems} autoRotateIntervalMs={3000} />);
+
+    // Starts at item 0 (Sony)
+    expect(screen.getByText(/소니 WH-1000XM5/)).toBeInTheDocument();
+
+    // Fast-forward 3000ms -> should rotate to item 1 (Shure)
+    act(() => {
+      vi.advanceTimersByTime(3000);
+    });
+    expect(screen.getByText(/슈어\(Shure\) MV7/)).toBeInTheDocument();
+
+    // Fast-forward another 3000ms -> should rotate to item 2 (AirPods Pro)
+    act(() => {
+      vi.advanceTimersByTime(3000);
+    });
+    expect(screen.getByText(/에어팟 프로 2세대/)).toBeInTheDocument();
+
+    vi.useRealTimers();
   });
 
   it('switches between Curated Curation track and Kakao AdFit track seamlessly', () => {
