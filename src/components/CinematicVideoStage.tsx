@@ -141,13 +141,14 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
 
     if (isPlayingTTS) {
       try {
-        video.currentTime = 0;
-        video.playbackRate = 1.0;
-        const playPromise = video.play();
-        if (playPromise && typeof playPromise.catch === 'function') {
-          playPromise.catch(() => {
-            // Handled safely
-          });
+        if (video.paused) {
+          video.playbackRate = 1.0;
+          const playPromise = video.play();
+          if (playPromise && typeof playPromise.catch === 'function') {
+            playPromise.catch(() => {
+              // Handled safely
+            });
+          }
         }
       } catch {
         // Safe fallback
@@ -162,7 +163,7 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
     }
   }, [isPlayingTTS, isVideoEnabled, activeVideoSrc, videoError]);
 
-  // Sub-frame level audio-to-video synchronization (Hard-sync & zero drift)
+  // Smooth audio-to-video cadence tracking WITHOUT decoder-freezing micro-seeks
   useEffect(() => {
     if (!isPlayingTTS || !isVideoEnabled || videoError) return;
 
@@ -172,14 +173,14 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
 
       if (audioCurrentTime > 0) {
         const drift = audioCurrentTime - video.currentTime;
-        if (Math.abs(drift) > 0.10) {
-          // Instant frame-level hard snap to guarantee zero lag or lead
+        // Only hard-seek on massive drift (e.g. background tab or system pause > 1.5s)
+        if (Math.abs(drift) > 1.5) {
           video.currentTime = audioCurrentTime;
           video.playbackRate = 1.0;
-        } else if (drift > 0.03) {
-          video.playbackRate = 1.04;
-        } else if (drift < -0.03) {
-          video.playbackRate = 0.96;
+        } else if (drift > 0.15) {
+          video.playbackRate = 1.06;
+        } else if (drift < -0.15) {
+          video.playbackRate = 0.94;
         } else if (video.playbackRate !== 1.0) {
           video.playbackRate = 1.0;
         }
@@ -189,16 +190,25 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
     return () => unsubscribe();
   }, [isPlayingTTS, isVideoEnabled, videoError]);
 
-  // Handle dialogue play: delegates cleanly to audio engine, which triggers synchronized video upon actual audio start
+  // Handle dialogue play: triggers direct user-gesture video playback and audio playback simultaneously
   const handlePlayDialogue = () => {
-    if (isPlayingTTS) {
-      const video = videoRef.current;
-      if (video) {
-        try {
+    const video = videoRef.current;
+    if (video && isVideoEnabled && !videoError) {
+      try {
+        if (!isPlayingTTS) {
+          video.currentTime = 0;
+          video.playbackRate = 1.0;
+          const playPromise = video.play();
+          if (playPromise && typeof playPromise.catch === 'function') {
+            playPromise.catch(() => {
+              // Safe fallback
+            });
+          }
+        } else {
           video.pause();
-        } catch {
-          // Safe fallback
         }
+      } catch {
+        // Safe fallback
       }
     }
     onPlayTTS();
