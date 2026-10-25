@@ -129,8 +129,8 @@ describe('Zero-Mismatch Audio-Visual Consistency Gatekeeper (300 Episodes)', () 
       expect(config.videoSrc).not.toContain('ep2');
       expect(config.videoSrc).not.toContain('ep3');
       expect(config.videoSrc).not.toContain('ep11');
-      // Verifies it is mapped to high-status Manhattan executive male video (ep1)
-      expect(config.videoSrc).toBe(`/videos/ep1_turn${turn.turnIndex}.mp4`);
+      // Verifies it is mapped to high-status Manhattan penthouse male video (ep6)
+      expect(config.videoSrc).toBe(`/videos/ep6_turn${turn.turnIndex}.mp4`);
     }
   });
 

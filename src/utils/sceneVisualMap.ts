@@ -180,7 +180,7 @@ export const GENRE_VISUAL_PRESETS: Record<string, GenreVisualPreset> = {
   },
   // 15. Luxury Real Estate
   'Luxury Real Estate': {
-    videoEp: 3,
+    videoEp: 6,
     locationTag: 'TRIBECA PENTHOUSE • 56 LEONARD SKY SALON',
     cameraRig: 'PANAVISION DXL2 • PRIMO 70',
     themeColor: 'from-amber-950/50 via-yellow-950/40 to-zinc-950',
@@ -705,7 +705,7 @@ export const getSceneVisualConfig = (
       }
     } else if (!isFemale && turn?.speaker) {
       if (effectiveVideoEp === 3) {
-        effectiveVideoEp = 1; // Route to Manhattan 50F corner suite / corporate broker titan (Harvey)
+        effectiveVideoEp = 6; // Route to luxury penthouse dealmaker suite (Axelrod / Ryan Serhant)
       } else if (effectiveVideoEp === 2) {
         effectiveVideoEp = 7; // Route to tech keynote stage or boardroom (Marcus)
       } else if (effectiveVideoEp === 11) {
@@ -740,7 +740,7 @@ export const getSceneVisualConfig = (
     }
   } else if (!isFemale && turn?.speaker) {
     if (cycleEp === 3) {
-      cycleEp = 1; // Ensure male fallback routes to Manhattan 50F corner suite (Harvey)
+      cycleEp = 6; // Ensure male fallback routes to luxury penthouse dealmaker suite
     } else if (cycleEp === 2) {
       cycleEp = 7; // Ensure male fallback routes to tech keynote stage (Marcus)
     } else if (cycleEp === 11) {

@@ -162,7 +162,7 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
     }
   }, [isPlayingTTS, isVideoEnabled, activeVideoSrc, videoError]);
 
-  // Sub-frame level audio-to-video synchronization
+  // Sub-frame level audio-to-video synchronization (Hard-sync & zero drift)
   useEffect(() => {
     if (!isPlayingTTS || !isVideoEnabled || videoError) return;
 
@@ -170,12 +170,16 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
       const video = videoRef.current;
       if (!video || !video.duration || video.paused) return;
 
-      const drift = audioCurrentTime - video.currentTime;
       if (audioCurrentTime > 0) {
-        if (drift > 0.18) {
-          video.playbackRate = 1.05;
-        } else if (drift < -0.18) {
-          video.playbackRate = 0.95;
+        const drift = audioCurrentTime - video.currentTime;
+        if (Math.abs(drift) > 0.10) {
+          // Instant frame-level hard snap to guarantee zero lag or lead
+          video.currentTime = audioCurrentTime;
+          video.playbackRate = 1.0;
+        } else if (drift > 0.03) {
+          video.playbackRate = 1.04;
+        } else if (drift < -0.03) {
+          video.playbackRate = 0.96;
         } else if (video.playbackRate !== 1.0) {
           video.playbackRate = 1.0;
         }
@@ -185,24 +189,16 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
     return () => unsubscribe();
   }, [isPlayingTTS, isVideoEnabled, videoError]);
 
-  // Handle dialogue play: triggers both audio and synchronized video playback immediately
+  // Handle dialogue play: delegates cleanly to audio engine, which triggers synchronized video upon actual audio start
   const handlePlayDialogue = () => {
-    const video = videoRef.current;
-    if (video && isVideoEnabled && !videoError) {
-      try {
-        if (!isPlayingTTS) {
-          video.currentTime = 0;
-          const playPromise = video.play();
-          if (playPromise && typeof playPromise.catch === 'function') {
-            playPromise.catch(() => {
-              // Safe fallback
-            });
-          }
-        } else {
+    if (isPlayingTTS) {
+      const video = videoRef.current;
+      if (video) {
+        try {
           video.pause();
+        } catch {
+          // Safe fallback
         }
-      } catch {
-        // Safe fallback
       }
     }
     onPlayTTS();
@@ -535,20 +531,44 @@ export const CinematicVideoStage: React.FC<CinematicVideoStageProps> = ({
         {/* Character Title & Camera Rig Info */}
         <div className="flex items-center space-x-2 sm:space-x-3 min-w-0 pr-2">
           <div className="relative">
-            <span className="text-xl sm:text-2xl drop-shadow-md shrink-0 block">
+            <span
+              className={`text-xl sm:text-2xl drop-shadow-md shrink-0 block transition-all duration-300 ${
+                isPlayingTTS && !selectedChoice
+                  ? 'scale-110 drop-shadow-[0_0_12px_rgba(223,177,91,0.8)]'
+                  : ''
+              }`}
+            >
               {selectedChoice ? '🎭' : turn.avatarEmoji || visualConfig.genreEmoji}
             </span>
             {isPlayingTTS && !selectedChoice && (
-              <span className="absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-full bg-[#DFB15B] ring-2 ring-black animate-ping" />
+              <>
+                <span className="absolute -inset-1 rounded-full bg-[#DFB15B]/30 animate-ping pointer-events-none" />
+                <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-[#DFB15B] ring-2 ring-black shadow-[0_0_8px_rgba(223,177,91,1)]" />
+              </>
             )}
           </div>
           <div className="min-w-0">
             <div className="flex items-center space-x-1.5">
-              <span className="text-xs sm:text-sm font-bold text-white tracking-tight truncate drop-shadow-md">
+              <span
+                className={`text-xs sm:text-sm font-bold tracking-tight truncate drop-shadow-md transition-colors ${
+                  isPlayingTTS && !selectedChoice ? 'text-[#FFF2C6]' : 'text-white'
+                }`}
+              >
                 {selectedChoice ? 'YOU (주연 배우)' : turn.speaker}
               </span>
-              <span className="hidden sm:inline-block px-1.5 py-0.5 rounded bg-[#1c1810] border border-[#DFB15B]/30 text-[9px] font-mono font-bold text-[#F3E5AB]">
-                {selectedChoice ? 'LEAD ACTOR' : 'OPPONENT'}
+              <span
+                className={`hidden sm:inline-flex items-center space-x-1 px-1.5 py-0.5 rounded border text-[9px] font-mono font-bold transition-all ${
+                  isPlayingTTS && !selectedChoice
+                    ? 'bg-[#2b1f07] border-[#DFB15B] text-[#FFF2C6] shadow-sm shadow-[#DFB15B]/40'
+                    : 'bg-[#1c1810] border-[#DFB15B]/30 text-[#F3E5AB]'
+                }`}
+              >
+                {isPlayingTTS && !selectedChoice && (
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#DFB15B] animate-pulse mr-0.5" />
+                )}
+                <span>
+                  {selectedChoice ? 'LEAD ACTOR' : isPlayingTTS ? 'SPEAKING' : 'OPPONENT'}
+                </span>
               </span>
             </div>
             <p className="text-[9px] sm:text-[10px] text-[#C5A059] font-medium truncate drop-shadow-sm">

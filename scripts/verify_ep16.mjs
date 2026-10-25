@@ -42,21 +42,22 @@ async function main() {
     await page.waitForTimeout(1500);
   }
 
-  const outPath = path.join(artifactDir, 'ep16_male_verified.png');
+  const outPath = path.join(artifactDir, 'ep16_dealmaker_verified.png');
   await page.screenshot({ path: outPath });
   console.log(`Saved screenshot: ${outPath}`);
 
   await browser.close();
 
-  if (!videoSrc || !videoSrc.includes('ep1')) {
-    console.error('FAIL: Expected video src to contain ep1 for male speaker, got:', videoSrc);
+  if (!videoSrc || !videoSrc.includes('ep6')) {
+    console.error('FAIL: Expected video src to contain ep6 for luxury penthouse broker, got:', videoSrc);
     process.exit(1);
   }
 
-  console.log('SUCCESS: EP16 verified with male video and male speaker!');
+  console.log('SUCCESS: EP16 verified with luxury penthouse broker footage (ep6)!');
 }
 
 main().catch(err => {
   console.error(err);
   process.exit(1);
 });
+
