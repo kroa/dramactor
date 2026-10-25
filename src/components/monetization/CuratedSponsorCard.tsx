@@ -72,10 +72,14 @@ export const CuratedSponsorCard: React.FC<CuratedSponsorCardProps> = ({
     setCurrentIndex((prev) => (prev === items.length - 1 ? 0 : prev + 1));
   };
 
-  // Prioritize local static asset, then remote CDN URL
+  // 100% resilient image resolution: always resolve to local clean static asset
   const localImageSrc = `/images/products/${currentItem.id}.jpg`;
   const imageSource = currentItem.imageUrl || localImageSrc;
-  const hasImage = Boolean(imageSource) && !failedImages[currentItem.id];
+  const hasImage = !failedImages[currentItem.id];
+
+  const handleImageError = () => {
+    setFailedImages((prev) => ({ ...prev, [currentItem.id]: true }));
+  };
 
   return (
     <div
@@ -156,7 +160,7 @@ export const CuratedSponsorCard: React.FC<CuratedSponsorCardProps> = ({
                 src={imageSource}
                 alt={currentItem.title}
                 referrerPolicy="no-referrer"
-                onError={() => setFailedImages((prev) => ({ ...prev, [currentItem.id]: true }))}
+                onError={handleImageError}
                 className="w-full h-full object-contain"
                 loading="eager"
               />

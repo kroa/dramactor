@@ -297,7 +297,21 @@ async function runSync() {
         console.log(`  ✅ [${item.title}] => ${apiResult.affiliateUrl}`);
         item.affiliateUrl = apiResult.affiliateUrl;
         if (apiResult.priceInfo) item.priceInfo = apiResult.priceInfo;
-        if (apiResult.imageUrl) item.imageUrl = apiResult.imageUrl;
+        // Keep robust local product image path so adblockers never block photos!
+        const localImgPath = path.join(ROOT_DIR, 'public', 'images', 'products', `${item.id}.jpg`);
+        if (!fs.existsSync(localImgPath) && apiResult.imageUrl) {
+          try {
+            const imgRes = await fetch(apiResult.imageUrl);
+            if (imgRes.ok) {
+              const arrayBuffer = await imgRes.arrayBuffer();
+              fs.writeFileSync(localImgPath, Buffer.from(arrayBuffer));
+              console.log(`  📸 [${item.id}] 로컬 이미지 다운로드 완료`);
+            }
+          } catch (imgErr) {
+            console.warn(`  ⚠️ 이미지 다운로드 실패:`, imgErr.message);
+          }
+        }
+        item.imageUrl = `/images/products/${item.id}.jpg`;
         if (typeof apiResult.isRocket === 'boolean') item.isRocket = apiResult.isRocket;
         updatedCount++;
       } else {
