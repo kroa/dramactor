@@ -31,6 +31,9 @@ describe('Zero-Mismatch Audio-Visual Consistency Gatekeeper (300 Episodes)', () 
   });
 
   it('enforces 100% strict gender congruence across all 300 episodes and 900 dialogue turns', () => {
+    const maleGotFemaleVideo: string[] = [];
+    const femaleGotMaleVideo: string[] = [];
+
     for (const ep of EPISODES) {
       for (const turn of ep.turns) {
         const isFemale = isSpeakerFemale(turn.speaker);
@@ -38,15 +41,41 @@ describe('Zero-Mismatch Audio-Visual Consistency Gatekeeper (300 Episodes)', () 
 
         if (isFemale) {
           // Female speaker must NEVER be mapped to male-exclusive video archetypes
-          expect(config.videoSrc).not.toContain('ep8'); // EP8 = Detective Miller (two men in interrogation room)
-          expect(config.videoSrc).not.toContain('ep7_turn2'); // EP7 = Male tech founder
+          // Male videos: ep1, ep4, ep5, ep6, ep7, ep8, ep9, ep10
+          // Female videos: ep2, ep3, ep11
+          if (
+            config.videoSrc.includes('ep1_') || config.videoSrc === '/videos/ep1.mp4' ||
+            config.videoSrc.includes('ep5_') || config.videoSrc === '/videos/ep5.mp4' ||
+            config.videoSrc.includes('ep6_') || config.videoSrc === '/videos/ep6.mp4' ||
+            config.videoSrc.includes('ep7_') || config.videoSrc === '/videos/ep7.mp4' ||
+            config.videoSrc.includes('ep8_') || config.videoSrc === '/videos/ep8.mp4' ||
+            config.videoSrc.includes('ep9_') || config.videoSrc === '/videos/ep9.mp4' ||
+            config.videoSrc.includes('ep10_') || config.videoSrc === '/videos/ep10.mp4'
+          ) {
+            femaleGotMaleVideo.push(`EP#${ep.episodeNumber} (${ep.genre}) [${turn.speaker}]: ${config.videoSrc}`);
+          }
         } else if (turn.speaker && !isFemale) {
-          // Male speaker must NEVER be mapped to female-exclusive video archetypes
-          expect(config.videoSrc).not.toContain('ep11'); // EP11 = Carrie (CIA Langley female station chief)
-          expect(config.videoSrc).not.toContain('ep2'); // EP2 = Elena Chen (Female VC lead)
+          // Male speaker must NEVER be mapped to female-exclusive video archetypes (ep2, ep3, ep11)
+          if (
+            config.videoSrc.includes('ep2') ||
+            config.videoSrc.includes('ep3') ||
+            config.videoSrc.includes('ep11')
+          ) {
+            maleGotFemaleVideo.push(`EP#${ep.episodeNumber} (${ep.genre}) [${turn.speaker}]: ${config.videoSrc}`);
+          }
         }
       }
     }
+
+    if (maleGotFemaleVideo.length > 0) {
+      console.log('MALE SPEAKERS WITH FEMALE VIDEO (count=' + maleGotFemaleVideo.length + '):', maleGotFemaleVideo);
+    }
+    if (femaleGotMaleVideo.length > 0) {
+      console.log('FEMALE SPEAKERS WITH MALE VIDEO (count=' + femaleGotMaleVideo.length + '):', femaleGotMaleVideo);
+    }
+
+    expect(maleGotFemaleVideo).toHaveLength(0);
+    expect(femaleGotMaleVideo).toHaveLength(0);
   });
 
   it('guarantees that female speakers are mapped to female-tuned TTS profiles', () => {
@@ -75,12 +104,33 @@ describe('Zero-Mismatch Audio-Visual Consistency Gatekeeper (300 Episodes)', () 
       'Dr. Burke (Chief of Surgery)',
       'Detective Miller (FBI Lead Investigator)',
       'Captain Sully (Senior Flight Captain)',
+      'Ryan Serhant (Managing Real Estate Broker)',
     ];
 
     for (const speaker of maleSpeakers) {
       expect(isSpeakerFemale(speaker)).toBe(false);
       const voiceProfile = getBestVoiceForCharacter(speaker);
       expect(voiceProfile.recommendedPitch).toBeLessThanOrEqual(0.96);
+    }
+  });
+
+  it('guarantees Episode 16 (Ryan Serhant - Luxury Real Estate) maps to male video and male voice', () => {
+    const ep16 = EPISODES.find((e) => e.episodeNumber === 16);
+    expect(ep16).toBeDefined();
+    if (!ep16) return;
+
+    for (const turn of ep16.turns) {
+      expect(isSpeakerFemale(turn.speaker)).toBe(false);
+      const voiceProfile = getBestVoiceForCharacter(turn.speaker);
+      expect(voiceProfile.recommendedPitch).toBeLessThanOrEqual(0.96);
+
+      const config = getSceneVisualConfig(ep16.episodeNumber, turn.turnIndex, ep16, turn);
+      // Strictly verify it NEVER uses female video (ep2, ep3, ep11)
+      expect(config.videoSrc).not.toContain('ep2');
+      expect(config.videoSrc).not.toContain('ep3');
+      expect(config.videoSrc).not.toContain('ep11');
+      // Verifies it is mapped to high-status Manhattan executive male video (ep1)
+      expect(config.videoSrc).toBe(`/videos/ep1_turn${turn.turnIndex}.mp4`);
     }
   });
 

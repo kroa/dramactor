@@ -694,11 +694,23 @@ export const getSceneVisualConfig = (
     let effectiveVideoEp = preset.videoEp;
 
     // Strict Gender-Video Congruence Gatekeeper:
-    // If the speaker is female, ensure they NEVER receive an exclusively male video
-    if (isFemale && (effectiveVideoEp === 8 || effectiveVideoEp === 7 || effectiveVideoEp === 6)) {
-      effectiveVideoEp = 11; // Route to CIA Langley / Cyber Ops / Tactical female officer archetype
-    } else if (!isFemale && turn?.speaker && (effectiveVideoEp === 11 || effectiveVideoEp === 2)) {
-      effectiveVideoEp = 7; // Route to tech keynote stage or boardroom
+    // Female archetypes: [2, 3, 11] | Male archetypes: [1, 4, 5, 6, 7, 8, 9, 10]
+    if (isFemale) {
+      if (effectiveVideoEp === 1 || effectiveVideoEp === 5 || effectiveVideoEp === 6) {
+        effectiveVideoEp = 3; // Route to luxury corporate executive / high-rise suite (Victoria)
+      } else if (effectiveVideoEp === 4 || effectiveVideoEp === 7) {
+        effectiveVideoEp = 2; // Route to tech executive / modern boardroom (Elena)
+      } else if (effectiveVideoEp === 8 || effectiveVideoEp === 9 || effectiveVideoEp === 10) {
+        effectiveVideoEp = 11; // Route to CIA Langley / tactical / crisis ops officer (Carrie)
+      }
+    } else if (!isFemale && turn?.speaker) {
+      if (effectiveVideoEp === 3) {
+        effectiveVideoEp = 1; // Route to Manhattan 50F corner suite / corporate broker titan (Harvey)
+      } else if (effectiveVideoEp === 2) {
+        effectiveVideoEp = 7; // Route to tech keynote stage or boardroom (Marcus)
+      } else if (effectiveVideoEp === 11) {
+        effectiveVideoEp = 8; // Route to FBI safehouse / tactical interrogation (Miller)
+      }
     }
 
     const turnVideo = turnIndex ? `/videos/ep${effectiveVideoEp}_turn${turnIndex}.mp4` : null;
@@ -718,10 +730,22 @@ export const getSceneVisualConfig = (
 
   // 2. Fallback to resilient cyclic baseline (ensures 100% backward compatibility & gender safety)
   let cycleEp = Math.max(1, ((Math.abs(episodeNumber) - 1) % TOTAL_PRODUCED) + 1);
-  if (isFemale && (cycleEp === 8 || cycleEp === 7 || cycleEp === 6 || cycleEp === 10)) {
-    cycleEp = 11; // Ensure female fallback routes to female archetype
-  } else if (!isFemale && turn?.speaker && (cycleEp === 11 || cycleEp === 2)) {
-    cycleEp = 1; // Ensure male fallback routes to male boardroom archetype
+  if (isFemale) {
+    if (cycleEp === 1 || cycleEp === 5 || cycleEp === 6) {
+      cycleEp = 3; // Ensure female fallback routes to luxury corporate suite (Victoria)
+    } else if (cycleEp === 4 || cycleEp === 7) {
+      cycleEp = 2; // Ensure female fallback routes to tech executive (Elena)
+    } else if (cycleEp === 8 || cycleEp === 9 || cycleEp === 10) {
+      cycleEp = 11; // Ensure female fallback routes to tactical/ops archetype (Carrie)
+    }
+  } else if (!isFemale && turn?.speaker) {
+    if (cycleEp === 3) {
+      cycleEp = 1; // Ensure male fallback routes to Manhattan 50F corner suite (Harvey)
+    } else if (cycleEp === 2) {
+      cycleEp = 7; // Ensure male fallback routes to tech keynote stage (Marcus)
+    } else if (cycleEp === 11) {
+      cycleEp = 8; // Ensure male fallback routes to tactical interrogation (Miller)
+    }
   }
 
   const turnVideo = turnIndex ? `/videos/ep${cycleEp}_turn${turnIndex}.mp4` : null;
